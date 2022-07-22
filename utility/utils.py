@@ -1,8 +1,6 @@
 from datetime import datetime
 import discord
 
-
-
 def defaultEmbed(title: str = '', message: str = ''):
     return discord.Embed(title=title, description=message, color=0xBB6688)
 

@@ -1,5 +1,3 @@
-# shenhe-bot by seria
-
 import getpass
 import os
 import sys
@@ -15,13 +13,7 @@ from dotenv import load_dotenv
 from enkanetwork import EnkaNetworkAPI
 from pyppeteer import launch
 
-from cogs.flow import FlowCog
-from cogs.gvaway import GiveAwayCog
-from cogs.roles import ReactionRoles
-from cogs.welcome import WelcomeCog
-from debug import DebugView
-from utility.db_utils import DbUtils
-from utility.utils import errEmbed, log
+from utility.utils import errEmbed
 
 load_dotenv()
 user_name = getpass.getuser()
@@ -46,36 +38,15 @@ intents.message_content = True
 intents.presences = True
 
 
-class ShenheBot(commands.Bot):
+class KanadeBot(commands.Bot):
     def __init__(self):
         super().__init__(
-            command_prefix=prefix,
-            intents=intents,
-            application_id=application_id,
-            owner_ids=[289597294075183114,
+            command_prefix = prefix,
+            intents = intents,
+            application_id = application_id,
+            owner_ids = [289597294075183114,
                        410036441129943050, 831883841417248778]
         )
-
-    async def setup_hook(self) -> None:
-        self.session = aiohttp.ClientSession()
-        self.db = await aiosqlite.connect('main.db')
-        self.browser = await launch({'headless': True, 'autoClose': False, "args": ['--proxy-server="direct://"', '--proxy-bypass-list=*', '--no-sandbox', '--start-maximized']})
-        self.debug_toggle = debug_toggle
-        self.enka_client = EnkaNetworkAPI(lang='cht')
-        await self.load_extension('jishaku')
-        for filepath in Path('./cogs').glob('**/*.py'):
-            cog_name = Path(filepath).stem
-            await self.load_extension(f'cogs.{cog_name}')
-        if not self.debug_toggle:
-            self.add_view(FlowCog.AcceptView(self.db, self))
-            self.add_view(FlowCog.ConfirmView(self.db))
-            self.add_view(GiveAwayCog.GiveAwayView(self.db, self))
-            self.add_view(ReactionRoles.WorldLevelView())
-            self.add_view(ReactionRoles.RoleView())
-            self.add_view(ReactionRoles.NationalityChooser([1, 2, 3]))
-            self.add_view(WelcomeCog.AcceptRules(self.db))
-            self.add_view(WelcomeCog.StartTutorial(self.db))
-            self.add_view(WelcomeCog.Welcome(None))
 
     async def on_ready(self):
         await self.change_presence(
@@ -116,7 +87,7 @@ class ShenheBot(commands.Bot):
         return await super().close()
 
 
-bot = ShenheBot()
+bot = KanadeBot()
 tree = bot.tree
 
 
@@ -130,9 +101,11 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         else:
             await i.response.send_message(embed=embed, ephemeral=True)
     else:
-        seria = i.client.get_user(410036441129943050)
+        ayaakaa = i.client.get_user(831883841417248778)
         view = DebugView(traceback.format_exc())
         embed = errEmbed(message=f'```py\n{e}\n```').set_author(
             name='未知錯誤', icon_url=i.user.avatar)
-        await i.channel.send(content=f'{seria.mention} 系統已將錯誤回報給小雪, 請耐心等待修復', embed=embed, view=view)
+        await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
+
 bot.run(token)
+

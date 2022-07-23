@@ -14,6 +14,7 @@ from discord.ui import Select
 from utility.apps.FlowApp import FlowApp
 from utility.utils import defaultEmbed, errEmbed, log
 from data.user_data import morning
+from data.version import version
 
 import random
 from random import randint
@@ -58,6 +59,10 @@ class MorningCog(commands.Cog, name='flow'):
 class AboutCog(commands.Cog, name='about'):
     def __init__(self, bot):
         self.bot = bot   
-    @app_commands.command(name='about', description='有關奏寶 - About Kanade')
-    async def snow(self, interaction: discord.Interaction):
-        await interaction.response.send_message("")
+    @app_commands.command(name='about', description='有關奏寶 - About Kanade Bot')
+    async def about(self, interaction: discord.Interaction):
+        embed = defaultEmbed(title="奏寶 • Kanade Bot", description="**奏寶**是由**綾霞**製作的機器人，並由小雪團隊協助開發")
+        embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot", icon_url="https://i.imgur.com/oXEl8tP.jpg")
+        embed.set_thumbnail(url="https://i.imgur.com/oXEl8tP.jpg")
+        embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
+        await interaction.response.send_message(embed=embed)

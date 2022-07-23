@@ -1,8 +1,16 @@
 from datetime import datetime
 import discord
 
+from discord import Button, Interaction, Member, SelectOption, app_commands
+from discord.app_commands import Choice
+from discord.ext import commands
+from discord.ui import Select
+from discord.embeds import Embed
+
 def defaultEmbed(title: str = '', message: str = ''):
-    return discord.Embed(title=title, description=message, color=0xBB6688)
+    embed = discord.Embed(title=title, description=message, color=0xBB6688)
+    embed.set_footer(text=f"奏寶 v{version} - by Ayaakaa@Seria Studios", icon_url="https://i.imgur.com/j2RCDKr.png")
+    return embed
 
 def errEmbed(title: str = '', message: str = ''):
     return discord.Embed(title=title, description=message, color=0xfc5165)
@@ -23,3 +31,7 @@ def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
     with open('log.txt', 'a+', encoding='utf-8') as f:
         f.write(f'{log_str}\n')
     return log_str
+
+def divide_chunks(l, n):
+    for i in range(0, len(l), n):
+        yield l[i:i + n]

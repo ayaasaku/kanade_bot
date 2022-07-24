@@ -14,12 +14,13 @@ from discord.ui import Select
 from utility.apps.FlowApp import FlowApp
 from utility.utils import defaultEmbed, errEmbed, log
 from data.user_data import morning
+from data.user_data import special
 from data.version import version
 
 import random
 from random import randint
 
-class MorningCog(commands.Cog, name='flow'):
+class MorningCog(commands.Cog, name='morning'):
     def __init__(self, bot) -> None:
         self.bot = bot
         self.debug_toggle = self.bot.debug_toggle   
@@ -27,13 +28,12 @@ class MorningCog(commands.Cog, name='flow'):
     async def on_message(self, message):
         user_id = message.author.id
         user = self.bot.get_user(message.author.id)
-        if message.author.bot:
-            return
-        
         morning_list = ['早安呀', '早安喔', '早安哇', '早安安', '早安', '早', '早呀', '早喔', '早哇']
         noon_list = ['午安呀', '午安喔', '午安哇', '午安安', '午安', '午']
         night_list = ['晚安呀', '晚安喔', '晚安哇', '晚安安', '晚安', '晚']
-
+        
+        if message.author.bot:
+            return
 
         if "早" in message.content or "午" in message.content or "晚" in message.content:
             if "早" in message.content:
@@ -54,7 +54,13 @@ class MorningCog(commands.Cog, name='flow'):
                     await message.reply(f'{author}{random.choice(noon_list)}')
             elif "晚" in message.content:
                     author = morning.get(message.author.id) or message.author.display_name
-                    await message.reply(f'{author}{random.choice(morning_list)}')
+                    await message.reply(f'{author}{random.choice(night_list)}')
+        
+        elif  "不" not in message.content and "奏" in message.content and "愛" or "喜歡" in message.content:
+            if message.author.id == special[ayaakaa][user_id]:
+                await message.reply(f'奏最喜歡霞霞了！')
+            else:
+                await message.reply(f'奏也愛你喔～')
                         
 class AboutCog(commands.Cog, name='about'):
     def __init__(self, bot):

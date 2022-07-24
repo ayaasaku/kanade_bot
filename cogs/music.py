@@ -50,7 +50,7 @@ class MusicCog(commands.GroupCog, name='music'):
             vc: wavelink.Player = i.guild.voice_client
         if i.guild.voice_client.channel != i.user.voice.channel:
             if vc.is_playing():
-                return await i.response.send_message(embed=errEmbed(message='你跟目前申鶴所在的語音台不同,\n且申鶴目前正在為那邊的使用者播歌\n請等待至對方播放完畢').set_author(name='錯誤', icon_url=i.user.avatar), ephemeral=True)
+                return await i.response.send_message(embed=errEmbed(message='你跟目前奏寶所在的語音台不同,\n且奏寶目前正在為那邊的使用者播歌\n請等待至對方播放完畢').set_author(name='錯誤', icon_url=i.user.avatar), ephemeral=True)
             await vc.disconnect()
             vc: wavelink.Player = await i.user.voice.channel.connect(cls=wavelink.Player)
         await i.response.send_message(embed=defaultEmbed('<a:LOADER:982128111904776242> 搜尋中'))

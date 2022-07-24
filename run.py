@@ -10,7 +10,6 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands)
 from discord.ext import commands
 from dotenv import load_dotenv
-from enkanetwork import EnkaNetworkAPI
 from pyppeteer import launch
 
 from utility.utils import errEmbed

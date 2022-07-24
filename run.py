@@ -50,7 +50,7 @@ class KanadeBot(commands.Bot):
     async def on_ready(self):
         await self.change_presence(
             status=Status.online,
-            activity=Game(name=f'/help')
+            activity=Game(name=f'/help',emoji=f'<:dot_dot_dot:1000044818166190140>')
         )
         print(log(True, False, 'Bot', f'Logged in as {self.user}'))
 

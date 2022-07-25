@@ -62,7 +62,6 @@ class MainCog(commands.Cog, name='main'):
                              description="**奏寶**是由**綾霞**製作的機器人，並由小雪團隊協助開發")
         embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
                          icon_url="https://i.imgur.com/oXEl8tP.jpg")
-        embed.set_thumbnail(url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         await interaction.response.send_message(embed=embed)
 
@@ -71,7 +70,6 @@ class MainCog(commands.Cog, name='main'):
     async def say(self, i: discord.Interaction, message: str):
         await i.response.send_message('成功 - Success', ephemeral=True)
         await i.channel.send(message)
-
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

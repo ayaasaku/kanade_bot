@@ -58,7 +58,7 @@ class MainCog(commands.Cog, name='main'):
             else:
                 await message.reply(f'奏也愛你喔～')
         
-        elif "召喚" and "奏" in message.content:
+        elif "召喚" in message.content and "奏" in message.content:
                 await message.reply(f'召喚成功...')
 
     @app_commands.command(name='about', description='有關奏寶')

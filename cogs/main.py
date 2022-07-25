@@ -29,7 +29,7 @@ class MainCog(commands.Cog, name='main'):
             return
 
         if "早" in message.content or "午" in message.content or "晚" in message.content:
-            if "早" in message.content:
+            if "奏" in message.content and "早" in message.content:
                 start = datetime(year=now.year, month=now.month,
                                  day=now.day, hour=5, minute=0, second=0, microsecond=0)
                 end = datetime(year=now.year, month=now.month, day=now.day,
@@ -38,7 +38,7 @@ class MainCog(commands.Cog, name='main'):
                     author = morning.get(
                         message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(morning_list)}')
-            elif "午" in message.content:
+            elif "奏" in message.content and "午" in message.content:
                 start = datetime(year=now.year, month=now.month, day=now.day,
                                  hour=12, minute=0, second=0, microsecond=0)
                 end = datetime(year=now.year, month=now.month, day=now.day,
@@ -47,7 +47,7 @@ class MainCog(commands.Cog, name='main'):
                     author = morning.get(
                         message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(noon_list)}')
-            elif "晚" in message.content:
+            elif "奏" in message.content and "晚" in message.content:
                 author = morning.get(
                     message.author.id) or message.author.display_name
                 await message.reply(f'{author}{random.choice(night_list)}')

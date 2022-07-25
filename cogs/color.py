@@ -33,10 +33,10 @@ class ColorCog(commands.Cog, name='color'):
             await bot.process_commands(message)
 
     @app_commands.command(name='color', description='color')
-    @app_commands.rename(color='Hex Code')
+    @app_commands.rename(search='Hex Code')
     async def color(self, ctx, search: str):
         files = []
-        for hexCode in color:
+        for hexCode in search:
             img = Image.new("RGB", (32, 32), ImageColor.getrgb(hexCode))
             with BytesIO() as image_binary:
                 img.save(image_binary, 'PNG')

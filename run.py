@@ -11,6 +11,7 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
 from discord.ext import commands
 from dotenv import load_dotenv
 from pyppeteer import launch
+from debug import DebugView
 
 from utility.utils import errEmbed
 

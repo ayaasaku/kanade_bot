@@ -20,10 +20,10 @@ class MainCog(commands.Cog, name='main'):
     async def on_message(self, message):
         user_id = message.author.id
         user = self.bot.get_user(message.author.id)
-        morning_list = ['早安呀', '早安喔', '早安哇',
-                        '早安安', '早安', '早', '早呀', '早喔', '早哇']
-        noon_list = ['午安呀', '午安喔', '午安安', '午安', '午']
-        night_list = ['晚安呀', '晚安喔', '晚安安', '晚安', '晚']
+        morning_list = ['早安呀...', '早安喔...', '早安...',
+                        '早安安...', '早安', '早', '早...', '早呀...', '早喔...']
+        noon_list = ['午安呀...', '午安喔...', '午安安...', '午安', '午', '午安...', '午...']
+        night_list = ['晚安呀...', '晚安喔...', '晚安安...', '晚安', '晚安...', '晚', '晚...']
         now = datetime.now()
 
         if message.author.bot:
@@ -56,8 +56,8 @@ class MainCog(commands.Cog, name='main'):
         elif "不" not in message.content and "奏" in message.content and "愛" in message.content or "奏" in message.content and "喜歡" in message.content:
             if message.author.id == special['ayaakaa']['user_id']:
                 await message.reply(f'奏最喜歡霞霞了！')
-            else:
-                await message.reply(f'奏也愛你喔～')
+            #else:
+                #await message.reply(f'奏也愛你喔～')
         
         elif "召喚" in message.content and "奏" in message.content:
                 await message.reply(f'召喚成功...')

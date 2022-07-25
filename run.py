@@ -20,13 +20,13 @@ if user_name == "alice":
     token = os.getenv('main')
     prefix = ['!', '！']
     guild = 778804551972159489
-    application_id = 956049912699715634
+    application_id = 999880764336386159
     debug_toggle = False
 else:
     token = os.getenv('dev')
     prefix = ['!']
     guild = 778804551972159489
-    application_id = 957621570128449626
+    application_id = 999880764336386159
     debug_toggle = True
 
 # 前綴, token, intents

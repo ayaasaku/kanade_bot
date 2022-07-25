@@ -58,7 +58,7 @@ class MainCog(commands.Cog, name='main'):
             else:
                 await message.reply(f'奏也愛你喔～')
 
-    @app_commands.command(name='about', description='有關奏寶 - About Kanade Bot')
+    @app_commands.command(name='about', description='有關奏寶')
     async def about(self, interaction: discord.Interaction):
         embed = defaultEmbed(title="奏寶 • Kanade Bot",
                              description="**奏寶**是由**綾霞**製作的機器人，並由小雪團隊協助開發")

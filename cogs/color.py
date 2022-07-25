@@ -34,7 +34,7 @@ class ColorCog(commands.Cog, name='color'):
 
     @app_commands.command(name='color', description='color')
     @app_commands.rename(search='hex-code')
-    async def color(self, ctx, search: str):
+    async def color(self, ctx, search):
         files = []
         for hexCode in search:
             img = Image.new("RGB", (32, 32), ImageColor.getrgb(hexCode))

@@ -31,6 +31,7 @@ class KanadeBot(commands.Bot):
         )
         
     async def setup_hook(self) -> None:
+        await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
             cog_name = Path(filepath).stem
             await self.load_extension(f'cogs.{cog_name}')

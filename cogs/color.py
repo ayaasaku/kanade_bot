@@ -40,3 +40,5 @@ class ColorCog(commands.Cog, name='color'):
             
         await ctx.message.channel.send(files=files)
 
+async def setup(bot: commands.Bot) -> None:
+    await bot.add_cog(ColorCog(bot))

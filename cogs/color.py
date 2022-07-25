@@ -8,10 +8,6 @@ import os
 from PIL import Image, ImageColor
 from io import BytesIO
 
-import random
-from datetime import datetime
-from random import randint
-
 from utility.utils import defaultEmbed
 
 class ColorCog(commands.Cog, name='color'):
@@ -36,7 +32,7 @@ class ColorCog(commands.Cog, name='color'):
 
             await bot.process_commands(message)
 
-    @app_commands.command(name='color', description='color')
+    @bot.command
     async def color(ctx, *args):
         files = []
         for hexCode in args:

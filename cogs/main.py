@@ -11,17 +11,18 @@ from utility.utils import defaultEmbed
 
 class MorningCog(commands.Cog, name='morning'):
     def __init__(self, bot) -> None:
-        self.bot = bot 
-        
+        self.bot = bot
+
     @commands.Cog.listener()
     async def on_message(self, message):
         user_id = message.author.id
         user = self.bot.get_user(message.author.id)
-        morning_list = ['早安呀', '早安喔', '早安哇', '早安安', '早安', '早', '早呀', '早喔', '早哇']
+        morning_list = ['早安呀', '早安喔', '早安哇',
+                        '早安安', '早安', '早', '早呀', '早喔', '早哇']
         noon_list = ['午安呀', '午安喔', '午安哇', '午安安', '午安', '午']
         night_list = ['晚安呀', '晚安喔', '晚安哇', '晚安安', '晚安', '晚']
         now = datetime.now()
-        
+
         if message.author.bot:
             return
 
@@ -32,7 +33,8 @@ class MorningCog(commands.Cog, name='morning'):
                 end = datetime(year=now.year, month=now.month, day=now.day,
                                hour=11, minute=59, second=0, microsecond=0)
                 if start <= now <= end:
-                    author = morning.get(message.author.id) or message.author.display_name
+                    author = morning.get(
+                        message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(morning_list)}')
             elif "午" in message.content:
                 start = datetime(year=now.year, month=now.month, day=now.day,
@@ -40,35 +42,36 @@ class MorningCog(commands.Cog, name='morning'):
                 end = datetime(year=now.year, month=now.month, day=now.day,
                                hour=17, minute=59, second=0, microsecond=0)
                 if start <= now <= end:
-                    author = morning.get(message.author.id) or message.author.display_name
+                    author = morning.get(
+                        message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(noon_list)}')
             elif "晚" in message.content:
-                    author = morning.get(message.author.id) or message.author.display_name
-                    await message.reply(f'{author}{random.choice(night_list)}')
-        
-        elif  "不" not in message.content and "奏" in message.content and "愛" or "喜歡" in message.content:
+                author = morning.get(
+                    message.author.id) or message.author.display_name
+                await message.reply(f'{author}{random.choice(night_list)}')
+
+        elif "不" not in message.content and "奏" in message.content and "愛" or "喜歡" in message.content:
             if message.author.id == special['ayaakaa'][user_id]:
                 await message.reply(f'奏最喜歡霞霞了！')
             else:
                 await message.reply(f'奏也愛你喔～')
-                        
-class AboutCog(commands.Cog, name='about'):
-    def __init__(self, bot):
-        self.bot = bot   
+
     @app_commands.command(name='about', description='有關奏寶 - About Kanade Bot')
     async def about(self, interaction: discord.Interaction):
-        embed = defaultEmbed(title="奏寶 • Kanade Bot", description="**奏寶**是由**綾霞**製作的機器人，並由小雪團隊協助開發")
-        embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot", icon_url="https://i.imgur.com/oXEl8tP.jpg")
+        embed = defaultEmbed(title="奏寶 • Kanade Bot",
+                             description="**奏寶**是由**綾霞**製作的機器人，並由小雪團隊協助開發")
+        embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
+                         icon_url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_thumbnail(url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         await interaction.response.send_message(embed=embed)
 
-class AdminCog(commands.Cog):
-    def __init__(self, bot):
-        self.bot: commands.Bot = bot
-        self.debug: bool = self.bot.debug_toggle
     @app_commands.command(name='say', description='用奏寶說話')
     @app_commands.checks.has_role('小雪團隊')
     async def say(self, i: discord.Interaction, message: str):
         await i.response.send_message('成功 - Success', ephemeral=True)
         await i.channel.send(message)
+
+
+async def setup(bot: commands.Bot) -> None:
+    await bot.add_cog(MorningCog(bot))

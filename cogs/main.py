@@ -57,6 +57,9 @@ class MainCog(commands.Cog, name='main'):
                 await message.reply(f'奏最喜歡霞霞了！')
             else:
                 await message.reply(f'奏也愛你喔～')
+        
+        elif ("召喚" and "奏") in message.content:
+                await message.reply(f'召喚成功...')
 
     @app_commands.command(name='about', description='有關奏寶')
     async def about(self, interaction: discord.Interaction):

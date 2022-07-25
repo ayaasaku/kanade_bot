@@ -21,8 +21,8 @@ class MainCog(commands.Cog, name='main'):
         user = self.bot.get_user(message.author.id)
         morning_list = ['早安呀', '早安喔', '早安哇',
                         '早安安', '早安', '早', '早呀', '早喔', '早哇']
-        noon_list = ['午安呀', '午安喔', '午安哇', '午安安', '午安', '午']
-        night_list = ['晚安呀', '晚安喔', '晚安哇', '晚安安', '晚安', '晚']
+        noon_list = ['午安呀', '午安喔', '午安安', '午安', '午']
+        night_list = ['晚安呀', '晚安喔', '晚安安', '晚安', '晚']
         now = datetime.now()
 
         if message.author.bot:
@@ -72,7 +72,7 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.command(name='say', description='用奏寶說話')
     @app_commands.checks.has_role('小雪團隊')
     async def say(self, i: discord.Interaction, message: str):
-        await i.response.send_message('成功 - Success', ephemeral=True)
+        await i.response.send_message('成功', ephemeral=True)
         await i.channel.send(message)
 
 async def setup(bot: commands.Bot) -> None:

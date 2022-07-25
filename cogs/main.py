@@ -1,29 +1,18 @@
-import calendar
-import uuid
-from datetime import datetime
-from typing import Any, List
-
-import aiosqlite
-import discord
-from dateutil import parser
-from debug import DefaultView
-from discord import Button, Interaction, Member, SelectOption, app_commands
-from discord.app_commands import Choice
-from discord.ext import commands
-from discord.ui import Select
-from utility.apps.FlowApp import FlowApp
-from utility.utils import defaultEmbed, errEmbed, log
-from data.user_data import morning
-from data.user_data import special
-from data.version import version
-
 import random
+from datetime import datetime
 from random import randint
+
+import discord
+from data.user_data import morning, special
+from discord import app_commands
+from discord.ext import commands
+from utility.utils import defaultEmbed
+
 
 class MorningCog(commands.Cog, name='morning'):
     def __init__(self, bot) -> None:
-        self.bot = bot
-        self.debug_toggle = self.bot.debug_toggle   
+        self.bot = bot 
+        
     @commands.Cog.listener()
     async def on_message(self, message):
         user_id = message.author.id
@@ -31,6 +20,7 @@ class MorningCog(commands.Cog, name='morning'):
         morning_list = ['早安呀', '早安喔', '早安哇', '早安安', '早安', '早', '早呀', '早喔', '早哇']
         noon_list = ['午安呀', '午安喔', '午安哇', '午安安', '午安', '午']
         night_list = ['晚安呀', '晚安喔', '晚安哇', '晚安安', '晚安', '晚']
+        now = datetime.now()
         
         if message.author.bot:
             return
@@ -57,7 +47,7 @@ class MorningCog(commands.Cog, name='morning'):
                     await message.reply(f'{author}{random.choice(night_list)}')
         
         elif  "不" not in message.content and "奏" in message.content and "愛" or "喜歡" in message.content:
-            if message.author.id == special[ayaakaa][user_id]:
+            if message.author.id == special['ayaakaa'][user_id]:
                 await message.reply(f'奏最喜歡霞霞了！')
             else:
                 await message.reply(f'奏也愛你喔～')
@@ -72,7 +62,7 @@ class AboutCog(commands.Cog, name='about'):
         embed.set_thumbnail(url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         await interaction.response.send_message(embed=embed)
-        
+
 class AdminCog(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot

@@ -69,6 +69,6 @@ class AdminCog(commands.Cog):
         self.debug: bool = self.bot.debug_toggle
     @app_commands.command(name='say', description='用奏寶說話')
     @app_commands.checks.has_role('小雪團隊')
-    async def say(self, i: Interaction, message: str):
+    async def say(self, i: discord.Interaction, message: str):
         await i.response.send_message('成功 - Success', ephemeral=True)
         await i.channel.send(message)

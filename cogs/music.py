@@ -274,7 +274,7 @@ class MusicCog(commands.GroupCog, name='music'):
         await vc.disconnect()
         await i.response.send_message(embed=defaultEmbed('奏寶已離開'))
 
-    @app_commands.command(name='player播放狀態', description='查看目前播放狀態')
+    @app_commands.command(name='player', description='查看目前播放狀態')
     async def music_player(self, i: Interaction):
         if not i.guild.voice_client:
             return await i.response.send_message(embed=errEmbed(message='輸入 `/play` 來播放歌曲').set_author(name='播放器不存在', icon_url=i.user.avatar), ephemeral=True)

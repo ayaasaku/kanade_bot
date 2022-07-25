@@ -1,11 +1,18 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 import re
 import requests
 from dotenv import load_dotenv
 import os
 from PIL import Image, ImageColor
 from io import BytesIO
+
+import random
+from datetime import datetime
+from random import randint
+
+from utility.utils import defaultEmbed
 
 class ColorCog(commands.Cog, name='color'):
     def __init__(self, bot) -> None:

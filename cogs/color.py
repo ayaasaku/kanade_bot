@@ -15,7 +15,8 @@ from random import randint
 from utility.utils import defaultEmbed
 
 class ColorCog(commands.Cog, name='color'):
-    def __init__(self, bot) -> None:
+    
+    def __init__(self, bot):
         self.bot = bot 
 
     @commands.Cog.listener()

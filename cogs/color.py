@@ -34,7 +34,7 @@ class ColorCog(commands.Cog, name='color'):
 
     @app_commands.command(name='color', description='color')
     @app_commands.rename(color='Hex Code')
-    async def color(self, i: Interaction, search: str, ctx, *args):
+    async def color(self, i: discord.Interaction, search: str, ctx, *args):
         files = []
         for hexCode in color:
             img = Image.new("RGB", (32, 32), ImageColor.getrgb(hexCode))

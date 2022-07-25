@@ -8,6 +8,8 @@ from discord import app_commands
 from discord.ext import commands
 from utility.utils import defaultEmbed
 
+global version
+version = 1.0
 
 class MainCog(commands.Cog, name='main'):
     def __init__(self, bot) -> None:
@@ -51,7 +53,7 @@ class MainCog(commands.Cog, name='main'):
                 await message.reply(f'{author}{random.choice(night_list)}')
 
         elif "不" not in message.content and "奏" in message.content and ("愛" or "喜歡") in message.content:
-            if message.author.id == special['ayaakaa'][user_id]:
+            if message.author.id == special['ayaakaa']['user_id']:
                 await message.reply(f'奏最喜歡霞霞了！')
             else:
                 await message.reply(f'奏也愛你喔～')
@@ -63,6 +65,8 @@ class MainCog(commands.Cog, name='main'):
         embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
                          icon_url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
+        embed.set_footer(text=f"奏寶 v{version} - by Ayaakaa@Seria Studios",
+                     icon_url="https://i.imgur.com/j2RCDKr.png")
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name='say', description='用奏寶說話')

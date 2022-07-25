@@ -2,14 +2,8 @@ from datetime import datetime
 
 import discord
 
-global version
-version = 1.0
-
-
 def defaultEmbed(title: str = '', description: str = ''):
     embed = discord.Embed(title=title, description=description, color=0xBB6688)
-    embed.set_footer(text=f"奏寶 v{version} - by Ayaakaa@Seria Studios",
-                     icon_url="https://i.imgur.com/j2RCDKr.png")
     return embed
 
 

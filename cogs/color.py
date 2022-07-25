@@ -33,7 +33,7 @@ class ColorCog(commands.Cog, name='color'):
             await bot.process_commands(message)
 
     @app_commands.command(name='color', description='color')
-    @app_commands.rename(search='Hex-Code')
+    @app_commands.rename(search='hex-code')
     async def color(self, ctx, search: str):
         files = []
         for hexCode in search:

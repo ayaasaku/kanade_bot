@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import sys
 import traceback
 
@@ -28,6 +29,11 @@ class KanadeBot(commands.Bot):
             intents=intents,
             application_id=999880764336386159
         )
+        
+    async def setup_hook(self) -> None:
+        for filepath in Path('./cogs').glob('**/*.py'):
+            cog_name = Path(filepath).stem
+            await self.load_extension(f'cogs.{cog_name}')
 
     async def on_ready(self):
         await self.change_presence(

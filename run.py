@@ -12,7 +12,7 @@ from debug import DebugView
 from utility.utils import errEmbed
 
 load_dotenv()
-token = os.getenv('main')
+token = os.getenv('TOKEN')
 
 # 前綴, token, intents
 intents = Intents.default()
@@ -21,13 +21,12 @@ intents.reactions = True
 intents.message_content = True
 intents.presences = True
 
-
 class KanadeBot(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix='!',
             intents=intents,
-            application_id=999880764336386159
+            application_id=os.getenv('APP_ID')
         )
         
     async def setup_hook(self) -> None:

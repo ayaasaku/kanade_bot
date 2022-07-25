@@ -52,7 +52,7 @@ class KanadeBot(commands.Bot):
             status=Status.online,
             activity=Game(name=f'/help',emoji=f'<:dot_dot_dot:1000044818166190140>')
         )
-        print(log(True, False, 'Bot', f'Logged in as {self.user}'))
+        print(f'Logged in as {self.user}')
 
     async def on_message(self, message: Message):
         if message.author.id == self.user.id:
@@ -80,9 +80,6 @@ class KanadeBot(commands.Bot):
                 type(error), error, error.__traceback__, file=sys.stderr)
 
     async def close(self) -> None:
-        await self.db.close()
-        await self.browser.close()
-        await self.session.close()
         return await super().close()
 
 

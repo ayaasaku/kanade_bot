@@ -12,7 +12,7 @@ global version
 version = 1.0
 
 class MainCog(commands.Cog, name='main'):
-    def __init__(self, bot) -> None:
+    def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()

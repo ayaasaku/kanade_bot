@@ -53,7 +53,7 @@ class MainCog(commands.Cog, name='main'):
                     message.author.id) or message.author.display_name
                 await message.reply(f'{author}{random.choice(night_list)}')
 
-        elif "不" not in message.content and "奏" in message.content and "愛" in message.content or "喜歡" in message.content:
+        elif "不" not in message.content and "奏" in message.content and "愛" in message.content or "奏" in message.content and "喜歡" in message.content:
             if message.author.id == special['ayaakaa']['user_id']:
                 await message.reply(f'奏最喜歡霞霞了！')
             else:

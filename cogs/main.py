@@ -72,3 +72,13 @@ class AboutCog(commands.Cog, name='about'):
         embed.set_thumbnail(url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         await interaction.response.send_message(embed=embed)
+        
+class AdminCog(commands.Cog):
+    def __init__(self, bot):
+        self.bot: commands.Bot = bot
+        self.debug: bool = self.bot.debug_toggle
+    @app_commands.command(name='say', description='用奏寶說話')
+    @app_commands.checks.has_role('小雪團隊')
+    async def say(self, i: Interaction, message: str):
+        await i.response.send_message('成功 - Success', ephemeral=True)
+        await i.channel.send(message)

@@ -36,7 +36,7 @@ class ColorCog(commands.Cog, name='color'):
 
             await bot.process_commands(message)
 
-    @bot.command()
+    @app_commands.command(name='color', description='color')
     async def color(ctx, *args):
         files = []
         for hexCode in args:

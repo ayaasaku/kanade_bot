@@ -39,7 +39,7 @@ class KanadeBot(commands.Bot):
         await self.change_presence(
             status=Status.online,
             activity=Game(
-                name=f'/help', emoji=f'<:dot_dot_dot:1000044818166190140>')
+                name=f'Project Sekai')
         )
         print(f'Logged in as {self.user}')
 

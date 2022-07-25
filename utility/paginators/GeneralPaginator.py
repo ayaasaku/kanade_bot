@@ -81,6 +81,10 @@ class GeneralPaginator:
         if (len(self.custom_children) > 0):
             for child in self.custom_children:
                 view.add_item(child)
+        
+        kwargs = {'content': self.pages[view.current_page]} if not (
+            embeded) else {'embed': self.pages[view.current_page]}
+        kwargs['view'] = view
                 
         if edit_original_message:
             await self.interaction.edit_original_message(**kwargs)

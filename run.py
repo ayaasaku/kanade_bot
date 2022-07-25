@@ -1,34 +1,17 @@
-import getpass
 import os
 import sys
 import traceback
-from pathlib import Path
 
-import aiohttp
-import aiosqlite
 from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands)
 from discord.ext import commands
 from dotenv import load_dotenv
-from pyppeteer import launch
-from debug import DebugView
 
+from debug import DebugView
 from utility.utils import errEmbed
 
 load_dotenv()
-user_name = getpass.getuser()
-if user_name == "alice":
-    token = os.getenv('main')
-    prefix = ['!', '！']
-    guild = 778804551972159489
-    application_id = 999880764336386159
-    debug_toggle = False
-else:
-    token = os.getenv('dev')
-    prefix = ['!']
-    guild = 778804551972159489
-    application_id = 999880764336386159
-    debug_toggle = True
+token = os.getenv('main')
 
 # 前綴, token, intents
 intents = Intents.default()
@@ -41,17 +24,16 @@ intents.presences = True
 class KanadeBot(commands.Bot):
     def __init__(self):
         super().__init__(
-            command_prefix = prefix,
-            intents = intents,
-            application_id = application_id,
-            owner_ids = [289597294075183114,
-                       410036441129943050, 831883841417248778]
+            command_prefix='!',
+            intents=intents,
+            application_id=999880764336386159
         )
 
     async def on_ready(self):
         await self.change_presence(
             status=Status.online,
-            activity=Game(name=f'/help',emoji=f'<:dot_dot_dot:1000044818166190140>')
+            activity=Game(
+                name=f'/help', emoji=f'<:dot_dot_dot:1000044818166190140>')
         )
         print(f'Logged in as {self.user}')
 
@@ -105,4 +87,3 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
 
 bot.run(token)
-

@@ -9,7 +9,7 @@ from discord.ext import commands
 from utility.utils import defaultEmbed
 
 
-class MorningCog(commands.Cog, name='morning'):
+class MainCog(commands.Cog, name='main'):
     def __init__(self, bot) -> None:
         self.bot = bot
 
@@ -74,4 +74,4 @@ class MorningCog(commands.Cog, name='morning'):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(MorningCog(bot))
+    await bot.add_cog(MainCog(bot))

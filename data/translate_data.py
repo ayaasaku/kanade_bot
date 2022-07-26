@@ -1,4 +1,4 @@
-translate:{
+translate = {
     'attributes':{
         'Cute':'Cute(キュート)',
         'Cool':'Cool(クール)',

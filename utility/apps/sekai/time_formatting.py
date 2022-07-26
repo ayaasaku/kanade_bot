@@ -15,7 +15,7 @@ async def format_date(seconds):
     from datetime import datetime, timedelta
     date = datetime.fromtimestamp(seconds/ 1000)
     date = date-timedelta(hours=-1)
-    date = date.strftime("%Y-%m-%d %H:%M:%S %Z%z")
+    date = date.strftime("%Y-%m-%d %H:%M:%S")
     return date
 
 async def format_progress(end_time, start_time, current_time):

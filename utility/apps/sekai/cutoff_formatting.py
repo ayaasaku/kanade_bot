@@ -46,7 +46,8 @@ async def get_cutoff_formatting(tier: str = '0'):
         from utility.apps.sekai.event_info import get_current_event_id,get_event_end_time, get_event_banner_name
         from utility.apps.sekai.api_functions import get_sekai_world_events_api
         event_banner_name = await get_event_banner_name(event_id)
-        banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"        
+        #banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"  
+        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/event_{event_banner_name}_{currentYear}_rip/event_{event_banner_name}_{currentYear}.webp"      
         event_id = await get_current_event_id()
         event_end_time = (await get_event_end_time(event_id)) / 1000
         current_time = time.time()
@@ -54,7 +55,7 @@ async def get_cutoff_formatting(tier: str = '0'):
             time_left = 'Event has ended'
         else:
             time_left = await format_time(event_end_time - current_time)
-        event_url = f'https://sekai-world.github.io/sekai-viewer/#/event/{event_id}'
+        event_url = f'https://sekai.best/event/{event_id}'
         embed=defaultEmbed(title=f"{event_name} [t{tier}]", url=event_url)
         embed.set_thumbnail(url=banner_url)
         embed.add_field(name='Current', value="{:,}".format(current_event_cutoff_api[f'rank{tier}'][0]['score']), inline=True)

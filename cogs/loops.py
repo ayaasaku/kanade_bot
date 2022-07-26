@@ -13,13 +13,7 @@ class LoopsCog(commands.Cog, name='loops'):
 
     def __init__(self, bot):
         self.bot = bot
-        with open("config.json") as file:
-            config_json = json.load(file)
-            loops_enabled = config_json['loops_enabled']
-        if loops_enabled == 'true':
-            self.StartLoops() 
-        else:
-            print('Not loading loops')
+        self.StartLoops() 
    
     def StartLoops(self):
         self.bot.loop.create_task(self.post_1m_cutoff_updates())

@@ -37,12 +37,14 @@ class EventCog(commands.Cog, name='event'):
             event_name = await get_event_name(event_id)
             event_start_time = await get_event_start_time(event_id)
             event_banner_name = await get_event_banner_name(event_id)
-            banner_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+            logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+            banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id}'
             time_left = await format_time(event_end_time - current_time)
             event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
             embed = defaultEmbed(title=event_name, url=event_url)
-            embed.set_thumbnail(url=banner_url)
+            embed.set_thumbnail(url=logo_url)
+            embed.set_image(url=banner_url)
             embed.add_field(name='Time Left', value=time_left, inline=True)
             embed.add_field(name='Progress', value=event_prog, inline=True)
             embed.add_field(name='End Date', value=event_end_date, inline=True)
@@ -66,10 +68,12 @@ class EventCog(commands.Cog, name='event'):
         event_bonus_attribute = await get_event_bonus_attribute()
         event_start_time = await format_date(await get_event_start_time(event_id))
         event_end_time = await format_date(await get_event_end_time(event_id))
-        banner_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+        logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
         event_url = f'https://sekai.best/event/{event_id}'
         embed = defaultEmbed(title=event_name, url=event_url)
-        embed.set_thumbnail(url=banner_url)
+        embed.set_thumbnail(url=logo_url)
+        embed.set_image(url=banner_url)
         embed.add_field(name='Attribute', value=f'{event_bonus_attribute} {Attributes[str(event_bonus_attribute)]}', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='Event Type', value=str(event_type), inline=True)

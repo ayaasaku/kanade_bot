@@ -9,7 +9,7 @@ from discord.ext import commands
 from utility.utils import updateEmbed
 from data.version import version
 
-class OthersCog(commands.Cog, name='main'):
+class OthersCog(commands.Cog, name='others'):
     
     def __init__(self, bot):
         self.bot = bot

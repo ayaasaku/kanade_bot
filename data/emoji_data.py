@@ -43,7 +43,7 @@ kanade = {
     },
 }
 
-Attributes = {
+attributes = {
     'Cute': '<:cute:1001293047151214743>',
     'Cool': '<cooll1001293044211011676>',
     'Happy': '<:happy:1001293049005097021>',

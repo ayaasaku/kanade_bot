@@ -14,7 +14,7 @@ async def format_date(seconds):
     return date'''
     from datetime import datetime, timedelta
     date = datetime.fromtimestamp(seconds/ 1000)
-    date = date-timedelta(hours=1)
+    date = date-timedelta(hours=-1)
     date = date.strftime("%Y-%m-%d %H:%M:%S %Z%z")
     return date
 

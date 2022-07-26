@@ -2,8 +2,8 @@ from datetime import datetime
 
 import discord
 
-def defaultEmbed(title: str = '', description: str = ''):
-    embed = discord.Embed(title=title, description=description, color=0xBB6688)
+def defaultEmbed(title: str = '', description: str = '', url: str = ''):
+    embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
     return embed
 
 

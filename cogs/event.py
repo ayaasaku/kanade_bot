@@ -9,11 +9,14 @@ from discord import app_commands
 
 from utility.utils import defaultEmbed
 
-global event_id
+
 
 class EventCog(commands.Cog, name='event'):
     def __init__(self, bot):
         self.bot = bot
+        
+    global event_id
+    event_id = 0
 
     '''@commands.command(name='timeleft',
                       aliases=['tl'],

@@ -8,6 +8,7 @@ import time, re, discord
 from discord import app_commands
 
 from utility.utils import defaultEmbed
+from data.emoji_data import Attributes
 
 
 
@@ -72,7 +73,7 @@ class EventCog(commands.Cog, name='event'):
         event_url = f'https://sekai.best/event/{event_id}'
         embed = defaultEmbed(title=event_name, url=event_url)
         embed.set_thumbnail(url=banner_url)
-        embed.add_field(name='Attribute', value=str(event_bonus_attribute), inline=True)
+        embed.add_field(name='Attribute', value=f'{event_bonus_attribute} {Attributes[str(event_bonus_attribute)]}', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='Event Type', value=str(event_type), inline=True)
         embed.add_field(name='Start', value=event_start_time, inline=True)

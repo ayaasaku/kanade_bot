@@ -2,10 +2,20 @@ from datetime import datetime
 
 import discord
 
+from cogs.main import version
+
 def defaultEmbed(title: str = '', description: str = '', url: str = ''):
     embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
     return embed
 
+def updateEmbed(description: str = ''):
+    embed = discord.Embed(title=f'**奏寶 v{version}**', description=description, color=0xBB6688)
+    embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
+                         icon_url="https://i.imgur.com/oXEl8tP.jpg")
+    embed.set_image(url="https://i.imgur.com/1SJ6Y0Y.jpg")
+    embed.set_footer(text=f"奏寶 - by Ayaakaa@Seria Studios",
+                     icon_url="https://imgur.com/HwcMqPS.png")
+    return embed
 
 def errEmbed(title: str = '', message: str = ''):
     return discord.Embed(title=title, description=message, color=0xfc5165)

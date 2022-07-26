@@ -24,7 +24,7 @@ intents.presences = True
 class KanadeBot(commands.Bot):
     def __init__(self):
         super().__init__(
-            command_prefix='!',
+            command_prefix='!, %',
             intents=intents,
             application_id=os.getenv('APP_ID')
         )

@@ -7,7 +7,7 @@ from data.user_data import morning, special
 from discord import app_commands
 from discord.ext import commands
 from utility.utils import updateEmbed
-from cogs.main import version
+from data.version import version
 
 class OthersCog(commands.Cog, name='main'):
     

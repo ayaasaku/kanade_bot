@@ -7,9 +7,7 @@ from data.user_data import morning, special
 from discord import app_commands
 from discord.ext import commands
 from utility.utils import defaultEmbed
-
-global version
-version = 1.0
+from data.version import version
 
 class MainCog(commands.Cog, name='main'):
     

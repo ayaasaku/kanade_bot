@@ -41,7 +41,7 @@ class LoopsCog(commands.Cog, name='loops'):
                                 await channel.send(message)
                             except (commands.BotMissingPermissions, discord.errors.NotFound, discord.errors.Forbidden): 
                                 from utility.apps.sekai.database_formatting import rm_channel_from_cutoff_db
-                                cutoff_updates_removal_notif = self.bot.get_channel(766718454635167775)
+                                cutoff_updates_removal_notif = self.bot.get_channel(1000043106856603681)
                                 await cutoff_updates_removal_notif.send('Removing 1 minute updates from channel: ' + str(channel.name) + " in server: " + str(channel.guild.name))
                                 rm_channel_from_cutoff_db(channel, 1)
                                 
@@ -76,7 +76,7 @@ class LoopsCog(commands.Cog, name='loops'):
                                 await channel.send(message)
                             except (commands.BotMissingPermissions, discord.errors.NotFound, discord.errors.Forbidden): 
                                 from utility.apps.sekai.database_formatting import rm_channel_from_cutoff_db
-                                cutoff_updates_removal_notif = self.bot.get_channel(766718454635167775)
+                                cutoff_updates_removal_notif = self.bot.get_channel(1000043106856603681)
                                 await cutoff_updates_removal_notif.send('Removing 1 minute updates from channel: ' + str(channel.name) + " in server: " + str(channel.guild.name))
                                 rm_channel_from_cutoff_db(channel, 60)
 

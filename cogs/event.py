@@ -8,9 +8,8 @@ import time, re, discord
 from discord import app_commands
 
 from utility.utils import defaultEmbed
-from data.emoji_data import Attributes
-
-
+from data.emoji_data import attributes
+from data.translate_data import translate
 
 class EventCog(commands.Cog, name='event'):
     def __init__(self, bot):
@@ -42,12 +41,13 @@ class EventCog(commands.Cog, name='event'):
             event_url = f'https://sekai.best/event/{event_id}'
             time_left = await format_time(event_end_time - current_time)
             event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
-            embed = defaultEmbed(title=f'**{event_name}**', description=f'[Info]({event_url})')
+            embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)
-            embed.add_field(name=f'Time Left', value=f'{time_left}', inline=False)
-            embed.add_field(name=f'Progress', value=f'{event_prog}', inline=False)
-            embed.add_field(name=f'End Date', value=f'{event_end_date}', inline=False)
+            embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
+            embed.add_field(name=f'進度', value=f'{event_prog}', inline=False)
+            embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
+            embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
 
     '''@commands.command(name='event',
@@ -71,15 +71,18 @@ class EventCog(commands.Cog, name='event'):
         logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
         event_url = f'https://sekai.best/event/{event_id}'
-        embed = defaultEmbed(title=f'**{event_name}**', description=f'[Info]({event_url})')
+        event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
+        attribute_emoji = attributes[str(event_bonus_attribute)]
+        embed = defaultEmbed(title=f'**{event_name}**')
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
-        embed.add_field(name='Attribute', value=f'{event_bonus_attribute} {Attributes[str(event_bonus_attribute)]}', inline=True)
+        embed.add_field(name='加成屬性', value=f'{event_attribute_translated} {attribute_emoji}', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
-        embed.add_field(name='Event Type', value=str(event_type), inline=True)
-        embed.add_field(name='Start', value=event_start_time, inline=True)
+        embed.add_field(name='活動類型', value=str(event_type), inline=True)
+        embed.add_field(name='開始', value=event_start_time, inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
-        embed.add_field(name='End', value=event_end_time, inline=True)
+        embed.add_field(name='結束', value=event_end_time, inline=True)
+        embed.add_field(name='更多資訊', value=event_url, inline=False)
         await interaction.response.send_message(embed=embed)
 
 '''

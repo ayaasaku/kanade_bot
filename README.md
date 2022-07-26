@@ -8,7 +8,7 @@
 
 Thanks to
 
-- @seriaati
+- https://github.com/seriaati
 - https://sekai.best
 - https://github.com/Amexy/saki-bot
 

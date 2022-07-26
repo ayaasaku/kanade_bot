@@ -19,7 +19,7 @@ class EventCog(commands.Cog, name='event'):
                       aliases=['tl'],
                       description="Provides the amount of time left (in hours) for an event",
                       help=".timeleft")'''
-    @app_commands.command(name='timeleft', description='Provides the amount of time left (in hours) for an event')
+    @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
     async def time_left(self, interaction: discord.Interaction):
         from utility.apps.sekai.event_info import get_event_end_time, get_current_event_id, get_event_name, \
             get_event_start_time, get_event_banner_name
@@ -53,7 +53,7 @@ class EventCog(commands.Cog, name='event'):
     '''@commands.command(name='event',
                       description='Posts event info',
                       help='event\n.event jp\n.event en 12\n.event en Lisa\n.event jp 一閃')'''
-    @app_commands.command(name='event', description='Posts event info')                 
+    @app_commands.command(name='event', description='查看本期活動的資訊')                 
     async def event(self, interaction: discord.Interaction):
         from utility.apps.sekai.event_info import get_event_name, get_event_type, get_current_event_id, \
             get_event_bonus_attribute, get_event_banner_name, get_event_start_time, get_event_end_time

@@ -37,7 +37,7 @@ class MainCog(commands.Cog, name='main'):
                                hour=11, minute=59, second=0, microsecond=0)
                 if start <= now <= end:
                     author = morning.get(
-                        message.author.id) #or message.author.display_name
+                        message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(morning_list)}')
             elif "奏" in message.content and "午" in message.content:
                 start = datetime(year=now.year, month=now.month, day=now.day,
@@ -46,11 +46,11 @@ class MainCog(commands.Cog, name='main'):
                                hour=17, minute=59, second=0, microsecond=0)
                 if start <= now <= end:
                     author = morning.get(
-                        message.author.id) #or message.author.display_name
+                        message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(noon_list)}')
             elif "奏" in message.content and "晚" in message.content:
                 author = morning.get(
-                    message.author.id) #or message.author.display_name
+                    message.author.id) or message.author.display_name
                 await message.reply(f'{author}{random.choice(night_list)}')
 
         elif "不" not in message.content and "奏" in message.content and "愛" in message.content or "奏" in message.content and "喜歡" in message.content:

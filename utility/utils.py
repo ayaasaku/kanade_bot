@@ -2,7 +2,7 @@ from datetime import datetime
 
 import discord
 
-from cogs.main import version
+from data.version import version
 
 def defaultEmbed(title: str = '', description: str = '', url: str = ''):
     embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)

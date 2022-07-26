@@ -9,6 +9,8 @@ from discord import app_commands
 
 from utility.utils import defaultEmbed
 
+global event_id
+
 class EventCog(commands.Cog, name='event'):
     def __init__(self, bot):
         self.bot = bot

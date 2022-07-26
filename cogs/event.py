@@ -42,7 +42,7 @@ class EventCog(commands.Cog, name='event'):
             event_url = f'https://sekai.best/event/{event_id}'
             time_left = await format_time(event_end_time - current_time)
             event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
-            embed = defaultEmbed(title=event_name, url=event_url)
+            embed = defaultEmbed(title=event_name, description=f'[Info] ({event_url})')
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)
             embed.add_field(name=f'Time Left', value=f'{time_left}', inline=False)
@@ -71,7 +71,7 @@ class EventCog(commands.Cog, name='event'):
         logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
         event_url = f'https://sekai.best/event/{event_id}'
-        embed = defaultEmbed(title=event_name, url=event_url)
+        embed = defaultEmbed(title=event_name, description=f'[Info] ({event_url})')
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
         embed.add_field(name='Attribute', value=f'{event_bonus_attribute} {Attributes[str(event_bonus_attribute)]}', inline=True)

@@ -25,6 +25,7 @@ class EventCog(commands.Cog, name='event'):
             get_event_start_time, get_event_banner_name
         from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
         global event_id
+        event_id = 0
         event_id = await get_current_event_id()
         event_end_time = (await get_event_end_time(event_id)) / 1000
         current_time = time.time()
@@ -55,6 +56,7 @@ class EventCog(commands.Cog, name='event'):
             get_event_bonus_attribute, get_event_banner_name, get_event_start_time, get_event_end_time
         from utility.apps.sekai.time_formatting import format_date
         global event_id
+        event_id = 0
         if event_id == 0:
             event_id = await get_current_event_id()
         event_name = await get_event_name(event_id)

@@ -30,7 +30,6 @@ class EventCog(commands.Cog, name='event'):
         event_id = await get_current_event_id()
         event_end_time = (await get_event_end_time(event_id)) / 1000
         current_time = time.time()
-        currentYear = datetime.now().year
         if current_time > event_end_time:
             await ctx.send("There's no active event")
         else:
@@ -38,8 +37,7 @@ class EventCog(commands.Cog, name='event'):
             event_name = await get_event_name(event_id)
             event_start_time = await get_event_start_time(event_id)
             event_banner_name = await get_event_banner_name(event_id)
-            #banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
-            banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/event_{event_banner_name}_{currentYear}_rip/event_{event_banner_name}_{currentYear}.webp"
+            banner_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             event_url = f'https://sekai.best/event/{event_id}'
             time_left = await format_time(event_end_time - current_time)
             event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
@@ -68,9 +66,7 @@ class EventCog(commands.Cog, name='event'):
         event_bonus_attribute = await get_event_bonus_attribute()
         event_start_time = await format_date(await get_event_start_time(event_id))
         event_end_time = await format_date(await get_event_end_time(event_id))
-        currentYear = datetime.now().year
-        #banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
-        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/event_{event_banner_name}_{currentYear}_rip/event_{event_banner_name}_{currentYear}.webp"
+        banner_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         event_url = f'https://sekai.best/event/{event_id}'
         embed = defaultEmbed(title=event_name, url=event_url)
         embed.set_thumbnail(url=banner_url)

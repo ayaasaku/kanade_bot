@@ -14,9 +14,6 @@ from utility.utils import defaultEmbed
 class EventCog(commands.Cog, name='event'):
     def __init__(self, bot):
         self.bot = bot
-        
-    global event_id
-    event_id = 0
 
     '''@commands.command(name='timeleft',
                       aliases=['tl'],
@@ -27,6 +24,7 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.event_info import get_event_end_time, get_current_event_id, get_event_name, \
             get_event_start_time, get_event_banner_name
         from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
+        global event_id
         event_id = await get_current_event_id()
         event_end_time = (await get_event_end_time(event_id)) / 1000
         current_time = time.time()
@@ -56,6 +54,7 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.event_info import get_event_name, get_event_type, get_current_event_id, \
             get_event_bonus_attribute, get_event_banner_name, get_event_start_time, get_event_end_time
         from utility.apps.sekai.time_formatting import format_date
+        global event_id
         if event_id == 0:
             event_id = await get_current_event_id()
         event_name = await get_event_name(event_id)

@@ -28,4 +28,4 @@ class OthersCog(commands.Cog, name='main'):
         await interaction.response.send_message(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(othersCog(bot))
+    await bot.add_cog(OthersCog(bot))

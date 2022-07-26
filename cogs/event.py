@@ -45,7 +45,7 @@ class EventCog(commands.Cog, name='event'):
             embed = defaultEmbed(title=event_name, url=event_url)
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)
-            embed.add_field(name=f'Time Left', value=time_left, inline=True)
+            embed.add_field(name=f'<:placeholder:1001375846814203906> Time Left', value=f'<:placeholder:1001375846814203906> {time_left}', inline=True)
             embed.add_field(name=f'<:placeholder:1001375846814203906> Progress', value=f'<:placeholder:1001375846814203906> {event_prog}', inline=True)
             embed.add_field(name=f'<:placeholder:1001375846814203906> End Date', value=f'<:placeholder:1001375846814203906> {event_end_date}', inline=True)
             await interaction.response.send_message(embed=embed)

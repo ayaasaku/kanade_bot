@@ -9,8 +9,13 @@ async def format_time(seconds):
 
 # Format date in YYYY-MM-DD HH:MM:SS UTC format
 async def format_date(seconds):
-    from datetime import datetime
+    '''from datetime import datetime
     date = datetime.fromtimestamp(seconds / 1000).strftime("%Y-%m-%d %H:%M:%S %Z%z") + ' CST'
+    return date'''
+    from datetime import datetime, timedelta
+    date = datetime.fromtimestamp(seconds/ 1000)
+    date = date-timedelta(hours=13)
+    date = date.strftime("%Y-%m-%d %H:%M:%S")
     return date
 
 async def format_progress(end_time, start_time, current_time):

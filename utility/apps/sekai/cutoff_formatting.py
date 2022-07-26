@@ -10,7 +10,7 @@ async def get_cutoff_formatting(tier: str = '0'):
     from formatting.event_info import get_event_name, get_current_event_id
     from formatting.time_formatting import format_time
     fmt = "%Y-%m-%d %H:%M:%S %Z%z"
-    now_time = datetime.now(timezone('US/Central'))
+    now_time = datetime.now(timezone('Asia/Taipei'))
     entries = []
     event_id = await get_current_event_id()
     event_name = await get_event_name(event_id)
@@ -47,7 +47,8 @@ async def get_cutoff_formatting(tier: str = '0'):
         from utility.apps.sekai.api_functions import get_sekai_world_events_api
         event_banner_name = await get_event_banner_name(event_id)
         #banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"  
-        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/event_{event_banner_name}_{currentYear}_rip/event_{event_banner_name}_{currentYear}.webp"      
+        logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
         event_id = await get_current_event_id()
         event_end_time = (await get_event_end_time(event_id)) / 1000
         current_time = time.time()
@@ -57,7 +58,8 @@ async def get_cutoff_formatting(tier: str = '0'):
             time_left = await format_time(event_end_time - current_time)
         event_url = f'https://sekai.best/event/{event_id}'
         embed=defaultEmbed(title=f"{event_name} [t{tier}]", url=event_url)
-        embed.set_thumbnail(url=banner_url)
+        embed.set_thumbnail(url=logo_url)
+        embed.set_image(url=banner_url)
         embed.add_field(name='Current', value="{:,}".format(current_event_cutoff_api[f'rank{tier}'][0]['score']), inline=True)
         embed.add_field(name='Player', value=current_event_cutoff_api[f'rank{tier}'][0]['name'], inline=True)
         embed.add_field(name='ID', value=current_event_cutoff_api[f'rank{tier}'][0]['userId'], inline=True)

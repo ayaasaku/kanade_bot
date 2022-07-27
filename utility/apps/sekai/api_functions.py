@@ -4,9 +4,9 @@ async def get_sekai_current_event_standings_api(event_id):
     async with aiohttp.ClientSession() as session:
         from random import random
         # Use a random number to avoid caching issues 
-        api = f'https://bitbucket.org/sekai-world/sekai-event-track/src/main/event{event_id}.json'
+        api = f'https://bitbucket.org/sekai-world/sekai-event-track/raw/f6f3fc4311a8cdd4bba5cedebcef02ff994939d5/event{event_id}.json'
         async with session.get(api) as r:
-            return await r.json(content_type='text/html')
+            return await r.json(content_type='text/plain')
 
 async def get_sekai_world_events_api():
     async with aiohttp.ClientSession() as session:

@@ -123,11 +123,11 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.cutoff_formatting import get_cutoff_formatting
 
         if tier == 0 or tier == 10:
-            await interaction.send(await get_cutoff_formatting(str(tier)))
+            await interaction.followup.send(await get_cutoff_formatting(str(tier)))
         elif tier in self.valid_tiers:
-            await interaction.send(embed=await get_cutoff_formatting(str(tier)))
+            await interaction.followup.send(embed=await get_cutoff_formatting(str(tier)))
         else:
-            await interaction.send(f"Tier `{tier}` isn't supported")
+            await interaction.followup.send(f"Tier `{tier}` isn't supported")
 
 
 '''def setup(bot):

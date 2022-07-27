@@ -7,8 +7,8 @@ from utility.utils import defaultEmbed
 
 async def get_cutoff_formatting(tier: str = '0'):
     from utility.apps.sekai.api_functions import get_sekai_current_event_standings_api, get_sekai_current_event_api
-    from formatting.event_info import get_event_name, get_current_event_id
-    from formatting.time_formatting import format_time
+    from utility.apps.sekai.event_info import get_event_name, get_current_event_id
+    from utility.apps.sekai.time_formatting import format_time
     fmt = "%Y-%m-%d %H:%M:%S %Z%z"
     now_time = datetime.now(timezone('Asia/Taipei'))
     entries = []

@@ -111,12 +111,12 @@ class EventCog(commands.Cog, name='event'):
 
         if tier_regex.fullmatch(command_name):
             if tier != '0':
-                await interaction.send(f"Tier already specified via alias")
+                await interaction.followup.send(f"Tier already specified via alias")
                 return
             tier = parse_tier(command_name)
         else:
             if not tier_regex.fullmatch(tier):
-                await interaction.send(f"Tier `{tier}` isn't recognized")
+                await interaction.followup.send(f"Tier `{tier}` isn't recognized")
                 return
             tier = parse_tier(tier)
 

@@ -57,7 +57,7 @@ async def get_cutoff_formatting(tier: str = '0'):
         else:
             time_left = await format_time(event_end_time - current_time)
         event_url = f'https://sekai.best/event/{event_id}'
-        embed=defaultEmbed(title=f"{event_name} [t{tier}]", url=event_url)
+        embed=defaultEmbed(title=f"{event_name} [t{tier}]")
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
         embed.add_field(name='Current', value="{:,}".format(current_event_cutoff_api[f'rank{tier}'][0]['score']), inline=True)
@@ -66,6 +66,7 @@ async def get_cutoff_formatting(tier: str = '0'):
         embed.add_field(name='Last Updated', value=last_updated_time, inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='Time Left', value=time_left, inline=True)
+        embed.add_field(name='更多資訊', value=event_url, inline=False)
         embed.set_footer(text=f"{now_time.strftime(fmt)}")
         return embed
 

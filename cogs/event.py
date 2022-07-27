@@ -99,7 +99,7 @@ class EventCog(commands.Cog, name='event'):
     @app_commands.command(name='cutoff', description='Posts cutoff info')    
     @app_commands.rename(tier='tier')   
     async def cutoff(self, interaction: discord.Interaction, tier: str = '0'):
-        command_name = interaction.invoked_with.lower()
+        command_name = f'cutoff {tier}'
         tier_regex = re.compile(r"t?\d+k?")
 
         def parse_tier(tier_arg):

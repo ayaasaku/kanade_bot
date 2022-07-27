@@ -98,7 +98,7 @@ class EventCog(commands.Cog, name='event'):
                               [f't{tier // 1000}k' for tier in valid_tiers if tier % 1000 == 0])'''
     @app_commands.command(name='cutoff', description='Posts cutoff info')    
     @app_commands.rename(tier='tier')   
-    async def cutoff(self, interaction: discord.Interaction, tier: strssss = '0'):
+    async def cutoff(self, interaction: discord.Interaction, tier: str = '0'):
         command_name = interaction.invoked_with.lower()
         tier_regex = re.compile(r"t?\d+k?")
 

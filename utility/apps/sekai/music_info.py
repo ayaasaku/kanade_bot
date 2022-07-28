@@ -181,3 +181,5 @@ async def get_music_tags(music_id):
             music_tag = thing['musicTag']
             if music_tag == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
                 return music_tag
+            else:
+                return None

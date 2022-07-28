@@ -83,7 +83,8 @@ class SongCog(commands.Cog, name='song'):
         embed.add_field(name='更多資訊', value=music_url, inline=False)
         embed.add_field(name='type', value=music_tag, inline=False)
         #embed.add_field(name='\u200b', value='\u200b', inline=True)
-        await i.response.send_message(embed=embed)
+        await i.response.defer()
+        await i.followup.send(embed=embed)
         #await GeneralPaginator(i, result['embeds'], [GenshinCog.CharactersElementSelect(result['options'])]).start(embeded=True, check=False, ephemeral=ephemeral)
     
 async def setup(bot: commands.Bot) -> None:

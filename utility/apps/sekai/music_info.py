@@ -6,9 +6,10 @@ async def get_music_title(music_id):
     global music_title
     music_title = ''
     for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_title = [count]['title']
+        count = ids + 1
+        return count
+    if music_api[int(count)]['id'] == music_id:
+        music_title = [int(count)]['title']
     return music_title
 
 async def get_music_lyricist(music_id):

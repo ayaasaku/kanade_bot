@@ -34,13 +34,13 @@ class SongCog(commands.Cog, name='song'):
         music_url = f'https://sekai.best/music/{music_id}'
 
         embed = defaultEmbed(title=f'**{music_title}**')
-        embed.set_thumbnail(url=cover_url)
+        #embed.set_thumbnail(url=cover_url)
         embed.add_field(name='作詞', value=music_lyricist, inline=True)
         embed.add_field(name='作曲', value=music_composer, inline=True)
         embed.add_field(name='編曲', value=music_arranger, inline=True)
         embed.add_field(name='發佈時間', value=music_published_time, inline=False)
         embed.add_field(name='更多資訊', value=music_url, inline=False)
-         #embed.add_field(name='\u200b', value='\u200b', inline=True)
+        #embed.add_field(name='\u200b', value='\u200b', inline=True)
         await interaction.response.send_message(embed=embed)
     
 async def setup(bot: commands.Bot) -> None:

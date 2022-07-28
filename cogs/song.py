@@ -14,15 +14,14 @@ class SongCog(commands.Cog, name='song'):
     def __init__(self, bot):
         self.bot = bot
         
-    @app_commands.command(name='songs', description='get songs info')                 
-    async def event(self, interaction: discord.Interaction):
+    @app_commands.command(name='songs', description='get songs info')     
+    @app_commands.rename(import_id='music_id')            
+    async def event(self, interaction: discord.Interaction, import_id: int):
         from utility.apps.sekai.music_info import get_music_title, get_music_lyricist, get_music_composer, get_music_arranger,get_music_published_time, get_music_asset_name
         from utility.apps.sekai.time_formatting import format_date
         
         global music_id
-        music_id = 0
-        if music_id == 0:
-            music_id = await get_current_event_id()
+        music_id = import_id
             
         music_title = await get_music_title(music_id)
         music_lyricist = await get_music_lyricist(music_id)

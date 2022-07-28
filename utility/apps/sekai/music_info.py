@@ -55,7 +55,7 @@ async def get_music_asset_name(music_id):
 async def get_music_difficulty_easy_difficulty(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    difficulty = music_api[music_id-1]['musicDifficulty'].capitalize()
+    difficulty = music_api[music_id-1]['musicDifficulty']#.capitalize()
     return difficulty
 
 async def get_music_difficulty_easy_level(music_id):
@@ -72,7 +72,7 @@ async def get_music_difficulty_easy_note_count(music_id):
 async def get_music_difficulty_normal_difficulty(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    difficulty = music_api[music_id]['musicDifficulty'].capitalize()
+    difficulty = music_api[music_id]['musicDifficulty']#.capitalize()
     return difficulty
 
 async def get_music_difficulty_normal_level(music_id):
@@ -89,7 +89,7 @@ async def get_music_difficulty_normal_note_count(music_id):
 async def get_music_difficulty_hard_difficulty(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    difficulty = music_api[music_id+1]['musicDifficulty'].capitalize()
+    difficulty = music_api[music_id+1]['musicDifficulty']#.capitalize()
     return difficulty
 
 async def get_music_difficulty_hard_level(music_id):

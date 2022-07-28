@@ -31,11 +31,10 @@ class SongCog(commands.Cog, name='song'):
         music_asset_name = get_music_asset_name(music_id)
 
         cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
-        cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         music_url = f'https://sekai.best/music/{music_id}'
 
         embed = defaultEmbed(title=f'**{music_title}**')
-        #embed.set_thumbnail(url=cover_url)
+        embed.set_thumbnail(url=cover_url)
         embed.add_field(name='作詞', value=music_lyricist, inline=True)
         embed.add_field(name='作曲', value=music_composer, inline=True)
         embed.add_field(name='編曲', value=music_arranger, inline=True)

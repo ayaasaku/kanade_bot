@@ -28,11 +28,11 @@ class SongCog(commands.Cog, name='song'):
         music_composer = await get_music_composer(music_id)
         music_arranger = await get_music_arranger(music_id)
         music_published_time = await format_date(await get_music_published_time(music_id))
-        if len(music_id) == 1:
+        if len(str(music_id)) == 1:
             music_asset_name = f'jacket_s_00{music_id}'
-        elif len(music_id) == 2:
+        elif len(str(music_id)) == 2:
             music_asset_name = f'jacket_s_0{music_id}'
-        elif len(music_id) == 3:
+        elif len(str(music_id)) == 3:
             music_asset_name = f'jacket_s_{music_id}'
 
         cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"

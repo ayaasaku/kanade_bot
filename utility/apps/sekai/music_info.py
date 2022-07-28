@@ -2,15 +2,10 @@
 async def get_music_title(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_title
-    music_title = ''
     for ids in music_api:
-        count = ids + 1
-        return count
-    if music_api[count]['id'] == music_id:
-        music_title = [count]['title']
-    return music_title
+        if music_api[ids]['id'] == music_id:
+            music_title = [ids]['title']
+        return music_title
 
 async def get_music_lyricist(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api

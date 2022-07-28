@@ -87,15 +87,15 @@ class EventCog(commands.Cog, name='event'):
         await interaction.response.send_message(embed=embed)
 
 
-    valid_tiers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000,
+    '''valid_tiers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000,
                    30000, 40000, 50000, 100000}
 
-    '''@commands.command(name='cutoff',
+    @commands.command(name='cutoff',
                       brief="cutoff info",
                       description="Posts cutoff info",
                       help=".cutoff (posts cutoff info for all tiers)\n.cutoff 100",
                       aliases=[f't{tier}' for tier in valid_tiers] +
-                              [f't{tier // 1000}k' for tier in valid_tiers if tier % 1000 == 0])'''
+                              [f't{tier // 1000}k' for tier in valid_tiers if tier % 1000 == 0])
     @app_commands.command(name='cutoff', description='Posts cutoff info')    
     @app_commands.rename(tier='tier')   
     async def cutoff(self, interaction: discord.Interaction, tier: str = '0'):
@@ -127,7 +127,7 @@ class EventCog(commands.Cog, name='event'):
         elif tier in self.valid_tiers:
             await interaction.followup.send(embed=await get_cutoff_formatting(str(tier)))
         else:
-            await interaction.followup.send(f"Tier `{tier}` isn't supported")
+            await interaction.followup.send(f"Tier `{tier}` isn't supported")'''
 
 
 '''def setup(bot):

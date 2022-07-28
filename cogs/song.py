@@ -70,7 +70,7 @@ class SongCog(commands.Cog, name='song'):
         embed.add_field(name='編曲', value=music_arranger, inline=True)
         embed.add_field(name='發佈時間', value=music_published_time, inline=False)
         embed.add_field(name='\u200b', value='**難度**', inline=False)
-        embed.add_field(name=easy_difficulty, value=f'等級：{easy_level}\n音符數量：{easy_note_count}', inline=False)
+        embed.add_field(name=easy_difficulty, value=f'等級：{easy_level}\n音符數量：{easy_note_count}', inline=True)
         embed.add_field(name=normal_difficulty, value=f'等級：{normal_level}\n音符數量：{normal_note_count}', inline=True)
         embed.add_field(name=hard_difficulty, value=f'等級：{hard_level}\n音符數量：{hard_note_count}', inline=True)
         embed.add_field(name=expert_difficulty, value=f'等級：{expert_level}\n音符數量：{expert_note_count}', inline=False)

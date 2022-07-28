@@ -4,6 +4,7 @@ async def get_music_title(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_title
+    music_title = ''
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:
@@ -15,10 +16,11 @@ async def get_music_lyricist(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_lyricist
+    music_lyricist = ''
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:
-            music_title = music_api[count]['lyricist']
+            music_lyricist = music_api[count]['lyricist']
     return music_lyricist
 
 async def get_music_composer(music_id):
@@ -26,10 +28,11 @@ async def get_music_composer(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_composer
+    music_composer = ''
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:
-            music_composer =music_api[count]['composer']
+            music_composer = music_api[count]['composer']
     return music_composer
 
 async def get_music_arranger(music_id):
@@ -37,6 +40,7 @@ async def get_music_arranger(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_arranger
+    music_arranger = ''
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:
@@ -48,6 +52,7 @@ async def get_music_published_time(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_published_time
+    music_published_time = 0
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:
@@ -59,6 +64,7 @@ async def get_music_asset_name(music_id):
     music_api = await get_sekai_musics_api()
     count = -1
     global music_asset_name
+    music_asset_name = ''
     for ids in music_api:
         count + 1
         if music_api[count]['id'] == music_id:

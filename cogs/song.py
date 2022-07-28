@@ -75,6 +75,7 @@ class SongCog(commands.Cog, name='song'):
         embed.add_field(name=hard_difficulty, value=f'等級：{hard_level}\n音符數量：{hard_note_count}', inline=True)
         embed.add_field(name=expert_difficulty, value=f'等級：{expert_level}\n音符數量：{expert_note_count}', inline=True)
         embed.add_field(name=master_difficulty, value=f'等級：{master_level}\n音符數量：{master_note_count}\n\u200b', inline=True)
+        embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='更多資訊', value=music_url, inline=False)
         #embed.add_field(name='\u200b', value='\u200b', inline=True)
         await interaction.response.send_message(embed=embed)

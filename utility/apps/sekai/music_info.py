@@ -179,5 +179,5 @@ async def get_music_tags(music_id):
     for thing in music_api:
         if music_id == thing['musicId']:
             if thing['musicTag'] == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
-                music_tag = thing['musicTag']
+                music_tag = self
                 return music_tag

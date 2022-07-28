@@ -191,6 +191,4 @@ async def get_music_tags(music_id):
                 return 'idol'
             elif music_tag == 'other':
                 return 'other'     
-            else:
-                return 'None'
             

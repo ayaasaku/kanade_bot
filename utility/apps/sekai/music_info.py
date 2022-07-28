@@ -179,7 +179,7 @@ async def get_music_tags(music_id):
     for thing in music_api:
         if music_id == thing['musicId']:
             music_tag = thing['musicTag']
-            if music_tag == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
+            if music_tag == 'light_music_club':
                 return 'light music club'
             elif music_tag == 'street':
                 return 'street'

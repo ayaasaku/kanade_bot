@@ -177,6 +177,7 @@ async def get_music_tags(music_id):
     from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     for thing in music_api:
-        if music_id == thing['musicId'] and thing['musicTag'] == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
+        if music_id == thing['musicId']:
             music_tag = thing['musicTag']
-            return music_tag
+            if music_tag == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
+                return music_tag

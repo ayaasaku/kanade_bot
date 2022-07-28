@@ -55,8 +55,10 @@ async def get_music_asset_name(music_id):
 async def get_music_difficulty_easy_difficulty(music_id):
     from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
-    difficulty = music_api[music_id-1]['musicDifficulty'].capitalize()
-    return difficulty
+    for thing in music_api:
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
+            difficulty = thing['musicDifficulty'].capitalize()
+            return difficulty
 
 async def get_music_difficulty_easy_level(music_id):
     from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api

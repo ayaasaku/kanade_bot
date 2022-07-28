@@ -40,25 +40,25 @@ class SongCog(commands.Cog, name='song'):
         elif len(str(music_id)) == 3:
             music_asset_name = f'jacket_s_{music_id}'
             
-        easy_difficulty = get_music_difficulty_easy_difficulty(music_id)
-        easy_level = get_music_difficulty_easy_level(music_id)
-        easy_note_count = get_music_difficulty_easy_note_count(music_id)
+        easy_difficulty = await get_music_difficulty_easy_difficulty(music_id)
+        easy_level = await get_music_difficulty_easy_level(music_id)
+        easy_note_count = await get_music_difficulty_easy_note_count(music_id)
         
-        normal_difficulty = get_music_difficulty_normal_difficulty(music_id)
-        normal_level = get_music_difficulty_normal_level(music_id)
-        normal_note_count = get_music_difficulty_normal_note_count(music_id)
+        normal_difficulty = await get_music_difficulty_normal_difficulty(music_id)
+        normal_level = await get_music_difficulty_normal_level(music_id)
+        normal_note_count = await get_music_difficulty_normal_note_count(music_id)
         
-        hard_difficulty = get_music_difficulty_hard_difficulty(music_id)
-        hard_level = get_music_difficulty_hard_level(music_id)
-        hard_note_count = get_music_difficulty_hard_note_count(music_id)
+        hard_difficulty = await get_music_difficulty_hard_difficulty(music_id)
+        hard_level = await get_music_difficulty_hard_level(music_id)
+        hard_note_count = await get_music_difficulty_hard_note_count(music_id)
         
-        expert_difficulty = get_music_difficulty_expert_difficulty(music_id)
-        expert_level = get_music_difficulty_expert_level(music_id)
-        expert_note_count = get_music_difficulty_expert_note_count(music_id)
+        expert_difficulty = await get_music_difficulty_expert_difficulty(music_id)
+        expert_level = await get_music_difficulty_expert_level(music_id)
+        expert_note_count = await get_music_difficulty_expert_note_count(music_id)
         
-        master_difficulty = get_music_difficulty_master_difficulty(music_id)
-        master_level = get_music_difficulty_master_level(music_id)
-        master_note_count = get_music_difficulty_master_note_count(music_id)
+        master_difficulty = await get_music_difficulty_master_difficulty(music_id)
+        master_level = await get_music_difficulty_master_level(music_id)
+        master_note_count = await get_music_difficulty_master_note_count(music_id)
 
         cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         music_url = f'https://sekai.best/music/{music_id}'

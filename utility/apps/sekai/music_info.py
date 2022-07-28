@@ -180,6 +180,17 @@ async def get_music_tags(music_id):
         if music_id == thing['musicId']:
             music_tag = thing['musicTag']
             if music_tag == 'light_music_club' or 'street' or 'school_refusal' or 'theme_park' or 'idol' or 'other':
-                return music_tag
+                return 'light music club'
+            elif music_tag == 'street':
+                return 'street'
+            elif music_tag == 'school_refusal':
+                return 'school refusal'
+            elif music_tag == 'theme_park':
+                return 'theme park'
+            elif music_tag == 'idol':
+                return 'idol'
+            elif music_tag == 'other':
+                return 'other'     
             else:
-                return None
+                return 'None'
+            

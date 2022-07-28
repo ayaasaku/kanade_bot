@@ -31,7 +31,7 @@ class SongCog(commands.Cog, name='song'):
         music_asset_name = str(get_music_asset_name(music_id))
 
         #cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
-        cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/jacket_s_257_rip/jacket_s_257.webp"
+        cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         music_url = f'https://sekai.best/music/{music_id}'
 
         embed = defaultEmbed(title=f'**{music_title}**')

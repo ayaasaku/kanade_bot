@@ -8,6 +8,7 @@ import time, re, discord
 from discord import app_commands
 
 from utility.utils import defaultEmbed
+from utility.paginators import GeneralPaginator
 
 
 class SongCog(commands.Cog, name='song'):
@@ -16,13 +17,14 @@ class SongCog(commands.Cog, name='song'):
         
     @app_commands.command(name='songs', description='get songs info')     
     @app_commands.rename(import_id='music_id')            
-    async def event(self, interaction: discord.Interaction, import_id: int):
+    async def event(self, i: discord.Interaction, import_id: int):
         from utility.apps.sekai.music_info import get_music_title, get_music_lyricist, get_music_composer, get_music_arranger,get_music_published_time, \
             get_music_difficulty_easy_difficulty, get_music_difficulty_easy_level, get_music_difficulty_easy_note_count, \
             get_music_difficulty_normal_difficulty, get_music_difficulty_normal_level, get_music_difficulty_normal_note_count, \
             get_music_difficulty_hard_difficulty, get_music_difficulty_hard_level, get_music_difficulty_hard_note_count, \
             get_music_difficulty_expert_difficulty, get_music_difficulty_expert_level, get_music_difficulty_expert_note_count, \
-            get_music_difficulty_master_difficulty, get_music_difficulty_master_level, get_music_difficulty_master_note_count
+            get_music_difficulty_master_difficulty, get_music_difficulty_master_level, get_music_difficulty_master_note_count, \
+            get_music_tags
         from utility.apps.sekai.time_formatting import format_date
         
         global music_id
@@ -59,6 +61,8 @@ class SongCog(commands.Cog, name='song'):
         master_difficulty = await get_music_difficulty_master_difficulty(music_id)
         master_level = await get_music_difficulty_master_level(music_id)
         master_note_count = await get_music_difficulty_master_note_count(music_id)
+        
+        music_tag = await get_music_tags(music_id)
 
         cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         music_url = f'https://sekai.best/music/{music_id}'
@@ -77,8 +81,10 @@ class SongCog(commands.Cog, name='song'):
         embed.add_field(name=master_difficulty, value=f'等級：{master_level}\n音符數量：{master_note_count}\n\u200b', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='更多資訊', value=music_url, inline=False)
+        embed.add_field(name='type', value=music_tag, inline=False)
         #embed.add_field(name='\u200b', value='\u200b', inline=True)
-        await interaction.response.send_message(embed=embed)
+        await i.response.send_message(embed=embed)
+        #await GeneralPaginator(i, result['embeds'], [GenshinCog.CharactersElementSelect(result['options'])]).start(embeded=True, check=False, ephemeral=ephemeral)
     
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SongCog(bot))

@@ -1,75 +1,38 @@
 #musics
-async def get_music_thing():
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
-    music_api = await get_sekai_musics_api()
-    for thing in music_api:
-        return thing
-    
 async def get_music_title(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
-    music_api = await get_music_thing()
-    if music_api['id'] == music_id:
-        music_title = music_api['title']
+    music_api = await get_sekai_musics_api()
+    music_title = music_api[music_id-1]['title']
     return music_title
 
 async def get_music_lyricist(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_lyricist
-    music_lyricist = ''
-    for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_lyricist = music_api[count]['lyricist']
+    music_lyricist = music_api[music_id-1]['lyricist']
     return music_lyricist
 
 async def get_music_composer(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_composer
-    music_composer = ''
-    for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_composer = music_api[count]['composer']
+    music_composer = music_api[music_id-1]['composer']
     return music_composer
 
 async def get_music_arranger(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_arranger
-    music_arranger = ''
-    for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_arranger = music_api[count]['arranger']
+    music_arranger = music_api[music_id-1]['arranger']
     return music_arranger
 
 async def get_music_published_time(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_published_time
-    music_published_time = 0
-    for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_published_time = music_api[count]['publishedAt']
+    music_published_time = music_api[music_id-1]['publishedAt']
     return music_published_time
 
 async def get_music_asset_name(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    count = -1
-    global music_asset_name
-    music_asset_name = ''
-    for ids in music_api:
-        count + 1
-        if music_api[count]['id'] == music_id:
-            music_asset_name = music_api[count]['assetbundleName']
+    music_asset_name = music_api[music_id-1]['assetbundleName']
     return music_asset_name
 #music_difficulties
 

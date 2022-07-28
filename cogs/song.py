@@ -30,7 +30,7 @@ class SongCog(commands.Cog, name='song'):
         music_published_time = await format_date(await get_music_published_time(music_id))
         music_asset_name = get_music_asset_name(music_id)
 
-        #cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
+        cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
         music_url = f'https://sekai.best/music/{music_id}'
 

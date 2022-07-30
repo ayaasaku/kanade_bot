@@ -190,5 +190,21 @@ async def get_music_tags(music_id):
             elif music_tag == 'idol':
                 return 'idol'
             elif music_tag == 'other':
-                return 'other'     
+                return 'other'  
             
+async def get_virtual_true(music_id):
+    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
+    music_api = await get_sekai_music_tags_api()
+    for thing in music_api:
+        if music_id == thing['musicId']:
+            music_tag = thing['musicTag']
+            if music_tag == 'vocaloid':
+                return True
+            
+async def get_light_music_club_music():
+    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
+    music_api = await get_sekai_music_tags_api()
+    for thing in music_api:
+        if music_tag == 'light_music_club':
+            music_id = thing['musicId']
+            return music_id

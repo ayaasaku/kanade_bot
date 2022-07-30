@@ -12,8 +12,18 @@ from utility.paginators import GeneralPaginator
 
 
 class SongCog(commands.Cog, name='song'):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
+    options = [
+            SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！'),
+            SelectOption(label='Leo/need', description='Leo/need'),
+            SelectOption(label='虛擬歌手', description='バーチャル・シンガー'),
+            SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'),
+            SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD'),
+            SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム'),
+    ]
+    super().__init__(placeholder='你想要什麼樣的幫助呢?', options=options)
+    self.bot = bot
         
     @app_commands.command(name='songs', description='get songs info')     
     @app_commands.rename(import_id='music_id')            

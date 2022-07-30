@@ -8,6 +8,6 @@ translate = {
     },
     'event_type':{
         'Marathon':'馬拉松',
-        'Cheerful Carnival':'歡樂嘉年華'
+        'Cheerful_carnival':'歡樂嘉年華'
     }
 }

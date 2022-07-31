@@ -129,7 +129,7 @@ async def get_event_bonus_characters_id_tw(event_id):
     event_api = await get_sekai_event_deck_bonuses_api_tw()
     characters_id_list = []
     for thing in event_api:
-        if event_id - 4 == thing['eventId']:
+        if event_id == thing['eventId']:
             character_id = thing.get('gameCharacterUnitId')
             characters_id_list.append(character_id)
     if None in characters_id_list:

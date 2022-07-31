@@ -56,7 +56,8 @@ class MainCog(commands.Cog, name='main'):
                 await message.reply(f'奏最喜歡霞霞了！🤍')
             elif message.author.id == special['seria']['user_id']:
                 await message.reply(f'雪... 🤍')
-        elif "不" not in message.content and "我愛奏 " in message.content or "我喜歡奏" in message.content:
+                
+        elif "我愛奏 " in message.content or "我喜歡奏" in message.content:
                 if message.author.id == 427346531260301312:
                     await message.reply(f'奏不喜歡怪叔叔... <:angry_fbk:981195991137013830>')
                 else:    

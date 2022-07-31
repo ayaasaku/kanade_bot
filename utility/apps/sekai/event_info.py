@@ -19,6 +19,7 @@ async def get_event_type_jp(event_id):
 
 async def get_event_start_time_jp(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_jp
+    event_api = await get_sekai_events_api_jp()
     event_start_time = event_api[-1]['startAt']
     return event_start_time
 

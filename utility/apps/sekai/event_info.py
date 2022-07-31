@@ -49,6 +49,7 @@ async def get_event_bonus_characters_id_jp(event_id):
         if event_id == thing['eventId']:
             character_id = thing.get('gameCharacterUnitId')
             characters_id_list.append(character_id)
+    characters_id_list.remove(None)
     return characters_id_list
 
 #tw

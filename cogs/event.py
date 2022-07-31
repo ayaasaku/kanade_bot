@@ -88,21 +88,21 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.time_formatting import format_date
         
         if option == 0:
-            global event_id
-            event_id = await get_current_event_id_jp()
-            event_name = await get_event_name_jp(event_id)
-            event_type = await get_event_type_jp(event_id)
-            event_banner_name = await get_event_banner_name_jp(event_id)
+            global event_id_jp
+            event_id_jp = await get_current_event_id_jp()
+            event_name = await get_event_name_jp(event_id_jp)
+            event_type = await get_event_type_jp(event_id_jp)
+            event_banner_name = await get_event_banner_name_jp(event_id_jp)
             event_bonus_attribute = await get_event_bonus_attribute_jp()
-            event_start_time = await format_date(await get_event_start_time_jp(event_id))
-            event_end_time = await format_date(await get_event_end_time_jp(event_id))
+            event_start_time = await format_date(await get_event_start_time_jp(event_id_jp))
+            event_end_time = await format_date(await get_event_end_time_jp(event_id_jp))
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            event_url = f'https://sekai.best/event/{event_id}'
+            event_url = f'https://sekai.best/event/{event_id_jp}'
             event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
             event_type_translated = translate['event_type'][str(event_type)]
-            event_bonus_characters_id_list = await get_event_bonus_characters_id_jp(event_id)
+            event_bonus_characters_id_list = await get_event_bonus_characters_id_jp(event_id_jp)
             event_bonus_characters_name_list = await get_event_bonus_characters_name_jp(event_bonus_characters_id_list)
             embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)
@@ -118,21 +118,21 @@ class EventCog(commands.Cog, name='event'):
             embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
         elif option == 1:
-            global event_id
+            global event_id_tw
             event_id = await get_current_event_id_tw()
-            event_name = await get_event_name_tw(event_id)
-            event_type = await get_event_type_tw(event_id)
-            event_banner_name = await get_event_banner_name_tw(event_id)
+            event_name = await get_event_name_tw(event_id_tw)
+            event_type = await get_event_type_tw(event_id_tw)
+            event_banner_name = await get_event_banner_name_tw(event_id_tw)
             event_bonus_attribute = await get_event_bonus_attribute_tw()
-            event_start_time = await format_date(await get_event_start_time_tw(event_id))
-            event_end_time = await format_date(await get_event_end_time_tw(event_id))
+            event_start_time = await format_date(await get_event_start_time_tw(event_id_tw))
+            event_end_time = await format_date(await get_event_end_time_tw(event_id_tw))
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            event_url = f'https://sekai.best/event/{event_id}'
+            event_url = f'https://sekai.best/event/{event_id_tw}'
             #event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
             #event_type_translated = translate['event_type'][str(event_type)]
-            event_bonus_characters_id_list = await get_event_bonus_characters_id_tw(event_id)
+            event_bonus_characters_id_list = await get_event_bonus_characters_id_tw(event_id_tw)
             event_bonus_characters_name_list = await get_event_bonus_characters_name_tw(event_bonus_characters_id_list)
             embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)

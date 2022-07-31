@@ -20,6 +20,10 @@ class EventCog(commands.Cog, name='event'):
                       description="Provides the amount of time left (in hours) for an event",
                       help=".timeleft")'''
     @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
+    @app_commands.rename(option='選項')
+    @app_commands.choices(option=[
+        Choice(name='tw', value=0),
+        Choice(name='jp', value=1)])  
     async def time_left(self, interaction: discord.Interaction):
         from utility.apps.sekai.event_info import get_event_end_time_jp, get_current_event_id_jp, get_event_name_jp, \
             get_event_start_time_jp, get_event_banner_name_jp
@@ -32,64 +36,117 @@ class EventCog(commands.Cog, name='event'):
         if current_time > event_end_time:
             await interaction.send("There's no active event!")
         else:
-            event_end_date = await format_date(event_end_time * 1000)
-            event_name = await get_event_name_jp(event_id)
-            event_start_time = await get_event_start_time_jp(event_id)
-            event_banner_name = await get_event_banner_name_jp(event_id)
-            logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
-            banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            event_url = f'https://sekai.best/event/{event_id}'
-            time_left = await format_time(event_end_time - current_time)
-            event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
-            embed = defaultEmbed(title=f'**{event_name}**')
-            embed.set_thumbnail(url=logo_url)
-            embed.set_image(url=banner_url)
-            embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
-            embed.add_field(name=f'進度', value=f'{event_prog}', inline=False)
-            embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
-            embed.add_field(name='更多資訊', value=event_url, inline=False)
-            await interaction.response.send_message(embed=embed)
+            if option == 0:
+                event_end_date = await format_date(event_end_time * 1000)
+                event_name = await get_event_name_jp(event_id)
+                event_start_time = await get_event_start_time_jp(event_id)
+                event_banner_name = await get_event_banner_name_jp(event_id)
+                logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+                banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+                event_url = f'https://sekai.best/event/{event_id}'
+                time_left = await format_time(event_end_time - current_time)
+                event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
+                embed = defaultEmbed(title=f'**{event_name}**')
+                embed.set_thumbnail(url=logo_url)
+                embed.set_image(url=banner_url)
+                embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
+                embed.add_field(name=f'進度', value=f'{event_prog}', inline=False)
+                embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
+                embed.add_field(name='更多資訊', value=event_url, inline=False)
+                await interaction.response.send_message(embed=embed)
+            elif option == 1:
+                event_end_date = await format_date(event_end_time * 1000)
+                event_name = await get_event_name_tw(event_id)
+                event_start_time = await get_event_start_time_tw(event_id)
+                event_banner_name = await get_event_banner_name_tw(event_id)
+                logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+                banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+                event_url = f'https://sekai.best/event/{event_id}'
+                time_left = await format_time(event_end_time - current_time)
+                event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
+                embed = defaultEmbed(title=f'**{event_name}**')
+                embed.set_thumbnail(url=logo_url)
+                embed.set_image(url=banner_url)
+                embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
+                embed.add_field(name=f'進度', value=f'{event_prog}', inline=False)
+                embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
+                embed.add_field(name='更多資訊', value=event_url, inline=False)
+                await interaction.response.send_message(embed=embed)
 
     '''@commands.command(name='event',
                       description='Posts event info',
                       help='event\n.event jp\n.event en 12\n.event en Lisa\n.event jp 一閃')'''
-    @app_commands.command(name='event', description='查看本期活動的資訊')                 
+    @app_commands.command(name='event', description='查看本期活動的資訊')    
+    @app_commands.rename(option='選項')
+    @app_commands.choices(option=[
+        Choice(name='tw', value=0),
+        Choice(name='jp', value=1)])             
     async def event(self, interaction: discord.Interaction):
         from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
             get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
             get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp
         from utility.apps.sekai.time_formatting import format_date
-        global event_id
-        event_id = 0
-        if event_id == 0:
+        
+        if option == 0:
+            global event_id
             event_id = await get_current_event_id_jp()
-        event_name = await get_event_name_jp(event_id)
-        event_type = await get_event_type_jp(event_id)
-        event_banner_name = await get_event_banner_name_jp(event_id)
-        event_bonus_attribute = await get_event_bonus_attribute_jp()
-        event_start_time = await format_date(await get_event_start_time_jp(event_id))
-        event_end_time = await format_date(await get_event_end_time_jp(event_id))
-        logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
-        banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-        event_url = f'https://sekai.best/event/{event_id}'
-        event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
-        attribute_emoji = attributes[str(event_bonus_attribute)]
-        event_type_translated = translate['event_type'][str(event_type)]
-        event_bonus_characters_id_list = await get_event_bonus_characters_id_jp(event_id)
-        event_bonus_characters_name_list = await get_event_bonus_characters_name_jp(event_bonus_characters_id_list)
-        embed = defaultEmbed(title=f'**{event_name}**')
-        embed.set_thumbnail(url=logo_url)
-        embed.set_image(url=banner_url)
-        embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
-        embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
-        embed.add_field(name='\u200b', value='\u200b', inline=True)
-        embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
-        embed.add_field(name='開始', value=event_start_time, inline=True)
-        embed.add_field(name='\u200b', value='\u200b', inline=True)
-        embed.add_field(name='結束', value=f'{event_end_time}', inline=True)
-        #embed.add_field(name='\u200b', value='**時間**', inline=False)
-        embed.add_field(name='更多資訊', value=event_url, inline=False)
-        await interaction.response.send_message(embed=embed)
+            event_name = await get_event_name_jp(event_id)
+            event_type = await get_event_type_jp(event_id)
+            event_banner_name = await get_event_banner_name_jp(event_id)
+            event_bonus_attribute = await get_event_bonus_attribute_jp()
+            event_start_time = await format_date(await get_event_start_time_jp(event_id))
+            event_end_time = await format_date(await get_event_end_time_jp(event_id))
+            logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+            banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+            event_url = f'https://sekai.best/event/{event_id}'
+            event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
+            attribute_emoji = attributes[str(event_bonus_attribute)]
+            event_type_translated = translate['event_type'][str(event_type)]
+            event_bonus_characters_id_list = await get_event_bonus_characters_id_jp(event_id)
+            event_bonus_characters_name_list = await get_event_bonus_characters_name_jp(event_bonus_characters_id_list)
+            embed = defaultEmbed(title=f'**{event_name}**')
+            embed.set_thumbnail(url=logo_url)
+            embed.set_image(url=banner_url)
+            embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
+            embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
+            embed.add_field(name='\u200b', value='\u200b', inline=True)
+            embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
+            embed.add_field(name='開始', value=event_start_time, inline=True)
+            embed.add_field(name='\u200b', value='\u200b', inline=True)
+            embed.add_field(name='結束', value=f'{event_end_time}', inline=True)
+            #embed.add_field(name='\u200b', value='**時間**', inline=False)
+            embed.add_field(name='更多資訊', value=event_url, inline=False)
+            await interaction.response.send_message(embed=embed)
+        elif option == 1:
+            global event_id
+            event_id = await get_current_event_id_tw()
+            event_name = await get_event_name_tw(event_id)
+            event_type = await get_event_type_tw(event_id)
+            event_banner_name = await get_event_banner_name_tw(event_id)
+            event_bonus_attribute = await get_event_bonus_attribute_tw()
+            event_start_time = await format_date(await get_event_start_time_tw(event_id))
+            event_end_time = await format_date(await get_event_end_time_tw(event_id))
+            logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+            banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+            event_url = f'https://sekai.best/event/{event_id}'
+            #event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
+            attribute_emoji = attributes[str(event_bonus_attribute)]
+            #event_type_translated = translate['event_type'][str(event_type)]
+            event_bonus_characters_id_list = await get_event_bonus_characters_id_tw(event_id)
+            event_bonus_characters_name_list = await get_event_bonus_characters_name_tw(event_bonus_characters_id_list)
+            embed = defaultEmbed(title=f'**{event_name}**')
+            embed.set_thumbnail(url=logo_url)
+            embed.set_image(url=banner_url)
+            embed.add_field(name='活動類型', value=event_type, inline=False)  
+            embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_bonus_attribute})', inline=True)
+            embed.add_field(name='\u200b', value='\u200b', inline=True)
+            embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
+            embed.add_field(name='開始', value=event_start_time, inline=True)
+            embed.add_field(name='\u200b', value='\u200b', inline=True)
+            embed.add_field(name='結束', value=f'{event_end_time}', inline=True)
+            #embed.add_field(name='\u200b', value='**時間**', inline=False)
+            embed.add_field(name='更多資訊', value=event_url, inline=False)
+            await interaction.response.send_message(embed=embed)
 
 
     '''valid_tiers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000,

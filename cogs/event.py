@@ -57,7 +57,7 @@ class EventCog(commands.Cog, name='event'):
     async def event(self, interaction: discord.Interaction):
         from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
             get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
-            get_event_bonus_characters_id_jp
+            get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp
         from utility.apps.sekai.time_formatting import format_date
         global event_id
         event_id = 0

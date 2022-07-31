@@ -82,7 +82,7 @@ async def get_event_name_tw(event_id):
     for thing in event_api:
         if event_id == thing['id']:
             event_name = thing['name']
-        return event_name
+            return event_name
 
 async def get_event_type_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
@@ -90,7 +90,7 @@ async def get_event_type_tw(event_id):
     for thing in event_api:
         if event_id == thing['id']:
             event_type = thing['eventType']
-        return event_type
+            return event_type
 
 async def get_event_start_time_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
@@ -98,7 +98,7 @@ async def get_event_start_time_tw(event_id):
     for thing in event_api:
         if event_id == thing['id']:
             event_start_time = thing['startAt']
-        return event_start_time
+            return event_start_time
 
 async def get_event_end_time_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
@@ -106,7 +106,7 @@ async def get_event_end_time_tw(event_id):
     for thing in event_api:
         if event_id == thing['id']:
             event_end_time = thing['aggregateAt']
-        return event_end_time
+            return event_end_time
 
 async def get_event_bonus_attribute_tw():
     from utility.apps.sekai.api_functions import get_sekai_event_deck_bonuses_api_tw
@@ -114,7 +114,7 @@ async def get_event_bonus_attribute_tw():
     for thing in event_api:
         if event_id == thing['eventId']:
             event_bonus_attribute = thing.get('cardAttr').capitalize()
-        return event_bonus_attribute
+            return event_bonus_attribute
 
 async def get_event_bonus_characters_id_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_event_deck_bonuses_api_tw

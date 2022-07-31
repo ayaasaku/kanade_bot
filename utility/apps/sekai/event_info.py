@@ -46,9 +46,8 @@ async def get_event_bonus_characters_id_jp(event_id):
     event_api = await get_sekai_event_deck_bonuses_api_jp()
     characters_id_list = []
     for thing in event_api:
-        if event_id == event_api[thing]['eventId']:
-            character_id = event_api[thing]['gameCharacterUnitId']
-            characters_id_list.append(character_id)
+        if event_id == thing['eventId']:
+            characters_id_list.append(thing['gameCharacterUnitId'])
     return characters_id_list
 
 #tw

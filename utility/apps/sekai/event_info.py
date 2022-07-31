@@ -113,7 +113,7 @@ async def get_event_bonus_attribute_tw():
     event_api = await get_sekai_event_deck_bonuses_api_tw()
     for thing in event_api:
         if event_id == thing['eventId']:
-            event_bonus_attribute = thing['cardAttr'].capitalize()
+            event_bonus_attribute = thing.get('cardAttr').capitalize()
         return event_bonus_attribute
 
 async def get_event_bonus_characters_id_tw(event_id):

@@ -115,13 +115,21 @@ async def get_event_bonus_attribute_tw(event_id):
         if event_id == thing['eventId']:
             event_bonus_attribute = thing['cardAttr'].capitalize()
             return event_bonus_attribute
+        
+async def get_event_banner_name_tw(event_id):
+    from utility.apps.sekai.api_functions import get_sekai_events_api_tw
+    event_api = await get_sekai_events_api_tw()
+    for thing in event_api:
+        if event_id == thing['id']:
+            event_banner_name = thing['assetbundleName']
+            return event_banner_name
 
 async def get_event_bonus_characters_id_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_event_deck_bonuses_api_tw
     event_api = await get_sekai_event_deck_bonuses_api_tw()
     characters_id_list = []
     for thing in event_api:
-        if event_id - 3 == thing['eventId']:
+        if event_id - 4 == thing['eventId']:
             character_id = thing.get('gameCharacterUnitId')
             characters_id_list.append(character_id)
     if None in characters_id_list:

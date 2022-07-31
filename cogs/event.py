@@ -154,16 +154,16 @@ class EventCog(commands.Cog, name='event'):
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id_tw}'
-            #event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
+            event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
-            #event_type_translated = translate['event_type'][str(event_type)]
+            event_type_translated = translate['event_type'][str(event_type)]
             event_bonus_characters_id_list = await get_event_bonus_characters_id_tw(event_id_tw)
             event_bonus_characters_name_list = await get_event_bonus_characters_name_tw(event_bonus_characters_id_list)
             embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)
-            embed.add_field(name='活動類型', value=event_type, inline=False)  
-            embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_bonus_attribute})', inline=True)
+            embed.add_field(name='活動類型', value=event_type_translatede, inline=False)  
+            embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             if len(event_bonus_characters_name_list) == 1:
                 embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}', inline=True)  

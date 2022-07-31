@@ -79,37 +79,37 @@ async def get_current_event_id_tw():
 async def get_event_name_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
     event_api = await get_sekai_events_api_tw()
-    event_name = event_api[-1]['name']
+    event_name = event_api[-3]['name']
     return event_name
 
 async def get_event_type_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
     event_api = await get_sekai_events_api_tw()
-    event_name = event_api[-1]['eventType'].capitalize()
+    event_name = event_api[-3]['eventType'].capitalize()
     return event_name
 
 async def get_event_start_time_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
     event_api = await get_sekai_events_api_tw()
-    event_start_time = event_api[-1]['startAt']
+    event_start_time = event_api[-3]['startAt']
     return event_start_time
 
 async def get_event_end_time_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
     event_api = await get_sekai_events_api_tw()
-    event_end_time = event_api[-1]['aggregateAt']
+    event_end_time = event_api[-3]['aggregateAt']
     return event_end_time
 
 async def get_event_banner_name_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_events_api_tw
     event_api = await get_sekai_events_api_tw()
-    event_banner_name = event_api[-1]['assetbundleName']
+    event_banner_name = event_api[-3]['assetbundleName']
     return event_banner_name
 
 async def get_event_bonus_attribute_tw():
     from utility.apps.sekai.api_functions import get_sekai_event_deck_bonuses_api_tw
     event_api = await get_sekai_event_deck_bonuses_api_tw()
-    event_bonus_attribute = event_api[-1]['cardAttr'].capitalize()
+    event_bonus_attribute = event_api[-3]['cardAttr'].capitalize()
     return event_bonus_attribute
 
 async def get_event_bonus_characters_id_tw(event_id):

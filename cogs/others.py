@@ -17,9 +17,9 @@ class OthersCog(commands.Cog, name='others'):
     @app_commands.command(name='embed', description='embed')
     @app_commands.rename(
         description='embed-description', \
-        cmd_1='cmd-1-name', cmd_1_des_ln_1='cmd-1-description', cmd_1_des_ln_2='cmd-1-description', \
-        cmd_2='cmd-2-name', cmd_2_des_ln_1='cmd-2-description', cmd_2_des_ln_2='cmd-2-description', \
-        cmd_3='cmd-3-name', cmd_3_des_ln_1='cmd-3-description', cmd_3_des_ln_2='cmd-3-description'
+        cmd_1='cmd-1-name', cmd_1_des_ln_1='cmd-1-description', cmd_1_des_ln_2='cmd-1-description2', \
+        cmd_2='cmd-2-name', cmd_2_des_ln_1='cmd-2-description', cmd_2_des_ln_2='cmd-2-description2', \
+        cmd_3='cmd-3-name', cmd_3_des_ln_1='cmd-3-description', cmd_3_des_ln_2='cmd-3-description2'
         )
     @app_commands.checks.has_role('小雪團隊')
     async def update(self, interaction: discord.Interaction, description: str, \

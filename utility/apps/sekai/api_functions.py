@@ -1,7 +1,7 @@
 import requests, json, aiohttp
 
 #events
-async def get_sekai_current_event_standings_api(event_id):
+async def get_sekai_current_event_standings_api_jp(event_id):
     async with aiohttp.ClientSession() as session:
         from random import random
         # Use a random number to avoid caching issues 
@@ -9,33 +9,72 @@ async def get_sekai_current_event_standings_api(event_id):
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
 
-async def get_sekai_world_events_api():
+async def get_sekai_world_events_api_jp():
     async with aiohttp.ClientSession() as session:
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/events.json'
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
         
-async def get_sekai_current_event_api():
+async def get_sekai_current_event_api_jp():
     async with aiohttp.ClientSession() as session:
         api = 'https://sekaidb.xyz/l10n/event/en.json'
         async with session.get(api) as r:
             return await r.json()
 
-async def get_sekai_master_api():
+async def get_sekai_master_api_jp():
     async with aiohttp.ClientSession() as session:
         api = 'https://sekaidb.xyz/db/prod.json'
         async with session.get(api) as r:
             return await r.json()
 
-async def get_sekai_events_api():
+async def get_sekai_events_api_jp():
     async with aiohttp.ClientSession() as session:
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/events.json'
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
 
-async def get_sekai_event_deck_bonuses_api():
+async def get_sekai_event_deck_bonuses_api_jp():
     async with aiohttp.ClientSession() as session:
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/eventDeckBonuses.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+        
+#events
+async def get_sekai_current_event_standings_api_tw(event_id):
+    async with aiohttp.ClientSession() as session:
+        from random import random
+        # Use a random number to avoid caching issues 
+        api = f'https://bitbucket.org/sekai-world/sekai-event-track/raw/f6f3fc4311a8cdd4bba5cedebcef02ff994939d5/event{event_id}.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+
+async def get_sekai_world_events_api_tw():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/master/events.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+        
+async def get_sekai_current_event_api_tw():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://sekaidb.xyz/l10n/event/en.json'
+        async with session.get(api) as r:
+            return await r.json()
+
+async def get_sekai_master_api_tw():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://sekaidb.xyz/db/prod.json'
+        async with session.get(api) as r:
+            return await r.json()
+
+async def get_sekai_events_api_tw():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/master/events.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+
+async def get_sekai_event_deck_bonuses_api_tw():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/master/eventDeckBonuses.json'
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
 

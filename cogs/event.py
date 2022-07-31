@@ -21,21 +21,21 @@ class EventCog(commands.Cog, name='event'):
                       help=".timeleft")'''
     @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
     async def time_left(self, interaction: discord.Interaction):
-        from utility.apps.sekai.event_info import get_event_end_time, get_current_event_id, get_event_name, \
-            get_event_start_time, get_event_banner_name
+        from utility.apps.sekai.event_info import get_event_end_time_jp, get_current_event_id_jp, get_event_name_jp, \
+            get_event_start_time_jp, get_event_banner_name_jp
         from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
         global event_id
         event_id = 0
-        event_id = await get_current_event_id()
-        event_end_time = (await get_event_end_time(event_id)) / 1000
+        event_id = await get_current_event_id_jp()
+        event_end_time = (await get_event_end_time_jp(event_id)) / 1000
         current_time = time.time()
         if current_time > event_end_time:
             await interaction.send("There's no active event!")
         else:
             event_end_date = await format_date(event_end_time * 1000)
-            event_name = await get_event_name(event_id)
-            event_start_time = await get_event_start_time(event_id)
-            event_banner_name = await get_event_banner_name(event_id)
+            event_name = await get_event_name_jp(event_id)
+            event_start_time = await get_event_start_time_jp(event_id)
+            event_banner_name = await get_event_banner_name_jp(event_id)
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id}'
@@ -55,30 +55,33 @@ class EventCog(commands.Cog, name='event'):
                       help='event\n.event jp\n.event en 12\n.event en Lisa\n.event jp 一閃')'''
     @app_commands.command(name='event', description='查看本期活動的資訊')                 
     async def event(self, interaction: discord.Interaction):
-        from utility.apps.sekai.event_info import get_event_name, get_event_type, get_current_event_id, \
-            get_event_bonus_attribute, get_event_banner_name, get_event_start_time, get_event_end_time
+        from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
+            get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
+            get_event_bonus_characters_id_jp
         from utility.apps.sekai.time_formatting import format_date
         global event_id
         event_id = 0
         if event_id == 0:
-            event_id = await get_current_event_id()
-        event_name = await get_event_name(event_id)
-        event_type = await get_event_type(event_id)
-        event_banner_name = await get_event_banner_name(event_id)
-        event_bonus_attribute = await get_event_bonus_attribute()
-        event_start_time = await format_date(await get_event_start_time(event_id))
-        event_end_time = await format_date(await get_event_end_time(event_id))
+            event_id = await get_current_event_id_jp()
+        event_name = await get_event_name_jp(event_id)
+        event_type = await get_event_type_jp(event_id)
+        event_banner_name = await get_event_banner_name_jp(event_id)
+        event_bonus_attribute = await get_event_bonus_attribute_jp()
+        event_start_time = await format_date(await get_event_start_time_jp(event_id))
+        event_end_time = await format_date(await get_event_end_time_jp(event_id))
         logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
         event_url = f'https://sekai.best/event/{event_id}'
         event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
         attribute_emoji = attributes[str(event_bonus_attribute)]
         event_type_translated = translate['event_type'][str(event_type)]
+        event_bonus_characters = get_event_bonus_characters_id_jp()
         embed = defaultEmbed(title=f'**{event_name}**')
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
         embed.add_field(name='加成屬性', value=f'{event_attribute_translated} {attribute_emoji}', inline=True)
-        embed.add_field(name='\u200b', value='\u200b', inline=True)
+        embed.add_field(name='加成角色', value=f'{event_bonus_characters}', inline=True)
+        #embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='活動類型', value=event_type_translated, inline=True)
         embed.add_field(name='開始', value=event_start_time, inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)

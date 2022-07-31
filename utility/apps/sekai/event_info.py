@@ -51,6 +51,7 @@ async def get_event_bonus_characters_id_jp(event_id):
             characters_id_list.append(character_id)
     if None in characters_id_list:
         characters_id_list.remove(None)
+    characters_id_list = list(dict.fromkeys(characters_id_list))
     return characters_id_list
 
 async def get_event_bonus_characters_name_jp(characters_id_list: list):

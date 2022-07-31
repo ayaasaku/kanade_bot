@@ -108,7 +108,7 @@ async def get_event_end_time_tw(event_id):
             event_end_time = thing['aggregateAt']
             return event_end_time
 
-async def get_event_bonus_attribute_tw():
+async def get_event_bonus_attribute_tw(event_id):
     from utility.apps.sekai.api_functions import get_sekai_event_deck_bonuses_api_tw
     event_api = await get_sekai_event_deck_bonuses_api_tw()
     for thing in event_api:

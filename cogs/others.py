@@ -20,11 +20,11 @@ class OthersCog(commands.Cog, name='others'):
     async def update(self, interaction: discord.Interaction, description: str, cmd_1: str = '', cmd_1_des: str = '', cmd_2: str = '', cmd_2_des: str = '', cmd_3: str = '', cmd_3_des: str = ''):
         embed = updateEmbed(description=description,)
         if len(cmd_1) >= 1:
-            embed.add_field(name=f'{cmd_1}', value=f'{cmd_1_des}', inline=False)
+            embed.add_field(name=cmd_1, value=cmd_1_des, inline=False)
         if len(cmd_2) >= 1:
-            embed.add_field(name=f'{cmd_2}', value=f'{cmd_2_des}', inline=False)
+            embed.add_field(name=cmd_2, value=cmd_2_des, inline=False)
         if len(cmd_3) >= 1:
-            embed.add_field(name=f'{cmd_3}', value=f'{cmd_3_des}', inline=False)
+            embed.add_field(name=cmd_3, value=cmd_3_des, inline=False)
         await interaction.response.send_message(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:

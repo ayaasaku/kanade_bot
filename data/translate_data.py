@@ -1,10 +1,10 @@
 translate = {
     'attributes':{
-        'Cute':'Cute(キュート)',
-        'Cool':'Cool(クール)',
-        'Happy':'Happy(ハッピー)',
-        'Mysterious':'Mysterious(ミステリアス)',
-        'Pure':'Pure(ピュア)',
+        'Cute':'キュート',
+        'Cool':'クール',
+        'Happy':'ハッピー',
+        'Mysterious':'ミステリアス',
+        'Pure':'ピュア',
     },
     'event_type':{
         'Marathon':'馬拉松',

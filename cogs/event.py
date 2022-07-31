@@ -81,7 +81,7 @@ class EventCog(commands.Cog, name='event'):
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
         embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
-        embed.add_field(name='加成屬性', value=f'{event_attribute_translated}\n{attribute_emoji}', inline=True)
+        embed.add_field(name='加成屬性', value=f'{event_bonus_attribute} {attribute_emoji}\n({event_attribute_translated})', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
         embed.add_field(name='開始', value=event_start_time, inline=True)

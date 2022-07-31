@@ -48,9 +48,8 @@ async def get_event_bonus_characters_id_jp(event_id):
     for thing in event_api:
         if event_id == thing['eventId']:
             character_id = thing.get('gameCharacterUnitId')
-            #characters_id_list.append(thing["gameCharacterUnitId"])
-            return character_id
-    #return characters_id_list
+            characters_id_list.append(character_id)
+    return characters_id_list
 
 #tw
 async def get_current_event_id_tw():

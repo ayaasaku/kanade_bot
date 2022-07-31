@@ -29,7 +29,7 @@ class EventCog(commands.Cog, name='event'):
     @app_commands.choices(option=[
         Choice(name='tw', value=0),
         Choice(name='jp', value=1)])  
-    async def time_left(self, interaction: discord.Interaction):
+    async def time_left(self, interaction: discord.Interaction, option: int):
         from utility.apps.sekai.event_info import get_event_end_time_jp, get_current_event_id_jp, get_event_name_jp, \
             get_event_start_time_jp, get_event_banner_name_jp
         from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
@@ -86,7 +86,7 @@ class EventCog(commands.Cog, name='event'):
     @app_commands.choices(option=[
         Choice(name='tw', value=0),
         Choice(name='jp', value=1)])             
-    async def event(self, interaction: discord.Interaction):
+    async def event(self, interaction: discord.Interaction, option: int):
         from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
             get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
             get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp

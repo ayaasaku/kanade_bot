@@ -35,22 +35,22 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.event_info import get_event_end_time_tw, get_current_event_id_tw, get_event_name_tw, \
             get_event_start_time_tw, get_event_banner_name_tw
         from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
-        global event_id
-        event_id = 0
-        event_id = await get_current_event_id_jp()
-        event_end_time = (await get_event_end_time_jp(event_id)) / 1000
-        current_time = time.time()
-        if current_time > event_end_time:
-            await interaction.send("There's no active event!")
-        else:
-            if option == 0:
+        if option == 0:
+            global event_id_jp
+            event_id_jp = 0
+            event_id_jp = await get_current_event_id_jp()
+            event_end_time = (await get_event_end_time_jp(event_id_jp)) / 1000
+            current_time = time.time()
+            if current_time > event_end_time:
+                await interaction.send("There's no active event!")
+            else:
                 event_end_date = await format_date(event_end_time * 1000)
-                event_name = await get_event_name_jp(event_id)
-                event_start_time = await get_event_start_time_jp(event_id)
-                event_banner_name = await get_event_banner_name_jp(event_id)
+                event_name = await get_event_name_jp(event_id_jp)
+                event_start_time = await get_event_start_time_jp(event_id_jp)
+                event_banner_name = await get_event_banner_name_jp(event_id_jp)
                 logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
                 banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-                event_url = f'https://sekai.best/event/{event_id}'
+                event_url = f'https://sekai.best/event/{event_id_jp}'
                 time_left = await format_time(event_end_time - current_time)
                 event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
                 embed = defaultEmbed(title=f'**{event_name}**')
@@ -61,14 +61,22 @@ class EventCog(commands.Cog, name='event'):
                 embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
                 embed.add_field(name='更多資訊', value=event_url, inline=False)
                 await interaction.response.send_message(embed=embed)
-            elif option == 1:
+        elif option == 1:
+            global event_id_tw
+            event_id_tw = 0
+            event_id_tw = await get_current_event_id_tw()
+            event_end_time = (await get_event_end_time_tw(event_id_tw)) / 1000
+            current_time = time.time()
+            if current_time > event_end_time:
+                await interaction.send("There's no active event!")
+            else:
                 event_end_date = await format_date(event_end_time * 1000)
-                event_name = await get_event_name_tw(event_id)
-                event_start_time = await get_event_start_time_tw(event_id)
-                event_banner_name = await get_event_banner_name_tw(event_id)
+                event_name = await get_event_name_tw(event_id_tw)
+                event_start_time = await get_event_start_time_tw(event_id_tw)
+                event_banner_name = await get_event_banner_name_tw(event_id_tw)
                 logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
                 banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-                event_url = f'https://sekai.best/event/{event_id}'
+                event_url = f'https://sekai.best/event/{event_id_tw}'
                 time_left = await format_time(event_end_time - current_time)
                 event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
                 embed = defaultEmbed(title=f'**{event_name}**')
@@ -129,7 +137,7 @@ class EventCog(commands.Cog, name='event'):
             await interaction.response.send_message(embed=embed)
         elif option == 1:
             global event_id_tw
-            event_id = await get_current_event_id_tw()
+            event_id_tw = await get_current_event_id_tw()
             event_name = await get_event_name_tw(event_id_tw)
             event_type = await get_event_type_tw(event_id_tw)
             event_banner_name = await get_event_banner_name_tw(event_id_tw)

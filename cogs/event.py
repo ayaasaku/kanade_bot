@@ -128,7 +128,14 @@ class EventCog(commands.Cog, name='event'):
             embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
             embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
-            embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
+            if len(event_bonus_characters_name_list) == 1:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}', inline=True)  
+            elif len(event_bonus_characters_name_list) == 2:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}', inline=True)      
+            elif len(event_bonus_characters_name_list) == 3:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}', inline=True)      
+            elif len(event_bonus_characters_name_list) == 4:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)      
             embed.add_field(name='開始', value=event_start_time, inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='結束', value=f'{event_end_time}', inline=True)
@@ -158,7 +165,14 @@ class EventCog(commands.Cog, name='event'):
             embed.add_field(name='活動類型', value=event_type, inline=False)  
             embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_bonus_attribute})', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
-            embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)  
+            if len(event_bonus_characters_name_list) == 1:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}', inline=True)  
+            elif len(event_bonus_characters_name_list) == 2:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}', inline=True)      
+            elif len(event_bonus_characters_name_list) == 3:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}', inline=True)      
+            elif len(event_bonus_characters_name_list) == 4:
+                embed.add_field(name='加成角色', value=f'{event_bonus_characters_name_list[0]}，{event_bonus_characters_name_list[1]}\n{event_bonus_characters_name_list[2]}，{event_bonus_characters_name_list[3]}', inline=True)      
             embed.add_field(name='開始', value=event_start_time, inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='結束', value=f'{event_end_time}', inline=True)

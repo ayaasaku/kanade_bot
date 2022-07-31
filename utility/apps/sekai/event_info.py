@@ -66,7 +66,7 @@ async def get_event_bonus_characters_name_jp(characters_id_list: list):
                 characters_name_list.append(name)
     if None in characters_name_list:
         characters_name_list.remove(None)
-    return characters_id_list   
+    return characters_name_list   
 
 #tw
 async def get_current_event_id_tw():

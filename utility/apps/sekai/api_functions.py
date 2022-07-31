@@ -103,3 +103,9 @@ async def get_sekai_music_tags_api():
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
         
+async def get_sekai_characters_info_api():
+    async with aiohttp.ClientSession() as session:
+        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/main/gameCharacters.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+        

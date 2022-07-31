@@ -52,6 +52,20 @@ async def get_event_bonus_characters_id_jp(event_id):
     characters_id_list.remove(None)
     return characters_id_list
 
+async def get_event_bonus_characters_name_jp(characters_id_list: list):
+    from utility.apps.sekai.api_functions import get_sekai_characters_info_api
+    characters_name_list = []
+    event_api = await get_sekai_characters_info_api()
+    for character_id in characters_id_list:
+        for thing in event_api:
+            if character_id == thing['id']:
+                first_name = thing['firstName']
+                last_name = thing['givenName']
+                name = f'{first_name}{last_name}'
+                characters_name_list.append(name)
+    characters_name_list.remove(None)
+    return characters_id_list   
+
 #tw
 async def get_current_event_id_tw():
     import re

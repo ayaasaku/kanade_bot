@@ -14,8 +14,8 @@ from utility.apps.sekai.music_info import get_vocaloid_music, get_light_music_cl
 
 
 class SongCog(Select, commands.Cog, name='song'):
-    self.bot = bot
     def __init__(self, bot: commands.Bot):
+        self.bot = bot
         options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 
                    SelectOption(label='Leo/need', description='Leo/need', value=2), 

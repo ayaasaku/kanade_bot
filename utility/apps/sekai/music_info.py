@@ -170,23 +170,6 @@ async def get_music_difficulty_master_note_count(music_id):
 
 
 async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
-    from utility.apps.sekai.music_info import (
-        get_music_arranger, get_music_composer,
-        get_music_difficulty_easy_difficulty, get_music_difficulty_easy_level,
-        get_music_difficulty_easy_note_count,
-        get_music_difficulty_expert_difficulty,
-        get_music_difficulty_expert_level,
-        get_music_difficulty_expert_note_count,
-        get_music_difficulty_hard_difficulty, get_music_difficulty_hard_level,
-        get_music_difficulty_hard_note_count,
-        get_music_difficulty_master_difficulty,
-        get_music_difficulty_master_level,
-        get_music_difficulty_master_note_count,
-        get_music_difficulty_normal_difficulty,
-        get_music_difficulty_normal_level,
-        get_music_difficulty_normal_note_count, get_music_lyricist,
-        get_music_published_time, get_music_tags, get_music_title)
-    from utility.apps.sekai.time_formatting import format_date
 
     global music_id
     music_id = import_id
@@ -249,8 +232,18 @@ async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
     embed.add_field(name='更多資訊', value=music_url, inline=False)
     embed.add_field(name='type', value=music_tag, inline=False)
     return embed
-# tags
 
+# tags
+async def get_music(session: aiohttp.ClientSession, music_type: str):
+    music_api = await get_sekai_music_tags_api()
+    embed_list = []
+    for music in music_api:
+        if music['musicTag'] == music_type:
+            music_id = music['musicId']
+            embed = await get_song_embed(music_id, session)
+            embed_list.append(embed)
+    return embed_list
+    
 
 async def get_vocaloid_music(session: aiohttp.ClientSession):
     music_api = await get_sekai_music_tags_api()

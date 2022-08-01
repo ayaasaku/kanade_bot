@@ -13,19 +13,18 @@ from utility.paginators import GeneralPaginator
 from utility.apps.sekai.music_info import get_vocaloid_music, get_light_music_club_music, get_idol_music, get_street_music, get_theme_park_music, get_school_refusal_music
 
 
-class SongCog(commands.Cog, name='song'):
+class SongCog(Select, commands.Cog, name='song'):
+    self.bot = bot
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
-        options = [
-                SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0),
-                SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1),
-                SelectOption(label='Leo/need', description='Leo/need', value=2),
-                SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', value=3),
-                SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4),
-                SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5),
-                ]
+        options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
+                   SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 
+                   SelectOption(label='Leo/need', description='Leo/need', value=2), 
+                   SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', value=3), 
+                   SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4), 
+                   SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
+                   ]
         super().__init__(placeholder='選擇歌曲分類', options=options)
-        self.bot = bot
+        
         
     @app_commands.command(name='songs', description='get songs info')     
     async def song(self, i: discord.Interaction):  

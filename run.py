@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import sys
 import traceback
+import aiohttp
 
 from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands)
@@ -30,6 +31,7 @@ class KanadeBot(commands.Bot):
         )
         
     async def setup_hook(self) -> None:
+        self.session = aiohttp.ClientSession()
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
             cog_name = Path(filepath).stem
@@ -69,6 +71,7 @@ class KanadeBot(commands.Bot):
                 type(error), error, error.__traceback__, file=sys.stderr)
 
     async def close(self) -> None:
+        self.session.close()
         return await super().close()
 
 

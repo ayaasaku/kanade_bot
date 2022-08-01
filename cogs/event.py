@@ -105,6 +105,7 @@ class EventCog(commands.Cog, name='event'):
             get_event_bonus_characters_id_tw, get_event_bonus_characters_name_tw
         from utility.apps.sekai.time_formatting import format_date_jp, format_date
         
+        #jp
         if option == 0:
             global event_id_jp
             event_id_jp = await get_current_event_id_jp()
@@ -142,6 +143,8 @@ class EventCog(commands.Cog, name='event'):
             #embed.add_field(name='\u200b', value='**時間**', inline=False)
             embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
+            
+        #tw
         elif option == 1:
             global event_id_tw
             event_id_tw = await get_current_event_id_tw()

@@ -30,7 +30,7 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info')     
     async def song(self, i: discord.Interaction):  
         select_view = SongCog.SelectOptions()
-        await select_view.wait()
+        await select_view
         if self.options == 0:
             embeds = get_vocaloid_music()
             await GeneralPaginator(i, embeds).start(embeded=True)

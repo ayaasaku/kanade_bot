@@ -5,7 +5,7 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
                                               get_sekai_musics_api)
 from utility.utils import defaultEmbed
-
+from utility.apps.sekai.time_formatting import format_date
 
 async def get_music_title(music_id: int, session: aiohttp.ClientSession):
     music_api = await get_sekai_musics_api(session)
@@ -170,24 +170,6 @@ async def get_music_difficulty_master_note_count(music_id):
 
 
 async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
-    from utility.apps.sekai.music_info import (
-        get_music_arranger, get_music_composer,
-        get_music_difficulty_easy_difficulty, get_music_difficulty_easy_level,
-        get_music_difficulty_easy_note_count,
-        get_music_difficulty_expert_difficulty,
-        get_music_difficulty_expert_level,
-        get_music_difficulty_expert_note_count,
-        get_music_difficulty_hard_difficulty, get_music_difficulty_hard_level,
-        get_music_difficulty_hard_note_count,
-        get_music_difficulty_master_difficulty,
-        get_music_difficulty_master_level,
-        get_music_difficulty_master_note_count,
-        get_music_difficulty_normal_difficulty,
-        get_music_difficulty_normal_level,
-        get_music_difficulty_normal_note_count, get_music_lyricist,
-        get_music_published_time, get_music_tags, get_music_title)
-    from utility.apps.sekai.time_formatting import format_date
-
     global music_id
     music_id = import_id
 

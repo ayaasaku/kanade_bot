@@ -15,26 +15,27 @@ from discord.app_commands import Choice
 from utility.utils import defaultEmbed
 from data.emoji_data import attributes
 from data.translate_data import translate
+    
+from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
+
+from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
+    get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
+    get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp, \
+    get_event_name_tw, get_event_type_tw, get_current_event_id_tw, \
+    get_event_bonus_attribute_tw, get_event_banner_name_tw, get_event_start_time_tw, get_event_end_time_tw, \
+    get_event_bonus_characters_id_tw, get_event_bonus_characters_name_tw
 
 class EventCog(commands.Cog, name='event'):
     def __init__(self, bot):
         self.bot = bot
-
-    '''@commands.command(name='timeleft',
-                      aliases=['tl'],
-                      description="Provides the amount of time left (in hours) for an event",
-                      help=".timeleft")'''
+        
     @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
         Choice(name='jp', value=0),
         Choice(name='tw', value=1)])  
     async def time_left(self, interaction: discord.Interaction, option: int):
-        from utility.apps.sekai.event_info import get_event_end_time_jp, get_current_event_id_jp, get_event_name_jp, \
-            get_event_start_time_jp, get_event_banner_name_jp
-        from utility.apps.sekai.event_info import get_event_end_time_tw, get_current_event_id_tw, get_event_name_tw, \
-            get_event_start_time_tw, get_event_banner_name_tw
-        from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
+ 
         if option == 0:
             global event_id_jp
             event_id_jp = 0
@@ -88,23 +89,12 @@ class EventCog(commands.Cog, name='event'):
                 embed.add_field(name='更多資訊', value=event_url, inline=False)
                 await interaction.response.send_message(embed=embed)
 
-    '''@commands.command(name='event',
-                      description='Posts event info',
-                      help='event\n.event jp\n.event en 12\n.event en Lisa\n.event jp 一閃')'''
     @app_commands.command(name='event', description='查看本期活動的資訊')    
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
         Choice(name='jp', value=0),
         Choice(name='tw', value=1)])             
-    async def event(self, interaction: discord.Interaction, option: int):
-        from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
-            get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
-            get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp
-        from utility.apps.sekai.event_info import get_event_name_tw, get_event_type_tw, get_current_event_id_tw, \
-            get_event_bonus_attribute_tw, get_event_banner_name_tw, get_event_start_time_tw, get_event_end_time_tw, \
-            get_event_bonus_characters_id_tw, get_event_bonus_characters_name_tw
-        from utility.apps.sekai.time_formatting import format_date_jp, format_date
-        
+    async def event(self, interaction: discord.Interaction, option: int):      
         #jp
         if option == 0:
             global event_id_jp
@@ -143,7 +133,6 @@ class EventCog(commands.Cog, name='event'):
             #embed.add_field(name='\u200b', value='**時間**', inline=False)
             embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
-            
         #tw
         elif option == 1:
             global event_id_tw

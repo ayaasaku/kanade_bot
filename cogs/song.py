@@ -31,7 +31,7 @@ class SongCog(commands.Cog, name='song'):
     async def song(self, i: discord.Interaction):  
         select_view = SongCog.SelectOptions()
         if self.SelectOptions.__init__.options == 0:
-            embeds = await get_vocaloid_music()
+            embeds = await get_vocaloid_music(self.bot.session)
             await GeneralPaginator(i, embeds).start(embeded=True)
         elif self.SelectOptions.options == 1:
             embeds = await get_school_refusal_music()

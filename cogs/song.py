@@ -16,7 +16,7 @@ class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
-    class SelectOptions(SelectOption):
+    class SelectOptions(Select):
         def __init__(self):
             options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 

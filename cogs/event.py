@@ -34,7 +34,7 @@ class EventCog(commands.Cog, name='event'):
             get_event_start_time_jp, get_event_banner_name_jp
         from utility.apps.sekai.event_info import get_event_end_time_tw, get_current_event_id_tw, get_event_name_tw, \
             get_event_start_time_tw, get_event_banner_name_tw
-        from utility.apps.sekai.time_formatting import format_time, format_date, format_progress
+        from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
         if option == 0:
             global event_id_jp
             event_id_jp = 0
@@ -44,7 +44,7 @@ class EventCog(commands.Cog, name='event'):
             if current_time > event_end_time:
                 await interaction.send("There's no active event!")
             else:
-                event_end_date = await format_date(event_end_time * 1000)
+                event_end_date = await format_date_jp(event_end_time * 1000)
                 event_name = await get_event_name_jp(event_id_jp)
                 event_start_time = await get_event_start_time_jp(event_id_jp)
                 event_banner_name = await get_event_banner_name_jp(event_id_jp)
@@ -103,7 +103,7 @@ class EventCog(commands.Cog, name='event'):
         from utility.apps.sekai.event_info import get_event_name_tw, get_event_type_tw, get_current_event_id_tw, \
             get_event_bonus_attribute_tw, get_event_banner_name_tw, get_event_start_time_tw, get_event_end_time_tw, \
             get_event_bonus_characters_id_tw, get_event_bonus_characters_name_tw
-        from utility.apps.sekai.time_formatting import format_date
+        from utility.apps.sekai.time_formatting import format_date_jp, format_date
         
         if option == 0:
             global event_id_jp
@@ -112,8 +112,8 @@ class EventCog(commands.Cog, name='event'):
             event_type = await get_event_type_jp(event_id_jp)
             event_banner_name = await get_event_banner_name_jp(event_id_jp)
             event_bonus_attribute = await get_event_bonus_attribute_jp()
-            event_start_time = await format_date(await get_event_start_time_jp(event_id_jp))
-            event_end_time = await format_date(await get_event_end_time_jp(event_id_jp))
+            event_start_time = await format_date_jp(await get_event_start_time_jp(event_id_jp))
+            event_end_time = await format_date_jp(await get_event_end_time_jp(event_id_jp))
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id_jp}'

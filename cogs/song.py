@@ -30,23 +30,23 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info')     
     async def song(self, i: discord.Interaction):  
         select_view = SongCog.SelectOptions()
-        if self.options == 0:
-            embeds = get_vocaloid_music()
+        if self.SelectOptions.__init__.options == 0:
+            embeds = await get_vocaloid_music()
             await GeneralPaginator(i, embeds).start(embeded=True)
-        elif self.options == 1:
-            embeds = get_school_refusal_music()
+        elif self.SelectOptions.options == 1:
+            embeds = await get_school_refusal_music()
             await GeneralPaginator(i, embeds).start(embeded=True)
-        elif self.options == 2:
-            embeds = get_light_music_club_music()
+        elif self.SelectOptions.options == 2:
+            embeds = await get_light_music_club_music()
             await GeneralPaginator(i, embeds).start(embeded=True)
-        elif self.options == 3:
-            embeds = get_idol_music()
+        elif self.SelectOptions.options == 3:
+            embeds = await get_idol_music()
             await GeneralPaginator(i, embeds).start(embeded=True) 
-        elif self.options == 4:
-            embeds = get_street_music()
+        elif self.SelectOptions.options == 4:
+            embeds = await get_street_music()
             await GeneralPaginator(i, embeds).start(embeded=True)
-        elif self.options == 5:
-            embeds = get_theme_park_music()
+        elif self.SelectOptions.options == 5:
+            embeds = await get_theme_park_music()
             await GeneralPaginator(i, embeds).start(embeded=True)               
 
     

@@ -1,12 +1,13 @@
 # song embed
 # musics
 import aiohttp
-from utility.apps.sekai.api_functions import get_sekai_musics_api
-
+from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
+                                              get_sekai_music_tags_api,
+                                              get_sekai_musics_api)
+from utility.utils import defaultEmbed
 
 
 async def get_music_title(music_id: int, session: aiohttp.ClientSession):
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api(session)
     for thing in music_api:
         thing_id = thing['id']
@@ -16,7 +17,6 @@ async def get_music_title(music_id: int, session: aiohttp.ClientSession):
 
 
 async def get_music_lyricist(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
     for thing in music_api:
         thing_id = thing['id']
@@ -26,7 +26,6 @@ async def get_music_lyricist(music_id):
 
 
 async def get_music_composer(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
     for thing in music_api:
         thing_id = thing['id']
@@ -36,7 +35,6 @@ async def get_music_composer(music_id):
 
 
 async def get_music_arranger(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
     for thing in music_api:
         thing_id = thing['id']
@@ -46,7 +44,6 @@ async def get_music_arranger(music_id):
 
 
 async def get_music_published_time(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
     for thing in music_api:
         thing_id = thing['id']
@@ -58,17 +55,13 @@ async def get_music_published_time(music_id):
 async def get_music_asset_name(music_id):
     from utility.apps.sekai.api_functions import get_sekai_musics_api
     music_api = await get_sekai_musics_api()
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
     return music_asset_name
 '''
 # music_difficulties
 
 
 async def get_music_difficulty_easy_difficulty(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+    music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
             difficulty = thing['musicDifficulty'].capitalize()
@@ -76,80 +69,58 @@ async def get_music_difficulty_easy_difficulty(music_id):
 
 
 async def get_music_difficulty_easy_level(music_id):
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
             level = thing['playLevel']
             return level
 
-
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
             note_count = thing['noteCount']
             return note_count
 
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+
 async def get_music_difficulty_normal_difficulty(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':
             difficulty = thing['musicDifficulty'].capitalize()
             return difficulty
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+
 
 async def get_music_difficulty_normal_level(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':
             level = thing['playLevel']
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
 
 
 async def get_music_difficulty_normal_note_count(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
             return note_count
 
 
 async def get_music_difficulty_hard_difficulty(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
-            difficulty = thing['musicDifficulty'].capitalize()
-            return difficulty
+        difficulty = thing['musicDifficulty'].capitalize()
+        return difficulty
 
 
 async def get_music_difficulty_hard_level(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+    for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'hard':
             level = thing['playLevel']
             return level
 
 
 async def get_music_difficulty_hard_note_count(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+    music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'hard':
             note_count = thing['noteCount']
@@ -157,67 +128,38 @@ async def get_music_difficulty_hard_note_count(music_id):
 
 
 async def get_music_difficulty_expert_difficulty(music_id):
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':
             difficulty = thing['musicDifficulty'].capitalize()
             return difficulty
 
-
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':
             level = thing['playLevel']
             return level
 
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+
 async def get_music_difficulty_expert_note_count(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':
             note_count = thing['noteCount']
             return note_count
-    from utility.apps.sekai.api_functions import \
-        get_sekai_music_difficulties_api
+
 
 async def get_music_difficulty_master_difficulty(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'master':
             difficulty = thing['musicDifficulty'].capitalize()
             return difficulty
-        from utility.apps.sekai.music_info import (
-            get_music_arranger, get_music_composer,
-            get_music_difficulty_easy_difficulty,
-            get_music_difficulty_easy_level,
-            get_music_difficulty_easy_note_count,
-            get_music_difficulty_expert_difficulty,
-            get_music_difficulty_expert_level,
-            get_music_difficulty_expert_note_count,
-            get_music_difficulty_hard_difficulty,
-            get_music_difficulty_hard_level,
-            get_music_difficulty_hard_note_count,
-            get_music_difficulty_master_difficulty,
-            get_music_difficulty_master_level,
-            get_music_difficulty_master_note_count,
-            get_music_difficulty_normal_difficulty,
-            get_music_difficulty_normal_level,
-            get_music_difficulty_normal_note_count, get_music_lyricist,
-            get_music_published_time, get_music_tags, get_music_title)
             level = thing['playLevel']
             return level
 
 
 async def get_music_difficulty_master_note_count(music_id):
-    from utility.apps.sekai.api_functions import get_sekai_music_difficulties_api
     music_api = await get_sekai_music_difficulties_api()
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'master':
@@ -227,14 +169,23 @@ async def get_music_difficulty_master_note_count(music_id):
 # get song embed
 
 
-async def get_song_embed(import_id:int, session: aiohttp.ClientSession):
-    from utility.apps.sekai.music_info import get_music_title, get_music_lyricist, get_music_composer, get_music_arranger, get_music_published_time, \
-        get_music_difficulty_easy_difficulty, get_music_difficulty_easy_level, get_music_difficulty_easy_note_count, \
-        get_music_difficulty_normal_difficulty, get_music_difficulty_normal_level, get_music_difficulty_normal_note_count, \
-        get_music_difficulty_hard_difficulty, get_music_difficulty_hard_level, get_music_difficulty_hard_note_count, \
-        get_music_difficulty_expert_difficulty, get_music_difficulty_expert_level, get_music_difficulty_expert_note_count, \
-        get_music_difficulty_master_difficulty, get_music_difficulty_master_level, get_music_difficulty_master_note_count, \
-        get_music_tags
+async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
+    from utility.apps.sekai.music_info import (
+        get_music_arranger, get_music_composer,
+        get_music_difficulty_easy_difficulty, get_music_difficulty_easy_level,
+        get_music_difficulty_easy_note_count,
+        get_music_difficulty_expert_difficulty,
+        get_music_difficulty_expert_level,
+        get_music_difficulty_expert_note_count,
+        get_music_difficulty_hard_difficulty, get_music_difficulty_hard_level,
+        get_music_difficulty_hard_note_count,
+        get_music_difficulty_master_difficulty,
+        get_music_difficulty_master_level,
+        get_music_difficulty_master_note_count,
+        get_music_difficulty_normal_difficulty,
+        get_music_difficulty_normal_level,
+        get_music_difficulty_normal_note_count, get_music_lyricist,
+        get_music_published_time, get_music_tags, get_music_title)
     from utility.apps.sekai.time_formatting import format_date
 
     global music_id
@@ -302,7 +253,6 @@ async def get_song_embed(import_id:int, session: aiohttp.ClientSession):
 
 
 async def get_vocaloid_music(session: aiohttp.ClientSession):
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     vocaloid_music_embed_list = []
     for thing in music_api:
@@ -316,7 +266,6 @@ async def get_vocaloid_music(session: aiohttp.ClientSession):
 
 
 async def get_light_music_club_music():
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     light_music_club_music_embed_list = []
     for thing in music_api:
@@ -330,7 +279,6 @@ async def get_light_music_club_music():
 
 
 async def get_idol_music():
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     idol_music_embed_list = []
     for thing in music_api:
@@ -344,7 +292,6 @@ async def get_idol_music():
 
 
 async def get_street_music():
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     street_music_embed_list = []
     for thing in music_api:
@@ -358,7 +305,6 @@ async def get_street_music():
 
 
 async def get_theme_park_music():
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     theme_park_music_embed_list = []
     for thing in music_api:
@@ -372,7 +318,6 @@ async def get_theme_park_music():
 
 
 async def get_school_refusal_music():
-    from utility.apps.sekai.api_functions import get_sekai_music_tags_api
     music_api = await get_sekai_music_tags_api()
     school_refusal_music_embed_list = []
     for thing in music_api:

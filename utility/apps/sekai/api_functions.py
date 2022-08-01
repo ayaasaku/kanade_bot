@@ -79,11 +79,10 @@ async def get_sekai_event_deck_bonuses_api_tw():
             return await r.json(content_type='text/plain')
 
 #songs
-async def get_sekai_musics_api():
-    async with aiohttp.ClientSession() as session:
-        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/main/musics.json'
-        async with session.get(api) as r:
-            return await r.json(content_type='text/plain')
+async def get_sekai_musics_api(session: aiohttp.ClientSession):
+    api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/main/musics.json'
+    async with session.get(api) as r:
+        return await r.json(content_type='text/plain')
         
 async def get_sekai_music_difficulties_api():
     async with aiohttp.ClientSession() as session:

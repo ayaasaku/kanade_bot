@@ -15,6 +15,7 @@ async def get_music_info(music_id: int, info_type: str, session: aiohttp.ClientS
                 thing_id = thing['id']
                 if music_id == thing_id:
                     music_info = thing['publishedAt']
+                    music_info *= 1000
                     return int(music_info)
         else:    
             for thing in music_api:

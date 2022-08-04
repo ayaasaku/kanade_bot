@@ -37,7 +37,7 @@ async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
     music_composer = await get_music_info(music_id, 'composer', session)
     music_arranger = await get_music_info(music_id, 'arranger', session)
     published_at = await get_music_info(music_id, 'publishedAt', session)
-    music_published_time = await format_date(published_at)
+    music_published_time = await format_date_jp(published_at)
 
     easy_difficulty = await get_music_difficulty_info(music_id, 'musicDifficulty', 'easy', session)
     easy_level = await get_music_difficulty_info(music_id, 'playLevel', 'easy', session)

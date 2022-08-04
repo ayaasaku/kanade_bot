@@ -9,7 +9,7 @@ from discord import (ButtonStyle, Interaction, Member, SelectOption,
                      app_commands)
 from discord.ui import Button, Modal, Select, TextInput, View
 from utility.utils import defaultEmbed
-from utility.paginators import GeneralPaginator
+from utility.paginators.GeneralPaginator import GeneralPaginator
 from utility.apps.sekai.music_info import get_group_music
 
 class SongCog(commands.Cog, name='song'):

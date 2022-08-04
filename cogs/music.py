@@ -10,7 +10,7 @@ import datetime
 import asyncio
 import re
 import os
-from utility.paginators.GeneralPaginator import GeneralPaginator
+from utility.paginator import GeneralPaginator
 load_dotenv()
 
 class MusicCog(commands.GroupCog, name='music'):

@@ -9,7 +9,7 @@ from discord import (ButtonStyle, Interaction, Member, SelectOption,
                      app_commands)
 from discord.ui import Button, Modal, Select, TextInput, View
 from utility.utils import defaultEmbed
-from utility.paginators.GeneralPaginator import GeneralPaginator
+from utility.paginator import GeneralPaginator
 from utility.apps.sekai.music_info import get_group_music, get_song_embed
 
 class SongCog(commands.Cog, name='song'):
@@ -42,8 +42,7 @@ class SongCog(commands.Cog, name='song'):
             if select.values[0] == '虛擬歌手':
                 #embed = await get_song_embed(1, self.bot.session)
                 embeds = await get_group_music('vocaloid', self.bot.session)
-                await interaction.response.send_message(embed=embeds[0])
-                #await GeneralPaginator(i, embeds).start(embeded=True)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             '''elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)

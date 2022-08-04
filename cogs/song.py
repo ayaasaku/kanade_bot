@@ -27,9 +27,10 @@ class SongCog(commands.Cog, name='song'):
                     ]
             super().__init__(placeholder='選擇歌曲分類', options=options)
             
-    @app_commands.command(name='songs', description='get songs info')  
-  
+    @app_commands.command(name='songs', description='get songs info') 
+        
     async def song(self, interaction: discord.Interaction): 
+        await interaction.response.defer()
         select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
                     SelectOption(label='Leo/need', description='Leo/need'), 

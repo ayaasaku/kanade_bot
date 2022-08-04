@@ -46,7 +46,7 @@ class SongCog(commands.Cog, name='song'):
                 #await interaction.response.defer()
                 await interaction.followup.send('虛擬歌手')
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
-            if select.values[0] == '25點，Nightcord見。':
+            '''if select.values[0] == '25點，Nightcord見。':
                 #embeds = await get_group_music('school_refusal', self.bot.session)
                 #await interaction.response.defer()
                 await interaction.followup.send('25點，Nightcord見。')
@@ -70,7 +70,7 @@ class SongCog(commands.Cog, name='song'):
                 #embeds = await get_group_music('theme_park', self.bot.session)
                 #await interaction.response.defer()
                 await interaction.followup.send('Wonderlands×Showtime')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)'''
         select.callback = song_callback
         view = View()
         view.add_item(select)

@@ -37,7 +37,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD'), 
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
-        async def song_callback(i: discord.Interaction):  
+        async def song_callback(interaction: discord.Interaction):  
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 embed = await get_song_embed(1, self.bot.session)
@@ -67,7 +67,7 @@ class SongCog(commands.Cog, name='song'):
         select.callback = song_callback
         view = View()
         view.add_item(select)
-        await i.response.send_message(view=view) 
+        await interaction.response.send_message(view=view) 
               
         
     

@@ -30,7 +30,6 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info') 
         
     async def song(self, interaction: discord.Interaction): 
-        await interaction.response.defer()
         select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
                     SelectOption(label='Leo/need', description='Leo/need'), 
@@ -39,8 +38,8 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
         
-        
         async def song_callback(interaction: discord.Interaction):  
+            await interaction.response.defer()
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 #embeds = await get_group_music('vocaloid', self.bot.session)

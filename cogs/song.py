@@ -41,7 +41,8 @@ class SongCog(commands.Cog, name='song'):
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 embeds = await get_group_music('vocaloid', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
+                await i.response.send_message(embed=embeds[0])
+                #await GeneralPaginator(i, embeds).start(embeded=True)
             '''elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)

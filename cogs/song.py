@@ -36,8 +36,9 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4), 
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
                     ])
-        async def song_callback(self, i: discord.Interaction):  
-            if select.values[0]:
+        async def song_callback(i: discord.Interaction):  
+            await i.response.send_message(f'{select.values[0]}')
+            '''if select.values[0]:
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
             elif select.values[1]:
@@ -54,11 +55,11 @@ class SongCog(commands.Cog, name='song'):
                 await GeneralPaginator(i, embeds).start(embeded=True)
             elif select.values[5]:
                 embeds = await get_group_music('theme_park', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
+                await GeneralPaginator(i, embeds).start(embeded=True)'''
         select.callback = song_callback
         view = View()
         view.add_item(select)
-        await i.response.send_message('test', view=view) 
+        await i.response.send_message(view=view) 
               
         
     

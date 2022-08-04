@@ -38,24 +38,24 @@ class SongCog(commands.Cog, name='song'):
                     ])
         async def song_callback(i: discord.Interaction):  
             await i.response.send_message(f'{select.values[0]}')
-            '''if select.values[0]:
+            if select.values[0] == 0:
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
-            elif select.values[1]:
+            elif select.values[0] == 1:
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
-            elif select.values[2]:
+            elif select.values[0] == 2:
                 embeds = await get_group_music('light_music_club', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
-            elif select.values[3]:
+            elif select.values[0] == 3:
                 embeds = await get_group_music('idol', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True) 
-            elif select.values[4]:
+            elif select.values[0] == 4:
                 embeds = await get_group_music('street', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
-            elif select.values[5]:
+            elif select.values[0] == 5:
                 embeds = await get_group_music('theme_park', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)'''
+                await GeneralPaginator(i, embeds).start(embeded=True)
         select.callback = song_callback
         view = View()
         view.add_item(select)

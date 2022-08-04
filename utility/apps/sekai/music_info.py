@@ -12,7 +12,7 @@ async def get_music_info(music_id: int, info_type: str, session: aiohttp.ClientS
     for thing in music_api:
         thing_id = thing['id']
         if music_id == thing_id:
-            music_info = thing[f"{info_type}"]
+            music_info = thing[f'{info_type}']
             return music_info
 
 # music_difficulties

@@ -38,9 +38,6 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
         
-        view = View()
-        view.add_item(select)
-        await interaction.response.send_message(view=view) 
         
         async def song_callback(interaction: discord.Interaction):  
             #await i.response.send_message(f'{select.values[0]}')
@@ -75,7 +72,9 @@ class SongCog(commands.Cog, name='song'):
                 await interaction.followup.send('Wonderlands×Showtime')
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
         select.callback = song_callback
-        
+        view = View()
+        view.add_item(select)
+        await interaction.response.send_message(view=view) 
               
         
     

@@ -28,29 +28,29 @@ class SongCog(commands.Cog, name='song'):
             super().__init__(placeholder='選擇歌曲分類', select=select)
             self.select = select
             
-        @app_commands.command(name='songs', description='get songs info')     
-        async def song(self, i: discord.Interaction):  
-            view = View()
-            view.add_item(self.select)
-            await i.send(view)
-            if self.SelectOptions.options == 0:
-                embeds = await get_group_music('vocaloid', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
-            elif self.SelectOptions.options == 1:
-                embeds = await get_group_music('school_refusal', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
-            elif self.SelectOptions.options == 2:
-                embeds = await get_group_music('light_music_club', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
-            elif self.SelectOptions.options == 3:
-                embeds = await get_group_music('idol', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True) 
-            elif self.SelectOptions.options == 4:
-                embeds = await get_group_music('street', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)
-            elif self.SelectOptions.options == 5:
-                embeds = await get_group_music('theme_park', self.bot.session)
-                await GeneralPaginator(i, embeds).start(embeded=True)               
+    @app_commands.command(name='songs', description='get songs info')     
+    async def song(self, i: discord.Interaction):  
+        view = View()
+        view.add_item(self.SelectOptions.select)
+        await i.send(view)
+        if self.SelectOptions.options == 0:
+            embeds = await get_group_music('vocaloid', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True)
+        elif self.SelectOptions.options == 1:
+            embeds = await get_group_music('school_refusal', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True)
+        elif self.SelectOptions.options == 2:
+            embeds = await get_group_music('light_music_club', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True)
+        elif self.SelectOptions.options == 3:
+            embeds = await get_group_music('idol', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True) 
+        elif self.SelectOptions.options == 4:
+            embeds = await get_group_music('street', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True)
+        elif self.SelectOptions.options == 5:
+            embeds = await get_group_music('theme_park', self.bot.session)
+            await GeneralPaginator(i, embeds).start(embeded=True)               
         
     
 async def setup(bot: commands.Bot) -> None:

@@ -18,12 +18,12 @@ async def get_music_info(music_id: int, info_type: str, session: aiohttp.ClientS
 # music_difficulties
 async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: str, session: aiohttp.ClientSession):
     music_api = await get_sekai_music_difficulties_api(session)
-    if info_type == ('playLevel' or 'noteCount' or 'musicDifficulty') \
-        and difficulty == ('easy' or 'normal' or 'hard' or 'expert' or 'master'):
-        for thing in music_api:
-            if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
-                music_difficulty_info = thing[f'{info_type}'].capitalize()
-                return music_difficulty_info
+    for thing in music_api:
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
+            music_difficulty_info = thing[f'{info_type}']
+            if type(music_difficulty_info) == 'str': 
+                music_difficulty_info.capitalize()
+            return music_difficulty_info
 
 # get song embed
 async def get_song_embed(import_id: int, session: aiohttp.ClientSession):

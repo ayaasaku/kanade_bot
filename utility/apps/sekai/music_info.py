@@ -5,17 +5,23 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
                                               get_sekai_musics_api)
 from utility.utils import defaultEmbed
-from utility.apps.sekai.time_formatting import format_date
-
+from utility.apps.sekai.time_formatting import format_date_jp
 #music_info
 async def get_music_info(music_id: int, info_type: str, session: aiohttp.ClientSession):
     music_api = await get_sekai_musics_api(session)
     if info_type == ('title' or 'lyricist' or 'composer' or 'arranger' or 'publishedAt'):
-        for thing in music_api:
-            thing_id = thing['id']
-            if music_id == thing_id:
-                music_info = thing[f'{info_type}']
-                return music_info
+        if info_type == 'publishedAt':
+            for thing in music_api:
+                thing_id = thing['id']
+                if music_id == thing_id:
+                    music_info = thing['publishedAt']
+                    return int(music_info)
+        else:    
+            for thing in music_api:
+                thing_id = thing['id']
+                if music_id == thing_id:
+                    music_info = thing[f'{info_type}']
+                    return music_info
 
 # music_difficulties
 async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: str, session: aiohttp.ClientSession):

@@ -30,41 +30,41 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info')  
     @app_commands.rename(music_id = 'music_id')   
     async def song(self, i: discord.Interaction, music_id :int = 0):  
-        if len(str(music_id)) >= 1:
-            embed = await get_song_embed(music_id, self.bot.session)
-            await i.response.send_message(embed=embed) 
-        else:    
-            select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
-                        SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 
-                        SelectOption(label='Leo/need', description='Leo/need', value=2), 
-                        SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', value=3), 
-                        SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4), 
-                        SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
-                        ])
-            async def song_callback(i: discord.Interaction):  
-                #await i.response.send_message(f'{select.values[0]}')
-                if select.values[0] == 0:
-                    embeds = await get_group_music('vocaloid', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True)
-                elif select.values[0] == 1:
-                    embeds = await get_group_music('school_refusal', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True)
-                elif select.values[0] == 2:
-                    embeds = await get_group_music('light_music_club', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True)
-                elif select.values[0] == 3:
-                    embeds = await get_group_music('idol', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True) 
-                elif select.values[0] == 4:
-                    embeds = await get_group_music('street', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True)
-                elif select.values[0] == 5:
-                    embeds = await get_group_music('theme_park', self.bot.session)
-                    await GeneralPaginator(i, embeds).start(embeded=True)
-            select.callback = song_callback
-            view = View()
-            view.add_item(select)
-            await i.response.send_message(view=view) 
+        #if len(str(music_id)) >= 1:
+           # embed = await get_song_embed(music_id, self.bot.session)
+            #await i.response.send_message(embed=embed) 
+        #else:    
+        select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
+                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 
+                    SelectOption(label='Leo/need', description='Leo/need', value=2), 
+                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', value=3), 
+                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4), 
+                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
+                    ])
+        async def song_callback(i: discord.Interaction):  
+            #await i.response.send_message(f'{select.values[0]}')
+            if select.values[0] == 0:
+                embeds = await get_group_music('vocaloid', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True)
+            elif select.values[0] == 1:
+                embeds = await get_group_music('school_refusal', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True)
+            elif select.values[0] == 2:
+                embeds = await get_group_music('light_music_club', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True)
+            elif select.values[0] == 3:
+                embeds = await get_group_music('idol', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True) 
+            elif select.values[0] == 4:
+                embeds = await get_group_music('street', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True)
+            elif select.values[0] == 5:
+                embeds = await get_group_music('theme_park', self.bot.session)
+                await GeneralPaginator(i, embeds).start(embeded=True)
+        select.callback = song_callback
+        view = View()
+        view.add_item(select)
+        await i.response.send_message(view=view) 
               
         
     

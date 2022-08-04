@@ -38,7 +38,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
         async def song_callback(i: discord.Interaction):  
-            #await i.response.send_message(f'{select.values[0]}')
+            await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await i.response.send_message(embed=embeds[0])

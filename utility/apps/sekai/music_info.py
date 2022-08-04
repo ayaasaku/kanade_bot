@@ -9,12 +9,11 @@ from utility.apps.sekai.time_formatting import format_date_jp
 #music_info
 async def get_music_info(music_id: int, info_type: str, session: aiohttp.ClientSession):
     music_api = await get_sekai_musics_api(session)
-    if info_type == ('title' or 'lyricist' or 'composer' or 'arranger' or 'publishedAt'):
-        for thing in music_api:
-            thing_id = thing['id']
-            if music_id == thing_id:
-                music_info = thing[f"'{info_type}'"]
-                return music_info
+    for thing in music_api:
+        thing_id = thing['id']
+        if music_id == thing_id:
+            music_info = thing[f"{info_type}"]
+            return music_info
 
 # music_difficulties
 async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: str, session: aiohttp.ClientSession):
@@ -23,7 +22,7 @@ async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: s
         and difficulty == ('easy' or 'normal' or 'hard' or 'expert' or 'master'):
         for thing in music_api:
             if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
-                music_difficulty_info = thing[f"'{info_type}'"].capitalize()
+                music_difficulty_info = thing[f'{info_type}'].capitalize()
                 return music_difficulty_info
 
 # get song embed

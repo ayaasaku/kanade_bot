@@ -22,7 +22,7 @@ class _view(View):
         if not self.check:
             return True
         if interaction.user.id != self.author.id:
-            await interaction.response.send_message(embed=error_embed('你不是這個指令的使用者'), ephemeral=True)
+            await interaction.response.send_message(embed=errEmbed('你不是這個指令的使用者'), ephemeral=True)
         return (interaction.user.id == self.author.id)
 
     async def update_children(self, interaction: Interaction):

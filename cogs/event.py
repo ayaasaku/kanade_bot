@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 from pytz import timezone
 from tabulate import tabulate
 import time, re, discord
-
 from discord import (ButtonStyle, Embed, Emoji, Interaction, Member,
-                     SelectOption, app_commands, Choice)
+                     SelectOption, app_commands)
+from discord.app_commands import Choice
 
 from utility.utils import defaultEmbed
 from data.emoji_data import attributes

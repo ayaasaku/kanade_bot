@@ -1,5 +1,8 @@
 # Format time in Dd Hh Mm Ss format
-async def format_time(seconds):
+from sys import intern
+
+
+async def format_time(seconds: int):
     days = int(seconds // 86400)
     hours = int(seconds // 3600 % 24)
     minutes = int(seconds // 60 % 60)
@@ -8,7 +11,7 @@ async def format_time(seconds):
     return output
 
 # Format date in YYYY-MM-DD HH:MM:SS UTC format
-async def format_date_jp(seconds):
+async def format_date_jp(seconds: int):
     '''from datetime import datetime
     date = datetime.fromtimestamp(seconds / 1000).strftime("%Y-%m-%d %H:%M:%S %Z%z") + ' CST'
     return date'''
@@ -18,7 +21,7 @@ async def format_date_jp(seconds):
     date = date.strftime("%Y-%m-%d %H:%M:%S")
     return date
 
-async def format_date(seconds):
+async def format_date(seconds: int):
     '''from datetime import datetime
     date = datetime.fromtimestamp(seconds / 1000).strftime("%Y-%m-%d %H:%M:%S %Z%z") + ' CST'
     return date'''

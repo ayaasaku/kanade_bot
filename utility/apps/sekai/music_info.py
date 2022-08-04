@@ -90,10 +90,9 @@ async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
 async def get_group_music(group: str, session: aiohttp.ClientSession):
     music_api = await get_sekai_music_tags_api(session)
     group_music_embed_list = []
-    if group == 'vocaloid' or 'light_music_club' or 'idol' or 'street' or 'theme_park' or 'school_refusal':
-        for thing in music_api:
-            if thing['musicTag'] == f'{group}':
-                music_id = thing['musicId']
-                embed = await get_song_embed(music_id, session)
-                group_music_embed_list.append(embed)
-        return group_music_embed_list
+    for thing in music_api:
+        if thing['musicTag'] == f'{group}':
+            music_id = thing['musicId']
+            embed = await get_song_embed(music_id, session)
+            group_music_embed_list.append(embed)
+    return group_music_embed_list

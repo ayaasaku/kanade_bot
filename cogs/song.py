@@ -38,7 +38,7 @@ class SongCog(commands.Cog, name='song'):
                     ])
         view = View()
         view.add_item(select)
-        await i.send(view)
+        await i.response.send_message(view)
         if self.value == 0:
             embeds = await get_group_music('vocaloid', self.bot.session)
             await GeneralPaginator(i, embeds).start(embeded=True)

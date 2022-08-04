@@ -40,29 +40,29 @@ class SongCog(commands.Cog, name='song'):
         async def song_callback(i: discord.Interaction):  
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
-                embeds = await get_group_music('vocaloid', self.bot.session)
+                #embeds = await get_group_music('vocaloid', self.bot.session)
                 await i.response.send_message('success')
                 #await GeneralPaginator(i, embeds).start(embeded=True)
-            elif select.values[0] == '25點，Nightcord見。':
+            '''elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)
-                #await GeneralPaginator(i, embeds).start(embeded=True)
+                await GeneralPaginator(i, embeds).start(embeded=True)
                 await i.response.send_message('success')
             elif select.values[0] == 'Leo/need':
                 embeds = await get_group_music('light_music_club', self.bot.session)
-                #await GeneralPaginator(i, embeds).start(embeded=True)
+                await GeneralPaginator(i, embeds).start(embeded=True)
                 await i.response.send_message('success')
             elif select.values[0] == 'MORE MORE JUMP！':
                 embeds = await get_group_music('idol', self.bot.session)
-                #await GeneralPaginator(i, embeds).start(embeded=True) 
+                await GeneralPaginator(i, embeds).start(embeded=True) 
                 await i.response.send_message('success')
             elif select.values[0] == 'Vivid BAD SQUAD':
                 embeds = await get_group_music('street', self.bot.session)
-                #await GeneralPaginator(i, embeds).start(embeded=True)
+                await GeneralPaginator(i, embeds).start(embeded=True)
                 await i.response.send_message('success')
             elif select.values[0] == 'Wonderlands×Showtime':
                 embeds = await get_group_music('theme_park', self.bot.session)
-                #await GeneralPaginator(i, embeds).start(embeded=True)
-                await i.response.send_message('success')
+                await GeneralPaginator(i, embeds).start(embeded=True)
+                await i.response.send_message('success')'''
         select.callback = song_callback
         view = View()
         view.add_item(select)

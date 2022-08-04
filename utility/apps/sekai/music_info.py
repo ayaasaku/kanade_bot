@@ -21,7 +21,7 @@ async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: s
     for thing in music_api:
         if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
             music_difficulty_info = thing[f'{info_type}']
-            if music_difficulty_info.type() == 'str': 
+            if type(music_difficulty_info) == str: 
                 music_difficulty_info.capitalize()
             return music_difficulty_info
 

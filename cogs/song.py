@@ -37,7 +37,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
                     ])
         async def song_callback(i: discord.Interaction):  
-            await i.response.send_message(f'{select.values[0]}')
+            #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == 0:
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)

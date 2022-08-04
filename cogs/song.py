@@ -40,9 +40,9 @@ class SongCog(commands.Cog, name='song'):
         async def song_callback(interaction: discord.Interaction):  
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
-                embed = await get_song_embed(1, self.bot.session)
-                #embeds = await get_group_music('vocaloid', self.bot.session)
-                await interaction.response.send_message(embed=embed)
+                #embed = await get_song_embed(1, self.bot.session)
+                embeds = await get_group_music('vocaloid', self.bot.session)
+                await interaction.response.send_message(embed=embeds[0])
                 #await GeneralPaginator(i, embeds).start(embeded=True)
             '''elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)

@@ -31,7 +31,7 @@ class SongCog(commands.Cog, name='song'):
   
     async def song(self, interaction: discord.Interaction): 
         embeds = await get_group_music('vocaloid', self.bot.session)
-        await interaction.response.send_message(embed=embeds[0])
+        await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
         '''select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
                     SelectOption(label='Leo/need', description='Leo/need'), 

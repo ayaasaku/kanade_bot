@@ -12,9 +12,6 @@ async def format_time(seconds: int):
 
 # Format date in YYYY-MM-DD HH:MM:SS UTC format
 async def format_date_jp(seconds: int):
-    '''from datetime import datetime
-    date = datetime.fromtimestamp(seconds / 1000).strftime("%Y-%m-%d %H:%M:%S %Z%z") + ' CST'
-    return date'''
     from datetime import datetime, timedelta
     date = datetime.fromtimestamp(int(seconds)/ 1000)
     date = date-timedelta(hours=-1)
@@ -22,9 +19,6 @@ async def format_date_jp(seconds: int):
     return date
 
 async def format_date(seconds: int):
-    '''from datetime import datetime
-    date = datetime.fromtimestamp(seconds / 1000).strftime("%Y-%m-%d %H:%M:%S %Z%z") + ' CST'
-    return date'''
     from datetime import datetime, timedelta
     date = datetime.fromtimestamp(int(seconds)/ 1000)
     date = date-timedelta(hours=0)

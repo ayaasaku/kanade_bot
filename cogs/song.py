@@ -30,7 +30,9 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info')  
   
     async def song(self, interaction: discord.Interaction): 
-        select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
+        embeds = await get_group_music('vocaloid', self.bot.session)
+        await interaction.response.send_message(embed=embeds[0])
+        '''select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
                     SelectOption(label='Leo/need', description='Leo/need'), 
                     SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！'), 
@@ -44,7 +46,7 @@ class SongCog(commands.Cog, name='song'):
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await interaction.response.send_message(embed=embeds[0])
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
-            '''elif select.values[0] == '25點，Nightcord見。':
+            elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
                 await i.response.send_message('success')
@@ -63,11 +65,11 @@ class SongCog(commands.Cog, name='song'):
             elif select.values[0] == 'Wonderlands×Showtime':
                 embeds = await get_group_music('theme_park', self.bot.session)
                 await GeneralPaginator(i, embeds).start(embeded=True)
-                await i.response.send_message('success')'''
+                await i.response.send_message('success')
         select.callback = song_callback
         view = View()
         view.add_item(select)
-        await interaction.response.send_message(view=view) 
+        await interaction.response.send_message(view=view) '''
               
         
     

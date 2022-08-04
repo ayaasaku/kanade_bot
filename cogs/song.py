@@ -29,7 +29,7 @@ class SongCog(commands.Cog, name='song'):
             
     @app_commands.command(name='songs', description='get songs info')  
   
-    async def song(self, i: discord.Interaction): 
+    async def song(self, interaction: discord.Interaction): 
         select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
                     SelectOption(label='Leo/need', description='Leo/need'), 
@@ -41,8 +41,8 @@ class SongCog(commands.Cog, name='song'):
             #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 embed = await get_song_embed(1, self.bot.session)
-                embeds = await get_group_music('vocaloid', self.bot.session)
-                await i.response.send_message(embed=embed)
+                #embeds = await get_group_music('vocaloid', self.bot.session)
+                await interaction.response.send_message(embed=embed)
                 #await GeneralPaginator(i, embeds).start(embeded=True)
             '''elif select.values[0] == '25點，Nightcord見。':
                 embeds = await get_group_music('school_refusal', self.bot.session)

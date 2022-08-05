@@ -16,19 +16,9 @@ class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
-    class SelectOptions(Select):
-        def __init__(self):
-            options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー', value=0), 
-                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', value=1), 
-                    SelectOption(label='Leo/need', description='Leo/need', value=2), 
-                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', value=3), 
-                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', value=4), 
-                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', value=5)
-                    ]
-            super().__init__(placeholder='選擇歌曲分類', options=options)
-            
+                   
     @app_commands.command(name='songs', description='get songs info') 
-        
+    
     async def song(self, interaction: discord.Interaction): 
         select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
@@ -40,7 +30,6 @@ class SongCog(commands.Cog, name='song'):
         
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
-            #await i.response.send_message(f'{select.values[0]}')
             if select.values[0] == '虛擬歌手':
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)

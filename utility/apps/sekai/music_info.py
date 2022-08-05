@@ -92,6 +92,7 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
     for thing in music_api:
         if thing['musicTag'] == f'{group}':
             music_id = thing['musicId']
-            embed = await get_song_embed(music_id, session)
+            embed = defaultEmbed(title=f'**{music_id}**')
+            #embed = await get_song_embed(music_id, session)
             group_music_embed_list.append(embed)
     return group_music_embed_list

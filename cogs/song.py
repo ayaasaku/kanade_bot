@@ -27,26 +27,26 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD'), 
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
-        vocaloid = get_vocaloid_music(self.bot.session)
-        light_music_club = get_light_music_club_music(self.bot.session)
-        school_refusal = get_school_refusal_music(self.bot.session)
-        idol = get_idol_music(self.bot.session)
-        street = get_street_music(self.bot.session)
-        theme_park = get_theme_park_music(self.bot.session)
-        
+
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
             if select.values[0] == '虛擬歌手':
+                vocaloid = get_vocaloid_music(self.bot.session)
                 await GeneralPaginator(interaction, vocaloid).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
+                school_refusal = get_school_refusal_music(self.bot.session)
                 await GeneralPaginator(interaction, school_refusal).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':
+                light_music_club = get_light_music_club_music(self.bot.session)
                 await GeneralPaginator(interaction, light_music_club).start(embeded=True, follow_up=True)
             if select.values[0] == 'MORE MORE JUMP！':
+                idol = get_idol_music(self.bot.session)
                 await GeneralPaginator(interaction, idol).start(embeded=True, follow_up=True)
             if select.values[0] == 'Vivid BAD SQUAD':
+                street = get_street_music(self.bot.session)
                 await GeneralPaginator(interaction, street).start(embeded=True, follow_up=True)
             if select.values[0] == 'Wonderlands×Showtime':
+                theme_park = get_theme_park_music(self.bot.session)
                 await GeneralPaginator(interaction, theme_park).start(embeded=True, follow_up=True)
                 
         select.callback = song_callback

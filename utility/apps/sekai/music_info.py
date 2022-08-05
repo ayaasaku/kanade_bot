@@ -23,8 +23,10 @@ async def get_music_difficulty_info(music_id: int, info_type: str, difficulty: s
             music_difficulty_info = str(thing[f'{info_type}']).capitalize()
             return music_difficulty_info
 
-#embed
-async def get_music_embed(music_id: int, session: aiohttp.ClientSession):
+# get song embed
+async def get_song_embed(import_id: int, session: aiohttp.ClientSession):
+    global music_id
+    music_id = import_id
     music_title = await get_music_info(music_id, 'title', session)
     music_lyricist = await get_music_info(music_id, 'lyricist', session)
     music_composer = await get_music_info(music_id, 'composer', session)
@@ -82,62 +84,13 @@ async def get_music_embed(music_id: int, session: aiohttp.ClientSession):
     embed.add_field(name='更多資訊', value=music_url, inline=False)
 
 # tags
-async def get_vocaloid_music(session: aiohttp.ClientSession):
+async def get_group_music(session: aiohttp.ClientSession):
     music_api = await get_sekai_music_tags_api(session)
-    vocaloid_music_embed_list = []
+    group_music_embed_list = []
     for thing in music_api:
         if thing['musicTag'] == 'vocaloid':
             music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            vocaloid_music_embed_list.append(embed)      
-    return vocaloid_music_embed_list
-
-async def get_school_refusal_music(session: aiohttp.ClientSession):
-    music_api = await get_sekai_music_tags_api(session)
-    school_refusal_music_embed_list = []
-    for thing in music_api:
-        if thing['musicTag'] == 'school_refusal':
-            music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            school_refusal_music_embed_list.append(embed)      
-    return school_refusal_music_embed_list
-
-async def get_light_music_club_music(session: aiohttp.ClientSession):
-    music_api = await get_sekai_music_tags_api(session)
-    light_music_club_music_embed_list = []
-    for thing in music_api:
-        if thing['musicTag'] == 'light_music_club':
-            music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            light_music_club_music_embed_list.append(embed)      
-    return light_music_club_music_embed_list
-
-async def get_idol_music(session: aiohttp.ClientSession):
-    music_api = await get_sekai_music_tags_api(session)
-    idol_music_embed_list = []
-    for thing in music_api:
-        if thing['musicTag'] == 'idol':
-            music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            idol_music_embed_list.append(embed)      
-    return idol_music_embed_list
-
-async def get_street_music(session: aiohttp.ClientSession):
-    music_api = await get_sekai_music_tags_api(session)
-    street_music_embed_list = []
-    for thing in music_api:
-        if thing['musicTag'] == 'street':
-            music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            street_music_embed_list.append(embed)      
-    return street_music_embed_list
-
-async def get_theme_park_music(session: aiohttp.ClientSession):
-    music_api = await get_sekai_music_tags_api(session)
-    theme_park_music_embed_list = []
-    for thing in music_api:
-        if thing['musicTag'] == 'theme_park':
-            music_id = thing['musicId']
-            embed = get_music_embed(music_id, session)
-            theme_park_music_embed_list.append(embed)      
-    return theme_park_music_embed_list
+            embed = defaultEmbed(title=f'**{music_id}**')
+            #embed = await get_song_embed(music_id, session)
+            group_music_embed_list.append(embed)
+    return group_music_embed_list

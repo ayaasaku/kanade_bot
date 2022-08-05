@@ -10,12 +10,12 @@ from discord import (ButtonStyle, Interaction, Member, SelectOption,
 from discord.ui import Button, Modal, Select, TextInput, View
 from utility.utils import defaultEmbed
 from utility.paginator import GeneralPaginator
-from utility.apps.sekai.music_info import get_group_music
+from utility.apps.sekai.music_info import get_group_music, get_song_embed
 
 class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):
         super().__init__()
-        self.bot = bot        
+        self.bot = bot
                    
     @app_commands.command(name='songs', description='get songs info') 
     
@@ -27,38 +27,28 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD'), 
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
-
+        
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
             if select.values[0] == '虛擬歌手':
                 embeds = await get_group_music('vocaloid', self.bot.session)
-                #await interaction.followup.send(embed=embeds[0])
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
-            '''if select.values[0] == '25點，Nightcord見。':
-                #embeds = await get_group_music('school_refusal', self.bot.session)
-                #await interaction.response.defer()
-                await interaction.followup.send('25點，Nightcord見。')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+            if select.values[0] == '25點，Nightcord見。':
+                embeds = await get_group_music('school_refusal', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':
-                #embeds = await get_group_music('light_music_club', self.bot.session)
-                #await interaction.response.defer()
-                await interaction.followup.send('Leo/need')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                embeds = await get_group_music('light_music_club', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'MORE MORE JUMP！':
-                #embeds = await get_group_music('idol', self.bot.session)
-                #await interaction.response.defer()
-                await interaction.followup.send('MORE MORE JUMP！')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                embeds = await get_group_music('idol', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Vivid BAD SQUAD':
-                #embeds = await get_group_music('street', self.bot.session)
-                #await interaction.response.defer()
-                await interaction.followup.send('Vivid BAD SQUAD')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                embeds = await get_group_music('street', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Wonderlands×Showtime':
-                #embeds = await get_group_music('theme_park', self.bot.session)
-                #await interaction.response.defer()
-                await interaction.followup.send('Wonderlands×Showtime')
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)'''
+                embeds = await get_group_music('theme_park', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                
         select.callback = song_callback
         view = View()
         view.add_item(select)

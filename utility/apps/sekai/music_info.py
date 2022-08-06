@@ -28,16 +28,20 @@ async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSessio
         if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
             easy_level = thing['playLevel']
             easy_note_count = thing['noteCount']
-            
+        
+        elif music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':    
             normal_level = thing['playLevel']
             normal_note_count = thing['noteCount']
             
+        elif music_id == thing['musicId'] and thing['musicDifficulty'] == 'hard':        
             hard_level = thing['playLevel']
             hard_note_count = thing['noteCount']
-            
+         
+        elif music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':       
             expert_level = thing['playLevel']
             expert_note_count = thing['noteCount']
-            
+        
+        elif music_id == thing['musicId'] and thing['musicDifficulty'] == 'master':        
             master_level = thing['playLevel']
             master_note_count = thing['noteCount']
             

@@ -10,7 +10,7 @@ from discord import (ButtonStyle, Interaction, Member, SelectOption,
 from discord.ui import Button, Modal, Select, TextInput, View
 from utility.utils import defaultEmbed
 from utility.paginator import GeneralPaginator
-from utility.apps.sekai.music_info import get_group_music, get_song_embed
+from utility.apps.sekai.music_info import get_vocaloid_music, get_school_refusal_music, get_light_music_club_music, get_idol_music, get_street_music, get_theme_park_music
 
 class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):
@@ -31,22 +31,28 @@ class SongCog(commands.Cog, name='song'):
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
             if select.values[0] == '虛擬歌手':
-                embeds = await get_group_music('vocaloid', self.bot.session)
+                #embeds = await get_group_music('vocaloid', self.bot.session)
+                embeds = await get_vocaloid_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
-                embeds = await get_group_music('school_refusal', self.bot.session)
+                #embeds = await get_group_music('school_refusal', self.bot.session)
+                embeds = await get_school_refusal_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':
-                embeds = await get_group_music('light_music_club', self.bot.session)
+                #embeds = await get_group_music('light_music_club', self.bot.session)
+                embeds = await get_light_music_club_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'MORE MORE JUMP！':
-                embeds = await get_group_music('idol', self.bot.session)
+                #embeds = await get_group_music('idol', self.bot.session)
+                embeds = await get_idol_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Vivid BAD SQUAD':
-                embeds = await get_group_music('street', self.bot.session)
+                #embeds = await get_group_music('street', self.bot.session)
+                embeds = await get_street_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Wonderlands×Showtime':
-                embeds = await get_group_music('theme_park', self.bot.session)
+                #embeds = await get_group_music('theme_park', self.bot.session)
+                embeds = await get_theme_park_music(self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
         select.callback = song_callback

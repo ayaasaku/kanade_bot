@@ -65,7 +65,7 @@ async def get_event_bonus_characters_name_jp(characters_id_list: list, session: 
 #tw
 async def get_current_event_id_tw(session: aiohttp.ClientSession):
     event_api = await get_sekai_world_events_api_tw(session)
-    return event_api[-3]['id']
+    return event_api[-5]['id']
 
 async def get_event_name_tw(event_id, session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_tw(session)

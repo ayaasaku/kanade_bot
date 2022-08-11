@@ -76,15 +76,17 @@ class MainCog(commands.Cog, name='main'):
                         message.author.id) or message.author.display_name
                     await message.reply(f'{author}{random.choice(night_list)}')
 
-        if "不" not in message.content and "奏" in message.content and "愛" in message.content or "奏" in message.content and "喜歡" in message.content:
-            if message.author.id == 427346531260301312:
+        love_list = ['奏不能喜歡你喔，我已經有真冬了///', '對不起... 我喜歡的是真冬...', '我不能對不起真冬...', '~~你有真冬那麼大嗎...~~']
+        if "不" not in message.content and "奏" in message.content and "喜歡" in message.content:
+            await message.reply(f'{random.choice(love_list)}')
+            '''if message.author.id == 427346531260301312:
                 await message.reply(f'奏不喜歡怪叔叔... <:angry_fbk:981195991137013830>')
             elif message.author.id == special['ayaakaa']['user_id']:
                 await message.reply(f'奏最喜歡霞霞了！🤍')
             elif message.author.id == special['seria']['user_id']:
                 await message.reply(f'雪... 🤍')
             else:    
-                await message.reply(f'奏也愛你...')
+                await message.reply(f'奏也愛你...')'''
         
         elif "召喚" in message.content and "奏" in message.content:
                 await message.reply(f'召喚成功...')

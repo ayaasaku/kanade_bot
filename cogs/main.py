@@ -116,8 +116,8 @@ class MainCog(commands.Cog, name='main'):
            'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif',
            'https://c.tenor.com/1_0ZOurJMSsAAAAd/genshin-impact-genshin.gif',
            'https://c.tenor.com/c0qkKNy2H6IAAAAd/darling-in-the-franxx-zhiro.gif',
-           'https://cdn.weeb.sh/images/ryCG-OatM.gif'
-           'https://cdn.donmai.us/original/f8/55/f855e1a9c5c64f7eaf3382d4858ea6b5.png'
+           'https://cdn.weeb.sh/images/ryCG-OatM.gif',
+           'https://cdn.donmai.us/original/f8/55/f855e1a9c5c64f7eaf3382d4858ea6b5.png',
            'https://i.ytimg.com/vi/wpMHed9_BA8/maxresdefault.jpg',
            'https://cdn.donmai.us/sample/5d/f6/sample-5df6a4a93008f4a5a3b1763ad86c306a.jpg',
            'https://i.redd.it/9ei1kxfgwnz61.png',

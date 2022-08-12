@@ -114,13 +114,13 @@ class MainCog(commands.Cog, name='main'):
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
             'https://c.tenor.com/xXOZrdGr0-gAAAAS/hu-tao-qiqi-hu-tao-hugs.gif',
-            'https://c.tenor.com/1_0ZOurJMSsAAAPo/genshin-impact-genshin.gif',
-            'https://c.tenor.com/Xm0wrM7RXkAAAAPo/mihoyo-genshin-impact.gif',
-            'https://c.tenor.com/0T3_4tv71-kAAAPo/anime-happy.mp4',
-            'https://c.tenor.com/c0qkKNy2H6IAAAPo/darling-in-the-franxx-zhiro.gif',
-            'https://c.tenor.com/8-PnV57w01sAAAPo/anime-pink-hair.gif',
-            'https://c.tenor.com/Lmc7jvRbcvAAAAPo/darling-in-the-franxx-zero-two.gif',
-            'https://c.tenor.com/My2v_lTI3LIAAAPo/hug-anime.gif',
+            'https://c.tenor.com/1_0ZOurJMSsAAAAS/genshin-impact-genshin.gif',
+            'https://c.tenor.com/Xm0wrM7RXkAAAAS/mihoyo-genshin-impact.gif',
+            'https://c.tenor.com/0T3_4tv71-kAAAAS/anime-happy.mp4',
+            'https://c.tenor.com/c0qkKNy2H6IAAAAS/darling-in-the-franxx-zhiro.gif',
+            'https://c.tenor.com/8-PnV57w01sAAAAS/anime-pink-hair.gif',
+            'https://c.tenor.com/Lmc7jvRbcvAAAAAS/darling-in-the-franxx-zero-two.gif',
+            'https://c.tenor.com/My2v_lTI3LIAAAAS/hug-anime.gif',
             ]
         '''if give.get(interaction.user.id) == None:
             give[interaction.user.id] = 1
@@ -130,7 +130,7 @@ class MainCog(commands.Cog, name='main'):
             receive[member.id] = 1
         else:    
             receive[member.id] = give[member.user.id] + 1'''
-        embed = defaultEmbed(title=f'**{interaction.user.mention}給了{member.mention}一個擁抱**',
+        embed = defaultEmbed(title=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**',
                              description='\u200b')
         embed.set_image(url=f'{random.choice(gif_list)}')
         embed.set_author(name=f'抱抱！', icon_url=member.avatar)

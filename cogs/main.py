@@ -113,7 +113,7 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.rename(member='某人')
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
-            'https://discord.com/channels/1000043106164539453/1000043106856603681/1007538796792909834',
+            'https://media.tenor.com/xXOZrdGr0-gAAAPo/hu-tao-qiqi-hu-tao-hugs.mp4',
             #'https://tenor.com/view/genshin-impact-genshin-genshin-girl-amber-hug-amber-hug-doll-gif-18801776',
             #'https://tenor.com/view/mihoyo-genshin-impact-genshin-klee-abyss-mage-gif-20176333',
             #'https://tenor.com/view/anime-happy-hug-gif-24823876.gif',

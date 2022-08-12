@@ -113,14 +113,14 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.rename(member='某人')
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
-            'https://tenor.com/view/hu-tao-qiqi-hu-tao-hugs-qiqi-mad-hu-tao-qiqi-cute-qiqi-cute-gif-25779375',
-            'https://tenor.com/view/genshin-impact-genshin-genshin-girl-amber-hug-amber-hug-doll-gif-18801776',
-            'https://tenor.com/view/mihoyo-genshin-impact-genshin-klee-abyss-mage-gif-20176333',
-            'https://tenor.com/view/anime-happy-hug-gif-24823876',
-            'https://tenor.com/view/darling-in-the-franxx-zhiro-zero-two-hiro-hiro-hugs-zero-two-gif-17406911',
-            'https://tenor.com/view/anime-pink-hair-zero-two-darling-in-the-franxx-002-gif-17316358',
-            'https://tenor.com/view/darling-in-the-franxx-zero-two-002-thank-you-hug-gif-11735639',
-            'https://tenor.com/view/hug-anime-darling-in-the-gif-25825271',
+            'https://tenor.com/view/hu-tao-qiqi-hu-tao-hugs-qiqi-mad-hu-tao-qiqi-cute-qiqi-cute-gif-25779375.gif',
+            'https://tenor.com/view/genshin-impact-genshin-genshin-girl-amber-hug-amber-hug-doll-gif-18801776.gif',
+            'https://tenor.com/view/mihoyo-genshin-impact-genshin-klee-abyss-mage-gif-20176333.gif',
+            'https://tenor.com/view/anime-happy-hug-gif-24823876.gif',
+            'https://tenor.com/view/darling-in-the-franxx-zhiro-zero-two-hiro-hiro-hugs-zero-two-gif-17406911.gif',
+            'https://tenor.com/view/anime-pink-hair-zero-two-darling-in-the-franxx-002-gif-17316358.gif',
+            'https://tenor.com/view/darling-in-the-franxx-zero-two-002-thank-you-hug-gif-11735639.gif',
+            'https://tenor.com/view/hug-anime-darling-in-the-gif-25825271.gif',
             ]
         '''if give.get(interaction.user.id) == None:
             give[interaction.user.id] = 1

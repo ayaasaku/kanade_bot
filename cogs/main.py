@@ -118,24 +118,26 @@ class MainCog(commands.Cog, name='main'):
            'https://c.tenor.com/c0qkKNy2H6IAAAAd/darling-in-the-franxx-zhiro.gif',
            'https://cdn.weeb.sh/images/ryCG-OatM.gif'
             ]
-        
-        if give.get(interaction.user.id) == None:
-            give[interaction.user.id] = 1
-        else:    
-            give[interaction.user.id] = give[interaction.user.id] + 1
-            
-        if receive.get(member.id) == None:
-            receive[member.id] = 1
-        else:    
-            receive[member.id] = receive[member.id] + 1
-            
-        embed = defaultEmbed(title=f'**抱抱！**',
-                             description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
-        embed.set_image(url=f'{random.choice(gif_list)}')
-        receive_hug = receive.get(interaction.user.id)
-        if receive_hug == None: receive_hug = 0
-        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
-        await interaction.response.send_message(embed=embed)
+        if interaction.user.id == member.id:
+            await interaction.response.send_message('不要抱自己好嗎...')
+        else:
+            if give.get(interaction.user.id) == None:
+                give[interaction.user.id] = 1
+            else:    
+                give[interaction.user.id] = give[interaction.user.id] + 1
+                
+            if receive.get(member.id) == None:
+                receive[member.id] = 1
+            else:    
+                receive[member.id] = receive[member.id] + 1
+                
+            embed = defaultEmbed(title=f'**抱抱！**',
+                                description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
+            embed.set_image(url=f'{random.choice(gif_list)}')
+            receive_hug = receive.get(interaction.user.id)
+            if receive_hug == None: receive_hug = 0
+            embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
+            await interaction.response.send_message(embed=embed)
 
 
 async def setup(bot: commands.Bot) -> None:

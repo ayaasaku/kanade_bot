@@ -122,19 +122,19 @@ class MainCog(commands.Cog, name='main'):
             'https://c.tenor.com/Lmc7jvRbcvAAAAPo/darling-in-the-franxx-zero-two.gif',
             'https://c.tenor.com/My2v_lTI3LIAAAPo/hug-anime.gif',
             ]
-        if give.get(interaction.user.id) == None:
+        '''if give.get(interaction.user.id) == None:
             give[interaction.user.id] = 1
         else:    
             give[interaction.user.id] = give[interaction.user.id] + 1
         if receive.get(member.id) == None:
             receive[member.id] = 1
         else:    
-            receive[member.id] = give[member.user.id] + 1
+            receive[member.id] = give[member.user.id] + 1'''
         embed = defaultEmbed(title=f'**{interaction.user.mention}給了{member.mention}一個擁抱**',
                              description='\u200b')
         embed.set_image(url=f'{random.choice(gif_list)}')
         embed.set_author(name=f'抱抱！', icon_url=member.avatar)
-        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give[interaction.user.id]}個擁抱，並收到了{receive[interaction.user.id]}個擁抱', icon_url=interaction.user.avatar)
+        #embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give[interaction.user.id]}個擁抱，並收到了{receive[interaction.user.id]}個擁抱', icon_url=interaction.user.avatar)
         await interaction.response.send_message(embed=embed)
 
 

@@ -113,14 +113,7 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.rename(member='某人')
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
-            'https://media.tenor.com/xXOZrdGr0-gAAAPo/hu-tao-qiqi-hu-tao-hugs.gif',
-            #'https://tenor.com/view/genshin-impact-genshin-genshin-girl-amber-hug-amber-hug-doll-gif-18801776',
-            #'https://tenor.com/view/mihoyo-genshin-impact-genshin-klee-abyss-mage-gif-20176333',
-            #'https://tenor.com/view/anime-happy-hug-gif-24823876.gif',
-            #'https://tenor.com/view/darling-in-the-franxx-zhiro-zero-two-hiro-hiro-hugs-zero-two-gif-17406911',
-            #'https://tenor.com/view/anime-pink-hair-zero-two-darling-in-the-franxx-002-gif-17316358',
-            #'https://tenor.com/view/darling-in-the-franxx-zero-two-002-thank-you-hug-gif-11735639',
-            #'https://tenor.com/view/hug-anime-darling-in-the-gif-25825271',
+           'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif'
             ]
         '''if give.get(interaction.user.id) == None:
             give[interaction.user.id] = 1

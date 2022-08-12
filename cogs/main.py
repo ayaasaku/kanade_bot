@@ -130,8 +130,8 @@ class MainCog(commands.Cog, name='main'):
             receive[member.id] = 1
         else:    
             receive[member.id] = give[member.user.id] + 1'''
-        embed = defaultEmbed(title=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**',
-                             description='\u200b')
+        embed = defaultEmbed(title='\u200b',
+                             description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
         embed.set_image(url=f'{random.choice(gif_list)}')
         embed.set_author(name=f'抱抱！', icon_url=member.avatar)
         #embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give[interaction.user.id]}個擁抱，並收到了{receive[interaction.user.id]}個擁抱', icon_url=interaction.user.avatar)

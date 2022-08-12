@@ -211,9 +211,5 @@ class EventCog(commands.Cog, name='event'):
         else:
             await interaction.followup.send(f"Tier `{tier}` isn't supported")'''
 
-
-'''def setup(bot):
-    bot.add_cog(event(bot))'''
-    
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(EventCog(bot))

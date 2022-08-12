@@ -4,10 +4,11 @@ from random import randint
 
 import discord
 from data.user_data import morning, special
-from discord import app_commands
+from discord import app_commands, Member
 from discord.ext import commands
 from utility.utils import defaultEmbed
 from data.version import version
+from data.hug_data import give, receive
 
 class MainCog(commands.Cog, name='main'):
     
@@ -107,6 +108,29 @@ class MainCog(commands.Cog, name='main'):
     async def say(self, i: discord.Interaction, message: str):
         await i.response.send_message('成功', ephemeral=True)
         await i.channel.send(message)
+        
+    @app_commands.command(name='hug', description='給某人一個擁抱')
+    @app_commands.rename(member='某人')
+    async def about(self, interaction: discord.Interaction, member: Member):
+        gif_list = [
+            'https://c.tenor.com/xXOZrdGr0-gAAAAS/hu-tao-qiqi-hu-tao-hugs.gif',
+            'https://c.tenor.com/1_0ZOurJMSsAAAPo/genshin-impact-genshin.gif',
+            'https://c.tenor.com/Xm0wrM7RXkAAAAPo/mihoyo-genshin-impact.gif',
+            'https://c.tenor.com/0T3_4tv71-kAAAPo/anime-happy.mp4',
+            'https://c.tenor.com/c0qkKNy2H6IAAAPo/darling-in-the-franxx-zhiro.gif',
+            'https://c.tenor.com/8-PnV57w01sAAAPo/anime-pink-hair.gif',
+            'https://c.tenor.com/Lmc7jvRbcvAAAAPo/darling-in-the-franxx-zero-two.gif',
+            'https://c.tenor.com/My2v_lTI3LIAAAPo/hug-anime.gif',
+            ]
+        give[interaction.user.id] += 1
+        receive[member.id] += 1
+        embed = defaultEmbed(title=f'**{interaction.user.mention}給了{member.mention}一個擁抱**',
+                             description='\u200b')
+        embed.set_image(url=f'{random.choice(gif_list)}')
+        embed.set_author(name=f'抱抱！', icon_url=member.avatar)
+        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give[interaction.user.id]}個擁抱，並收到了{receive[interaction.user.id]}個擁抱', icon_url=interaction.user.avatar)
+        await interaction.response.send_message(embed=embed)
+
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

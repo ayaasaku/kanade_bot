@@ -116,20 +116,20 @@ class MainCog(commands.Cog, name='main'):
            'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif',
             ]
         
-        if give.get(f'{interaction.user.id}') == None:
-            give[f'{interaction.user.id}'] = 1
+        if give.get(interaction.user.id) == None:
+            give[interaction.user.id] = 1
         else:    
-            give[f'{interaction.user.id}'] = give[f'{interaction.user.id}'] + 1
+            give[interaction.user.id] = give[interaction.user.id] + 1
             
-        if receive.get(f'{member.id}') == None:
-            receive[f'{member.id}'] = 1
+        if receive.get(member.id) == None:
+            receive[member.id] = 1
         else:    
-            receive[f'{member.id}'] = receive[f'{member.id}'] + 1
+            receive[member.id] = receive[member.id] + 1
             
         embed = defaultEmbed(title=f'**抱抱！**',
                              description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
         embed.set_image(url=f'{random.choice(gif_list)}')
-        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give[str(interaction.user.id)]}個擁抱，並收到了{receive[str(interaction.user.id)]}個擁抱', icon_url=interaction.user.avatar)
+        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive.get(interaction.user.id)}個擁抱', icon_url=interaction.user.avatar)
         await interaction.response.send_message(embed=embed)
 
 

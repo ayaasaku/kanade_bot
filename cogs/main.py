@@ -132,7 +132,9 @@ class MainCog(commands.Cog, name='main'):
         embed = defaultEmbed(title=f'**抱抱！**',
                              description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
         embed.set_image(url=f'{random.choice(gif_list)}')
-        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive.get(interaction.user.id)}個擁抱', icon_url=interaction.user.avatar)
+        receive_hug = receive.get(interaction.user.id)
+        if receive_hug == None: receive_hug = 0
+        embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
         await interaction.response.send_message(embed=embed)
 
 

@@ -114,6 +114,9 @@ class MainCog(commands.Cog, name='main'):
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
            'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif',
+           'https://c.tenor.com/1_0ZOurJMSsAAAAd/genshin-impact-genshin.gif',
+           'https://c.tenor.com/c0qkKNy2H6IAAAAd/darling-in-the-franxx-zhiro.gif',
+           'https://cdn.weeb.sh/images/ryCG-OatM.gif'
             ]
         
         if give.get(interaction.user.id) == None:

@@ -122,7 +122,7 @@ class MainCog(commands.Cog, name='main'):
         if receive.get(member.id) == None:
             receive[member.id] = 1
         else:    
-            receive[member.id] = give[member.user.id] + 1
+            receive[member.id] = receive[member.id] + 1
         embed = defaultEmbed(title=f'**抱抱！**',
                              description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
         embed.set_image(url=f'{random.choice(gif_list)}')

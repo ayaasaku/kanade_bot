@@ -113,7 +113,7 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.rename(member='某人')
     async def about(self, interaction: discord.Interaction, member: Member):
         gif_list = [
-           'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif'
+           'https://c.tenor.com/xXOZrdGr0-gAAAAd/hu-tao-qiqi-hu-tao-hugs.gif',
             ]
         '''if give.get(interaction.user.id) == None:
             give[interaction.user.id] = 1

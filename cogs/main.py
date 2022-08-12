@@ -122,8 +122,14 @@ class MainCog(commands.Cog, name='main'):
             'https://c.tenor.com/Lmc7jvRbcvAAAAPo/darling-in-the-franxx-zero-two.gif',
             'https://c.tenor.com/My2v_lTI3LIAAAPo/hug-anime.gif',
             ]
-        give[interaction.user.id] = give[interaction.user.id] + 1
-        receive[member.id] = receive[member.id] + 1
+        if give.get(interaction.user.id) == None:
+            give[interaction.user.id] = 1
+        else:    
+            give[interaction.user.id] = give[interaction.user.id] + 1
+        if receive.get(member.id) == None:
+            receive[member.id] = 1
+        else:    
+            receive[member.id] = give[member.user.id] + 1
         embed = defaultEmbed(title=f'**{interaction.user.mention}給了{member.mention}一個擁抱**',
                              description='\u200b')
         embed.set_image(url=f'{random.choice(gif_list)}')

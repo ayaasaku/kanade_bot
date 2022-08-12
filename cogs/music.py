@@ -12,7 +12,7 @@ import datetime
 import asyncio
 import re
 import os
-from utility.paginators.GeneralPaginator import GeneralPaginator
+from utility.paginator import GeneralPaginator
 load_dotenv()
 
 
@@ -75,7 +75,7 @@ class MusicCog(commands.GroupCog, name='music'):
             vc: wavelink.Player = i.guild.voice_client
         if i.guild.voice_client.channel != i.user.voice.channel:
             if vc.is_playing():
-                return await i.response.send_message(embed=errEmbed(message='你跟目前申鶴所在的語音台不同,\n且申鶴目前正在為那邊的使用者播歌\n請等待至對方播放完畢').set_author(name='錯誤', icon_url=i.user.avatar), ephemeral=True)
+                return await i.response.send_message(embed=errEmbed(message='你跟目前奏寶所在的語音台不同,\n且奏寶目前正在為那邊的使用者播歌\n請等待至對方播放完畢').set_author(name='錯誤', icon_url=i.user.avatar), ephemeral=True)
             await vc.disconnect()
             vc: wavelink.Player = await i.user.voice.channel.connect(cls=wavelink.Player)
         await i.response.defer()
@@ -285,16 +285,16 @@ class MusicCog(commands.GroupCog, name='music'):
             await view.wait()
             await action(False)
 
-    @app_commands.command(name='disconnect斷線', description='讓申鶴悄悄的離開目前所在的語音台')
+    @app_commands.command(name='disconnect斷線', description='讓奏寶悄悄的離開目前所在的語音台')
     @app_commands.checks.has_role('小雪團隊')
     async def music_disconnect(self, i: Interaction):
         if not i.guild.voice_client:
             return await i.response.send_message(embed=errEmbed(message='輸入 `/play` 來播放歌曲').set_author(name='播放器不存在', icon_url=i.user.avatar), ephemeral=True)
         vc: wavelink.Player = i.guild.voice_client
         if not vc.is_connected():
-            return await i.response.send_message(embed=errEmbed().set_author(name='申鶴沒有在任何一個語音台中', icon_url=i.user.avatar), ephemeral=True)
+            return await i.response.send_message(embed=errEmbed().set_author(name='奏寶沒有在任何一個語音台中', icon_url=i.user.avatar), ephemeral=True)
         await vc.disconnect()
-        await i.response.send_message(embed=defaultEmbed('申鶴已離開'))
+        await i.response.send_message(embed=defaultEmbed('奏寶已離開'))
 
     @app_commands.command(name='player播放狀態', description='查看目前播放狀態')
     async def music_player(self, i: Interaction):

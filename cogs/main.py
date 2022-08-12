@@ -123,8 +123,9 @@ class MainCog(commands.Cog, name='main'):
            'https://i.redd.it/9ei1kxfgwnz61.png',
            'https://pbs.twimg.com/media/FD5KuL9VEAIbJ4Y.jpg',
            'https://static.zerochan.net/Hoshino.Ichika.%28Project.Sekai%29.full.3182755.png',
-           'https://i.imgur.com/rLR2WUb.jpg'
-           
+           'https://i.imgur.com/rLR2WUb.jpg',
+           'https://i.pinimg.com/originals/50/c7/70/50c7709bfa5b3f67468fbd4b2e50f850.png'
+    
             ]
         if interaction.user.id == member.id:
             await interaction.response.send_message('不要抱自己好嗎...')

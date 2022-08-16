@@ -141,6 +141,7 @@ class MainCog(commands.Cog, name='main'):
                 receive[member.id] = 1
             else:    
                 receive[member.id] = receive[member.id] + 1
+            receive_hug = receive.get(interaction.user.id)
             if receive_hug == None: receive_hug = 0
             embed.set_footer(text=f'你總共收到了{receive_hug}個擁抱', icon_url=member.avatar)
             await interaction.followup.send(embed=embed)

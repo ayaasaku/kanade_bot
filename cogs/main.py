@@ -134,8 +134,8 @@ class MainCog(commands.Cog, name='main'):
         if interaction.user.id == member.id:
             await interaction.response.send_message('不要抱自己好嗎...')
             
-            embed = defaultEmbed(title=f'**抱抱！**',
-                                description=f'**那麼... 奏寶給你一個抱抱吧！**')
+            embed = defaultEmbed(title=f'**那麼... 奏寶給你一個抱抱吧！**',
+                                description=f'\u200b')
             embed.set_image(url=f'{random.choice(gif_list)}')
             if receive.get(member.id) == None:
                 receive[member.id] = 1

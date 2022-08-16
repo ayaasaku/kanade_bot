@@ -117,6 +117,9 @@ class MainCog(commands.Cog, name='main'):
            'https://c.tenor.com/1_0ZOurJMSsAAAAd/genshin-impact-genshin.gif',
            'https://c.tenor.com/c0qkKNy2H6IAAAAd/darling-in-the-franxx-zhiro.gif',
            'https://cdn.weeb.sh/images/ryCG-OatM.gif',
+           'https://c.tenor.com/Ms-P5bOXpXEAAAAC/lycoris-recoil-anime-hug.gif'
+        ]
+        img_list = [
            'https://cdn.donmai.us/original/f8/55/f855e1a9c5c64f7eaf3382d4858ea6b5.png',
            'https://i.ytimg.com/vi/wpMHed9_BA8/maxresdefault.jpg',
            'https://cdn.donmai.us/sample/5d/f6/sample-5df6a4a93008f4a5a3b1763ad86c306a.jpg',
@@ -127,10 +130,13 @@ class MainCog(commands.Cog, name='main'):
            'https://i.pinimg.com/originals/50/c7/70/50c7709bfa5b3f67468fbd4b2e50f850.png',
            'https://cdn.discordapp.com/attachments/970929147985690626/1007586051784724500/illust_98340928_20220721_213342.jpg',
            'https://cdn.discordapp.com/attachments/970929147985690626/1007585997200035981/illust_96311763_20220812_172744.jpg'
-    
             ]
         if interaction.user.id == member.id:
-            await interaction.response.send_message('不要抱自己好嗎...')
+            embed = defaultEmbed(title=f'**抱抱！**',
+                                description=f'**奏寶給你一個抱抱吧！**')
+            embed.set_image(url=f'{random.choice(gif_list)}')
+            await interaction.response.send_message('不要抱自己好嗎...', embed=embed)
+            
         else:
             if give.get(interaction.user.id) == None:
                 give[interaction.user.id] = 1
@@ -141,10 +147,13 @@ class MainCog(commands.Cog, name='main'):
                 receive[member.id] = 1
             else:    
                 receive[member.id] = receive[member.id] + 1
-                
+            
+            random_int = randint(1, 100)   
+            
             embed = defaultEmbed(title=f'**抱抱！**',
                                 description=f'**{interaction.user.display_name}給了{member.display_name}一個擁抱**')
-            embed.set_image(url=f'{random.choice(gif_list)}')
+            if random_int <= 70: embed.set_image(url=f'{random.choice(gif_list)}')
+            elif random_int > 70: embed.set_image(url=f'{random.choice(img_list)}')
             receive_hug = receive.get(interaction.user.id)
             if receive_hug == None: receive_hug = 0
             embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)

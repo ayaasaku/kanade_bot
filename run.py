@@ -5,7 +5,7 @@ import traceback
 import aiohttp
 
 from discord import (Game, HTTPException, Intents, Interaction, Message,
-                     Status, app_commands)
+                     Status, app_commands, ActivityType, activity, CustomActivity)
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -38,10 +38,13 @@ class KanadeBot(commands.Bot):
             await self.load_extension(f'cogs.{cog_name}')
 
     async def on_ready(self):
-        await self.change_presence(
+        await self.changes_presence(
             status=Status.online,
-            activity=Game(
-                name=f'Project Sekai')
+            activity= CustomActivity(
+                name = f'我喜歡真冬...',
+                emoji= f'🤍'
+            )
+            
         )
         print(f'Logged in as {self.user}')
 

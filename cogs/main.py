@@ -132,12 +132,19 @@ class MainCog(commands.Cog, name='main'):
            'https://cdn.discordapp.com/attachments/970929147985690626/1007585997200035981/illust_96311763_20220812_172744.jpg'
             ]
         if interaction.user.id == member.id:
+            await interaction.response.send_message('不要抱自己好嗎...')
+            
             embed = defaultEmbed(title=f'**抱抱！**',
                                 description=f'**奏寶給你一個抱抱吧！**')
             embed.set_image(url=f'{random.choice(gif_list)}')
-            await interaction.response.send_message('不要抱自己好嗎...')
+            if receive.get(member.id) == None:
+                receive[member.id] = 1
+            else:    
+                receive[member.id] = receive[member.id] + 1
+            embed.set_footer(text=f'你總共收到了{receive_hug}個擁抱', icon_url=member.avatar)
             await interaction.followup.send(embed=embed)
             
+           
         else:
             if give.get(interaction.user.id) == None:
                 give[interaction.user.id] = 1

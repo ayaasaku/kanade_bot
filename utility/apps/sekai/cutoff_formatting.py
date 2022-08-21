@@ -5,20 +5,22 @@ import re, time, discord
 
 from utility.utils import defaultEmbed
 
+from utility.apps.sekai.event_info import get_current_event_id_jp,get_event_end_time_jp, get_event_banner_name_jp, get_event_name_jp
+from utility.apps.sekai.api_functions import get_sekai_world_events_api_jp, get_sekai_current_event_standings_api_jp, get_sekai_current_event_api_jp
+from utility.apps.sekai.time_formatting import format_time
+
 async def get_cutoff_formatting(tier: str = '0'):
-    from utility.apps.sekai.api_functions import get_sekai_current_event_standings_api, get_sekai_current_event_api
-    from utility.apps.sekai.event_info import get_event_name, get_current_event_id
-    from utility.apps.sekai.time_formatting import format_time
     fmt = "%Y-%m-%d %H:%M:%S %Z%z"
     now_time = datetime.now(timezone('Asia/Taipei'))
     entries = []
-    #event_id = await get_current_event_id()
-    event_id = 10
-    event_name = await get_event_name(event_id)
-    current_event_cutoff_api = await get_sekai_current_event_standings_api(event_id)
+    event_id = await get_current_event_id_jp()
+    #event_id = 10
+    event_name = await get_event_name_jp(event_id)
+    current_event_cutoff_api = await get_sekai_current_event_standings_api_jp(event_id)
     last_updated_time = time.time() - (current_event_cutoff_api['time'] / 1000)
     last_updated_time = f"{await format_time(last_updated_time)} ago"
     #print(f"Current time: {time.time() * 1000}\nAPI Time: {current_event_cutoff_api['time']}")
+    
     if tier == '0': # all cutoffs
         for x in current_event_cutoff_api: 
             if x != 'time':
@@ -30,8 +32,10 @@ async def get_cutoff_formatting(tier: str = '0'):
                         y['userId'],
                         str(name)   
                     ])   
-        output = ("```" + f"  Event: {event_name}\n  Time: {now_time.strftime(fmt)}\n  Last Updated: {last_updated_time}" + "\n\n" + tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"]) + "```")
+        #output = ("```" + f"  Event: {event_name}\n  Time: {now_time.strftime(fmt)}\n  \Last Updated: {last_updated_time}" + "\n\n" + tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"]) + "```")
+        output = f'``` Event: {event_name}\n Time: {now_time.strftime(fmt)}\n \Last Updated: {last_updated_time}\n\n  {tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"])}```'
         return output
+    
     elif tier == '10':
         for x in current_event_cutoff_api['first10']:
             name = string_check(x['name'])
@@ -41,17 +45,17 @@ async def get_cutoff_formatting(tier: str = '0'):
                 x['userId'],
                 str(name)   
             ])
-        output = ("```" + f"  Event: {event_name}\n  Time: {now_time.strftime(fmt)}\n  Last Updated: {last_updated_time}" + "\n\n" + tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"]) + "```")
+        #output = ("```" + f"  Event: {event_name}\n  Time: {now_time.strftime(fmt)}\n  Last Updated: {last_updated_time}" + "\n\n" + tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"]) + "```")
+        output = f'``` Event: {event_name}\n Time: {now_time.strftime(fmt)}\n \Last Updated: {last_updated_time}\n\n  {tabulate(entries, tablefmt="plain", headers=["#", "Points", "ID", "Player"])}```'
         return output
+    
     elif f'rank{tier}' in current_event_cutoff_api:
-        from utility.apps.sekai.event_info import get_current_event_id,get_event_end_time, get_event_banner_name
-        from utility.apps.sekai.api_functions import get_sekai_world_events_api
-        event_banner_name = await get_event_banner_name(event_id)
-        #banner_url = f"https://sekai-res.dnaroma.eu/file/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"  
+        
+        event_banner_name = await get_event_banner_name_jp(event_id)
         logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-        event_id = await get_current_event_id()
-        event_end_time = (await get_event_end_time(event_id)) / 1000
+        event_id = await get_current_event_id_jp()
+        event_end_time = (await get_event_end_time_jp(event_id)) / 1000
         current_time = time.time()
         if current_time > event_end_time:
             time_left = 'Event has ended'

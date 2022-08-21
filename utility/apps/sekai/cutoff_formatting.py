@@ -2,6 +2,7 @@ from datetime import datetime,timedelta
 from pytz import timezone
 from tabulate import tabulate
 import re, time, discord
+import requests, json, aiohttp
 
 from utility.utils import defaultEmbed
 
@@ -9,14 +10,14 @@ from utility.apps.sekai.event_info import get_current_event_id_jp,get_event_end_
 from utility.apps.sekai.api_functions import get_sekai_world_events_api_jp, get_sekai_current_event_standings_api_jp, get_sekai_current_event_api_jp
 from utility.apps.sekai.time_formatting import format_time
 
-async def get_cutoff_formatting(tier: str = '0'):
+async def get_cutoff_formatting(session: aiohttp.ClientSession, tier: str = '0'):
     fmt = "%Y-%m-%d %H:%M:%S %Z%z"
     now_time = datetime.now(timezone('Asia/Taipei'))
     entries = []
-    event_id = await get_current_event_id_jp()
+    event_id = await get_current_event_id_jp(session)
     #event_id = 10
-    event_name = await get_event_name_jp(event_id)
-    current_event_cutoff_api = await get_sekai_current_event_standings_api_jp(event_id)
+    event_name = await get_event_name_jp(event_id, session)
+    current_event_cutoff_api = await get_sekai_current_event_standings_api_jp(event_id, session)
     last_updated_time = time.time() - (current_event_cutoff_api['time'] / 1000)
     last_updated_time = f"{await format_time(last_updated_time)} ago"
     #print(f"Current time: {time.time() * 1000}\nAPI Time: {current_event_cutoff_api['time']}")
@@ -51,11 +52,11 @@ async def get_cutoff_formatting(tier: str = '0'):
     
     elif f'rank{tier}' in current_event_cutoff_api:
         
-        event_banner_name = await get_event_banner_name_jp(event_id)
+        event_banner_name = await get_event_banner_name_jp(event_id, session)
         logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
         banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-        event_id = await get_current_event_id_jp()
-        event_end_time = (await get_event_end_time_jp(event_id)) / 1000
+        event_id = await get_current_event_id_jp(session)
+        event_end_time = (await get_event_end_time_jp(event_id, session)) / 1000
         current_time = time.time()
         if current_time > event_end_time:
             time_left = 'Event has ended'

@@ -17,7 +17,7 @@ async def get_cutoff_formatting(session: aiohttp.ClientSession, tier: str = '0')
     event_id = await get_current_event_id_jp(session)
     #event_id = 10
     event_name = await get_event_name_jp(event_id, session)
-    current_event_cutoff_api = await get_sekai_current_event_standings_api_jp(event_id, session)
+    current_event_cutoff_api = await get_sekai_current_event_standings_api_jp(session, event_id)
     last_updated_time = time.time() - (current_event_cutoff_api['time'] / 1000)
     last_updated_time = f"{await format_time(last_updated_time)} ago"
     #print(f"Current time: {time.time() * 1000}\nAPI Time: {current_event_cutoff_api['time']}")

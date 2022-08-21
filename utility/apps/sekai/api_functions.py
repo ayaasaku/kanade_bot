@@ -4,7 +4,7 @@ import requests, json, aiohttp
 async def get_sekai_current_event_standings_api_jp(session: aiohttp.ClientSession, event_id):
         api = f'https://bitbucket.org/sekai-world/sekai-event-track/raw/f6f3fc4311a8cdd4bba5cedebcef02ff994939d5/event{event_id}.json'
         async with session.get(api) as r:
-            return await r.json(content_type='text/plain')
+            return await r.json()
 
 async def get_sekai_world_events_api_jp(session: aiohttp.ClientSession):
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/events.json'
@@ -14,12 +14,12 @@ async def get_sekai_world_events_api_jp(session: aiohttp.ClientSession):
 async def get_sekai_current_event_api_jp(session: aiohttp.ClientSession):
         api = 'https://sekaidb.xyz/l10n/event/en.json'
         async with session.get(api) as r:
-            return await r.json(content_type='text/html',charset='utf-8')
+            return await r.json()
 
 async def get_sekai_master_api_jp(session: aiohttp.ClientSession):
         api = 'https://sekaidb.xyz/db/prod.json'
         async with session.get(api) as r:
-            return await r.json(content_type='text/html',charset='utf-8')
+            return await r.json()
 
 async def get_sekai_events_api_jp(session: aiohttp.ClientSession):
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/events.json'

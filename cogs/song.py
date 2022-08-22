@@ -38,17 +38,16 @@ class SongCog(commands.Cog, name='song'):
                           
         
         async def song_callback(interaction: discord.Interaction):  
+            await interaction.response.defer()
             if select.values[0] == '虛擬歌手':
                 embed = await loading_embed('虛擬歌手', 'vocaloid')
                 await interaction.response.send_message(embed=embed, ephemeral=True)
                 embeds = await get_group_music('vocaloid', self.bot.session)
-                await interaction.response.defer()
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True, edit_original_message= True)
                 await interaction.delete_original_response()
             if select.values[0] == '25點，Nightcord見。':
                 embed = await loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                await interaction.response.defer()
+                await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True, edit_original_message= True)
             if select.values[0] == 'Leo/need':

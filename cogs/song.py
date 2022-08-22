@@ -45,7 +45,10 @@ class SongCog(commands.Cog, name='song'):
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
                 #embed = await loading_embed('25點，Nightcord見。', 'school_refusal')
-                await interaction.followup.send('25點，Nightcord見。')
+                embed = defaultEmbed(title = f'**正在獲取25點，Nightcord見。的歌曲資料...**',
+                             description = f'獲取資料需時，請耐心等候')
+                embed.set_image(url = group_icon['school_refusal'])
+                await interaction.followup.send(embed = embed)
                 #embeds = await get_group_music('school_refusal', self.bot.session)
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':

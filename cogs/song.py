@@ -38,7 +38,7 @@ class SongCog(commands.Cog, name='song'):
                           
         
         async def song_callback(interaction: discord.Interaction):  
-            await interaction.response.defer()
+            await interaction.response.defer(ephemeral=True, delete = 15.0)
             if select.values[0] == '虛擬歌手':
                 embed = await loading_embed('虛擬歌手', 'vocaloid')
                 await interaction.followup.send(embed=embed, ephemeral=True, delete = 15.0)

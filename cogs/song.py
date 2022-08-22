@@ -42,12 +42,12 @@ class SongCog(commands.Cog, name='song'):
                 embed = await loading_embed('虛擬歌手', 'vocaloid')
                 await interaction.followup.send(embed=embed)
                 embeds = await get_group_music('vocaloid', self.bot.session)
-                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True, edit_original_message= True)
             if select.values[0] == '25點，Nightcord見。':
                 embed = await loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
-                await interaction.followup.send(embed = embed)
+                await interaction.response.send_message(embed = embed)
                 embeds = await get_group_music('school_refusal', self.bot.session)
-                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True, edit_original_message= True)
             if select.values[0] == 'Leo/need':
                 embed = await loading_embed('Leo/need', 'light_music_club')
                 await interaction.followup.send(embed=embed)

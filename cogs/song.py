@@ -29,7 +29,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
         
-        def loading_embed(group: str, group_id: str):
+        async def get_loading_embed(group: str, group_id: str):
             embed = defaultEmbed(title = f'**正在獲取{group}的歌曲資料...**',
                              description = f'獲取資料需時，請耐心等候')
             embed.set_image(url = group_icon[group_id])
@@ -44,8 +44,8 @@ class SongCog(commands.Cog, name='song'):
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
-                #embed = await loading_embed('25點，Nightcord見。', 'school_refusal')
-                await interaction.followup.send(embed = await loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal'))
+                embed = await get_loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
+                await interaction.followup.send(embed = embed)
                 #embeds = await get_group_music('school_refusal', self.bot.session)
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':

@@ -7,7 +7,6 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
 from utility.utils import defaultEmbed
 from utility.apps.sekai.time_formatting import format_date_jp
 
-
 #music_info
 async def get_music_info(music_id: int, session: aiohttp.ClientSession):
     music_api = await get_sekai_musics_api(session)
@@ -94,7 +93,7 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
                             value=f'等級：{difficulty[8]}\n音符數量：{difficulty[9]}\n\u200b', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False)
-            
+            embed.set_footer(text= f'獲取資料需時，請耐心等候', icon = "https://imgur.com/HwcMqPS.png")            
             group_music_embed_list.append(embed)
             
     return group_music_embed_list

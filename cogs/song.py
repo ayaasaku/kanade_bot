@@ -44,8 +44,8 @@ class SongCog(commands.Cog, name='song'):
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
-                embed = await loading_embed('25點，Nightcord見。', 'school_refusal')
-                await interaction.followup.send(embed = embed)
+                #embed = await loading_embed('25點，Nightcord見。', 'school_refusal')
+                await interaction.followup.send('25點，Nightcord見。')
                 #embeds = await get_group_music('school_refusal', self.bot.session)
                 #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':

@@ -1,3 +1,4 @@
+from ast import Delete
 from discord.ext import commands
 from tabulate import tabulate
 from datetime import datetime, timedelta
@@ -39,8 +40,8 @@ class SongCog(commands.Cog, name='song'):
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
             if select.values[0] == '虛擬歌手':
-                embeds = await loading_embed('虛擬歌手', 'vocaloid')
-                await interaction.followup.send(embed=embeds)
+                embed = await loading_embed('虛擬歌手', 'vocaloid')
+                await interaction.followup.send(embed=embed, ephemeral=True, delete = 15.0)
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True, edit_original_message= True)
             if select.values[0] == '25點，Nightcord見。':

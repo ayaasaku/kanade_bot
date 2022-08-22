@@ -29,7 +29,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
                     ])
         
-        async def get_loading_embed(group: str, group_id: str):
+        async def loading_embed(group: str, group_id: str):
             embed = defaultEmbed(title = f'**正在獲取{group}的歌曲資料...**',
                              description = f'獲取資料需時，請耐心等候')
             embed.set_image(url = group_icon[group_id])
@@ -44,10 +44,10 @@ class SongCog(commands.Cog, name='song'):
                 embeds = await get_group_music('vocaloid', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
-                embed = await get_loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
+                embed = await loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
                 await interaction.followup.send(embed = embed)
-                #embeds = await get_group_music('school_refusal', self.bot.session)
-                #await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
+                embeds = await get_group_music('school_refusal', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':
                 embed = await loading_embed('Leo/need', 'light_music_club')
                 await interaction.followup.send(embed=embed)

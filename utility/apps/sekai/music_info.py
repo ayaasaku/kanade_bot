@@ -9,7 +9,7 @@ from utility.apps.sekai.time_formatting import format_date_jp
 
 
 #music_info
-async def get_music_info(self, music_id: int, session: aiohttp.ClientSession):
+async def get_music_info(music_id: int, session: aiohttp.ClientSession):
     music_api = await get_sekai_musics_api(session)
     for thing in music_api:
         if music_id == thing['id']:
@@ -29,15 +29,19 @@ async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSessio
             easy_level = thing['playLevel']
             easy_note_count = thing['noteCount']
             
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':   
             normal_level = thing['playLevel']
             normal_note_count = thing['noteCount']
             
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'hard': 
             hard_level = thing['playLevel']
             hard_note_count = thing['noteCount']
-            
+         
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':    
             expert_level = thing['playLevel']
             expert_note_count = thing['noteCount']
-            
+          
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'master':    
             master_level = thing['playLevel']
             master_note_count = thing['noteCount']
             
@@ -73,10 +77,10 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
 
             embed = defaultEmbed(title=f'**{info[0]}**')
             embed.set_thumbnail(url=cover_url)
-            embed.add_field(name='作詞', value=info[1], inline=True)
-            embed.add_field(name='作曲', value=info[2], inline=True)
-            embed.add_field(name='編曲', value=f'{info[3]}\n\u200b', inline=True)
-            embed.add_field(name='發佈時間', value=info[4], inline=False)
+            embed.add_field(name='作詞', value = f'{info[1]}', inline=True)
+            embed.add_field(name='作曲', value = f'{info[2]}', inline=True)
+            embed.add_field(name='編曲', value = f'{info[3]} \n\u200b', inline=True)
+            embed.add_field(name='發佈時間', value= f'{info[4]}', inline=False)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
             embed.add_field(name='Easy',
                             value=f'等級：{difficulty[0]}\n音符數量：{difficulty[1]}', inline=True)

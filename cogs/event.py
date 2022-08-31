@@ -2,7 +2,6 @@ from discord.ext import commands
 from tabulate import tabulate
 from datetime import datetime, timedelta
 from pytz import timezone
-from tabulate import tabulate
 import time, re, discord
 from discord import (ButtonStyle, Embed, Emoji, Interaction, Member,
                      SelectOption, app_commands)
@@ -169,46 +168,6 @@ class EventCog(commands.Cog, name='event'):
             #embed.add_field(name='\u200b', value='**時間**', inline=False)
             embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
-
-    valid_tiers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000,
-                   30000, 40000, 50000, 100000}
-    '''@commands.command(name='cutoff',
-                      brief="cutoff info",
-                      description="Posts cutoff info",
-                      help=".cutoff (posts cutoff info for all tiers)\n.cutoff 100",
-                      aliases=[f't{tier}' for tier in valid_tiers] +
-                              [f't{tier // 1000}k' for tier in valid_tiers if tier % 1000 == 0])'''
-                              
-    @app_commands.command(name='cutoff', description='Posts cutoff info')    
-    @app_commands.rename(tier='tier')   
-    async def cutoff(self, interaction: discord.Interaction, tier: str = '0'):
-        await interaction.response.defer()
-        command_name = f'cutoff {tier}'
-        tier_regex = re.compile(r"t?\d+k?")
-        def parse_tier(tier_arg):
-            if tier_arg[0] == 't':
-                tier_arg = tier_arg[1:]
-            if tier_arg[-1] == 'k':
-                return 1000 * int(tier_arg[:-1])
-            return int(tier_arg)
-        if tier_regex.fullmatch(command_name):
-            if tier != '0':
-                await interaction.followup.send(f"Tier already specified via alias")
-                return
-            tier = parse_tier(command_name)
-        else:
-            if not tier_regex.fullmatch(tier):
-                await interaction.followup.send(f"Tier `{tier}` isn't recognized")
-                return
-            tier = parse_tier(tier)
-        
-        if tier == 0 or tier == 10:
-            await interaction.followup.send(await get_cutoff_formatting(self.bot.session, str(tier)))
-        elif tier in self.valid_tiers:
-            await interaction.followup.send(embed=await get_cutoff_formatting(self.bot.session, str(tier)))
-        else:
-            await interaction.followup.send(f"Tier `{tier}` isn't supported")
-
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(EventCog(bot))

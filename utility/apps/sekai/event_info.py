@@ -1,6 +1,10 @@
 import re, aiohttp
 from utility.apps.sekai.api_functions import get_sekai_world_events_api_jp, get_sekai_events_api_jp, get_sekai_event_deck_bonuses_api_jp, \
     get_sekai_world_events_api_tw, get_sekai_events_api_tw, get_sekai_event_deck_bonuses_api_tw, get_sekai_characters_info_api
+
+def get_event_info(event_id, region, session: aiohttp.ClientSession):
+    return
+
 #jp
 async def get_current_event_id_jp(session: aiohttp.ClientSession):
     event_api = await get_sekai_world_events_api_jp(session)

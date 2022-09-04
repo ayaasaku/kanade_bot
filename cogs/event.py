@@ -42,9 +42,9 @@ class EventCog(commands.Cog, name='event'):
                 await interaction.send("There's no active event!")
             else:
                 event_end_date = await format_date_jp(event_end_time * 1000)
-                event_name = await event_info['event_name']
-                event_start_time = await event_info['event_start_time']
-                event_banner_name = await event_info['event_banner_name']
+                event_name = event_info['event_name']
+                event_start_time = event_info['event_start_time']
+                event_banner_name = event_info['event_banner_name']
                 logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
                 banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
                 event_url = f'https://sekai.best/event/{event_id_jp}'
@@ -95,11 +95,11 @@ class EventCog(commands.Cog, name='event'):
         if option == 0:
             global event_id_jp
             event_info = await get_event_info_jp(self.bot.session)
-            event_id_jp = await event_info['event_id']
-            event_name = await event_info['event_name']
-            event_type = await event_info['event_type']
-            event_banner_name = await event_info['event_banner_name']
-            event_bonus_attribute = await event_info['event_bonus_attribute']
+            event_id_jp = event_info['event_id']
+            event_name = event_info['event_name']
+            event_type = event_info['event_type']
+            event_banner_name = event_info['event_banner_name']
+            event_bonus_attribute = event_info['event_bonus_attribute']
             event_start_time = await format_date_jp(event_info['event_start_time'])
             event_end_time = await format_date_jp(event_info['event_end_time'])
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"

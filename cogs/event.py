@@ -13,9 +13,7 @@ from data.translate_data import translate
     
 from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
 
-from utility.apps.sekai.event_info import get_event_name_jp, get_event_type_jp, get_current_event_id_jp, \
-    get_event_bonus_attribute_jp, get_event_banner_name_jp, get_event_start_time_jp, get_event_end_time_jp, \
-    get_event_bonus_characters_id_jp, get_event_bonus_characters_name_jp, \
+from utility.apps.sekai.event_info import get_event_info_jp,\
     get_event_name_tw, get_event_type_tw, get_current_event_id_tw, \
     get_event_bonus_attribute_tw, get_event_banner_name_tw, get_event_start_time_tw, get_event_end_time_tw, \
     get_event_bonus_characters_id_tw, get_event_bonus_characters_name_tw
@@ -36,16 +34,17 @@ class EventCog(commands.Cog, name='event'):
         if option == 0:
             global event_id_jp
             event_id_jp = 0
-            event_id_jp = await get_current_event_id_jp(self.bot.session)
-            event_end_time = (await get_event_end_time_jp(event_id_jp, self.bot.session)) / 1000
+            event_info = await get_event_info_jp(self.bot.session)
+            event_id_jp = event_info['event_id']
+            event_end_time = event_info['event_end_time'] / 1000
             current_time = time.time()
             if current_time > event_end_time:
                 await interaction.send("There's no active event!")
             else:
                 event_end_date = await format_date_jp(event_end_time * 1000)
-                event_name = await get_event_name_jp(event_id_jp, self.bot.session)
-                event_start_time = await get_event_start_time_jp(event_id_jp, self.bot.session)
-                event_banner_name = await get_event_banner_name_jp(event_id_jp, self.bot.session)
+                event_name = await event_info['event_name']
+                event_start_time = await event_info['event_start_time']
+                event_banner_name = await event_info['event_banner_name']
                 logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
                 banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
                 event_url = f'https://sekai.best/event/{event_id_jp}'
@@ -95,21 +94,21 @@ class EventCog(commands.Cog, name='event'):
         #jp
         if option == 0:
             global event_id_jp
-            event_id_jp = await get_current_event_id_jp(self.bot.session)
-            event_name = await get_event_name_jp(event_id_jp, self.bot.session)
-            event_type = await get_event_type_jp(event_id_jp, self.bot.session)
-            event_banner_name = await get_event_banner_name_jp(event_id_jp, self.bot.session)
-            event_bonus_attribute = await get_event_bonus_attribute_jp(self.bot.session)
-            event_start_time = await format_date_jp(await get_event_start_time_jp(event_id_jp, self.bot.session))
-            event_end_time = await format_date_jp(await get_event_end_time_jp(event_id_jp, self.bot.session))
+            event_info = await get_event_info_jp(self.bot.session)
+            event_id_jp = await event_info['event_id']
+            event_name = await event_info['event_name']
+            event_type = await event_info['event_type']
+            event_banner_name = await event_info['event_banner_name']
+            event_bonus_attribute = await event_info['event_bonus_attribute']
+            event_start_time = await format_date_jp(event_info['event_start_time'])
+            event_end_time = await format_date_jp(event_info['event_end_time'])
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id_jp}'
             event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
             event_type_translated = translate['event_type'][str(event_type)]
-            event_bonus_characters_id_list = await get_event_bonus_characters_id_jp(event_id_jp, self.bot.session)
-            event_bonus_characters_name_list = await get_event_bonus_characters_name_jp(event_bonus_characters_id_list, self.bot.session)
+            event_bonus_characters_name_list = event_info['charater_name_list']
             embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)

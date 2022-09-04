@@ -6,41 +6,18 @@ def get_event_info(event_id, region, session: aiohttp.ClientSession):
     return
 
 #jp
-async def get_current_event_id_jp(session: aiohttp.ClientSession):
-    event_api = await get_sekai_world_events_api_jp(session)
-    return event_api[-1]['id']
-
-async def get_event_name_jp(event_id, session: aiohttp.ClientSession):
+async def get_event_info_jp(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_jp(session)
+    event_id = event_api[-1]['id']
     event_name = event_api[-1]['name']
-    return event_name
-
-async def get_event_type_jp(event_id, session: aiohttp.ClientSession):
-    event_api = await get_sekai_events_api_jp(session)
-    event_name = event_api[-1]['eventType'].capitalize()
-    return event_name
-
-async def get_event_start_time_jp(event_id, session: aiohttp.ClientSession):
-    event_api = await get_sekai_events_api_jp(session)
+    event_type = event_api[-1]['eventType'].capitalize()
     event_start_time = event_api[-1]['startAt']
-    return event_start_time
-
-async def get_event_end_time_jp(event_id, session: aiohttp.ClientSession):
-    event_api = await get_sekai_events_api_jp(session)
     event_end_time = event_api[-1]['aggregateAt']
-    return event_end_time
-
-async def get_event_banner_name_jp(event_id, session: aiohttp.ClientSession):
-    event_api = await get_sekai_events_api_jp(session)
     event_banner_name = event_api[-1]['assetbundleName']
-    return event_banner_name
-
-async def get_event_bonus_attribute_jp(session: aiohttp.ClientSession):
+    
     event_api = await get_sekai_event_deck_bonuses_api_jp(session)
     event_bonus_attribute = event_api[-1]['cardAttr'].capitalize()
-    return event_bonus_attribute
-
-async def get_event_bonus_characters_id_jp(event_id, session: aiohttp.ClientSession):
+    
     event_api = await get_sekai_event_deck_bonuses_api_jp(session)
     characters_id_list = []
     for thing in event_api:
@@ -50,9 +27,7 @@ async def get_event_bonus_characters_id_jp(event_id, session: aiohttp.ClientSess
     if None in characters_id_list:
         characters_id_list.remove(None)
     characters_id_list = list(dict.fromkeys(characters_id_list))
-    return characters_id_list
-
-async def get_event_bonus_characters_name_jp(characters_id_list: list, session: aiohttp.ClientSession):
+    
     characters_name_list = []
     event_api = await get_sekai_characters_info_api(session)
     for character_id in characters_id_list:
@@ -64,8 +39,18 @@ async def get_event_bonus_characters_name_jp(characters_id_list: list, session: 
                 characters_name_list.append(name)
     if None in characters_name_list:
         characters_name_list.remove(None)
-    return characters_name_list   
-
+    
+    event_info = {
+        'event_id': event_id,
+        'event_name': event_name,
+        'event_type': event_type,
+        'event_start_time': event_start_time,
+        'event_end_time': event_end_time,
+        'event_banner_name': event_banner_name,
+        'event_bonus_attribute': event_bonus_attribute,
+        'characters_name_list': characters_name_list        
+    }
+    return event_info
 #tw
 async def get_current_event_id_tw(session: aiohttp.ClientSession):
     event_api = await get_sekai_world_events_api_tw(session)

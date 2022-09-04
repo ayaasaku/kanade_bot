@@ -108,7 +108,7 @@ class EventCog(commands.Cog, name='event'):
             event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
             event_type_translated = translate['event_type'][str(event_type)]
-            event_bonus_characters_name_list = event_info['charater_name_list']
+            event_bonus_characters_name_list = event_info['characters_name_list']
             embed = defaultEmbed(title=f'**{event_name}**')
             embed.set_thumbnail(url=logo_url)
             embed.set_image(url=banner_url)

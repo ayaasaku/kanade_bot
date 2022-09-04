@@ -61,14 +61,14 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
             
     event_id = await event_info('id')
     event_name = await event_info('name')
-    event_type = await event_info('eventType').capitalize()
+    event_type = await event_info('eventType')
     event_start_time = await event_info('startAt')
     event_end_time = await event_info('aggregateAt')
     event_banner_name = await event_info('assetbundleName')
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
         
-    event_bonus_attribute = await event_info('cardAttr').capitalize()
+    event_bonus_attribute = await event_info('cardAttr')
     
     characters_id_list = []
     for thing in event_api:
@@ -94,11 +94,11 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
     event_info = {
         'event_id': event_id,
         'event_name': event_name,
-        'event_type': event_type,
+        'event_type': event_type.capitalize(),
         'event_start_time': event_start_time,
         'event_end_time': event_end_time,
         'event_banner_name': event_banner_name,
-        'event_bonus_attribute': event_bonus_attribute,
+        'event_bonus_attribute': event_bonus_attribute.capitalize(),
         'characters_name_list': characters_name_list        
     }
     return event_info

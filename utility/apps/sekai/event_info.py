@@ -56,12 +56,10 @@ class EventInfo:
     async def get_event_info_tw(session: aiohttp.ClientSession):
         event_api = await get_sekai_events_api_tw(session)
         
-        async def event_info(self, info):
-            event_api = await get_sekai_events_api_tw(self.bot.session)
+        async def event_info(info):
             for item in event_api:
-                event_end_time = item.get('aggregateAt') #/ 1000
                 current_time = time.time()
-                if current_time < event_end_time:
+                if current_time < (int(item['aggregateAt']) / 1000):
                     return item[f'{info}']
                 
         event_id = await event_info('id')

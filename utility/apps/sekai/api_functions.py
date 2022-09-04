@@ -1,4 +1,4 @@
-import requests, json, aiohttp
+import aiohttp
 
 
 #events   

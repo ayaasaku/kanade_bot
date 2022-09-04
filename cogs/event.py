@@ -25,8 +25,6 @@ class EventCog(commands.Cog, name='event'):
         Choice(name='jp', value=0),
         Choice(name='tw', value=1)])  
     async def time_left(self, interaction: discord.Interaction, option: int):
- 
-        if option == 0:
             if option == 0:
                 event_info = await get_event_info_jp(self.bot.session)
             elif option == 1:

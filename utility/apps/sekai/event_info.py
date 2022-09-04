@@ -1,4 +1,4 @@
-import re, aiohttp
+import re, aiohttp, time
 from utility.apps.sekai.api_functions import get_sekai_events_api_jp, get_sekai_event_deck_bonuses_api_jp, \
     get_sekai_events_api_tw, get_sekai_event_deck_bonuses_api_tw, get_sekai_characters_info_api
 
@@ -51,17 +51,25 @@ async def get_event_info_jp(session: aiohttp.ClientSession):
 #tw
 async def get_event_info_tw(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_tw(session)
-    event_id = event_api[-1]['id']
-    event_name = event_api[-1]['name']
-    event_type = event_api[-1]['eventType'].capitalize()
-    event_start_time = event_api[-1]['startAt']
-    event_end_time = event_api[-1]['aggregateAt']
-    event_banner_name = event_api[-1]['assetbundleName']
     
-    event_api = await get_sekai_event_deck_bonuses_api_tw(session)
-    event_bonus_attribute = event_api[-1]['cardAttr'].capitalize()
+    def event_info(info):
+        for item in event_api:
+            event_end_time = item['event_end_time'] / 1000
+            current_time = time.time()
+            if current_time < event_end_time:
+                return item[f'{info}']
+            
+    event_id = await event_info('id')
+    event_name = await event_info('name')
+    event_type = await event_info('eventType').capitalize()
+    event_start_time = await event_info('startAt')
+    event_end_time = await event_info('aggregateAt')
+    event_banner_name = await event_info('assetbundleName')
     
-    event_api = await get_sekai_event_deck_bonuses_api_tw(session)
+    event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
+        
+    event_bonus_attribute = await event_info('cardAttr').capitalize()
+    
     characters_id_list = []
     for thing in event_api:
         if event_id == thing['eventId']:

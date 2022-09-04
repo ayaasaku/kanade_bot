@@ -52,7 +52,7 @@ async def get_event_info_jp(session: aiohttp.ClientSession):
 async def get_event_info_tw(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_tw(session)
     
-    def event_info(info):
+    async def event_info(info):
         for item in event_api:
             event_end_time = item['aggregateAt'] / 1000
             current_time = time.time()

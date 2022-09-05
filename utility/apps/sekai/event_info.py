@@ -52,20 +52,27 @@ async def get_event_info_jp(session: aiohttp.ClientSession):
 async def get_event_info_tw(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_tw(session)
     
-    async def event_info(info):
+    '''async def event_info(info):
         for thing in event_api:
-            event_start_time = thing.get("startAt")
-            event_end_time = thing.get("aggregateAt")
+            event_start_time = thing["startAt"]
+            event_end_time = thing["aggregateAt"]
             current_time = time.time()
             if current_time * 1000 > event_start_time and current_time < event_end_time :
-                return thing[f'{info}']
-            
-    event_id = await event_info('id')
-    event_name = await event_info('name')
-    event_type = await event_info('eventType')
-    event_start_time = await event_info('startAt')
-    event_end_time = await event_info('aggregateAt')
-    event_banner_name = await event_info('assetbundleName')
+                return thing[f'{info}']'''
+                
+    for thing in event_api:
+        event_start_time = thing["startAt"]
+        event_end_time = thing["aggregateAt"]
+        current_time = time.time()
+        if current_time * 1000 > event_start_time and current_time < event_end_time :
+            event_id = thing['id']      
+          
+    event_id = 'id'#await event_info('id')
+    event_name = 'name'#await event_info('name')
+    event_type = 'type'#await event_info('eventType')
+    event_start_time = 'start'#await event_info('startAt')
+    event_end_time = 'end'#await event_info('aggregateAt')
+    event_banner_name = 'banner'#await event_info('assetbundleName')
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
         

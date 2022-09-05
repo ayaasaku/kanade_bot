@@ -1,4 +1,4 @@
-import numpy as np
+'''import numpy as np
 import scipy.stats as st
 from scipy.stats import rv_discrete
 import matplotlib
@@ -329,4 +329,4 @@ def longtime_gacha():
     plt.show()
     return
 
-longtime_gacha()
+longtime_gacha()'''

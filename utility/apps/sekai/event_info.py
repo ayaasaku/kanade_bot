@@ -54,10 +54,10 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
     
     async def event_info(info):
         for thing in event_api:
-            event_start_time = thing['startAt']
-            event_end_time = thing['aggregateAt']
+            event_start_time = thing.get("startAt")
+            event_end_time = thing.get("aggregateAt")
             current_time = time.time()
-            if current_time * 1000 > event_start_time and current_time  < event_end_time :
+            if current_time * 1000 > event_start_time and current_time < event_end_time :
                 return thing[f'{info}']
             
     event_id = await event_info('id')

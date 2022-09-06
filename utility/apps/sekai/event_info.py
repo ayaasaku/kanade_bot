@@ -59,24 +59,24 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
             current_time = time.time()
             if current_time * 1000 > event_start_time and current_time < event_end_time :
                 return thing[f'{info}']'''
-                
-    for thing in event_api:
-        event_start_time = thing["startAt"]
-        event_end_time = thing["aggregateAt"]
-        current_time = time.time()
-        if current_time * 1000 > event_start_time and current_time < event_end_time :
-            event_id = thing['id']      
+    async def event_info(info):           
+        for thing in event_api:
+            event_start_time = thing["startAt"]
+            event_end_time = thing["aggregateAt"]
+            current_time = time.time()
+            if current_time * 1000 > event_start_time and current_time < event_end_time :
+                return thing[f'{info}']      
           
-    #event_id = 65 #await event_info('id')
-    event_name = 'name'#await event_info('name')
-    event_type = 'Marathon'#await event_info('eventType')
-    event_start_time = 1000 #await event_info('startAt')
-    event_end_time = 10000 #await event_info('aggregateAt')
-    event_banner_name = 'banner'#await event_info('assetbundleName')
+    event_id = await event_info('id')
+    event_name = await event_info('name')
+    event_type = await event_info('eventType')
+    event_start_time = await event_info('startAt')
+    event_end_time = await event_info('aggregateAt')
+    event_banner_name = await event_info('assetbundleName')
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
         
-    event_bonus_attribute = 'Cute'#await event_info('cardAttr')
+    event_bonus_attribute = await event_info('cardAttr')
     
     characters_id_list = []
     for thing in event_api:

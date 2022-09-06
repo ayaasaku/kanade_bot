@@ -5,7 +5,7 @@ import traceback
 import aiohttp
 
 from discord import (Game, HTTPException, Intents, Interaction, Message,
-                     Status, app_commands, ActivityType, activity, CustomActivity, Activity, BaseActivity)
+                     Status, app_commands, ActivityType, activity, CustomActivity, Activity, BaseActivity, )
 from discord.ext import commands
 from dotenv import load_dotenv
 

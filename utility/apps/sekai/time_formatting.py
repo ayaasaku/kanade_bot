@@ -1,7 +1,4 @@
 # Format time in Dd Hh Mm Ss format
-from sys import intern
-
-
 async def format_time(seconds: int):
     days = int(seconds // 86400)
     hours = int(seconds // 3600 % 24)
@@ -31,12 +28,4 @@ async def format_progress(end_time, start_time, current_time):
     event_prog = round((((event_length - time_left) / event_length) * 100), 2)
     return f"{event_prog}%"
 
-async def is_event_active(event_id):
-    import time
-    from utility.apps.sekai.event_info import get_event_end_time
-    current_time = time.time() * 1000
-    event_end_time = await get_event_end_time(event_id)
-    if current_time > event_end_time:
-        return False
-    else:
-        return True
+

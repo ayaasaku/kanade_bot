@@ -1,10 +1,6 @@
+import time, discord
+from discord import app_commands
 from discord.ext import commands
-from tabulate import tabulate
-from datetime import datetime, timedelta
-from pytz import timezone
-import time, re, discord
-from discord import (ButtonStyle, Embed, Emoji, Interaction, Member,
-                     SelectOption, app_commands)
 from discord.app_commands import Choice
 
 from utility.utils import defaultEmbed
@@ -29,19 +25,22 @@ class EventCog(commands.Cog, name='event'):
                 event_info = await get_event_info_jp(self.bot.session)
             elif option == 1:
                 event_info = await get_event_info_tw(self.bot.session)
-            event_id_jp = event_info['event_id']
+            event_id = event_info['event_id']
             event_end_time = event_info['event_end_time'] / 1000
             current_time = time.time()
             if current_time > event_end_time:
                 await interaction.send("There's no active event!")
             else:
-                event_end_date = await format_date_jp(event_end_time * 1000)
+                if option == 0:
+                    event_end_date = await format_date_jp(event_end_time * 1000)
+                elif option == 1:
+                    event_end_date = await format_date(event_end_time * 1000)    
                 event_name = event_info['event_name']
                 event_start_time = event_info['event_start_time']
                 event_banner_name = event_info['event_banner_name']
                 logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
                 banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-                event_url = f'https://sekai.best/event/{event_id_jp}'
+                event_url = f'https://sekai.best/event/{event_id}'
                 time_left = await format_time(event_end_time - current_time)
                 event_prog = await format_progress(event_end_time, (event_start_time / 1000), current_time)
                 embed = defaultEmbed(title=f'**{event_name}**')
@@ -70,8 +69,12 @@ class EventCog(commands.Cog, name='event'):
             event_type = event_info['event_type']
             event_banner_name = event_info['event_banner_name']
             event_bonus_attribute = event_info['event_bonus_attribute']
-            event_start_time = await format_date_jp(event_info['event_start_time'])
-            event_end_time = await format_date_jp(event_info['event_end_time'])
+            if option == 0:
+                event_start_time = await format_date_jp(event_info['event_start_time'])
+                event_end_time = await format_date_jp(event_info['event_end_time'])
+            elif option == 1:
+                event_start_time = await format_date(event_info['event_start_time'])
+                event_end_time = await format_date(event_info['event_end_time'])
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
             event_url = f'https://sekai.best/event/{event_id_jp}'

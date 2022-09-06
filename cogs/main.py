@@ -115,7 +115,7 @@ class MainCog(commands.Cog, name='main'):
         #guilds = []
         #for guild in discord.utils.get(self.bot.guilds):
             #guilds.append(guild)     
-        await i.response.send_message(discord.utils.get(self.bot.guilds)
+        await i.response.send_message(discord.utils.get(self.bot.guilds))
         
     @app_commands.command(name='hug', description='給某人一個擁抱')
     @app_commands.rename(member='某人')

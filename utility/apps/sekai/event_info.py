@@ -76,7 +76,7 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
         
-    event_bonus_attribute = await event_info('cardAttr')
+    event_bonus_attribute = 'attribute'#await event_info('cardAttr')
     
     characters_id_list = []
     for thing in event_api:

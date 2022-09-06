@@ -17,7 +17,7 @@ body {
   
   header {
     margin-bottom: 64px;
-    padding: 32px 0;
+    padding: 32px 0px;
     background-color: #3B7197;
     border-bottom: 4px solid #4A8DB7;
     color: #A1E1FA;
@@ -54,4 +54,14 @@ body {
   p {
     font-size: 18px;
     font-weight: 300;
+  }
+
+  .img {
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .img #logo{
+    width: 10%;
+    height: 11%;
   }

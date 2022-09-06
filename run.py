@@ -40,7 +40,9 @@ class KanadeBot(commands.Bot):
     async def on_ready(self):
         await self.changes_presence(
             status=Status.online,
-            activity=Activity(type=ActivityType.listening, name=f'カナデトモスソ')      
+            activity=Activity,
+            type=ActivityType.listening, 
+            name=f'カナデトモスソ'  
             )
         print(f'Logged in as {self.user}')
 

@@ -111,7 +111,7 @@ class MainCog(commands.Cog, name='main'):
 
     @app_commands.command(name='guilds', description='guilds')
     @app_commands.checks.has_role('小雪團隊')
-    async def guilds(self, i: discord.Interaction, guild_name):
+    async def guilds(self, i: discord.Interaction, guild_name: str):
         guild = discord.utils.get(self.bot.guilds, name=guild_name)
         if guild is None:
             await i.response.send_message("I don't recognize that guild.")

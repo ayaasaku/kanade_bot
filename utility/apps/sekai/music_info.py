@@ -51,6 +51,7 @@ async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSessio
                 expert_level, expert_note_count, 
                 master_level, master_note_count
                 ]
+            
             return music_difficulty_info
 
 # tags

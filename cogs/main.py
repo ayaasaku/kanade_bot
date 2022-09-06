@@ -116,7 +116,7 @@ class MainCog(commands.Cog, name='main'):
         if guild is None:
             await i.response.send_message("I don't recognize that guild.")
             return
-        await discord.Guild.leave(name=guild_name)
+        await guild.leave()
         await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
         
     @app_commands.command(name='hug', description='給某人一個擁抱')

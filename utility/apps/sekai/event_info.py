@@ -69,7 +69,7 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
           
     event_id = 65 #await event_info('id')
     event_name = 'name'#await event_info('name')
-    event_type = 'type'#await event_info('eventType')
+    event_type = 'Marathon'#await event_info('eventType')
     event_start_time = 1000 #await event_info('startAt')
     event_end_time = 10000 #await event_info('aggregateAt')
     event_banner_name = 'banner'#await event_info('assetbundleName')

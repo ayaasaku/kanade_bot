@@ -70,8 +70,8 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
     event_id = 'id'#await event_info('id')
     event_name = 'name'#await event_info('name')
     event_type = 'type'#await event_info('eventType')
-    event_start_time = '1000'#await event_info('startAt')
-    event_end_time = '10000'#await event_info('aggregateAt')
+    event_start_time = 1000 #await event_info('startAt')
+    event_end_time = 10000 #await event_info('aggregateAt')
     event_banner_name = 'banner'#await event_info('assetbundleName')
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 

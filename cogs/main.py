@@ -4,7 +4,7 @@ from random import randint
 
 import discord
 from data.user_data import morning, special
-from discord import app_commands, Member
+from discord import app_commands, Member, BotIntegration, Guild, utils
 from discord.ext import commands
 from utility.utils import defaultEmbed
 from data.version import version
@@ -108,6 +108,14 @@ class MainCog(commands.Cog, name='main'):
     async def say(self, i: discord.Interaction, message: str):
         await i.response.send_message('成功', ephemeral=True)
         await i.channel.send(message)
+
+    @app_commands.command(name='guilds', description='guilds')
+    @app_commands.checks.has_role('小雪團隊')
+    async def guilds(self, i: discord.Interaction):
+        guilds = []
+        for guild in await discord.utils.get(self.bot.guilds):
+            guilds.append(guild)     
+        await i.response.send_message(guilds)
         
     @app_commands.command(name='hug', description='給某人一個擁抱')
     @app_commands.rename(member='某人')
@@ -168,7 +176,7 @@ class MainCog(commands.Cog, name='main'):
             if receive_hug == None: receive_hug = 0
             embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
             await interaction.response.send_message(embed=embed)
-
-
+            
+            
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

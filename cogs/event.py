@@ -59,12 +59,12 @@ class EventCog(commands.Cog, name='event'):
         Choice(name='tw', value=1)])             
     async def event(self, interaction: discord.Interaction, option: int):      
         #jp
-            global event_id_jp
+            global event_id
             if option == 0:
                 event_info = await get_event_info_jp(self.bot.session)
             elif option == 1:
                 event_info = await get_event_info_tw(self.bot.session)
-            event_id_jp = event_info['event_id']
+            event_id = event_info['event_id']
             event_name = event_info['event_name']
             event_type = event_info['event_type']
             event_banner_name = event_info['event_banner_name']
@@ -77,7 +77,7 @@ class EventCog(commands.Cog, name='event'):
                 event_end_time = await format_date(event_info['event_end_time'])
             logo_url = f"https://minio.dnaroma.eu/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
             banner_url = f"https://minio.dnaroma.eu/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            event_url = f'https://sekai.best/event/{event_id_jp}'
+            event_url = f'https://sekai.best/event/{event_id}'
             event_attribute_translated = translate['attributes'][str(event_bonus_attribute)]
             attribute_emoji = attributes[str(event_bonus_attribute)]
             event_type_translated = translate['event_type'][str(event_type)]

@@ -67,7 +67,7 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
         if current_time * 1000 > event_start_time and current_time < event_end_time :
             event_id = thing['id']      
           
-    event_id = 65 #await event_info('id')
+    #event_id = 65 #await event_info('id')
     event_name = 'name'#await event_info('name')
     event_type = 'Marathon'#await event_info('eventType')
     event_start_time = 1000 #await event_info('startAt')

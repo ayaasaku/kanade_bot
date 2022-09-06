@@ -113,7 +113,7 @@ class MainCog(commands.Cog, name='main'):
     @app_commands.checks.has_role('小雪團隊')
     async def guilds(self, i: discord.Interaction):
         guilds = []
-        for guild in await discord.utils.get(self.bot.guilds):
+        for guild in discord.utils.get(self.bot.guilds):
             guilds.append(guild)     
         await i.response.send_message(guilds)
         

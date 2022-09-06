@@ -111,11 +111,13 @@ class MainCog(commands.Cog, name='main'):
 
     @app_commands.command(name='guilds', description='guilds')
     @app_commands.checks.has_role('小雪團隊')
-    async def guilds(self, i: discord.Interaction):
-        #guilds = []
-        #for guild in discord.utils.get(self.bot.guilds):
-            #guilds.append(guild)     
-        await i.response.send_message(discord.utils.get(self.bot.guilds[1]))
+    async def guilds(self, i: discord.Interaction, guild_name):
+        guild = discord.utils.get(self.bot.guilds, name=guild_name)
+        if guild is None:
+            await i.response.send_message("I don't recognize that guild.")
+            return
+        await self.bot.leave_guild(guild)
+        await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
         
     @app_commands.command(name='hug', description='給某人一個擁抱')
     @app_commands.rename(member='某人')

@@ -109,7 +109,7 @@ class MainCog(commands.Cog, name='main'):
         await i.response.send_message('成功', ephemeral=True)
         await i.channel.send(message)
 
-    @app_commands.command(name='guilds', description='guilds')
+    @app_commands.command(name='leave-guild', description='leave-a-guild')
     @app_commands.checks.has_role('小雪團隊')
     async def guilds(self, i: discord.Interaction, guild_name: str):
         guild = discord.utils.get(self.bot.guilds, name=guild_name)

@@ -69,14 +69,11 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
     
     event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
     
-    for thing in event_api:
-        if event_id == thing['id']:         
-            event_bonus_attribute = thing['cardAttr']
-    
     characters_id_list = []
     for thing in event_api:
         if event_id == thing['eventId']:
             character_id = thing.get('gameCharacterUnitId')
+            event_bonus_attribute = thing.get('cardAttr')
             characters_id_list.append(character_id)
     if None in characters_id_list:
         characters_id_list.remove(None)

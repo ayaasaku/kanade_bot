@@ -49,3 +49,13 @@ async def get_sekai_characters_info_api(session: aiohttp.ClientSession):
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
         
+async def get_sekai_cards_info_api(session: aiohttp.ClientSession):
+        api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/main/cards.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+        
+async def get_sekai_user_api(user_id: int, session: aiohttp.ClientSession):
+        api = f'https://api.pjsekai.moe/api/user/{user_id}/profile'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')    
+        

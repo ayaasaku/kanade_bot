@@ -44,7 +44,7 @@ async def get_user_profile_pic(import_id: int, char_id: int, session: aiohttp.Cl
     api = await get_sekai_cards_info_api(session)
     for char in api:
         if char['id'] == char_id:
-            asset_bundle_name = char['assetBundleName']
+            asset_bundle_name = char.get('assetbundleName')
             
     status_convert = {
         'original': 'normal',

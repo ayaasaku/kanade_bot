@@ -11,13 +11,19 @@ from utility.utils import defaultEmbed
 async def user_profile(import_id: int, session: aiohttp.ClientSession):
     user_id = 244775114281091084 
     if user_id == await get_user_game_data(import_id, 'userId', session):
-        name = await get_user_game_data(import_id, 'name', session)
+        #name = await get_user_game_data(import_id, 'name', session)
         id = user_id
-        rank = await get_user_game_data(import_id, 'rank', session)
-        word = await get_user_profile(import_id, 'word', session)
-        twitter_id = await get_user_profile(import_id, 'twitterId', session) 
-        leader_id = await get_user_decks(import_id, 'leader', session)
-        img_url = await get_user_profile_pic(import_id, leader_id, session)       
+        #rank = await get_user_game_data(import_id, 'rank', session)
+        #word = await get_user_profile(import_id, 'word', session)
+        #twitter_id = await get_user_profile(import_id, 'twitterId', session) 
+        #leader_id = await get_user_decks(import_id, 'leader', session)
+        #img_url = await get_user_profile_pic(import_id, leader_id, session)       
+        
+        name = 'ayaakaa'
+        rank = 27
+        word = 'hi'
+        twitter_id = 123
+        img_url = 'https://asset.pjsekai.moe/startapp/thumbnail/chara/res017_no012_after_training.png'
         
         if word == None or len(word) < 1: word = 'none'
         

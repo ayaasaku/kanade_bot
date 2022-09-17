@@ -15,7 +15,7 @@ class ProfileCog(commands.Cog, name='profile'):
     async def profile(self, interaction: discord.Interaction):#, user_id: int): 
         interaction.response.defer
         user_id = 244775114281091084 
-        message = await user_profile(user_id, self.bot.session)
+        message = 123 #await user_profile(user_id, self.bot.session)
         await interaction.followup.send(str(message))
         
 async def setup(bot: commands.Bot) -> None:

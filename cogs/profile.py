@@ -39,7 +39,6 @@ class ProfileCog(commands.Cog, name='profile'):
             interaction.response.defer()
             asyncio.sleep(0.1)
             interaction.followup.send(embed=embed)
-            await interaction.response.send_message(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(ProfileCog(bot))

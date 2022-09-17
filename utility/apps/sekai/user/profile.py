@@ -18,13 +18,12 @@ async def user_profile(import_id: int, session: aiohttp.ClientSession):
         twitter_id = await get_user_profile(import_id, 'twitterId', session) 
         leader_id = await get_user_decks(import_id, 'leader', session)
         img_url = await get_user_profile_pic(import_id, leader_id, session)       
-    
-        rank = 123
+
         if word == None or len(word) < 1: word = 'none'
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
-        embed.add_field(name=f'等級：', value=27, inline=False)
+        embed.add_field(name=f'等級：', value=rank, inline=False)
         #if twitter_id != None or len(twitter_id) >= 1: 
             #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
         #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)

@@ -18,10 +18,11 @@ async def get_user_profile(import_id: int, session: aiohttp.ClientSession):
         leader_id = await get_user_decks(import_id, 'leader', session)
         img_url = await get_user_profile_pic(import_id, leader_id, session)       
         
+        if word == None: word = '404Error'
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
         embed.add_field(name=f'等級：', value=f'{rank}', inline=False)
-        embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
+        if twitter_id != None: embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
         embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
         
         return embed

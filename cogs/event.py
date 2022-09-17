@@ -104,16 +104,6 @@ class EventCog(commands.Cog, name='event'):
             #embed.add_field(name='\u200b', value='**時間**', inline=False)
             embed.add_field(name='更多資訊', value=event_url, inline=False)
             await interaction.response.send_message(embed=embed)
-            
-    @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
-    #@app_commands.rename(user_id='玩家id')           
-    async def profile(self, interaction: discord.Interaction):#, user_id: int): 
-        interaction.response.defer()
-        user_id = 244775114281091084
-        embed = await user_profile(user_id, self.bot.session)
-        #asyncio.sleep(0.01)
-        #interaction.response.send_message(embed=embed)
-        interaction.followup.send(embed=embed)
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(EventCog(bot))

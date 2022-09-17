@@ -16,7 +16,7 @@ class ProfileCog(commands.Cog, name='profile'):
         interaction.response.defer
         user_id = 244775114281091084 
         message = '123' #await user_profile(user_id, self.bot.session)
-        await interaction.followup.send(message)
+        await interaction.followup.send('abc')
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(ProfileCog(bot))

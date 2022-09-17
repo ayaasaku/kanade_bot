@@ -14,6 +14,7 @@ class ProfileCog(commands.Cog, name='profile'):
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     #@app_commands.rename(user_id='玩家id')           
     async def profile(self, interaction: discord.Interaction):#, user_id: int): 
+        interaction.response.defer()
         user_id = 244775114281091084 
         if user_id == await get_user_game_data(user_id, 'userId', self.bot.session):
             name = await get_user_game_data(user_id, 'name', self.bot.session)
@@ -36,8 +37,8 @@ class ProfileCog(commands.Cog, name='profile'):
             #if twitter_id != None or len(twitter_id) >= 1: 
                 #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
             #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
-            interaction.response.defer()
-            asyncio.sleep(0.1)
+             
+            #asyncio.sleep(0.1)
             interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:

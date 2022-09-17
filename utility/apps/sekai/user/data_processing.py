@@ -5,7 +5,7 @@ from utility.apps.sekai.api_functions import (get_sekai_user_api, get_sekai_card
 #json
 async def get_user_game_data(import_id: int, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
-    path_list = ['userid', 'name', 'deck', 'rank']
+    path_list = ['userId', 'name', 'deck', 'rank']
     if path in path_list:
         result = api['user']['userGamedata'][path]
         return result    
@@ -14,7 +14,7 @@ async def get_user_game_data(import_id: int, path: str, session: aiohttp.ClientS
 
 async def get_user_profile(import_id: int, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
-    path_list = ['userid', 'word', 'twitterId', 'profileImageType']
+    path_list = ['userId', 'word', 'twitterId', 'profileImageType']
     if path in path_list:
         result = api['userProfile'][path]
         return result    

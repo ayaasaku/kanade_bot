@@ -36,7 +36,7 @@ class ProfileCog(commands.Cog, name='profile'):
                 #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
             #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
             interaction.response.defer()
-            asyncio.sleep()
+            asyncio.sleep(0.1)
             interaction.followup.send(embed=embed)
             await interaction.response.send_message(embed=embed)
         

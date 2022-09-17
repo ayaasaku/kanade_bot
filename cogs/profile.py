@@ -1,4 +1,4 @@
-import time, discord
+import time, discord, asyncio
 from discord import app_commands, Interaction
 from discord.ext import commands
 from discord.app_commands import Choice
@@ -35,7 +35,9 @@ class ProfileCog(commands.Cog, name='profile'):
             #if twitter_id != None or len(twitter_id) >= 1: 
                 #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
             #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
-            
+            interaction.response.defer()
+            asyncio.sleep()
+            interaction.followup.send(embed=embed)
             await interaction.response.send_message(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:

@@ -30,7 +30,7 @@ class ProfileCog(commands.Cog, name='profile'):
             twitter_id = ''
             
             embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
-            embed.set_thumbnail(url=img_url)
+            #embed.set_thumbnail(url=img_url)
             #embed.add_field(name=f'等級：', value=f'{rank}', inline=False)
             #if twitter_id != None or len(twitter_id) >= 1: 
                 #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)

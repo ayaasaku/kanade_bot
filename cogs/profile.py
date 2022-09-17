@@ -23,11 +23,12 @@ class ProfileCog(commands.Cog, name='profile'):
             twitter_id = await get_user_profile(user_id, 'twitterId', self.bot.session) 
             leader_id = await get_user_decks(user_id, 'leader', self.bot.session)
             img_url = await get_user_profile_pic(user_id, leader_id, self.bot.session)       
-        
+
             embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
             embed.set_thumbnail(url=img_url)
             embed.add_field(name=f'等級：', value=f'{rank}', inline=False)
-            if twitter_id != None: embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
+            if twitter_id != None or len(twitter_id) >= 1: 
+                embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
             embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
             
             await interaction.response.send_message(embed=embed)

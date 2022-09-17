@@ -24,9 +24,9 @@ async def user_profile(import_id: int, session: aiohttp.ClientSession):
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
         embed.add_field(name=f'等級：', value=rank, inline=False)
-        #if twitter_id != None or len(twitter_id) >= 1: 
-            #embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
-        #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
+        if twitter_id == None or len(str(twitter_id)) < 1: twitter_id = 'none'
+        embed.add_field(name=f'Twitter：', value=f'{twitter_id}', inline=False)
+        embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
 
         return embed
     

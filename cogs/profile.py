@@ -35,7 +35,6 @@ class ProfileCog(commands.Cog, name='profile'):
         #return embed
         
         message = [name, id, rank, word, twitter_id, img_url]
-        message = await user_profile(user_id, self.bot.session)
         await interaction.response.send_message(message)
         
 async def setup(bot: commands.Bot) -> None:

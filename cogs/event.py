@@ -110,7 +110,7 @@ class EventCog(commands.Cog, name='event'):
     async def profile(self, interaction: discord.Interaction):#, user_id: int): 
         #interaction.response.defer()
         user_id = 244775114281091084
-        embed = await get_user_profile(user_id, self.bot.session)
+        embed = await user_profile(user_id, self.bot.session)
         #asyncio.sleep(0.01)
         interaction.response.send_message(embed=embed)
         #interaction.followup.send(embed=embed)

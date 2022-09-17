@@ -16,6 +16,7 @@ class ProfileCog(commands.Cog, name='profile'):
     async def profile(self, interaction: discord.Interaction):#, user_id: int): 
         #interaction.response.defer()
         user_id = 244775114281091084 
+        '''
         if user_id == await get_user_game_data(user_id, 'userId', self.bot.session):
             name = await get_user_game_data(user_id, 'name', self.bot.session)
             id = user_id
@@ -29,9 +30,10 @@ class ProfileCog(commands.Cog, name='profile'):
             rank = 27
             word = 'hi'
             twitter_id = ''
+        '''
             
             #embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
-            embed = defaultEmbed(title=f'**title**', description=f'「description」')
+        embed = defaultEmbed(title=f'**title**', description=f'「description」')
             #embed.set_thumbnail(url=img_url)
             #embed.add_field(name=f'等級：', value=f'{rank}', inline=False)
             #if twitter_id != None or len(twitter_id) >= 1: 
@@ -39,7 +41,7 @@ class ProfileCog(commands.Cog, name='profile'):
             #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
              
             #asyncio.sleep(0.1)
-            interaction.response.send_message(embed=embed)
+        interaction.response.send_message(embed=embed)
             #interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:

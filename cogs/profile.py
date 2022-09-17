@@ -39,7 +39,8 @@ class ProfileCog(commands.Cog, name='profile'):
             #embed.add_field(name=f'Id：', value=f'`{id}`', inline=False)
              
             #asyncio.sleep(0.1)
-            interaction.followup.send(embed=embed)
+            interaction.response.send_message(embed=embed)
+            #interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(ProfileCog(bot))

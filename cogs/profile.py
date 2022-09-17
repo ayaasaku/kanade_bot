@@ -16,7 +16,7 @@ class ProfileCog(commands.Cog, name='profile'):
         await interaction.response.defer()
         user_id = 244775114281091084
         embed = await user_profile(user_id, self.bot.session)
-        interaction.followup.send(embed=embed)
+        await interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(ProfileCog(bot))

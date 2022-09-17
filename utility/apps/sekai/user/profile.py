@@ -26,7 +26,4 @@ async def get_user_profile(import_id: int, session: aiohttp.ClientSession):
         
         return embed
     
-    else:
-        return 'API Error'
-    
     

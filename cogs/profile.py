@@ -12,9 +12,9 @@ class ProfileCog(commands.Cog, name='profile'):
         self.bot = bot
         
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
-    async def profile(self, interaction: discord.Interaction):
+    @app_commands.rename(user_id='ID')
+    async def profile(self, interaction: discord.Interaction, user_id: int = 244775114281091084):
         await interaction.response.defer()
-        user_id = 244775114281091084
         embed = await user_profile(user_id, self.bot.session)
         await interaction.followup.send(embed=embed)
         

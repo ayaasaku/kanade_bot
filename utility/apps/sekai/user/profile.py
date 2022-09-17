@@ -9,10 +9,9 @@ from utility.apps.sekai.user.data_processing import (get_user_game_data, get_use
 from utility.utils import defaultEmbed
 
 async def user_profile(import_id: int, session: aiohttp.ClientSession):
-    user_id = 244775114281091084 
-    if user_id == await get_user_game_data(import_id, 'userId', session):
+    if import_id == await get_user_game_data(import_id, 'userId', session):
         name = await get_user_game_data(import_id, 'name', session)
-        id = user_id
+        id = import_id
         rank = await get_user_game_data(import_id, 'rank', session)
         word = await get_user_profile(import_id, 'word', session)
         leader_id = await get_user_decks(import_id, 'leader', session)

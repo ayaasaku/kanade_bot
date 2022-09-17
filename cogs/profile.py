@@ -24,6 +24,11 @@ class ProfileCog(commands.Cog, name='profile'):
             leader_id = await get_user_decks(user_id, 'leader', self.bot.session)
             img_url = await get_user_profile_pic(user_id, leader_id, self.bot.session)       
 
+            name = 'ayaakaa'
+            rank = 27
+            word = 'hi'
+            twitter_id = ''
+            
             embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
             embed.set_thumbnail(url=img_url)
             embed.add_field(name=f'等級：', value=f'{rank}', inline=False)

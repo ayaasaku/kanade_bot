@@ -8,7 +8,7 @@ import aiohttp
 from utility.apps.sekai.user.data_processing import (get_user_game_data, get_user_profile, get_user_decks, get_user_profile_pic)
 from utility.utils import defaultEmbed
 
-async def get_user_profile(import_id: int, session: aiohttp.ClientSession):
+async def user_profile(import_id: int, session: aiohttp.ClientSession):
     if import_id == await get_user_game_data(import_id, 'userId', session):
         name = await get_user_game_data(import_id, 'name', session)
         id = import_id

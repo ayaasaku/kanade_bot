@@ -19,6 +19,8 @@ async def user_profile(import_id: int, session: aiohttp.ClientSession):
         leader_id = await get_user_decks(import_id, 'leader', session)
         img_url = await get_user_profile_pic(import_id, leader_id, session)       
         
+        if word == None or len(word) < 1: word = 'none'
+        
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
         embed.add_field(name=f'等級：', value=f'{rank}', inline=False)

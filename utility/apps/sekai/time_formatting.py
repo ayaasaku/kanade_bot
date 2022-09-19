@@ -24,10 +24,11 @@ async def format_date(seconds: int):
 
 async def format_creation_date(seconds: int):
     from datetime import datetime, timedelta
-    date = datetime.fromtimestamp(seconds / 1000)
+    datetime.fromtimestamp(seconds)
     date = date-timedelta(hours=-1)
-    date = date.strftime("%Y-%m-%d %H:%M:%S")
+    date = date.strftime("%A, %B %d, %Y %I:%M:%S")
     return date
+    
 
 async def format_progress(end_time, start_time, current_time):
     event_length = end_time - start_time

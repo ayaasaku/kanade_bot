@@ -18,13 +18,15 @@ async def user_profile(import_id: int, session: aiohttp.ClientSession):
         leader_id = await get_user_decks(import_id, 'leader', session)
         img_url = await get_user_profile_pic(import_id, leader_id, session)       
         if word == None or len(word) < 1: word = 'none'
-        creation_date = await format_date_jp (1600218000000 + user_id / 2 ** 22 / 3600)
+        seconds = int((1600218000000 + 204005752729755662 / 2 ** 22) + 25200000)
+        creation_date = await format_date_jp (seconds)
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
-
+        
         return embed
-    	
+    1648856761694.373
+    1648856761000

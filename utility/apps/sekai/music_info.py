@@ -89,15 +89,15 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
             embed.add_field(name='編曲', value = f'{info[3]} \n\u200b', inline=True)
             embed.add_field(name='發佈時間', value= f'{info[4]}', inline=False)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
-            embed.add_field(name=f'{easy}',
+            embed.add_field(name=f'Easy',
                             value=f'等級：{difficulty[0]}\n音符數量：{difficulty[1]}', inline=True)
-            embed.add_field(name=f'{normal}Normal',
+            embed.add_field(name=f'Normal',
                             value=f'等級：{difficulty[2]}\n音符數量：{difficulty[3]}', inline=True)
-            embed.add_field(name=f'{hard}Hard',
+            embed.add_field(name=f'Hard',
                             value=f'等級：{difficulty[4]}\n音符數量：{difficulty[5]}', inline=True)
-            embed.add_field(name=f'{expert}Expert',
+            embed.add_field(name=f'Expert',
                             value=f'等級：{difficulty[6]}\n音符數量：{difficulty[7]}', inline=True)
-            embed.add_field(name=f'{master}Master',
+            embed.add_field(name=f'Master',
                             value=f'等級：{difficulty[8]}\n音符數量：{difficulty[9]}\n\u200b', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False) 

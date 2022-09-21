@@ -22,12 +22,12 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info') 
     
     async def song(self, interaction: discord.Interaction): 
-        select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー'), 
-                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。'), 
-                    SelectOption(label='Leo/need', description='Leo/need'), 
-                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！'), 
-                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD'), 
-                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム')
+        select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー' ), 
+                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji='<:icon_story_25:1022019512834478180>'), 
+                    SelectOption(label='Leo/need', description='Leo/need', emoji='<:icon_story_leoneed:1022019515380416532> '), 
+                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', emoji='<:icon_story_mmj:1022019517842468915> '), 
+                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', emoji='<:icon_story_vbs:1022019519776034846>'), 
+                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', emoji='<:icon_story_ws:1022019521797705748>')
                     ])
         
         async def loading_embed(group: str, group_id: str):

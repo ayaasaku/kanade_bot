@@ -22,7 +22,7 @@ class SongCog(commands.Cog, name='song'):
     @app_commands.command(name='songs', description='get songs info') 
     
     async def song(self, interaction: discord.Interaction): 
-        select = Select(placeholder='選擇歌曲分類', options = [SelectOption(label='虛擬歌手', description='バーチャル・シンガー' ), 
+        select = Select(placeholder='選擇歌曲分類', options = [
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji='<:icon_story_25:1022019512834478180>'), 
                     SelectOption(label='Leo/need', description='Leo/need', emoji='<:icon_story_leoneed:1022019515380416532> '), 
                     SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', emoji='<:icon_story_mmj:1022019517842468915> '), 
@@ -39,11 +39,6 @@ class SongCog(commands.Cog, name='song'):
         
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
-            if select.values[0] == '虛擬歌手':
-                embed = await loading_embed('虛擬歌手', 'vocaloid')
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                embeds = await get_group_music('vocaloid', self.bot.session)
-                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == '25點，Nightcord見。':
                 embed = await loading_embed(group = '25點，Nightcord見。', group_id = 'school_refusal')
                 await interaction.followup.send(embed=embed, ephemeral=True)

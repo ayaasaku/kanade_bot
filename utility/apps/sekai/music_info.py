@@ -6,7 +6,7 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_musics_api)
 from utility.utils import defaultEmbed
 from utility.apps.sekai.time_formatting import format_date_jp
-from data.emoji_data import attributes, difficulty
+from data.emoji_data import attributes, difficulty_emoji
 
 #music_info
 async def get_music_info(music_id: int, session: aiohttp.ClientSession):
@@ -63,11 +63,11 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
         if thing['musicTag'] == f'{group}':
             music_id = thing['musicId']
             
-            easy = difficulty['easy']
-            normal = difficulty['normal']
-            hard = difficulty['hard']
-            expert = difficulty['expert']
-            master = difficulty['master']
+            easy = difficulty_emoji['easy']
+            normal = difficulty_emoji['normal']
+            hard = difficulty_emoji['hard']
+            expert = difficulty_emoji['expert']
+            master = difficulty_emoji['master']
 
             info = await get_music_info(music_id, session)
             difficulty = await get_music_difficulty_info(music_id, session)

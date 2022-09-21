@@ -35,8 +35,7 @@ class SongCog(commands.Cog, name='song'):
             embed = defaultEmbed(title = f'**正在獲取{group}的歌曲資料...**',
                              description = f'獲取資料需時，請耐心等候')
             embed.set_thumbnail(url = group_icon[group_id])
-            return embed
-                          
+            return embed                
         
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
@@ -71,7 +70,5 @@ class SongCog(commands.Cog, name='song'):
         view.add_item(select)
         await interaction.response.send_message(view=view) 
               
-        
-    
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SongCog(bot))

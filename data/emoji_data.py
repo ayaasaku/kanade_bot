@@ -59,8 +59,8 @@ group_icon_square = {
     'theme_park': '<:icon_story_ws:1022019521797705748>'
 }
 
-difficulty = {
-   'easy': '<:btn_difficulty_easy:1022022816968757269>',
+difficulty_emoji = {
+    'easy': '<:btn_difficulty_easy:1022022816968757269>',
     'normal': '<:btn_difficulty_normal:1022022824635944980>',
     'hard': '<:btn_difficulty_hard:1022022820739428433>',
     'expert': '<:btn_difficulty_expert:1022022818801668106>',

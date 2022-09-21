@@ -23,6 +23,7 @@ async def user_profile(import_id: int, session: aiohttp.ClientSession):
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=img_url)
+        embed.set_image(url='https://gitlab.com/pjsekai/sprites/-/blob/master/img_story_daremoinai.png')
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)

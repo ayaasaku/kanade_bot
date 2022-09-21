@@ -4,6 +4,7 @@ from random import randint
 
 import discord
 from data.user_data import morning, special
+from data.emoji_data import *
 from discord import app_commands
 from discord.ext import commands
 from utility.utils import updateEmbed
@@ -34,6 +35,8 @@ class OthersCog(commands.Cog, name='others'):
         if len(cmd_3) >= 1:
             embed.add_field(name=cmd_3, value=f'{cmd_3_des_ln_1}\n{cmd_3_des_ln_2}', inline=False)
         await interaction.response.send_message(embed=embed)
-        
+
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(OthersCog(bot))
+    
+    

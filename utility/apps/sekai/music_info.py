@@ -89,7 +89,7 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
             embed.add_field(name='編曲', value = f'{info[3]} \n\u200b', inline=True)
             embed.add_field(name='發佈時間', value= f'{info[4]}', inline=False)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
-            embed.add_field(name=f'{easy}Easy',
+            embed.add_field(name=f'{easy}',
                             value=f'等級：{difficulty[0]}\n音符數量：{difficulty[1]}', inline=True)
             embed.add_field(name=f'{normal}Normal',
                             value=f'等級：{difficulty[2]}\n音符數量：{difficulty[3]}', inline=True)

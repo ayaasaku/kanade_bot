@@ -13,6 +13,7 @@ from utility.utils import defaultEmbed
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.music_info import get_group_music
 from data.img_data import group_icon
+from data.emoji_data import group_icon_square
 
 class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):
@@ -23,11 +24,11 @@ class SongCog(commands.Cog, name='song'):
     
     async def song(self, interaction: discord.Interaction): 
         select = Select(placeholder='選擇歌曲分類', options = [
-                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji='<:icon_story_25:1022019512834478180>'), 
-                    SelectOption(label='Leo/need', description='Leo/need', emoji='<:icon_story_leoneed:1022019515380416532> '), 
-                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', emoji='<:icon_story_mmj:1022019517842468915> '), 
-                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', emoji='<:icon_story_vbs:1022019519776034846>'), 
-                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', emoji='<:icon_story_ws:1022019521797705748>')
+                    SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji= group_icon_square['school_refusal']), 
+                    SelectOption(label='Leo/need', description='Leo/need', emoji= group_icon_square['light_music_club']), 
+                    SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', emoji= group_icon_square['idol']), 
+                    SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', emoji= group_icon_square['street']), 
+                    SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', emoji= group_icon_square['theme_park'])
                     ])
         
         async def loading_embed(group: str, group_id: str):

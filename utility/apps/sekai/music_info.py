@@ -6,6 +6,7 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_musics_api)
 from utility.utils import defaultEmbed
 from utility.apps.sekai.time_formatting import format_date_jp
+from data.emoji_data import attributes, difficulty
 
 #music_info
 async def get_music_info(music_id: int, session: aiohttp.ClientSession):
@@ -61,6 +62,12 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
     for thing in music_api:
         if thing['musicTag'] == f'{group}':
             music_id = thing['musicId']
+            
+            easy = difficulty['easy']
+            normal = difficulty['normal']
+            hard = difficulty['hard']
+            expert = difficulty['expert']
+            master = difficulty['master']
 
             info = await get_music_info(music_id, session)
             difficulty = await get_music_difficulty_info(music_id, session)
@@ -82,15 +89,15 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
             embed.add_field(name='編曲', value = f'{info[3]} \n\u200b', inline=True)
             embed.add_field(name='發佈時間', value= f'{info[4]}', inline=False)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
-            embed.add_field(name='Easy',
+            embed.add_field(name=f'{easy}Easy',
                             value=f'等級：{difficulty[0]}\n音符數量：{difficulty[1]}', inline=True)
-            embed.add_field(name='Normal',
+            embed.add_field(name=f'{normal}Normal',
                             value=f'等級：{difficulty[2]}\n音符數量：{difficulty[3]}', inline=True)
-            embed.add_field(name='Hard',
+            embed.add_field(name=f'{hard}Hard',
                             value=f'等級：{difficulty[4]}\n音符數量：{difficulty[5]}', inline=True)
-            embed.add_field(name='Expert',
+            embed.add_field(name=f'{expert}Expert',
                             value=f'等級：{difficulty[6]}\n音符數量：{difficulty[7]}', inline=True)
-            embed.add_field(name='Master',
+            embed.add_field(name=f'{master}Master',
                             value=f'等級：{difficulty[8]}\n音符數量：{difficulty[9]}\n\u200b', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False) 

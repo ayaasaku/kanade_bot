@@ -50,3 +50,19 @@ attributes = {
     'Mysterious': '<:mysterious:1001293050875760640>',
     'Pure': '<:pure:1001293053027418143>'
 }
+
+group_icon_square = {
+    'school_refusal': '<:icon_story_25:1022019512834478180>',
+    'light_music_club': '<:icon_story_leoneed:1022019515380416532>',
+    'idol': '<:icon_story_mmj:1022019517842468915>',
+    'street': '<:icon_story_vbs:1022019519776034846>',
+    'theme_park': '<:icon_story_ws:1022019521797705748>'
+}
+
+difficulty = {
+   'easy': '<:btn_difficulty_easy:1022022816968757269>',
+    'normal': '<:btn_difficulty_normal:1022022824635944980>',
+    'hard': '<:btn_difficulty_hard:1022022820739428433>',
+    'expert': '<:btn_difficulty_expert:1022022818801668106>',
+    'master': '<:btn_difficulty_master:1022022822337445900>'
+}

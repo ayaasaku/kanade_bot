@@ -52,6 +52,7 @@ async def get_user_profile_pic(import_id: int, char_id: int, session: aiohttp.Cl
     return img_url
 
 async def get_profile_img(char_id: int, session: aiohttp.ClientSession):
+    global unit
     api = await get_sekai_cards_info_api(session)
     api2 = await get_sekai_characters_info_api(session)
     for char in api:

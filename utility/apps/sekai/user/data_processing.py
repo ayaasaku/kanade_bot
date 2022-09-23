@@ -33,11 +33,11 @@ async def get_user_cards(import_id: int, index: int, path: str, session: aiohttp
         return result    
 
 #img
-async def get_user_profile_pic(import_id: int, char_id: int, session: aiohttp.ClientSession):
+async def get_user_profile_pic(import_id: int, card_id: int, session: aiohttp.ClientSession):
     api = await get_sekai_cards_info_api(session)
-    for char in api:
-        if char['id'] == char_id:
-            asset_bundle_name = char.get('assetbundleName')
+    for card in api:
+        if card['id'] == card_id:
+            asset_bundle_name = card.get('assetbundleName')
             
     status_convert = {
         'original': 'normal',
@@ -51,19 +51,18 @@ async def get_user_profile_pic(import_id: int, char_id: int, session: aiohttp.Cl
     
     return img_url
 
-async def get_profile_img(char_id: int, session: aiohttp.ClientSession):
+async def get_profile_img(card_id: int, session: aiohttp.ClientSession):
     global unit
     api = await get_sekai_cards_info_api(session)
     api2 = await get_sekai_characters_info_api(session)
-    for char in api:
-        if char['id'] == char_id:
-            support_unit = char.get('supportUnit') 
+    for card in api:
+        if card['id'] == card_id:
+            character_id = card.get('charaterId')
+            support_unit = card.get('supportUnit') 
             if support_unit == 'none': 
                 for char in api2:
-                    if char['id'] == char_id: 
+                    if char['id'] == character_id: 
                         unit = char.get('unit') 
-                    else:
-                        unit = 'error'
             else:       
                 unit = support_unit
     

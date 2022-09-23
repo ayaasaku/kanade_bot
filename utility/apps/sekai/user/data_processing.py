@@ -56,12 +56,12 @@ async def get_profile_img(card_id: int, session: aiohttp.ClientSession):
     api2 = await get_sekai_characters_info_api(session)
     for card in api:
         if card['id'] == card_id:
-            character_id = card.get('characterId')
-            support_unit = card.get('supportUnit') 
+            character_id = card['characterId']
+            support_unit = card['supportUnit'] 
             if support_unit == 'none': 
                 for char in api2:
                     if char['id'] == character_id: 
-                        unit = char.get('unit')
+                        unit = char['unit']
                     else: 
                         unit = '404 Not Found' 
             else:       

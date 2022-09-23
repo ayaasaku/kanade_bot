@@ -31,6 +31,8 @@ class KanadeBot(commands.Bot):
         )
         
     async def setup_hook(self) -> None:
+        self.repeat = False
+        self.prev = False
         self.session = aiohttp.ClientSession()
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
@@ -38,7 +40,7 @@ class KanadeBot(commands.Bot):
             await self.load_extension(f'cogs.{cog_name}')
 
     async def on_ready(self):
-        await self.changes_presence(
+        await self.change_presence(
             status=Status.online,
             activity=Activity,
             type=ActivityType.listening, 

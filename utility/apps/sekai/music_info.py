@@ -6,7 +6,7 @@ from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_musics_api)
 from utility.utils import defaultEmbed
 from utility.apps.sekai.time_formatting import format_date_jp
-from data.emoji_data import attributes, difficulty_emoji
+from data.emoji_data import difficulty_emoji
 
 #music_info
 async def get_music_info(music_id: int, session: aiohttp.ClientSession):

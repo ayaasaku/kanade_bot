@@ -6,7 +6,7 @@ from discord.app_commands import Choice
 import aiohttp
 
 from utility.apps.sekai.user.data_processing import (get_user_game_data, get_user_profile, get_user_decks, get_user_profile_pic, get_profile_img)
-from utility.apps.sekai.time_formatting import format_creation_date, format_date_jp
+from utility.apps.sekai.time_formatting import format_date_jp
 from utility.utils import defaultEmbed
 
 async def user_profile(import_id: int, session: aiohttp.ClientSession):

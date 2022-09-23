@@ -53,18 +53,19 @@ async def get_user_profile_pic(import_id: int, char_id: int, session: aiohttp.Cl
 
 async def get_profile_img(char_id: int, session: aiohttp.ClientSession):
     global unit
-    unit = None
     api = await get_sekai_cards_info_api(session)
     api2 = await get_sekai_characters_info_api(session)
     for char in api:
         if char['id'] == char_id:
             support_unit = char.get('supportUnit') 
-            if support_unit != 'none': 
-                unit = support_unit
-            else:       
+            if support_unit == 'none': 
                 for char in api2:
                     if char['id'] == char_id: 
-                        unit = char.get('unit')
+                        unit = char.get('unit') 
+                    else:
+                        unit = 'error'
+            else:       
+                unit = support_unit
     
     path_convert= {
         'light_sound': 'img_story_kyoshitsu',

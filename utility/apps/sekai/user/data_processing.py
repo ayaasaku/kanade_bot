@@ -62,8 +62,6 @@ async def get_profile_img(card_id: int, session: aiohttp.ClientSession):
                 for char in api2:
                     if char['id'] == character_id: 
                         unit = char['unit']
-                    else: 
-                        unit = '404 Not Found' 
             else:       
                 unit = support_unit
     

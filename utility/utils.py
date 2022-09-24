@@ -8,6 +8,15 @@ def defaultEmbed(title: str = '', description: str = '', url: str = ''):
     embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
     return embed
 
+def loadingEmbed(text: str, img: str, thumbnail: bool):
+            embed = defaultEmbed(title = f'**正在獲取{text}資料...**',
+                             description = f'獲取資料需時，請耐心等候')
+            if thumbnail == True:
+                embed.set_thumbnail(url = img)
+            else:
+                embed.set_image(url = img)
+            return embed     
+
 def updateEmbed(description: str = ''):
     embed = discord.Embed(title=f'**奏寶 v{version}**', description=description, color=0xBB6688)
     embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",

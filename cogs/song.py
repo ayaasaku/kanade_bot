@@ -29,14 +29,13 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='MORE MORE JUMP！', description='MORE MORE JUMP！', emoji= group_icon_square['idol']), 
                     SelectOption(label='Vivid BAD SQUAD', description='Vivid BAD SQUAD', emoji= group_icon_square['street']), 
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', emoji= group_icon_square['theme_park'])
-                    ])
-        
-        async def loading_embed(group_id: str):
-            embed = await loading_embed(text = f'{select.values[0]}的歌曲', img = group_icon[group_id], Thumbnail = True)
-            return embed                
+                    ]) 
         
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
+            async def loading_embed(group_id: str):
+                embed = await loading_embed(text = f'{select.values[0]}的歌曲', img = group_icon[group_id], Thumbnail = True)
+                return embed 
             if select.values[0] == '25點，Nightcord見。':
                 embed = await loading_embed('school_refusal')
                 await interaction.followup.send(embed=embed, ephemeral=True)

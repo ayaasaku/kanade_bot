@@ -18,7 +18,7 @@ class ProfileCog(commands.Cog, name='profile'):
         embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
         await interaction.followup.send(embed=embed)
         embed = await user_profile(user_id, self.bot.session)
-        await interaction.followup.send(embed=embed)
+        await interaction.followup.send(embed=embed, ephemeral=True)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(ProfileCog(bot))

@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import traceback
 import aiohttp
+import aiosqlite
 
 from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands, ActivityType, activity, CustomActivity, Activity, BaseActivity, )
@@ -34,6 +35,9 @@ class KanadeBot(commands.Bot):
         self.repeat = False
         self.prev = False
         self.session = aiohttp.ClientSession()
+        self.db = await aiosqlite.connect("kanade.db")
+        self.backup_db = await aiosqlite.connect("backup.db")
+        
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
             cog_name = Path(filepath).stem
@@ -97,5 +101,6 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         embed = errEmbed(message=f'```py\n{e}\n```').set_author(
             name='未知錯誤', icon_url=i.user.avatar)
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
+    
 
 bot.run(token)

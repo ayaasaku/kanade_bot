@@ -31,9 +31,9 @@ class SekaiCog(commands.Cog, name='sekai'):
             await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
             
             
-        @app_commands.command(name='register', description='register-player-id')    
-        async def register(self, interaction: discord.Interaction):
-            await interaction.response.send_modal(self.Register)
+    @app_commands.command(name='register', description='register-player-id')    
+    async def register(self, interaction: discord.Interaction):
+        await interaction.response.send_modal(self.Register)
         
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):

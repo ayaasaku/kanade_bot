@@ -2,7 +2,16 @@ from datetime import datetime
 
 import discord
 from data.version import version
+from sentry_sdk.integrations.logging import LoggingIntegration
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+log = logging
+
+sentry_logging = LoggingIntegration(level=logging.INFO, event_level=logging.ERROR)
 def defaultEmbed(title: str = '', description: str = '', url: str = ''):
     embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
     return embed

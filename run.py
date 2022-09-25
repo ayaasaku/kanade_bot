@@ -9,6 +9,7 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands, ActivityType, activity, CustomActivity, Activity, BaseActivity, )
 from discord.ext import commands
 from dotenv import load_dotenv
+from UI_base_models import *
 
 from debug import DebugView
 from utility.utils import errEmbed
@@ -87,6 +88,9 @@ tree = bot.tree
 
 
 @tree.error
+async def on_error(i: Interaction, e: app_commands.AppCommandError):
+    await global_error_handler(i, e)
+    
 async def err_handle(i: Interaction, e: app_commands.AppCommandError):
     if isinstance(e, app_commands.errors.MissingRole):
         embed = errEmbed(message='你不是小雪團隊的一員').set_author(

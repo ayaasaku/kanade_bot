@@ -10,22 +10,10 @@ from utility.apps.sekai.user.data_processing import *
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-    
-    @app_commands.command(name='setup', description='setup')  
-    @app_commands.checks.has_role('小雪團隊')
-    async def setup(self, interaction: discord.Interaction):
-        db = self.bot.db
-        cursor = await db.cursor()
-        await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTIGER)')
-        await cursor.close()
-        await db.commit()
-        await interaction.response.send_message('成功')
+        super().__init__()
         
-    class Register(discord.ui.Modal, title=f'註冊帳戶\n\u200b\n注意！目前只支持日服帳號的註冊'):            
+    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶\n\u200b\n注意！目前只支持日服帳號的註冊'):            
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
-        def __init__(self):
-            super().__init__()
-            
         async def on_submit(self, interaction: discord.Interaction):
             db = self.db
             cursor = self.cursor
@@ -35,10 +23,9 @@ class SekaiCog(commands.Cog, name='sekai'):
             await db.commit()
             await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
             
-            
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        await interaction.response.send_modal(self.Register)
+        await interaction.response.send_modal(RegisterModal())
         
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):

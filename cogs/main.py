@@ -178,7 +178,16 @@ class MainCog(commands.Cog, name='main'):
             if receive_hug == None: receive_hug = 0
             embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
             await interaction.response.send_message(embed=embed)
-            
+    
+    @app_commands.command(name='setup', description='setup')  
+    @app_commands.checks.has_role('小雪團隊')
+    async def setup(self, interaction: discord.Interaction):
+        db = self.bot.db
+        cursor = await db.cursor()
+        await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTIGER)')
+        await cursor.close()
+        await db.commit()
+        await interaction.response.send_message('成功')        
             
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

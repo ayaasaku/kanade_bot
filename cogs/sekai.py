@@ -17,12 +17,12 @@ class SekaiCog(commands.Cog, name='sekai'):
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: discord.Interaction):
-            #db = await aiosqlite.connect("kanade.db")
-           #cursor = await db.cursor()
-            #discord_id = interaction.user.id
-            #player_id = self.player_id
-            #await cursor.execute('INSERT INTO user_accounts (discord_id, player_id) VALUES (?, ?)', (discord_id, player_id))
-            #await db.commit()
+            db = self.bot.db
+            cursor = await db.cursor()
+            discord_id = interaction.user.id
+            player_id = self.player_id
+            await cursor.execute('INSERT INTO user_accounts (discord_id, player_id) VALUES (?, ?)', (discord_id, player_id))
+            await db.commit()
             await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
 
             

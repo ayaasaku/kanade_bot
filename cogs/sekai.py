@@ -1,3 +1,4 @@
+from sqlite3 import dbapi2
 import aiosqlite, discord
 from discord import app_commands, ui
 from discord.ext import commands
@@ -13,11 +14,13 @@ class SekaiCog(commands.Cog, name='sekai'):
         self.bot = bot
         super().__init__()
         
+        global db
+        db = self.bot.db
+        
     class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: discord.Interaction):
-            db = self.bot.db
             cursor = await db.cursor()
             discord_id = interaction.user.id
             player_id = self.player_id
@@ -33,7 +36,6 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):
         await interaction.response.defer()
-        db = self.bot.db
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()

@@ -16,13 +16,6 @@ class SekaiCog(commands.Cog, name='sekai'):
     class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
-        async def check_account(player_id: int, session: aiohttp.ClientSession):
-            id = await get_user_profile(player_id, 'id', session)
-            if id == None:
-                return False
-            else:
-                return True        
-        
         async def on_submit(self, interaction: discord.Interaction):
             db = self.db
             cursor = self.cursor
@@ -30,11 +23,8 @@ class SekaiCog(commands.Cog, name='sekai'):
             player_id = self.player_id
             await cursor.execute('INSERT INTO user_accounts (discord_id, player_id) VALUES (?, ?)', (discord_id, player_id))
             await db.commit()
-            check = await self.check_account(player_id, self.bot.session)
-            if check == True:
-                await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
-            else:
-                await interaction.response.send_message(f'{interaction.user.display_name}，很抱歉，帳號並沒有設置成功，目前只支持日服帳號的註冊', ephemeral= True)
+            await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
+
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):

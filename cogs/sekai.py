@@ -11,12 +11,15 @@ class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-    async def setup(self):
+    @app_commands.command(name='setup', description='setup')  
+    @app_commands.checks.has_role('小雪團隊')
+    async def setup(self, interaction: discord.Interaction):
         db = self.bot.db
         cursor = await db.cursor()
         await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTIGER)')
         await cursor.close()
         await db.commit()
+        await interaction.response.send_message('成功')
         
     class Register(ui.Modal, title=f'註冊帳戶\n\u200b\n注意！目前只支持日服帳號的註冊'):
         def __init__(self, bot: commands.Bot):

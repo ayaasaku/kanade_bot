@@ -12,7 +12,8 @@ class SekaiCog(commands.Cog, name='sekai'):
         self.bot = bot
         super().__init__()
         
-    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶\n\u200b\n注意！目前只支持日服帳號的註冊'):            
+    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):          
+        description = ui.Modal.children(description='注意！目前只支持日服帳號的註冊')  
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         async def on_submit(self, interaction: discord.Interaction):
             db = self.db

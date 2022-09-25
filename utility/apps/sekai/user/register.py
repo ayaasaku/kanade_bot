@@ -6,9 +6,7 @@ class RegisterApp:
         self.db = db
         
     async def check_user_account(self, discord_id: int):
-        global db
-        db = self.db
-        cursor = await db.cursor()
+        cursor = await self.db.cursor()
         await cursor.execute('SELECT discord_id FROM user_accounts WHERE discord_id = ?', (discord_id,))
         result = await cursor.fetchone()
         if result is None:

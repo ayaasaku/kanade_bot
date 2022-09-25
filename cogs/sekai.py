@@ -4,12 +4,11 @@ from discord import app_commands, ui
 from discord.ext import commands
 from discord.app_commands import Choice
 
-from utility.utils import loadingEmbed
+from utility.utils import loadingEmbed, errEmbed
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
-from debug import DefaultModal
-
+from utility.apps.sekai.user.register import *
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -18,22 +17,30 @@ class SekaiCog(commands.Cog, name='sekai'):
         global db
         db = self.bot.db
         
-    class RegisterModal(DefaultModal, title=f'註冊帳戶'):           
+    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: discord.Interaction):
             cursor = await db.cursor()
             discord_id = interaction.user.id
             player_id = self.player_id
-            await cursor.execute('INSERT INTO user_accounts (discord_id, player_id) VALUES (?, ?)', (discord_id, player_id))
+            await cursor.execute('INSERT INTO user_accounts(discord_id) VALUES(?)', (discord_id,))
+            await cursor.execute(f'UPDATE user_accounts SET player_id = ? WHERE discord_id = ?', (player_id, discord_id))
             await db.commit()
             await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
 
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        await interaction.response.send_modal(self.RegisterModal())
-        
+        check = await check_user_account(interaction.user.id)
+        if check == False:
+            await interaction.response.send_modal(self.RegisterModal())
+        else:
+            embed =  embed = errEmbed(
+            '帳號已經存在',
+            f'你已經註冊過帳號了，不需要再註冊囉')
+            await interaction.response.send_message(embed=embed)
+            
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):
         await interaction.response.defer()

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 import discord
-
 from data.version import version
 
 def defaultEmbed(title: str = '', description: str = '', url: str = ''):

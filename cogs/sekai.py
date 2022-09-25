@@ -5,6 +5,7 @@ from discord.app_commands import Choice
 
 from utility.utils import loadingEmbed
 from utility.apps.sekai.user.profile import user_profile
+from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
 
 class SekaiCog(commands.Cog, name='sekai'):
@@ -12,9 +13,16 @@ class SekaiCog(commands.Cog, name='sekai'):
         self.bot = bot
         super().__init__()
         
-    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):          
-        description = ui.Modal.children(description='注意！目前只支持日服帳號的註冊')  
+    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
+        
+        async def check_account(player_id: int, session: aiohttp.ClientSession):
+            id = await get_user_profile(player_id, 'id', session)
+            if id == None:
+                return False
+            else:
+                return True        
+        
         async def on_submit(self, interaction: discord.Interaction):
             db = self.db
             cursor = self.cursor
@@ -22,7 +30,11 @@ class SekaiCog(commands.Cog, name='sekai'):
             player_id = self.player_id
             await cursor.execute('INSERT INTO user_accounts (discord_id, player_id) VALUES (?, ?)', (discord_id, player_id))
             await db.commit()
-            await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
+            check = await self.check_account(player_id, self.bot.session)
+            if check == True:
+                await interaction.response.send_message(f'{interaction.user.display_name}，感謝使用奏寶，帳號已設置成功', ephemeral= True)
+            else:
+                await interaction.response.send_message(f'{interaction.user.display_name}，很抱歉，帳號並沒有設置成功，目前只支持日服帳號的註冊', ephemeral= True)
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):

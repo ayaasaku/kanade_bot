@@ -25,7 +25,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        await interaction.response.send_modal(RegisterModal())
+        await interaction.response.send_modal(self.RegisterModal())
         
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):

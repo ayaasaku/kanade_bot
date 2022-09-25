@@ -9,6 +9,7 @@ from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
 from utility.apps.sekai.user.register import *
+
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot

@@ -32,7 +32,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        check = await check_user_account(interaction.user.id)
+        check = await check_user_account(discord_id = interaction.user.id)
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:

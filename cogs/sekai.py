@@ -8,7 +8,7 @@ from utility.utils import loadingEmbed, errEmbed
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
-from utility.apps.sekai.user.register import *
+from utility.apps.sekai.user.register import RegisterApp
 
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
@@ -33,7 +33,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        check = await check_user_account(self, discord_id = interaction.user.id)
+        check = await RegisterApp.check_user_account(self, discord_id = interaction.user.id)
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:

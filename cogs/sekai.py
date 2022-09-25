@@ -40,7 +40,18 @@ class SekaiCog(commands.Cog, name='sekai'):
             '帳號已經存在',
             f'你已經註冊過帳號了，不需要再註冊囉')
             await interaction.response.send_message(embed=embed)
-            
+          
+    @app_commands.command(name='remove', description='remove-user-account')
+    @app_commands.checks.has_role('小雪團隊')
+    async def remove(self, interaction: discord.Interaction):
+        discord_id = interaction.user.id
+        cursor = await db.cursor()
+        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
+        player_id = await cursor.fetchone()
+        await cursor.execute('DELETE FROM user_accounts WHERE user_id = ?', (discord_id,))
+        await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (player_id,))
+        await interaction.response.send_message('成功')
+        
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):
         await interaction.response.defer()

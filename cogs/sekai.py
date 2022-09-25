@@ -8,6 +8,7 @@ from utility.utils import loadingEmbed
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
+from debug import DefaultModal
 
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
@@ -17,7 +18,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         global db
         db = self.bot.db
         
-    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
+    class RegisterModal(DefaultModal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: discord.Interaction):

@@ -1,7 +1,7 @@
 import traceback
 
-from discord import ButtonStyle, Interaction, HTTPException
-from discord.ui import Button, View, button
+from discord import ButtonStyle, Interaction, HTTPException 
+from discord.ui import Button, View, Modal, button
 
 from utility.utils import errEmbed
 
@@ -21,6 +21,14 @@ class DebugView(View):
 
 
 class DefaultView(View):
+    async def on_error(self, i: Interaction, e: Exception, item) -> None:
+        traceback_message = traceback.format_exc()
+        view = DebugView(traceback_message)
+        embed = errEmbed(message='發生了未知的錯誤').set_author(
+            name='未知錯誤', icon_url=i.user.avatar)
+        await i.channel.send(embed=embed, view=view)
+        
+class DefaultModal(Modal):
     async def on_error(self, i: Interaction, e: Exception, item) -> None:
         traceback_message = traceback.format_exc()
         view = DebugView(traceback_message)

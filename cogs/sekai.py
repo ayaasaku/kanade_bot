@@ -49,7 +49,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()
-        await cursor.execute('DELETE FROM user_accounts WHERE user_id = ?', (discord_id,))
+        await cursor.execute('DELETE FROM user_accounts WHERE discord_id = ?', (discord_id,))
         await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (player_id,))
         await interaction.response.send_message('成功')
         

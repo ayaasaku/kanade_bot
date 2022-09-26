@@ -1,6 +1,5 @@
 from ast import Delete
 from discord.ext import commands
-from tabulate import tabulate
 from datetime import datetime, timedelta
 from pytz import timezone
 from tabulate import tabulate

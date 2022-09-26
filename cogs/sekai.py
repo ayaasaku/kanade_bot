@@ -47,6 +47,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.checks.has_role('小雪團隊')
     async def remove(self, interaction: discord.Interaction):
         discord_id = interaction.user.id
+        db = await aiosqlite.connect("kanade.db")
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()
@@ -57,6 +58,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):
         await interaction.response.defer()
+        db = await aiosqlite.connect("kanade.db")
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()

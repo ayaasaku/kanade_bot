@@ -1,5 +1,5 @@
 from datetime import datetime
-import logging
+from logging import logging
 import discord
 from data.version import version
 from sentry_sdk.integrations.logging import LoggingIntegration

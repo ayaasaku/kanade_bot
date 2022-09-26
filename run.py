@@ -47,8 +47,9 @@ class KanadeBot(commands.Bot):
     async def on_ready(self):
         await self.change_presence(
             status=Status.online,
-            activity=Game(name=f'世界計畫'))
-        print(f'Logged in as {self.user}')
+            activity=Game(name=f'世界計畫')
+        )
+        print(log(True, False, 'Bot', f'Logged in as {self.user}'))
 
     async def on_message(self, message: Message):
         if message.author.id == self.user.id:

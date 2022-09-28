@@ -5,7 +5,7 @@ from discord import app_commands, ui
 from discord.ext import commands
 from discord.app_commands import Choice
 
-from utility.utils import loadingEmbed, errEmbed, Convert
+from utility.utils import defaultEmbed, loadingEmbed, errEmbed, Convert
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
@@ -29,7 +29,11 @@ class SekaiCog(commands.Cog, name='sekai'):
             name = interaction.user.display_name
             await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()
-            await interaction.response.send_message(f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
+            title = '** 成功 **'
+            description = f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}'
+            embed = defaultEmbed(title, description)
+            embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
+            await interaction.response.send_message(embed=embed, ephemeral= True)
 
             
     @app_commands.command(name='register', description='register-player-id')    
@@ -39,7 +43,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:
-            embed =  embed = errEmbed(
+            embed = errEmbed(
             '帳號已經存在',
             f'你已經註冊過帳號了，不需要再註冊囉')
             await interaction.response.send_message(embed=embed)
@@ -69,7 +73,6 @@ class SekaiCog(commands.Cog, name='sekai'):
         await interaction.followup.send(embed=embed, ephemeral=True)
         embed = await user_profile(player_id, self.bot.session)
         await interaction.followup.send(embed=embed)
-
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

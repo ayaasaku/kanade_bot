@@ -8,7 +8,7 @@ async def global_error_handler(
 ):
     if isinstance(e, discord.app_commands.errors.CheckFailure):
         return
-    log.warning(f"[{i.user.id}]{type(e)}: {e}")
+    #log.warning(f"[{i.user.id}]{type(e)}: {e}")
     sentry_sdk.capture_exception(e)
 
     if isinstance(e, discord.errors.NotFound):

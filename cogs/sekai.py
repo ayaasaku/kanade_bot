@@ -16,7 +16,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         self.bot = bot
         super().__init__()
         
-    #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTIGER)')    
+    #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
     
     class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
@@ -27,7 +27,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = interaction.user.id
             player_id = int(self.player_id)
             name = interaction.user.display_name
-            await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
+            await cursor.execute('INSERT INTO user_acc(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()
             await interaction.response.send_message(f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
 

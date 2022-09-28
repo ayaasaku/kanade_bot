@@ -1,8 +1,9 @@
 import discord
-from discord import app_commands
+from discord import app_commands, SelectOption
 from discord.ext import commands
 from discord.ui import (Select, 
-                        View)
+                        View
+)   
 
 from data.emoji_data import group_icon_square
 from data.img_data import group_icon

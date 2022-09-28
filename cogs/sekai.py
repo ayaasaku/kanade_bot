@@ -24,10 +24,10 @@ class SekaiCog(commands.Cog, name='sekai'):
         async def on_submit(self, interaction: discord.Interaction):
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
-            discord_id = Convert.convert(interaction.user.id)
-            player_id = Convert.convert(self.player_id)
+            discord_id = str(interaction.user.id)
+            player_id = str(self.player_id)
             name = interaction.user.display_name
-            await cursor.execute('INSERT INTO user_acc(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
+            await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()
             await interaction.response.send_message(f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
 
@@ -63,8 +63,9 @@ class SekaiCog(commands.Cog, name='sekai'):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
-        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
+        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(interaction.user.id),))
         player_id = await cursor.fetchone()
+        player_id = int(player_id)
         embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
         await interaction.followup.send(embed=embed, ephemeral=True)
         embed = await user_profile(player_id, self.bot.session)

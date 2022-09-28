@@ -36,7 +36,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
         db = await aiosqlite.connect("kanade.db")
-        check = await check_user_account(self, discord_id = interaction.user.id, db=db)
+        check = await check_user_account(discord_id = interaction.user.id, db=db)
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:

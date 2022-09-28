@@ -12,7 +12,6 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from debug import DebugView
-from UI_base_models import *
 from utility.utils import errEmbed
 
 load_dotenv()
@@ -87,8 +86,6 @@ tree = bot.tree
 
 
 @tree.error
-async def on_error(i: Interaction, e: app_commands.AppCommandError):
-    await global_error_handler(i, e)
     
 async def err_handle(i: Interaction, e: app_commands.AppCommandError):
     if isinstance(e, app_commands.errors.MissingRole):

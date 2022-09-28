@@ -27,8 +27,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = interaction.user.id
             player_id = self.player_id
             name = interaction.user.display_name
-            await cursor.execute('INSERT INTO user_accounts(discord_id) VALUES(?)', (discord_id,))
-            await cursor.execute(f'UPDATE user_accounts SET player_id = ? WHERE discord_id = ?', (player_id, discord_id))
+            await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()
             await interaction.response.send_message(f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}', ephemeral= True)
 

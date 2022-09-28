@@ -12,7 +12,6 @@ from data.hug_data import give, receive
 from data.version import version
 
 from utility.utils import defaultEmbed
-from UI_base_models import BaseModal
 
 
 class MainCog(commands.Cog, name='main'):
@@ -159,31 +158,5 @@ class MainCog(commands.Cog, name='main'):
             embed.set_footer(text=f'{interaction.user.display_name}總共送出了{give.get(interaction.user.id)}個擁抱，並收到了{receive_hug}個擁抱', icon_url=interaction.user.avatar)
             await interaction.response.send_message(embed=embed)
             
-    class Modal(BaseModal):
-        embed_title = ui.TextInput(label="Title")
-        embed_description = ui.TextInput(label="Description", style=discord.TextStyle.long)
-        image_url = ui.TextInput(label="Image URL", required=False)
-
-        def __init__(self):
-            super().__init__(title="Announcement")
-
-        async def on_submit(self, i: Interaction) -> None:
-            await i.response.defer()
-            ayaakaa = i.client.get_user(831883841417248778) or await i.client.fetch_user(
-                831883841417248778
-            )
-            embed = defaultEmbed(self.embed_title.value, self.embed_description.value)
-            embed.set_author(
-                name=f"{ayaakaa.name}#{ayaakaa.discriminator}", icon_url=ayaakaa.avatar.url
-            )
-            embed.set_footer(text='error')
-            embed.set_image(url=self.image_url.value)
-            try:
-                await i.response.send_message(embed=embed)
-            except:
-                pass
-            await asyncio.sleep(1)
-            await i.followup.send("completed.", ephemeral=True)      
-              
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

@@ -30,9 +30,10 @@ class SekaiCog(commands.Cog, name='sekai'):
             await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()
             title = '** 成功 **'
-            description = f'{name}，感謝使用奏寶，帳號已設置成功，ID: {self.player_id}'
+            description = f'{name}，感謝使用奏寶，帳號已設置成功。'
             embed = defaultEmbed(title, description)
             embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
+            embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
             await interaction.response.send_message(embed=embed, ephemeral= True)
 
             

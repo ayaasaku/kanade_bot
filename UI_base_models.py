@@ -3,7 +3,6 @@ import sentry_sdk
 
 from utility.utils import errEmbed, log
 
-
 async def global_error_handler(
     i: discord.Interaction, e: Exception | discord.app_commands.AppCommandError
 ):

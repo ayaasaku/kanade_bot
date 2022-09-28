@@ -1,8 +1,11 @@
-from datetime import datetime
 import logging
-import discord
-from data.version import version
+from datetime import datetime
 from sentry_sdk.integrations.logging import LoggingIntegration
+
+import discord
+
+from data.version import version
+
 
 logging.basicConfig(
     level=logging.INFO,

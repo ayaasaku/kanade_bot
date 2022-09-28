@@ -1,6 +1,7 @@
 import aiohttp
-
-from utility.apps.sekai.api_functions import (get_sekai_user_api, get_sekai_cards_info_api, get_sekai_characters_info_api)
+from utility.apps.sekai.api_functions import (get_sekai_cards_info_api,
+                                              get_sekai_characters_info_api,
+                                              get_sekai_user_api)
 
 #json
 async def get_user_game_data(import_id: int, path: str, session: aiohttp.ClientSession):

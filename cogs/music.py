@@ -1,13 +1,14 @@
 import asyncio
 import os
-
+from dotenv import load_dotenv
 import wavelink
+from wavelink.ext import spotify
+
 from discord import Interaction, app_commands
 from discord.ext import commands
-from dotenv import load_dotenv
 from utility.apps import musicApp
 from utility.utils import errEmbed
-from wavelink.ext import spotify
+
 
 load_dotenv()
 

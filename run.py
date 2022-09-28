@@ -1,17 +1,18 @@
 import os
-from pathlib import Path
 import sys
 import traceback
+from pathlib import Path
+
 import aiohttp
 import aiosqlite
 
 from discord import (Game, HTTPException, Intents, Interaction, Message,
-                     Status, app_commands, ActivityType, activity, CustomActivity, Activity, BaseActivity, )
+                     Status, app_commands)
 from discord.ext import commands
 from dotenv import load_dotenv
-from UI_base_models import *
 
 from debug import DebugView
+from UI_base_models import *
 from utility.utils import errEmbed
 
 load_dotenv()

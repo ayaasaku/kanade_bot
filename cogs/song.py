@@ -1,18 +1,14 @@
-from ast import Delete
+import discord
+from discord import app_commands
 from discord.ext import commands
-from datetime import datetime, timedelta
-from pytz import timezone
-from tabulate import tabulate
-import time, re, discord
+from discord.ui import (Select, 
+                        View)
 
-from discord import (ButtonStyle, Interaction, Member, SelectOption,
-                     app_commands)
-from discord.ui import Button, Modal, Select, TextInput, View
-from utility.utils import defaultEmbed, loadingEmbed
-from utility.paginator import GeneralPaginator
-from utility.apps.sekai.music_info import get_group_music
-from data.img_data import group_icon
 from data.emoji_data import group_icon_square
+from data.img_data import group_icon
+from utility.apps.sekai.music_info import get_group_music
+from utility.paginator import GeneralPaginator
+
 
 class SongCog(commands.Cog, name='song'):
     def __init__(self, bot: commands.Bot):

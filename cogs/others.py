@@ -1,14 +1,8 @@
-import random
-from datetime import datetime
-from random import randint
-
 import discord
-from data.user_data import morning, special
-from data.emoji_data import *
 from discord import app_commands
 from discord.ext import commands
+
 from utility.utils import updateEmbed
-from data.version import version
 
 class OthersCog(commands.Cog, name='others'):
     

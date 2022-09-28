@@ -1,15 +1,16 @@
-import time, discord,asyncio
+import time, discord
 from discord import app_commands
 from discord.ext import commands
 from discord.app_commands import Choice
 
-from utility.utils import defaultEmbed
 from data.emoji_data import attributes
 from data.translate_data import translate
     
 from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
 from utility.apps.sekai.event_info import get_event_info_jp, get_event_info_tw
 from utility.apps.sekai.user.data_processing import *
+
+from utility.utils import defaultEmbed
 
 
 class EventCog(commands.Cog, name='event'):

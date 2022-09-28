@@ -1,8 +1,7 @@
 import traceback
 
-from discord import ButtonStyle, Interaction, HTTPException , app_commands
-from discord.ext import commands
-from discord.ui import Button, View, Modal, button
+from discord import ButtonStyle, HTTPException, Interaction
+from discord.ui import Button, View, button
 
 from utility.utils import errEmbed
 

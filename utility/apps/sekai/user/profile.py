@@ -1,13 +1,18 @@
-import discord
-from discord import app_commands, embeds, Embed
-from discord.ext import commands
-from discord.app_commands import Choice
-
 import aiohttp
 
-from utility.apps.sekai.user.data_processing import (get_user_game_data, get_user_profile, get_user_decks, get_user_profile_pic, get_profile_img)
+import discord
+from discord import Embed, app_commands, embeds
+from discord.app_commands import Choice
+from discord.ext import commands
+
 from utility.apps.sekai.time_formatting import format_date_jp
+from utility.apps.sekai.user.data_processing import (get_profile_img,
+                                                     get_user_decks,
+                                                     get_user_game_data,
+                                                     get_user_profile,
+                                                     get_user_profile_pic)
 from utility.utils import defaultEmbed
+
 
 async def user_profile(import_id: int, session: aiohttp.ClientSession):
     if import_id == await get_user_game_data(import_id, 'userId', session):

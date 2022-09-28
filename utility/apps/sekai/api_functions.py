@@ -1,6 +1,5 @@
 import aiohttp
 
-
 #events   
 async def get_sekai_events_api_jp(session: aiohttp.ClientSession):
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/master/events.json'

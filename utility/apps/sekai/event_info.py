@@ -1,7 +1,13 @@
-import re, aiohttp, time
-from utility.apps.sekai.api_functions import get_sekai_events_api_jp, get_sekai_event_deck_bonuses_api_jp, \
-    get_sekai_events_api_tw, get_sekai_event_deck_bonuses_api_tw, get_sekai_characters_info_api
-    
+import re
+import time
+import aiohttp
+
+from utility.apps.sekai.api_functions import (
+    get_sekai_characters_info_api, get_sekai_event_deck_bonuses_api_jp,
+    get_sekai_event_deck_bonuses_api_tw, get_sekai_events_api_jp,
+    get_sekai_events_api_tw)
+
+
     #jp
 async def get_event_info_jp(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_jp(session)

@@ -5,7 +5,7 @@ from discord import app_commands, ui
 from discord.ext import commands
 from discord.app_commands import Choice
 
-from utility.utils import loadingEmbed, errEmbed
+from utility.utils import loadingEmbed, errEmbed, Convert
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
@@ -24,8 +24,8 @@ class SekaiCog(commands.Cog, name='sekai'):
         async def on_submit(self, interaction: discord.Interaction):
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
-            discord_id = interaction.user.id
-            player_id = self.player_id
+            discord_id = Convert.convert(interaction.user.id)
+            player_id = Convert.convert(self.player_id)
             name = interaction.user.display_name
             await cursor.execute('INSERT INTO user_acc(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()

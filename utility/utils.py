@@ -56,3 +56,12 @@ def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
 def divide_chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
+        
+class Convert:
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f'Convert({self.name!r})'       
+    def convert(value):
+        return Convert(value.decode('utf-8'))

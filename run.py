@@ -12,7 +12,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from debug import DebugView
-from utility.utils import errEmbed
+from utility.utils import errEmbed, log
 
 load_dotenv()
 token = os.getenv('TOKEN')
@@ -86,7 +86,6 @@ tree = bot.tree
 
 
 @tree.error
-    
 async def err_handle(i: Interaction, e: app_commands.AppCommandError):
     if isinstance(e, app_commands.errors.MissingRole):
         embed = errEmbed(message='你不是小雪團隊的一員').set_author(

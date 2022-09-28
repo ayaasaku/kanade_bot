@@ -36,7 +36,7 @@ class KanadeBot(commands.Bot):
         self.repeat = False
         self.prev = False
         self.session = aiohttp.ClientSession()
-        self.db = await aiosqlite.connect("kanade.db")
+        self.db = await aiosqlite.connect("kanade_data.db")
         self.backup_db = await aiosqlite.connect("backup.db")
         
         await self.load_extension('jishaku')

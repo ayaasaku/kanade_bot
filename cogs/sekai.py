@@ -22,7 +22,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: discord.Interaction):
-            db = await aiosqlite.connect("kanade.db")
+            db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = interaction.user.id
             player_id = self.player_id
@@ -35,7 +35,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
-        db = await aiosqlite.connect("kanade.db")
+        db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = interaction.user.id, db=db)
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
@@ -49,7 +49,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.checks.has_role('小雪團隊')
     async def remove(self, interaction: discord.Interaction):
         discord_id = interaction.user.id
-        db = await aiosqlite.connect("kanade.db")
+        db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()
@@ -62,7 +62,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
     async def profile(self, interaction: discord.Interaction):
         await interaction.response.defer()
-        db = await aiosqlite.connect("kanade.db")
+        db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (interaction.user.id,))
         player_id = await cursor.fetchone()

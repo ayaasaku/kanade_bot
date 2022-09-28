@@ -25,7 +25,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = interaction.user.id
-            player_id = self.player_id
+            player_id = int(self.player_id)
             name = interaction.user.display_name
             await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
             await db.commit()

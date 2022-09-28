@@ -1,14 +1,12 @@
-from lib2to3.pytree import Base
 import random, asyncio, aiosqlite
 from datetime import datetime
 from random import randint
-import config
 
 import discord
 from data.user_data import morning, special
 from discord import app_commands, Member, BotIntegration, Guild, utils, Interaction
 from discord.ext import commands
-from discord import ui
+from discord import ui 
 from utility.utils import defaultEmbed
 from data.version import version
 from data.hug_data import give, receive
@@ -30,33 +28,8 @@ class MainCog(commands.Cog, name='main'):
         night_list = ['晚安呀...', '晚安喔...', '晚安安...', '晚安', '晚安...', '晚', '晚...']
         now = datetime.now()
 
-        if message.author.bot:
+        if message.author.bot or message.author.id == 427346531260301312:
             return
-        
-        if message.author.id == 427346531260301312:
-            if "早" in message.content or "午" in message.content or "晚" in message.content:
-                if "奏" in message.content and "早" in message.content:
-                    start = datetime(year=now.year, month=now.month,
-                                    day=now.day, hour=5, minute=0, second=0, microsecond=0)
-                    end = datetime(year=now.year, month=now.month, day=now.day,
-                                hour=11, minute=59, second=0, microsecond=0)
-                    if start <= now <= end:
-                        author = morning.get(
-                            message.author.id) or message.author.display_name
-                        await message.reply('...')
-                elif "奏" in message.content and "午" in message.content:
-                    start = datetime(year=now.year, month=now.month, day=now.day,
-                                    hour=12, minute=0, second=0, microsecond=0)
-                    end = datetime(year=now.year, month=now.month, day=now.day,
-                                hour=17, minute=59, second=0, microsecond=0)
-                    if start <= now <= end:
-                        author = morning.get(
-                            message.author.id) or message.author.display_name
-                        await message.reply('...')
-                elif "奏" in message.content and "晚" in message.content:
-                    author = morning.get(
-                        message.author.id) or message.author.display_name
-                    await message.reply('...')
         else:
             if "早" in message.content or "午" in message.content or "晚" in message.content:
                 if "奏" in message.content and "早" in message.content:
@@ -190,30 +163,24 @@ class MainCog(commands.Cog, name='main'):
         image_url = ui.TextInput(label="Image URL", required=False)
 
         def __init__(self):
-            super().__init__(title="Announcement", timeout=config.long_timeout)
+            super().__init__(title="Announcement")
 
         async def on_submit(self, i: Interaction) -> None:
             await i.response.defer()
-            c: aiosqlite.Cursor = await i.client.db.cursor()
-            await c.execute("SELECT user_id FROM user_settings WHERE dev_msg = 1")
-            user_ids = await c.fetchall()
-            seria = i.client.get_user(410036441129943050) or await i.client.fetch_user(
-                410036441129943050
+            ayaakaa = i.client.get_user(831883841417248778) or await i.client.fetch_user(
+                831883841417248778
             )
-            for _, tpl in enumerate(user_ids):
-                user_id = tpl[0]
-                user = i.client.get_user(user_id) or await i.client.fetch_user(user_id)
-                embed = defaultEmbed(self.embed_title.value, self.embed_description.value)
-                embed.set_author(
-                    name=f"{seria.name}#{seria.discriminator}", icon_url=seria.avatar.url
-                )
-                embed.set_footer(text='error')
-                embed.set_image(url=self.image_url.value)
-                try:
-                    await user.send(embed=embed)
-                except:
-                    pass
-                await asyncio.sleep(1)
+            embed = defaultEmbed(self.embed_title.value, self.embed_description.value)
+            embed.set_author(
+                name=f"{ayaakaa.name}#{ayaakaa.discriminator}", icon_url=ayaakaa.avatar.url
+            )
+            embed.set_footer(text='error')
+            embed.set_image(url=self.image_url.value)
+            try:
+                await i.response.send_message(embed=embed)
+            except:
+                pass
+            await asyncio.sleep(1)
             await i.followup.send("completed.", ephemeral=True)      
               
 async def setup(bot: commands.Bot) -> None:

@@ -100,7 +100,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         player_id = player_id[0]
         embed = defaultEmbed()
         embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
-        await interaction.followup.send(content=f'{player_id}', embed=embed)
+        await interaction.followup.send(embed=embed, content=f'{player_id}')
         #await interaction.followup.send(f'{player_id}')
         
 async def setup(bot: commands.Bot) -> None:

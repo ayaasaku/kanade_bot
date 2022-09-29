@@ -98,7 +98,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         player_id = player_id[0]
-        embed = defaultEmbed(title=f'{name}的玩家ID')
+        embed = defaultEmbed(title=f'{name}的玩家ID', description=f'\u200b')
         embed.set_author(name=name, icon_url=avatar)
         await interaction.followup.send(embed=embed)
         await interaction.followup.send(f'{player_id}')

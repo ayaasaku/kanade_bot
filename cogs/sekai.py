@@ -74,10 +74,13 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         player_id = player_id[0]
-        loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
-        await interaction.followup.send(embed=loading_embed, ephemeral=True)
-        embed = await user_profile(player_id, self.bot.session)
-        await interaction.followup.send(embed=embed)
+        if len(player_id) < 1:
+            await interaction.response.send_message('error')
+        else:
+            loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
+            await interaction.followup.send(embed=loading_embed, ephemeral=True)
+            embed = await user_profile(player_id, self.bot.session)
+            await interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

@@ -36,7 +36,6 @@ class SekaiCog(commands.Cog, name='sekai'):
             embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
             await interaction.response.send_message(embed=embed, ephemeral= True)
 
-            
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
         db = await aiosqlite.connect("kanade_data.db")

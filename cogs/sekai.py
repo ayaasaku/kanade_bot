@@ -74,7 +74,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         player_id = player_id[0]
-        await interaction.response.send_message(f'{player_id}')
+        await interaction.followup.send(f'{player_id}')
         '''else:
             loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
             await interaction.followup.send(embed=loading_embed, ephemeral=True)

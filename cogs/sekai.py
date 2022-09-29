@@ -62,14 +62,19 @@ class SekaiCog(commands.Cog, name='sekai'):
         await db.commit()
         await interaction.response.send_message('成功')
         
-    @app_commands.command(name='profile', description='查看一個玩家的帳戶')    
-    async def profile(self, interaction: discord.Interaction):
+    @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
+    @app_commands.rename(person='其他玩家')
+    async def profile(self, interaction: discord.Interaction, person: discord.User = False):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
-        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(interaction.user.id),))
+        if person == False:
+            discord_id = interaction.user.id
+        else:
+            discord_id = person.id
+        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
-        player_id = int(player_id[0])
+        player_id = player_id[0]
         loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
         await interaction.followup.send(embed=loading_embed, ephemeral=True)
         embed = await user_profile(player_id, self.bot.session)

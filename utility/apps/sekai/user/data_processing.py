@@ -4,21 +4,21 @@ from utility.apps.sekai.api_functions import (get_sekai_cards_info_api,
                                               get_sekai_user_api)
 
 #json
-async def get_user_game_data(import_id: int, path: str, session: aiohttp.ClientSession):
+async def get_user_game_data(import_id, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
     path_list = ['userId', 'name', 'deck', 'rank']
     if path in path_list:
         result = api['user']['userGamedata'][path]
         return result    
 
-async def get_user_profile(import_id: int, path: str, session: aiohttp.ClientSession):
+async def get_user_profile(import_id, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
     path_list = ['userId', 'word', 'twitterId', 'profileImageType']
     if path in path_list:
         result = api['userProfile'][path]
         return result    
     
-async def get_user_decks(import_id: int, path: str, session: aiohttp.ClientSession):
+async def get_user_decks(import_id, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
     path_list = ['leader', 'subLeader', 'member1', 'member2', 'member3', 'member4', 'member5' ]
     if path in path_list:
@@ -26,7 +26,7 @@ async def get_user_decks(import_id: int, path: str, session: aiohttp.ClientSessi
         return result    
 
 
-async def get_user_cards(import_id: int, index: int, path: str, session: aiohttp.ClientSession):
+async def get_user_cards(import_id, index: int, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
     path_list = ['cardId', 'level', 'masterRank', 'specialTraningStatus', 'defaultImage']
     if path in path_list:
@@ -34,7 +34,7 @@ async def get_user_cards(import_id: int, index: int, path: str, session: aiohttp
         return result    
 
 #img
-async def get_user_profile_pic(import_id: int, card_id: int, session: aiohttp.ClientSession):
+async def get_user_profile_pic(import_id, card_id: int, session: aiohttp.ClientSession):
     api = await get_sekai_cards_info_api(session)
     for card in api:
         if card['id'] == card_id:

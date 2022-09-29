@@ -63,11 +63,11 @@ class SekaiCog(commands.Cog, name='sekai'):
         
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
     @app_commands.rename(person='其他玩家')
-    async def profile(self, interaction: discord.Interaction, person: discord.User = False):
+    async def profile(self, interaction: discord.Interaction, person: discord.User = None):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
-        if person == False:
+        if person == None:
             discord_id = interaction.user.id
         else:
             discord_id = person.id

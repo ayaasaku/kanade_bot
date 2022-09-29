@@ -2,7 +2,7 @@ from types import NoneType
 import aiosqlite
 
 import discord
-from discord import app_commands, ui
+from discord import Embed, app_commands, ui
 from discord.ext import commands
 
 from utility.utils import defaultEmbed, loadingEmbed, errEmbed
@@ -80,6 +80,28 @@ class SekaiCog(commands.Cog, name='sekai'):
         embed = await user_profile(player_id, self.bot.session)
         embed 
         await interaction.followup.send(embed=embed)
+        
+    @app_commands.command(name='id', description='查看一個玩家的ID') 
+    @app_commands.rename(person='其他玩家')
+    async def profile(self, interaction: discord.Interaction, person: discord.User = None):
+        await interaction.response.defer(ephemeral=True)
+        db = await aiosqlite.connect("kanade_data.db")
+        cursor = await db.cursor()
+        if person == None:
+            discord_id = interaction.user.id
+            name = interaction.user.display_name
+            avatar = interaction.user.display_avatar
+        else:
+            discord_id = person.id
+            name = person.display_name
+            avatar = person.display_avatar
+        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+        player_id = await cursor.fetchone()
+        player_id = player_id[0]
+        embed = defaultEmbed(title=f'{name}的玩家ID')
+        embed.set_author(name=name, icon_url=avatar)
+        await interaction.followup.send(embed=embed)
+        await interaction.followup.send(f'{player_id}')
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

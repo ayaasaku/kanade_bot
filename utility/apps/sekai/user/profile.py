@@ -34,5 +34,6 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
         
-        return embed
+        list = [name, user_id, rank, word, tl_url, img_url, creation_date]
+        return list
 

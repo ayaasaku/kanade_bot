@@ -12,7 +12,7 @@ logging.basicConfig(
 log = logging
 
 
-def defaultEmbed(title: str = '', description: str = '', url: str = ''):
+def defaultEmbed(title: str = '', description: str = ''):
     embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
     return embed
 

@@ -2,7 +2,7 @@ import aiosqlite
 from utility.utils import errEmbed
 
         
-async def check_user_account(discord_id, db):
+async def check_user_account(discord_id: str, db):
     cursor = await db.cursor()
     await cursor.execute('SELECT discord_id FROM user_accounts WHERE discord_id = ?', (discord_id,))
     result = await cursor.fetchone()

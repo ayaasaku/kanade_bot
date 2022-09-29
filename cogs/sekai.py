@@ -84,7 +84,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.rename(person='其他玩家')
     async def profile(self, interaction: discord.Interaction, person: discord.User = None):
-        await interaction.response.defer(ephemeral=True)
+        await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
         if person == None:
@@ -100,8 +100,8 @@ class SekaiCog(commands.Cog, name='sekai'):
         player_id = player_id[0]
         embed = defaultEmbed()
         embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
-        await interaction.followup.send(embed=embed)
-        await interaction.followup.send(f'{player_id}')
+        await interaction.followup.send(content=f'{player_id}', embed=embed)
+        #await interaction.followup.send(f'{player_id}')
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

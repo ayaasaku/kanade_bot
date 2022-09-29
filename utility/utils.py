@@ -13,7 +13,7 @@ log = logging
 
 
 def defaultEmbed(title: str = '', description: str = ''):
-    embed = discord.Embed(title=title, description=description, url=url, color=0xBB6688)
+    embed = discord.Embed(title=title, description=description, color=0xBB6688)
     return embed
 
 def loadingEmbed(text: str, img: str, thumbnail: bool):

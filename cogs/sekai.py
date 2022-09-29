@@ -79,6 +79,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
         await interaction.followup.send(embed=loading_embed)
         embed = await user_profile(player_id, self.bot.session)
+        embed 
         await interaction.followup.send(embed=embed)
         
 async def setup(bot: commands.Bot) -> None:

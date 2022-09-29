@@ -4,9 +4,8 @@ import aiosqlite
 import discord
 from discord import app_commands, ui
 from discord.ext import commands
-from discord.app_commands import Choice
 
-from utility.utils import defaultEmbed, loadingEmbed, errEmbed, Convert
+from utility.utils import defaultEmbed, loadingEmbed, errEmbed
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
@@ -80,5 +79,5 @@ class SekaiCog(commands.Cog, name='sekai'):
         embed = await user_profile(player_id, self.bot.session)
         await interaction.followup.send(embed=embed)
         
-async def setup(bot: commands.Bot) -> NoneType:
+async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

@@ -14,7 +14,7 @@ from utility.apps.sekai.user.data_processing import (get_profile_img,
 from utility.utils import defaultEmbed
 
 
-async def user_profile(import_id, session: aiohttp.ClientSession):
+async def user_profile(import_id: str, session: aiohttp.ClientSession):
     if import_id == await get_user_game_data(import_id, 'userId', session):
         name = await get_user_game_data(import_id, 'name', session)
         user_id = import_id

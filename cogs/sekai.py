@@ -79,5 +79,5 @@ class SekaiCog(commands.Cog, name='sekai'):
         embed = await user_profile(player_id, self.bot.session)
         await interaction.followup.send(embed=embed)
         
-async def setup(bot: commands.Bot) -> None:
+async def setup(bot: commands.Bot):
     await bot.add_cog(SekaiCog(bot))

@@ -30,7 +30,8 @@ class SekaiCog(commands.Cog, name='sekai'):
             player_id = str(self.player_id)
             name = interaction.user.display_name
             api = await get_sekai_user_api(player_id, session)
-            if api.get('user') == None:
+            none = {}
+            if api == none:
                 embed = errEmbed(
                 '玩家ID不存在',
                 f'請確定一下是否輸入了正確的ID')

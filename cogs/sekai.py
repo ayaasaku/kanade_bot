@@ -37,8 +37,8 @@ class SekaiCog(commands.Cog, name='sekai'):
                 f'請確定一下是否輸入了正確的ID')
                 await interaction.response.send_message(embed=embed, ephemeral= True)
             else:
-                await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
-                await db.commit()
+                #await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
+                #await db.commit()
                 title = '** 成功 **'
                 description = f'{name}，感謝使用奏寶，帳號已設置成功。'
                 embed = defaultEmbed(title, description)

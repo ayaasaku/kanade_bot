@@ -4,6 +4,7 @@ import aiosqlite
 import discord
 from discord import Embed, app_commands, ui
 from discord.ext import commands
+from matplotlib.pyplot import get
 
 from utility.utils import defaultEmbed, loadingEmbed, errEmbed
 from utility.apps.sekai.user.profile import user_profile
@@ -29,11 +30,11 @@ class SekaiCog(commands.Cog, name='sekai'):
             player_id = str(self.player_id)
             name = interaction.user.display_name
             api = await get_sekai_user_api(player_id, session)
-            if api == None:
+            if api.get('user') == None:
                 embed = errEmbed(
                 '玩家ID不存在',
                 f'請確定一下是否輸入了正確的ID')
-                await interaction.response.send_message(embed=embed)
+                await interaction.response.send_message(embed=embed, ephemeral= True)
             else:
                 await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
                 await db.commit()

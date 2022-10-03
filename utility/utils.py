@@ -35,7 +35,10 @@ def updateEmbed(description: str = ''):
     return embed
 
 def errEmbed(title: str = '', message: str = ''):
-    return discord.Embed(title=title, description=message, color=0xfc5165)
+    embed = discord.Embed(title=title, description=message, color=0xfc5165)
+    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127",
+                     icon_url="https://imgur.com/HwcMqPS.png")
+    return embed
 
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
     now = datetime.now()

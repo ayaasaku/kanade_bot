@@ -43,7 +43,8 @@ class SekaiCog(commands.Cog, name='sekai'):
             if api == none:
                 embed = errEmbed(
                 '玩家ID不存在',
-                f'請確定一下是否輸入了正確的ID')
+                f'抱歉，目前只支持日服註冊\n\
+                請確定一下是否輸入了正確的ID')
                 await interaction.response.send_message(embed=embed, ephemeral= True)
 
     @app_commands.command(name='register', description='register-player-id')    

@@ -27,14 +27,21 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = str(interaction.user.id)
             player_id = str(self.player_id)
             name = interaction.user.display_name
-            await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
-            await db.commit()
-            title = '** 成功 **'
-            description = f'{name}，感謝使用奏寶，帳號已設置成功。'
-            embed = defaultEmbed(title, description)
-            embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
-            embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
-            await interaction.response.send_message(embed=embed, ephemeral= True)
+            api = await get_sekai_user_api(player_id, self.bot.session)
+            if api != None:
+                await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
+                await db.commit()
+                title = '** 成功 **'
+                description = f'{name}，感謝使用奏寶，帳號已設置成功。'
+                embed = defaultEmbed(title, description)
+                embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
+                embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
+                await interaction.response.send_message(embed=embed, ephemeral= True)
+            else:
+                embed = errEmbed(
+                '玩家ID不存在',
+                f'請確定一下是否輸入了正確的ID')
+                await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name='register', description='register-player-id')    
     async def register(self, interaction: discord.Interaction):
@@ -105,3 +112,4 @@ class SekaiCog(commands.Cog, name='sekai'):
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))
+

@@ -40,7 +40,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
                 embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
                 await interaction.response.send_message(embed=embed, ephemeral= True)
-            else:
+            elif api == none:
                 embed = errEmbed(
                 '玩家ID不存在',
                 f'請確定一下是否輸入了正確的ID')

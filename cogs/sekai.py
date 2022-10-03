@@ -31,7 +31,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             name = interaction.user.display_name
             api = await get_sekai_user_api(player_id, session)
             none = {}
-            if api != none:  
+            if api != none or api != None:  
                 await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
                 await db.commit()
                 title = '** 成功 **'
@@ -40,7 +40,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
                 embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
                 await interaction.response.send_message(embed=embed, ephemeral= True)
-            elif api == none:
+            else:
                 embed = errEmbed(
                 '玩家ID不存在',
                 f'請確定一下是否輸入了正確的ID')

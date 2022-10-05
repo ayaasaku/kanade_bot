@@ -45,9 +45,12 @@ class SekaiCog(commands.Cog, name='sekai'):
             if type(player_id) != str: str(player_id)
             loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
             await interaction.followup.send(embed=loading_embed)
-            embed = await user_profile(player_id, self.bot.session)
+            embed_list = await user_profile(player_id, self.bot.session)
+            embed = embed_list[0]
+            embed2 = embed_list[1]
             embed.set_author(name=person.display_name, icon_url= person.display_avatar)
             await interaction.followup.send(embed=embed)
+            await interaction.followup.send(embed=embed2)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.rename(person='其他玩家')

@@ -37,20 +37,17 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
         
-        embed2 = defaultEmbed(title=f'**角色等級**', description='none')
+        embed2 = defaultEmbed(title=f'**角色等級**')
         embed2.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
-        for character in characters_level_list:
-            character_list_emoji = []
-            character_list_level = []
+        character_list_emoji = []
+        character_list_level = []
+        for character in characters_level_list:  
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-        character_list_emoji.append(emoji)
-        character_list_level.append(str(level))
-        print(characters_level_list)  
-        print(character_list_emoji)
-        print(character_list_level)
-        '''description = (
+            character_list_emoji.append(emoji)
+            character_list_level.append(str(level))
+        description = (
             character_list_emoji[0]+character_list_level[0]+'\u200b'+character_list_emoji[1]+character_list_level[1]+'\u200b'+character_list_emoji[2]+character_list_level[2]+'\n'\
             +character_list_emoji[3]+character_list_level[3]+'\u200b'+character_list_emoji[4]+character_list_level[4]+'\u200b'+character_list_emoji[5]+character_list_level[5]+'\n'\
             +character_list_emoji[6]+character_list_level[6]+'\u200b'+character_list_emoji[7]+character_list_level[7]+'\u200b'+character_list_emoji[8]+character_list_level[8]+'\n'\
@@ -59,8 +56,8 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             +character_list_emoji[15]+character_list_level[15]+'\u200b'+character_list_emoji[16]+character_list_level[16]+'\u200b'+character_list_emoji[17]+character_list_level[17]+'\n'\
             +character_list_emoji[18]+character_list_level[18]+'\u200b'+character_list_emoji[19]+character_list_level[19]+'\u200b'+character_list_emoji[20]+character_list_level[20]+'\n'\
             +character_list_emoji[21]+character_list_level[21]+'\u200b'+character_list_emoji[22]+character_list_level[22]+'\u200b'+character_list_emoji[23]+character_list_level[23]+'\n'\
-            +character_list_emoji[24]+character_list_level[24]+'\u200b'+character_list_emoji[25]+character_list_level[25]+'\u200b'+character_list_emoji[26]+character_list_level[26])'''
+            +character_list_emoji[24]+character_list_level[24]+'\u200b'+character_list_emoji[25]+character_list_level[25]+'\u200b'+character_list_emoji[26]+character_list_level[26])
 
-        #embed2.description = description
+        embed2.description = description
         embed_list = [embed, embed2]
         return embed_list

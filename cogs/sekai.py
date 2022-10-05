@@ -50,7 +50,6 @@ class SekaiCog(commands.Cog, name='sekai'):
             embed2 = embed_list[1]
             embed.set_author(name=person.display_name, icon_url= person.display_avatar)
             await interaction.followup.send(embed=embed)
-            channel = interaction.channel
             await interaction.channel.send(embed=embed2)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 

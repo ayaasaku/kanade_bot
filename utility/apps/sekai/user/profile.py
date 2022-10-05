@@ -48,15 +48,15 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             character_list_emoji.append(emoji)
             character_list_level.append(str(level))
         description = (
-            emoji[0]+level[0]+'\u200b'+emoji[1]+level[1]+'\u200b'+emoji[2]+level[2]+'\n'\
-            +emoji[3]+level[3]+'\u200b'+emoji[4]+level[4]+'\u200b'+emoji[5]+level[5]+'\n'\
-            +emoji[6]+level[6]+'\u200b'+emoji[7]+level[7]+'\u200b'+emoji[8]+level[8]+'\n'\
-            +emoji[9]+level[9]+'\u200b'+emoji[10]+level[10]+'\u200b'+emoji[11]+level[11]+'\n'\
-            +emoji[12]+level[12]+'\u200b'+emoji[13]+level[13]+'\u200b'+emoji[14]+level[14]+'\n'\
-            +emoji[15]+level[15]+'\u200b'+emoji[16]+level[16]+'\u200b'+emoji[17]+level[17]+'\n'\
-            +emoji[18]+level[18]+'\u200b'+emoji[19]+level[19]+'\u200b'+emoji[20]+level[20]+'\n'\
-            +emoji[21]+level[21]+'\u200b'+emoji[22]+level[22]+'\u200b'+emoji[23]+level[23]+'\n'\
-            +emoji[24]+level[24]+'\u200b'+emoji[25]+level[25]+'\u200b'+emoji[26]+level[26])
+            character_list_emoji[0]+character_list_level[0]+'\u200b'+character_list_emoji[1]+character_list_level[1]+'\u200b'+character_list_emoji[2]+character_list_level[2]+'\n'\
+            +character_list_emoji[3]+character_list_level[3]+'\u200b'+character_list_emoji[4]+character_list_level[4]+'\u200b'+character_list_emoji[5]+character_list_level[5]+'\n'\
+            +character_list_emoji[6]+character_list_level[6]+'\u200b'+character_list_emoji[7]+character_list_level[7]+'\u200b'+character_list_emoji[8]+character_list_level[8]+'\n'\
+            +character_list_emoji[9]+character_list_level[9]+'\u200b'+character_list_emoji[10]+character_list_level[10]+'\u200b'+character_list_emoji[11]+character_list_level[11]+'\n'\
+            +character_list_emoji[12]+character_list_level[12]+'\u200b'+character_list_emoji[13]+character_list_level[13]+'\u200b'+character_list_emoji[14]+character_list_level[14]+'\n'\
+            +character_list_emoji[15]+character_list_level[15]+'\u200b'+character_list_emoji[16]+character_list_level[16]+'\u200b'+character_list_emoji[17]+character_list_level[17]+'\n'\
+            +character_list_emoji[18]+character_list_level[18]+'\u200b'+character_list_emoji[19]+character_list_level[19]+'\u200b'+character_list_emoji[20]+character_list_level[20]+'\n'\
+            +character_list_emoji[21]+character_list_level[21]+'\u200b'+character_list_emoji[22]+character_list_level[22]+'\u200b'+character_list_emoji[23]+character_list_level[23]+'\n'\
+            +character_list_emoji[24]+character_list_level[24]+'\u200b'+character_list_emoji[25]+character_list_level[25]+'\u200b'+character_list_emoji[26]+character_list_level[26])
 
         embed2.description = description
         embed_list = [embed, embed2]

@@ -34,9 +34,9 @@ class SekaiCog(commands.Cog, name='sekai'):
         if player_id is None:
             embed = errEmbed(
             '玩家ID不存在',
-            f'也許該名玩家還沒注冊？')
-            await interaction.response.send_message(embed=embed, ephemeral= True)
-            await interaction.followup.send(embed=embed)
+            f'也許該名玩家還沒注冊？\n\
+                可以使用 `/register` 來註冊')
+            await interaction.followup.send(embed=embed, ephemeral= True)
         else:
             player_id = player_id[0]
             if type(player_id) != str: str(player_id)
@@ -65,9 +65,9 @@ class SekaiCog(commands.Cog, name='sekai'):
         if player_id is None:
             embed = errEmbed(
             '玩家ID不存在',
-            f'也許該名玩家還沒注冊？')
-            await interaction.response.send_message(embed=embed, ephemeral= True)
-            await interaction.followup.send(embed=embed)
+            f'也許該名玩家還沒注冊？\n\
+                可以使用 `/register` 來註冊')
+            await interaction.followup.send(embed=embed, ephemeral= True)
         else:
             player_id = player_id[0]
             embed = defaultEmbed(f'{player_id}')

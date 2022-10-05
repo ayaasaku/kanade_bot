@@ -20,7 +20,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
     
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
-    @app_commands.rename(person='其他玩家')
+    #@app_commands.rename(person='其他玩家')
     async def profile(self, interaction: discord.Interaction, person: discord.User = None):
         await interaction.response.defer(ephemeral=True)
         db = await aiosqlite.connect("kanade_data.db")

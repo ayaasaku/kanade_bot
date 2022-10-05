@@ -15,7 +15,6 @@ from utility.apps.sekai.user.register import check_user_account
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        super().__init__()
         global session
         session = self.bot.session
     #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    

@@ -42,6 +42,6 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-            embed.add_field(name=f'{emoji} {level}', value=f' ', inline=True)
+            embed.add_field(name=f'{emoji} {level}', value=f'\u200b', inline=True)
         return embed
 

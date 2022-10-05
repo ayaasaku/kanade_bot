@@ -32,7 +32,8 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=tl_url)
-        embed.set_image(url=img_url)
+        if img_url != None:
+            embed.set_image(url=img_url)
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)

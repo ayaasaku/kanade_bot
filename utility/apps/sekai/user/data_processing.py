@@ -74,6 +74,8 @@ async def get_profile_img(card_id: int, session: aiohttp.ClientSession):
         'theme_park': 'img_story_wonderLand'
     }
     
+    if unit == 'piapro':
+        return None
     path = path_convert[unit]
     
     url =  f'https://gitlab.com/pjsekai/sprites/-/raw/master/{path}.png'

@@ -37,11 +37,11 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
-        embed.add_field(name=f'**角色等級**', value=f'\200b', inline=False)
+        embed.add_field(name=f'**角色等級**', value='\u200b', inline=False)
         for character in characters_level_list:
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-            embed.add_field(name=f'{emoji}', value=f'{level}', inline=True)
+            embed.add_field(name=f'{emoji}{level}', value=f'\u200b', inline=True)
         return embed
 

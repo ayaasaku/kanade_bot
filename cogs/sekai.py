@@ -32,6 +32,12 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         player_id = player_id[0]
+        if player_id == None:
+            embed = errEmbed(
+            '玩家ID不存在',
+            f'也許該名玩家還沒注冊？')
+            await interaction.response.send_message(embed=embed, ephemeral= True)
+            await interaction.followup.send(embed=embed)
         if type(player_id) != str: str(player_id)
         loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
         await interaction.followup.send(embed=loading_embed)
@@ -56,6 +62,12 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         player_id = player_id[0]
+        if player_id == None:
+            embed = errEmbed(
+            '玩家ID不存在',
+            f'也許該名玩家還沒注冊？')
+            await interaction.response.send_message(embed=embed, ephemeral= True)
+            await interaction.followup.send(embed=embed)
         embed = defaultEmbed(f'{player_id}')
         embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
         await interaction.followup.send(embed=embed)

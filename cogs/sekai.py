@@ -31,19 +31,20 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = person.id
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
-        player_id = player_id[0]
-        if player_id == None:
+        if player_id[0] == None:
             embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？')
             await interaction.response.send_message(embed=embed, ephemeral= True)
             await interaction.followup.send(embed=embed)
-        if type(player_id) != str: str(player_id)
-        loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
-        await interaction.followup.send(embed=loading_embed)
-        embed = await user_profile(player_id, self.bot.session)
-        embed 
-        await interaction.followup.send(embed=embed)
+        else:
+            player_id = player_id[0]
+            if type(player_id) != str: str(player_id)
+            loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
+            await interaction.followup.send(embed=loading_embed)
+            embed = await user_profile(player_id, self.bot.session)
+            embed 
+            await interaction.followup.send(embed=embed)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.rename(person='其他玩家')
@@ -61,17 +62,18 @@ class SekaiCog(commands.Cog, name='sekai'):
             avatar = person.display_avatar
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
-        player_id = player_id[0]
-        if player_id == None:
+        if player_id[0] == None:
             embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？')
             await interaction.response.send_message(embed=embed, ephemeral= True)
             await interaction.followup.send(embed=embed)
-        embed = defaultEmbed(f'{player_id}')
-        embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
-        await interaction.followup.send(embed=embed)
-        #await interaction.followup.send(f'{player_id}')
+        else:
+            player_id = player_id[0]
+            embed = defaultEmbed(f'{player_id}')
+            embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
+            await interaction.followup.send(embed=embed)
+            #await interaction.followup.send(f'{player_id}')
         
     class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)

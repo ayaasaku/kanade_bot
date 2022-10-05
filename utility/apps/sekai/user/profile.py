@@ -4,6 +4,7 @@ import discord
 from discord import Embed, app_commands, embeds
 from discord.app_commands import Choice
 from discord.ext import commands
+from numpy import append
 
 from utility.apps.sekai.time_formatting import format_date_jp
 from utility.apps.sekai.user.data_processing import (get_profile_img,
@@ -31,16 +32,19 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=tl_url)
+        if img_url != None:
+            embed.set_image(url=img_url)
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
         
-        embed2 = defaultEmbed(title=f'**角色等級**', description=f'\u200b')
-        #if img_url != None:
-            #embed2.set_image(url=img_url)
+        embed2 = defaultEmbed(title=f'**角色等級**')
+        embed2.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
         for character in characters_level_list:
+            character_list = []
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-            embed2.add_field(name=f'{emoji} {level}', value=f'\u200b', inline=True)
-            embed_list = [embed, embed2]
+            character_list.append([emoji,level,'\u200b'])
+        embed2.description = character_list
+        embed_list = [embed, embed2]
         return embed_list

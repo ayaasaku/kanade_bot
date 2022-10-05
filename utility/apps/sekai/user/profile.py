@@ -35,8 +35,8 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
         
         embed2 = defaultEmbed(title=f'**角色等級**', description=f'\u200b')
-        if img_url != None:
-            embed2.set_image(url=img_url)
+        #if img_url != None:
+            #embed2.set_image(url=img_url)
         for character in characters_level_list:
             id = character['characterId']
             level = character['characterRank']

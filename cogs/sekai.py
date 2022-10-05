@@ -17,6 +17,11 @@ class SekaiCog(commands.Cog, name='sekai'):
         self.bot = bot
         global session
         session = self.bot.session
+        global none_embed
+        none_embed = errEmbed(
+            '玩家ID不存在',
+            f'也許該名玩家還沒注冊？\n\
+                可以使用 `/register` 來註冊')
     #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
     
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
@@ -32,10 +37,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         if player_id is None:
-            embed = errEmbed(
-            '玩家ID不存在',
-            f'也許該名玩家還沒注冊？\n\
-                可以使用 `/register` 來註冊')
+            embed = none_embed
             await interaction.followup.send(embed=embed, ephemeral= True)
         else:
             player_id = player_id[0]
@@ -43,7 +45,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             loading_embed = loadingEmbed(text = '玩家', img = 'https://static.wikia.nocookie.net/projectsekai/images/b/bb/Yoisaki_Kanade_chibi.png/revision/latest?cb=20220320041840', thumbnail = True)
             await interaction.followup.send(embed=loading_embed)
             embed = await user_profile(player_id, self.bot.session)
-            embed 
+            embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
             await interaction.followup.send(embed=embed)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 
@@ -63,10 +65,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         if player_id is None:
-            embed = errEmbed(
-            '玩家ID不存在',
-            f'也許該名玩家還沒注冊？\n\
-                可以使用 `/register` 來註冊')
+            embed = none_embed
             await interaction.followup.send(embed=embed, ephemeral= True)
         else:
             player_id = player_id[0]

@@ -25,7 +25,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         leader_id = await get_user_decks(import_id, 'leader', session)
         tl_url = await get_user_profile_pic(import_id, leader_id, session)  
         img_url = await get_profile_img(leader_id, session)  
-        if word == None or len(word) < 1: word = 'none'
+        if word == None or len(word) < 1: word = '此玩家並沒有設置簡介'
         seconds = int((1600218000000 + int(user_id) / 2 ** 22) + 25200000)
         creation_date = await format_date_jp (seconds)
         characters_level_list = await get_user_character_level(import_id, session)
@@ -42,6 +42,6 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-            embed.add_field(name=f'{emoji} {level}', value=f'\u200b', inline=True)
+            embed.add_field(name=f'{emoji} {level}', value=f' ', inline=True)
         return embed
 

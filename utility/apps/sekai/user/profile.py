@@ -40,11 +40,21 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed2 = defaultEmbed(title=f'**角色等級**')
         embed2.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
         for character in characters_level_list:
-            character_list = []
+            character_list_emoji = []
+            character_list_level = []
             id = character['characterId']
             level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
-            character_list.append([emoji,level,'\u200b'])
-        embed2.description = character_list
+            character_list_emoji.append(emoji)
+            character_list_level.append(level)
+        embed2.description = f'{emoji[0]}{level[0]}\u200b{emoji[1]}{level[1]}\u200b{emoji[2]}{level[2]}\n\
+                                {emoji[3]}{level[3]}\u200b{emoji[4]}{level[4]}\u200b{emoji[5]}{level[5]}\n\
+                                {emoji[6]}{level[6]}\u200b{emoji[7]}{level[7]}\u200b{emoji[8]}{level[8]}\n\
+                                {emoji[9]}{level[9]}\u200b{emoji[10]}{level[10]}\u200b{emoji[11]}{level[11]}\n\
+                                {emoji[12]}{level[12]}\u200b{emoji[13]}{level[13]}\u200b{emoji[14]}{level[14]}\n\
+                                {emoji[15]}{level[15]}\u200b{emoji[16]}{level[16]}\u200b{emoji[17]}{level[17]}\n\
+                                {emoji[18]}{level[18]}\u200b{emoji[19]}{level[19]}\u200b{emoji[20]}{level[20]}\n\
+                                {emoji[21]}{level[21]}\u200b{emoji[22]}{level[22]}\u200b{emoji[23]}{level[23]}\n\
+                                {emoji[24]}{level[24]}\u200b{emoji[25]}{level[25]}\u200b{emoji[26]}{level[27]}'
         embed_list = [embed, embed2]
         return embed_list

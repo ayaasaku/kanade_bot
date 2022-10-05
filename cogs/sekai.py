@@ -31,7 +31,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = person.id
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
-        if player_id[0] == None:
+        if player_id is None:
             embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？')
@@ -62,7 +62,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             avatar = person.display_avatar
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
-        if player_id[0] == None:
+        if player_id is None:
             embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？')

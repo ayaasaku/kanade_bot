@@ -36,7 +36,8 @@ def updateEmbed(description: str = ''):
 
 def errEmbed(title: str = '', message: str = ''):
     embed = discord.Embed(title=title, description=message, color=0xfc5165)
-    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127")
+    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127", 
+                    icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
     return embed
 
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
@@ -58,12 +59,4 @@ def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
 def divide_chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
-        
-class Convert:
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return f'Convert({self.name!r})'       
-    def convert(value):
-        return Convert(value.decode('utf-8'))
+ 

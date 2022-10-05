@@ -47,6 +47,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             emoji = charater_icons[f'chr_ts_90_{id}']
             character_list_emoji.append(emoji)
             character_list_level.append(str(level))
+        print(characters_level_list)  
         print(character_list_emoji)
         print(character_list_level)
         '''description = (

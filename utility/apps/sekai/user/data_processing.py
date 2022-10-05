@@ -80,3 +80,8 @@ async def get_profile_img(card_id: int, session: aiohttp.ClientSession):
     
     return url
     
+#character level
+async def get_user_character_level(import_id: str, session: aiohttp.ClientSession):
+    api = await get_sekai_user_api(import_id, session)
+    result = api['userCharacters']
+    return result    

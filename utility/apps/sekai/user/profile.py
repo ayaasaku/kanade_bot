@@ -10,9 +10,10 @@ from utility.apps.sekai.user.data_processing import (get_profile_img,
                                                      get_user_decks,
                                                      get_user_game_data,
                                                      get_user_profile,
-                                                     get_user_profile_pic)
+                                                     get_user_profile_pic,
+                                                     get_user_character_level)
 from utility.utils import defaultEmbed
-
+from data.emoji_data import charater_icons
 
 async def user_profile(import_id: str, session: aiohttp.ClientSession):
     get_id = await get_user_game_data(import_id, 'userId', session)
@@ -27,6 +28,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         if word == None or len(word) < 1: word = 'none'
         seconds = int((1600218000000 + int(user_id) / 2 ** 22) + 25200000)
         creation_date = await format_date_jp (seconds)
+        characters_level_list = await get_user_character_level(import_id, session)
         
         embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
         embed.set_thumbnail(url=tl_url)
@@ -34,6 +36,11 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
-    
+        embed.add_field(name=f'**角色等級**', value=f'\200b', inline=False)
+        for character in characters_level_list:
+            id = character['characterId']
+            level = character['characterRank']
+            emoji = charater_icons[f'chr_ts_90_{id}']
+            embed.add_field(name=f'{emoji}', value=f'{level}', inline=True)
         return embed
 

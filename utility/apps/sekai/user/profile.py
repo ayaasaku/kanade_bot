@@ -37,7 +37,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'等級：', value=rank, inline=False)
         embed.add_field(name=f'玩家 ID：', value=f'`{user_id}`', inline=False)
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
-        embed.add_field(name=f'**角色等級**', value='\u200b', inline=False)
+        embed.add_field(name=f'\u200b', value='**角色等級**', inline=False)
         for character in characters_level_list:
             id = character['characterId']
             level = character['characterRank']

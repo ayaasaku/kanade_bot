@@ -7,6 +7,7 @@ from discord.ext import commands
 from matplotlib.pyplot import get
 
 from utility.utils import defaultEmbed, loadingEmbed, errEmbed
+from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
 from utility.apps.sekai.user.data_processing import *
@@ -50,9 +51,8 @@ class SekaiCog(commands.Cog, name='sekai'):
             embed2 = embed_list[1]
             embed3 = embed_list[2]
             embed.set_author(name=person.display_name, icon_url= person.display_avatar)
-            await interaction.followup.send(embed=embed)
-            await interaction.channel.send(embed=embed2)
-            await interaction.channel.send(embed=embed3)
+            embeds = [embed, embed2, embed3]
+            await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.rename(person='其他玩家')

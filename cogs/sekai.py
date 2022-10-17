@@ -21,8 +21,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         global none_embed
         none_embed = errEmbed(
             '玩家ID不存在',
-            f'也許該名玩家還沒注冊？\n\
-                可以使用 `/register` 來註冊')
+            f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊')
     #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
     
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
@@ -103,8 +102,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             if api == none:
                 embed = errEmbed(
                 '玩家ID不存在',
-                f'抱歉，目前只支持日服註冊\n\
-                請確定一下是否輸入了正確的ID')
+                f'抱歉，目前只支持日服註冊\n請確定一下是否輸入了正確的ID')
                 await interaction.response.send_message(embed=embed, ephemeral= True)
 
     @app_commands.command(name='register', description='register-player-id')    
@@ -116,7 +114,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         else:
             embed = errEmbed(
             '帳號已經存在',
-            f'你已經註冊過帳號了，不需要再註冊囉')
+            '你已經註冊過帳號了，不需要再註冊囉')
             await interaction.response.send_message(embed=embed)
           
     @app_commands.command(name='remove', description='remove-user-account')

@@ -26,7 +26,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         tl_url = await get_user_profile_pic(import_id, leader_id, session)  
         img_url = await get_profile_img(leader_id, session)  
         if word == None or len(word) < 1: word = '此玩家並沒有設置簡介'
-        seconds = int((1600218000000 + int(import_id) / 2 ** 22) + 25200000)
+        seconds = int((1600218000000+int(import_id) / 2 ** 22)+25200000)
         creation_date = await format_date_jp (seconds)
         characters_dict = await get_user_character_level(import_id, session)
         
@@ -42,21 +42,20 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         character_list_emoji = []
         character_list_level = []
         for character in characters_dict:  
-            id = character['characterId']
+            id = character['{characterId']
             emoji = charater_icons[f'chr_ts_90_{id}']
             character_list_emoji.append(emoji)
-            level = character['characterRank']
+            level = character['{characterRank']
             character_list_level.append(str(level))
-        description = (
-            character_list_emoji[0]+character_list_level[0]+' \u200b'+character_list_emoji[1]+character_list_level[1]+' \u200b'+character_list_emoji[2]+character_list_level[2]+'\n'\
-            +character_list_emoji[3]+character_list_level[3]+' \u200b'+character_list_emoji[4]+character_list_level[4]+' \u200b'+character_list_emoji[5]+character_list_level[5]+'\n'\
-            +character_list_emoji[6]+character_list_level[6]+' \u200b'+character_list_emoji[7]+character_list_level[7]+' \u200b'+character_list_emoji[8]+character_list_level[8]+'\n'\
-            +character_list_emoji[9]+character_list_level[9]+' \u200b'+character_list_emoji[10]+character_list_level[10]+' \u200b'+character_list_emoji[11]+character_list_level[11]+'\n'\
-            +character_list_emoji[12]+character_list_level[12]+' \u200b'+character_list_emoji[13]+character_list_level[13]+' \u200b'+character_list_emoji[14]+character_list_level[14]+'\n'\
-            +character_list_emoji[15]+character_list_level[15]+' \u200b'+character_list_emoji[16]+character_list_level[16]+' \u200b'+character_list_emoji[17]+character_list_level[17]+'\n'\
-            +character_list_emoji[18]+character_list_level[18]+' \u200b'+character_list_emoji[19]+character_list_level[19]+' \u200b'+character_list_emoji[20]+character_list_level[20]+'\n'\
-            +character_list_emoji[21]+character_list_level[21]+' \u200b'+character_list_emoji[22]+character_list_level[22]+' \u200b'+character_list_emoji[23]+character_list_level[23]+'\n'\
-            +character_list_emoji[24]+character_list_level[24]+' \u200b'+character_list_emoji[25]+character_list_level[25]+' \u200b')
+        description = f'{character_list_emoji[0]} {character_list_level[0]}\u200b{character_list_emoji[1]}{character_list_level[1]}\u200b{character_list_emoji[2]}{character_list_level[2]}\n\
+            {character_list_emoji[3]}{character_list_level[3]}\u200b{character_list_emoji[4]}{character_list_level[4]}\u200b{character_list_emoji[5]}{character_list_level[5]}\n\
+            {character_list_emoji[6]}{character_list_level[6]}\u200b{character_list_emoji[7]}{character_list_level[7]}\u200b{character_list_emoji[8]}{character_list_level[8]}\n\
+            {character_list_emoji[9]}{character_list_level[9]}\u200b{character_list_emoji[10]}{character_list_level[10]}\u200b{character_list_emoji[11]}{character_list_level[11]}\n\
+            {character_list_emoji[12]}{character_list_level[12]}\u200b{character_list_emoji[13]}{character_list_level[13]}\u200b{character_list_emoji[14]}{character_list_level[14]}\n\
+            {character_list_emoji[15]}{character_list_level[15]}\u200b{character_list_emoji[16]}{character_list_level[16]}\u200b{character_list_emoji[17]}{character_list_level[17]}\n\
+            {character_list_emoji[18]}{character_list_level[18]}\u200b{character_list_emoji[19]}{character_list_level[19]}\u200b{character_list_emoji[20]}{character_list_level[20]}\n\
+            {character_list_emoji[21]}{character_list_level[21]}\u200b{character_list_emoji[22]}{character_list_level[22]}\u200b{character_list_emoji[23]}{character_list_level[23]}\n\
+            {character_list_emoji[24]}{character_list_level[24]}\u200b{character_list_emoji[25]}{character_list_level[25]}\u200b'
 
         embed2.description =  description
         embed_list = [embed, embed2]

@@ -43,9 +43,10 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         character_list_level = []
         for character in characters_level_list:  
             id = character['characterId']
-            level = character['characterRank']
             emoji = charater_icons[f'chr_ts_90_{id}']
             character_list_emoji.append(emoji)
+        for character in characters_level_list:  
+            level = character['characterRank']
             character_list_level.append(str(level))
         description = (
             character_list_emoji[0]+character_list_level[0]+'\u200b'+character_list_emoji[1]+character_list_level[1]+'\u200b'+character_list_emoji[2]+character_list_level[2]+'\n'\

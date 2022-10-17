@@ -24,8 +24,7 @@ class MainCog(commands.Cog, name='main'):
         embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
                          icon_url="https://i.imgur.com/oXEl8tP.jpg")
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
-        embed.set_footer(text=f"奏寶 v{version} - by Ayaakaa@Seria Studios",
-                     icon_url="https://imgur.com/HwcMqPS.png")
+        embed.set_footer(text=f"奏寶 v{version} - by 綾霞 Ayaakaa")
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name='say', description='用奏寶說話')

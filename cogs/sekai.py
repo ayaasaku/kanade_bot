@@ -48,9 +48,11 @@ class SekaiCog(commands.Cog, name='sekai'):
             embed_list = await user_profile(player_id, self.bot.session)
             embed = embed_list[0]
             embed2 = embed_list[1]
+            embed3 = embed_list[2]
             embed.set_author(name=person.display_name, icon_url= person.display_avatar)
             await interaction.followup.send(embed=embed)
             await interaction.channel.send(embed=embed2)
+            await interaction.channel.send(embed=embed3)
         
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.rename(person='其他玩家')

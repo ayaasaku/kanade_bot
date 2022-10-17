@@ -38,7 +38,6 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
         
         embed2 = defaultEmbed(title=f'**角色等級**')
-        embed2.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
         character_list_emoji = []
         character_list_level = []
         for character in characters_dict:  
@@ -56,7 +55,10 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
             {character_list_emoji[18]} {character_list_level[18]} \u200b {character_list_emoji[19]} {character_list_level[19]} \u200b {character_list_emoji[20]} {character_list_level[20]}\n\
             {character_list_emoji[21]} {character_list_level[21]} \u200b {character_list_emoji[22]} {character_list_level[22]} \u200b {character_list_emoji[23]} {character_list_level[23]}\n\
             {character_list_emoji[24]} {character_list_level[24]} \u200b {character_list_emoji[25]} {character_list_level[25]} \u200b '
-
         embed2.description =  description
-        embed_list = [embed, embed2]
+        
+        embed3 = defaultEmbed()
+        embed3.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
+        
+        embed_list = [embed, embed2, embed3]
         return embed_list

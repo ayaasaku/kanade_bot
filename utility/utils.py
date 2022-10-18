@@ -1,5 +1,6 @@
 import logging
 import discord
+from discord import Colour
 from datetime import datetime
 
 from data.version import version
@@ -11,19 +12,16 @@ logging.basicConfig(
 )
 log = logging
 
-
+#embeds
 def defaultEmbed(title: str = '', description: str = ''):
     embed = discord.Embed(title=title, description=description, color=0xBB6688)
     return embed
 
-def loadingEmbed(text: str, img: str, thumbnail: bool):
-            embed = defaultEmbed(title = f'**正在獲取{text}資料...**',
-                             description = f'獲取資料需時，請耐心等候')
-            if thumbnail == True:
-                embed.set_thumbnail(url = img)
-            else:
-                embed.set_image(url = img)
-            return embed     
+def loadingEmbed(text: str):
+    embed = defaultEmbed(title = f'**正在獲取{text}資料...**',
+                    description = f'獲取資料需時，請耐心等候')
+    embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless')
+    return embed     
 
 def updateEmbed(description: str = ''):
     embed = discord.Embed(title=f'**奏寶 v{version}**', description=description, color=0xBB6688)
@@ -35,14 +33,19 @@ def updateEmbed(description: str = ''):
     return embed
 
 def errEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=0xfc5165)
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#FF55BB'))
     return embed
 
 def errMsgEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=0xfc5165)
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#FF55BB'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
     embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127", 
                     icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
+    return embed
+
+def successEmbed(title: str = '', message: str = ''):
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#00CCAA'))
+    embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
 
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):

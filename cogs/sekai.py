@@ -6,7 +6,7 @@ from discord import Embed, app_commands, ui
 from discord.ext import commands
 from matplotlib.pyplot import get
 
-from utility.utils import defaultEmbed, loadingEmbed, errMsgEmbed
+from utility.utils import defaultEmbed, loadingEmbed, errMsgEmbed, successEmbed
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
@@ -43,7 +43,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         else:
             player_id = player_id[0]
             if type(player_id) != str: str(player_id)
-            loading_embed = loadingEmbed(text = '玩家', img = 'https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless', thumbnail = True)
+            loading_embed = loadingEmbed(text = '玩家')
             await interaction.followup.send(embed=loading_embed)
             embed_list = await user_profile(player_id, self.bot.session)
             embed_list[0].set_author(name=person.display_name, icon_url= person.display_avatar)
@@ -91,7 +91,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 await db.commit()
                 title = '** 成功 **'
                 description = f'{name}，感謝使用奏寶，帳號已設置成功。'
-                embed = defaultEmbed(title, description)
+                embed = successEmbed(title, description)
                 embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
                 embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
                 await interaction.response.send_message(embed=embed, ephemeral= True)

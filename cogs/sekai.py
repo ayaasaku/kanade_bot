@@ -6,7 +6,7 @@ from discord import Embed, app_commands, ui
 from discord.ext import commands
 from matplotlib.pyplot import get
 
-from utility.utils import defaultEmbed, loadingEmbed, errEmbed
+from utility.utils import defaultEmbed, loadingEmbed, errMsgEmbed
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
@@ -19,7 +19,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         global session
         session = self.bot.session
         global none_embed
-        none_embed = errEmbed(
+        none_embed = errMsgEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊')
     #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
@@ -96,7 +96,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
                 await interaction.response.send_message(embed=embed, ephemeral= True)
             if api == none:
-                embed = errEmbed(
+                embed = errMsgEmbed(
                 '玩家ID不存在',
                 f'抱歉，目前只支持日服註冊\n請確定一下是否輸入了正確的ID')
                 await interaction.response.send_message(embed=embed, ephemeral= True)
@@ -108,7 +108,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:
-            embed = errEmbed(
+            embed = errMsgEmbed(
             '帳號已經存在',
             '你已經註冊過帳號了，不需要再註冊囉')
             await interaction.response.send_message(embed=embed)

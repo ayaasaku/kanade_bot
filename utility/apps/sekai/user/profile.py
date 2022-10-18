@@ -26,7 +26,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         tl_url = await get_user_profile_pic(import_id, leader_id, session)  
         img_url = await get_profile_img(leader_id, session)  
         if word == None or len(word) < 1: word = '此玩家並沒有設置簡介'
-        seconds = int((1600218000000+int(import_id) / 2 ** 22)+25200000)
+        seconds = int((1600218000000 + int(import_id) / 2 ** 22) + 25200000)
         creation_date = await format_date_jp (seconds)
         characters_dict = await get_user_character_level(import_id, session)
         
@@ -57,8 +57,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
 {character_list_emoji[24]} {character_list_level[24]} \u200b {character_list_emoji[25]} {character_list_level[25]}'
         embed2.description =  description
         
-        embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
-        embed2.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
-        
         embed_list = [embed, embed2]
+        for embed in embed_list:
+             embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
         return embed_list

@@ -18,8 +18,7 @@ def defaultEmbed(title: str = '', description: str = ''):
     return embed
 
 def loadingEmbed(text: str):
-    embed = defaultEmbed(title = f'**正在獲取{text}資料...**',
-                    description = f'獲取資料需時，請耐心等候')
+    embed = discord.Embed(title=f'**正在獲取{text}資料...**', description=f'獲取資料需時，請耐心等候', color=discord.Colour.from_str('#F3BB2F'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless')
     return embed     
 
@@ -33,18 +32,18 @@ def updateEmbed(description: str = ''):
     return embed
 
 def errEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13637'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
     return embed
 
 def errMsgEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13637'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
     embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127", 
                     icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
     return embed
 
 def successEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#3DC03C'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#3DC05F'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
 

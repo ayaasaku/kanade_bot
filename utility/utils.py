@@ -33,18 +33,18 @@ def updateEmbed(description: str = ''):
     return embed
 
 def errEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#FF55BB'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13637'))
     return embed
 
 def errMsgEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#FF55BB'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13637'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
     embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#1127", 
                     icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
     return embed
 
 def successEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#00CCAA'))
+    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#3DC03C'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
 

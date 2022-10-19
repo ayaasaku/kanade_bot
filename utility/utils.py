@@ -18,7 +18,7 @@ def defaultEmbed(title: str = '', description: str = ''):
     return embed
 
 def loadingEmbed(text: str):
-    embed = discord.Embed(title=f'**正在獲取{text}資料...**', description=f'獲取資料需時，請耐心等候', color=discord.Colour.from_str('#F3BB2F'))
+    embed = discord.Embed(title=f'**正在獲取{text}資料...**', description=f'獲取資料需時，請耐心等候', color=discord.Colour.from_str('0xBB6688'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless')
     return embed     
 

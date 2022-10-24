@@ -94,6 +94,7 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
                             value=f'等級：{difficulty[8]}\n音符數量：{difficulty[9]}\n\u200b', inline=True)
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False) 
+            
             group_music_embed_list.append(embed)
             
     return group_music_embed_list

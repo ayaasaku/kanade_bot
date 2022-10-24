@@ -1,5 +1,3 @@
-# song embed
-# musics
 import aiohttp
 from data.emoji_data import difficulty_emoji
 from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,

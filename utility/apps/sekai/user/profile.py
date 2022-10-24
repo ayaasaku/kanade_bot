@@ -1,11 +1,5 @@
 import aiohttp
 
-import discord
-from discord import Embed, app_commands, embeds
-from discord.app_commands import Choice
-from discord.ext import commands
-from numpy import append
-
 from utility.apps.sekai.time_formatting import format_date_jp
 from utility.apps.sekai.user.data_processing import (get_profile_img,
                                                      get_user_decks,

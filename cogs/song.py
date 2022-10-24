@@ -35,6 +35,7 @@ class SongCog(commands.Cog, name='song'):
                 return embed 
             if select.values[0] == '25點，Nightcord見。':
                 embed = await loading_embed()
+                await interaction.followup.send('school_refusal')
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)

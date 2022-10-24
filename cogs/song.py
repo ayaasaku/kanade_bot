@@ -8,6 +8,7 @@ from discord.ui import (Select,
 from data.emoji_data import group_icon_square
 from data.img_data import group_icon
 from utility.apps.sekai.music_info import get_group_music
+from utility.utils import loadingEmbed
 from utility.paginator import GeneralPaginator
 
 
@@ -29,31 +30,31 @@ class SongCog(commands.Cog, name='song'):
         
         async def song_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
-            async def loading_embed(group_id: str):
-                embed = await loading_embed(text = f'{select.values[0]}的歌曲', img = group_icon[group_id], Thumbnail = True)
+            async def loading_embed():
+                embed = await loadingEmbed(text = f'{select.values[0]}的歌曲')
                 return embed 
             if select.values[0] == '25點，Nightcord見。':
-                embed = await loading_embed('school_refusal')
+                embed = await loading_embed()
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Leo/need':
-                embed = await loading_embed('light_music_club')
+                embed = await loading_embed()
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('light_music_club', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'MORE MORE JUMP！':
-                embed = await loading_embed('idol')
+                embed = await loading_embed()
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('idol', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Vivid BAD SQUAD':
-                embed = await loading_embed('street')
+                embed = await loading_embed()
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('street', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
             if select.values[0] == 'Wonderlands×Showtime':
-                embed = await loading_embed('theme_park')
+                embed = await loading_embed()
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('theme_park', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)

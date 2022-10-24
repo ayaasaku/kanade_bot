@@ -61,12 +61,6 @@ async def get_group_music(group: str, session: aiohttp.ClientSession):
     for thing in music_api:
         if thing['musicTag'] == f'{group}':
             music_id = thing['musicId']
-            
-            easy = difficulty_emoji['easy']
-            normal = difficulty_emoji['normal']
-            hard = difficulty_emoji['hard']
-            expert = difficulty_emoji['expert']
-            master = difficulty_emoji['master']
 
             info = await get_music_info(music_id, session)
             difficulty = await get_music_difficulty_info(music_id, session)

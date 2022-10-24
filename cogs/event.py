@@ -103,7 +103,6 @@ class EventCog(commands.Cog, name='event'):
                 embed.add_field(name='開始', value=event_start_time, inline=True)
                 embed.add_field(name='\u200b', value='\u200b', inline=True)
                 embed.add_field(name='結束', value=f'{event_end_time}', inline=True)
-                #embed.add_field(name='\u200b', value='**時間**', inline=False)
                 embed.add_field(name='更多資訊', value=event_url, inline=False)
                 await interaction.response.send_message(embed=embed)
             

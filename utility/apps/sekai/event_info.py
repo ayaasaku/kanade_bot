@@ -79,8 +79,11 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
     event_end_time = await event_info('aggregateAt')
     event_banner_name = await event_info('assetbundleName')
     
-    event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
-    
+    if type == 'tw':
+        event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
+    elif type == 'jp':
+        event_api = await get_sekai_event_deck_bonuses_api_jp(session)
+        
     characters_id_list = []
     for thing in event_api:
         if event_id == thing['eventId']:

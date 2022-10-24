@@ -9,7 +9,7 @@ from utility.apps.sekai.api_functions import (
 
 
     #jp
-async def get_event_info_jp(session: aiohttp.ClientSession):
+'''async def get_event_info_jp(session: aiohttp.ClientSession):
     event_api = await get_sekai_events_api_jp(session)
     event_id = event_api[-1]['id']
     event_name = event_api[-1]['name']
@@ -54,20 +54,25 @@ async def get_event_info_jp(session: aiohttp.ClientSession):
         'characters_name_list': characters_name_list        
     }
     return event_info
-#tw
-async def get_event_info_tw(session: aiohttp.ClientSession):
-    event_api = await get_sekai_events_api_tw(session)
+#tw'''
+
+async def get_event_info(session: aiohttp.ClientSession, type: str):
+    if type == 'tw':
+        event_api = await get_sekai_events_api_tw(session)
+    elif type == 'jp':
+        event_api = await get_sekai_events_api_jp(session)
     
     async def event_info(info):           
         for thing in event_api:
             event_start_time = thing['startAt']
             event_end_time = thing['aggregateAt']
             current_time = time.time()
-            while current_time > event_start_time / 1000 and current_time < event_end_time / 1000:
-                return thing[f'{info}']    
-            else:
-                pass  
-          
+            if current_time > event_start_time / 1000 and current_time < event_end_time / 1000:
+                continue
+            return thing[f'{info}']    
+        else:
+            return None
+        
     event_id = await event_info('id')
     event_name = await event_info('name')
     event_type = await event_info('eventType')
@@ -98,15 +103,19 @@ async def get_event_info_tw(session: aiohttp.ClientSession):
                 characters_name_list.append(name)
     if None in characters_name_list:
         characters_name_list.remove(None)
-    
-    event_info = {
-        'event_id': event_id,
-        'event_name': event_name,
-        'event_type': event_type.capitalize(),
-        'event_start_time': event_start_time,
-        'event_end_time': event_end_time,
-        'event_banner_name': event_banner_name,
-        'event_bonus_attribute': event_bonus_attribute.capitalize(),
-        'characters_name_list': characters_name_list        
-    }
-    return event_info
+        
+    if None in [event_id, event_name, event_type, event_start_time, event_end_time, event_banner_name, event_bonus_attribute, characters_name_list]:
+        return None
+    else:
+        event_info = {
+            'event_id': event_id,
+            'event_name': event_name,
+            'event_type': event_type.capitalize(),
+            'event_start_time': event_start_time,
+            'event_end_time': event_end_time,
+            'event_banner_name': event_banner_name,
+            'event_bonus_attribute': event_bonus_attribute.capitalize(),
+            'characters_name_list': characters_name_list        
+        }
+
+        return event_info

@@ -29,14 +29,12 @@ class SongCog(commands.Cog, name='song'):
                     ]) 
         
         async def song_callback(interaction: discord.Interaction):  
+            
             await interaction.response.defer()
-            async def loading_embed():
-                embed = await loadingEmbed(f'{select.values[0]}的歌曲')
-                return embed 
             global embed 
-            embed = await loading_embed()
+            embed = loadingEmbed(f'{select.values[0]}的歌曲')
+            
             if select.values[0] == '25點，Nightcord見。':
-                await interaction.followup.send('school_refusal')
                 await interaction.followup.send(embed=embed, ephemeral=True)
                 embeds = await get_group_music('school_refusal', self.bot.session)
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)

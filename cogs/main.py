@@ -24,13 +24,13 @@ class MainCog(commands.Cog, name='main'):
 
     @app_commands.command(name='say', description='用奏寶說話')
     async def say(self, i: Interaction, message: str):
-        if is_ayaakaa := await is_ayaakaa(i) == True:
+        if is_ayaakaa_ := await is_ayaakaa(i) == True:
             await i.response.send_message('成功', ephemeral=True)
             await i.channel.send(message)
 
     @app_commands.command(name='leave-guild', description='leave-a-guild')
     async def guilds(self, i: Interaction, guild_name: str='', guild_id: int=0):
-        if is_ayaakaa := await is_ayaakaa(i) == True:
+        if is_ayaakaa_ := await is_ayaakaa(i) == True:
             if len(guild_name) >= 1:
                 guild = utils.get(self.bot.guilds, name=guild_name)
             elif guild_id != 0:

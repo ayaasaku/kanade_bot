@@ -20,7 +20,7 @@ class OthersCog(commands.Cog, name='others'):
         cmd_1: str = '', cmd_1_des_ln_1: str = '', cmd_1_des_ln_2: str = '', \
         cmd_2: str = '', cmd_2_des_ln_1: str = '', cmd_2_des_ln_2: str = '', \
         cmd_3: str = '', cmd_3_des_ln_1: str = '', cmd_3_des_ln_2: str = ''):
-        if is_ayaakaa := await is_ayaakaa(interaction) == True:
+        if is_ayaakaa_ := await is_ayaakaa(interaction) == True:
             embed = updateEmbed(description=description)
             if len(cmd_1) >= 1:
                 embed.add_field(name=cmd_1, value=f'{cmd_1_des_ln_1}\n{cmd_1_des_ln_2}', inline=False)

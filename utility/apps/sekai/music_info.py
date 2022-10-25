@@ -1,5 +1,4 @@
 import aiohttp
-from data.emoji_data import difficulty_emoji
 from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
                                               get_sekai_musics_api)
@@ -24,35 +23,36 @@ async def get_music_info(music_id: int, session: aiohttp.ClientSession):
 async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSession):
     music_api = await get_sekai_music_difficulties_api(session)
     for thing in music_api:
-        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'easy':
-            easy_level = thing['playLevel']
-            easy_note_count = thing['noteCount']
+        def get_difficulty_level(difficulty):
+            if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
+                level = thing['playLevel']
+                return level
+                
+        def get_difficulty_note_count(difficulty):
+            if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
+                note_count = thing['noteCount']
+                return note_count
             
-        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'normal':   
-            normal_level = thing['playLevel']
-            normal_note_count = thing['noteCount']
+        easy_level = get_difficulty_level('easy')
+        easy_note_count = get_difficulty_note_count('easy')
+        normal_level = get_difficulty_level('normal')
+        normal_note_count = get_difficulty_note_count('normal')
+        hard_level = get_difficulty_level('hard')
+        hard_note_count =get_difficulty_note_count('hard')
+        expert_level = get_difficulty_level('expert')
+        expert_note_count = get_difficulty_note_count('expert')
+        master_level = get_difficulty_level('master')
+        master_note_count = get_difficulty_note_count('master')
             
-        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'hard': 
-            hard_level = thing['playLevel']
-            hard_note_count = thing['noteCount']
-         
-        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'expert':    
-            expert_level = thing['playLevel']
-            expert_note_count = thing['noteCount']
-          
-        if music_id == thing['musicId'] and thing['musicDifficulty'] == 'master':    
-            master_level = thing['playLevel']
-            master_note_count = thing['noteCount']
+        music_difficulty_info = [
+            easy_level, easy_note_count, 
+            normal_level, normal_note_count, 
+            hard_level, hard_note_count, 
+            expert_level, expert_note_count, 
+            master_level, master_note_count
+            ]
             
-            music_difficulty_info = [
-                easy_level, easy_note_count, 
-                normal_level, normal_note_count, 
-                hard_level, hard_note_count, 
-                expert_level, expert_note_count, 
-                master_level, master_note_count
-                ]
-            
-            return music_difficulty_info
+        return music_difficulty_info
 
 # tags
 async def get_group_music(group: str, session: aiohttp.ClientSession):

@@ -32,7 +32,7 @@ class SongCog(commands.Cog, name='song'):
             
             await interaction.response.defer()
             global embed 
-            embed = loadingEmbed(f'{select.values[0]}的歌曲')
+            embed = loadingEmbed(f' {select.values[0]} 的歌曲')
             
             if select.values[0] == '25點，Nightcord見。':
                 await interaction.followup.send(embed=embed, ephemeral=True)

@@ -1,16 +1,17 @@
 import logging
 import discord
-from discord import Colour
+from discord import Colour, Interaction
 from datetime import datetime
 
 from data.version import version
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
-log = logging
+#ayaakaa
+async def is_ayaakaa (i: Interaction):
+    if i.user.id != 831883841417248778:
+        await i.response.send_message(embed=errMsgEmbed(title="你不是綾霞本人"), ephemeral=True)
+        return False
+    else:
+        return True
 
 #embeds
 def defaultEmbed(title: str = '', description: str = ''):
@@ -47,6 +48,7 @@ def successEmbed(title: str = '', message: str = ''):
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
 
+#log
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):
     now = datetime.now()
     today = datetime.today()

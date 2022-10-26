@@ -101,7 +101,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 f'抱歉，目前只支持日服註冊\n請確定一下是否輸入了正確的ID')
                 await interaction.response.send_message(embed=embed, ephemeral= True)
 
-    @app_commands.command(name='register', description='register-player-id')    
+    @app_commands.command(name='register', description='註冊玩家ID')    
     async def register(self, interaction: discord.Interaction):
         db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = str(interaction.user.id), db=db)

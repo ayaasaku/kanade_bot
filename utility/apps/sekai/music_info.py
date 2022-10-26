@@ -22,27 +22,26 @@ async def get_music_info(music_id: int, session: aiohttp.ClientSession):
 # music_difficulties
 async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSession):
     music_api = await get_sekai_music_difficulties_api(session)
-    for thing in music_api:
-        def get_difficulty_level(difficulty):
-            if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
-                level = thing['playLevel']
-                return level
+    def get_difficulty_level(difficulty,thing):
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
+            level = thing['playLevel']
+            return level
                 
-        def get_difficulty_note_count(difficulty):
-            if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
-                note_count = thing['noteCount']
-                return note_count
-            
-        easy_level = get_difficulty_level('easy')
-        easy_note_count = get_difficulty_note_count('easy')
-        normal_level = get_difficulty_level('normal')
-        normal_note_count = get_difficulty_note_count('normal')
-        hard_level = get_difficulty_level('hard')
-        hard_note_count =get_difficulty_note_count('hard')
-        expert_level = get_difficulty_level('expert')
-        expert_note_count = get_difficulty_note_count('expert')
-        master_level = get_difficulty_level('master')
-        master_note_count = get_difficulty_note_count('master')
+    def get_difficulty_note_count(difficulty, thing):
+        if music_id == thing['musicId'] and thing['musicDifficulty'] == f'{difficulty}':
+            note_count = thing['noteCount']
+            return note_count
+    for thing in music_api:
+        easy_level = get_difficulty_level('easy', thing)
+        easy_note_count = get_difficulty_note_count('easy', thing)
+        normal_level = get_difficulty_level('normal', thing)
+        normal_note_count = get_difficulty_note_count('normal', thing)
+        hard_level = get_difficulty_level('hard', thing)
+        hard_note_count =get_difficulty_note_count('hard', thing)
+        expert_level = get_difficulty_level('expert', thing)
+        expert_note_count = get_difficulty_note_count('expert', thing)
+        master_level = get_difficulty_level('master', thing)
+        master_note_count = get_difficulty_note_count('master', thing)
             
         music_difficulty_info = [
             easy_level, easy_note_count, 

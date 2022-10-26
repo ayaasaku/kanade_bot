@@ -17,7 +17,7 @@ class SongCog(commands.Cog, name='song'):
         super().__init__()
         self.bot = bot
                    
-    @app_commands.command(name='songs', description='get songs info') 
+    @app_commands.command(name='songs', description='查看所有歌曲') 
     
     async def song(self, interaction: discord.Interaction): 
         select = Select(placeholder='選擇歌曲分類', options = [

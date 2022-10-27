@@ -2,7 +2,7 @@ import logging
 import discord
 from discord import Colour, Interaction
 from datetime import datetime
-from run import version
+
 
 
 #ayaakaa
@@ -25,7 +25,7 @@ def loadingEmbed(text: str):
     return embed     
 
 def updateEmbed(self, description: str = ''):
-    embed = discord.Embed(title=f'**奏寶 v{version}**', description=description, color=0xBB6688)
+    embed = discord.Embed(title=f'**奏寶 v{self.bot.version}**', description=description, color=0xBB6688)
     embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
                         icon_url="https://i.imgur.com/oXEl8tP.jpg")
     embed.set_image(url="https://i.imgur.com/1SJ6Y0Y.jpg")

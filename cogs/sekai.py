@@ -126,9 +126,6 @@ class SekaiCog(commands.Cog, name='sekai'):
             await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
             await db.commit()
             await interaction.response.send_message('成功')
-        else:
-            embed = notAyaakaaEmbed()
-            await interaction.response.send_message(embed=embed, ephemeral= True)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

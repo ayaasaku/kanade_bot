@@ -30,9 +30,6 @@ class OthersCog(commands.Cog, name='others'):
             if len(cmd_3) >= 1:
                 embed.add_field(name=cmd_3, value=f'{cmd_3_des_ln_1}\n{cmd_3_des_ln_2}', inline=False)
             await interaction.response.send_message(embed=embed)
-        else:
-            embed = notAyaakaaEmbed()
-            await interaction.response.send_message(embed=embed, ephemeral= True)
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(OthersCog(bot))

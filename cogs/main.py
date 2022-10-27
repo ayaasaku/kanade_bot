@@ -27,9 +27,7 @@ class MainCog(commands.Cog, name='main'):
         if is_ayaakaa_ == True:
             await i.response.send_message('成功', ephemeral=True)
             await i.channel.send(message)
-        else:
-            embed = notAyaakaaEmbed()
-            await i.response.send_message(embed=embed, ephemeral= True)
+
 
     @app_commands.command(name='leave-guild', description='leave-a-guild')
     async def guilds(self, i: Interaction, guild_name: str='', guild_id: int=0):
@@ -47,9 +45,6 @@ class MainCog(commands.Cog, name='main'):
                 return
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
-        else:
-            embed = notAyaakaaEmbed()
-            await i.response.send_message(embed=embed, ephemeral= True)
-            
+  
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

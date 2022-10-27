@@ -8,7 +8,7 @@ from datetime import datetime
 #ayaakaa
 async def is_ayaakaa (i: Interaction):
     if i.user.id != 831883841417248778:
-        await i.response.send_message(embed=errMsgEmbed(title="你不是綾霞本人"), ephemeral=True)
+        await i.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
         return False
     else:
         return True

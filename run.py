@@ -11,7 +11,7 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
 from discord.ext import commands
 from dotenv import load_dotenv
 
-from debug import DebugView
+from debug import *
 from utility.utils import errEmbed, log
 
 load_dotenv()

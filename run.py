@@ -38,6 +38,9 @@ class KanadeBot(commands.Bot):
         self.session = aiohttp.ClientSession()
         self.db = await aiosqlite.connect("kanade_data.db")
         self.backup_db = await aiosqlite.connect("backup.db")
+        global version
+        version = 2.1
+        self.version = version
         
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):

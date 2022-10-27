@@ -28,8 +28,7 @@ class SongCog(commands.Cog, name='song'):
                     SelectOption(label='Wonderlands×Showtime', description='ワンダーランズ×ショウタイム', emoji= group_icon_square['theme_park'])
                     ]) 
         
-        async def song_callback(interaction: discord.Interaction):  
-            
+        async def song_callback(interaction: discord.Interaction):   
             await interaction.response.defer()
             global embed 
             embed = loadingEmbed(f' {select.values[0]} 的歌曲')

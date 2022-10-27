@@ -6,7 +6,7 @@ from discord import Embed, app_commands, ui
 from discord.ext import commands
 from matplotlib.pyplot import get
 
-from utility.utils import defaultEmbed, loadingEmbed, errMsgEmbed, successEmbed
+from utility.utils import defaultEmbed, loadingEmbed, errMsgEmbed, successEmbed, is_ayaakaa
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.api_functions import get_sekai_user_api
@@ -114,17 +114,18 @@ class SekaiCog(commands.Cog, name='sekai'):
             await interaction.response.send_message(embed=embed)
           
     @app_commands.command(name='remove', description='remove-user-account')
-    @app_commands.checks.has_role('小雪團隊')
     async def remove(self, interaction: discord.Interaction):
-        discord_id = interaction.user.id
-        db = await aiosqlite.connect("kanade_data.db")
-        cursor = await db.cursor()
-        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(interaction.user.id),))
-        player_id = await cursor.fetchone()
-        await cursor.execute('DELETE FROM user_accounts WHERE discord_id = ?', (str(discord_id),))
-        await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
-        await db.commit()
-        await interaction.response.send_message('成功')
+        is_ayaakaa = await is_ayaakaa(interaction)
+        if is_ayaakaa == True:
+            discord_id = interaction.user.id
+            db = await aiosqlite.connect("kanade_data.db")
+            cursor = await db.cursor()
+            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(interaction.user.id),))
+            player_id = await cursor.fetchone()
+            await cursor.execute('DELETE FROM user_accounts WHERE discord_id = ?', (str(discord_id),))
+            await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
+            await db.commit()
+            await interaction.response.send_message('成功')
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

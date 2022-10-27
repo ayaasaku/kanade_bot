@@ -3,7 +3,7 @@ from discord import app_commands, Interaction, utils
 from discord.ext import commands
 
 
-from utility.utils import defaultEmbed, is_ayaakaa
+from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
 
 
 class MainCog(commands.Cog, name='main'):
@@ -23,15 +23,18 @@ class MainCog(commands.Cog, name='main'):
 
     @app_commands.command(name='say', description='用奏寶說話')
     async def say(self, i: Interaction, message: str):
-        is_ayaakaa = await is_ayaakaa(i)
-        if is_ayaakaa == True:
+        is_ayaakaa_ = await is_ayaakaa(i)
+        if is_ayaakaa_ == True:
             await i.response.send_message('成功', ephemeral=True)
             await i.channel.send(message)
+        else:
+            embed = notAyaakaaEmbed()
+            await i.response.send_message(embed=embed, ephemeral= True)
 
     @app_commands.command(name='leave-guild', description='leave-a-guild')
     async def guilds(self, i: Interaction, guild_name: str='', guild_id: int=0):
-        is_ayaakaa = await is_ayaakaa(i)
-        if is_ayaakaa == True:
+        is_ayaakaa_ = await is_ayaakaa(i)
+        if is_ayaakaa_ == True:
             if len(guild_name) >= 1:
                 guild = utils.get(self.bot.guilds, name=guild_name)
             elif guild_id != 0:
@@ -44,6 +47,9 @@ class MainCog(commands.Cog, name='main'):
                 return
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
+        else:
+            embed = notAyaakaaEmbed()
+            await i.response.send_message(embed=embed, ephemeral= True)
             
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

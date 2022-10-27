@@ -13,10 +13,8 @@ async def is_ayaakaa (i: Interaction):
     else:
         return True
 
-#embeds
-def __init__(self, bot):
-    self.bot = bot
-    
+
+#embeds    
 def defaultEmbed(title: str = '', description: str = ''):
     embed = discord.Embed(title=title, description=description, color=0xBB6688)
     return embed

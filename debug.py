@@ -28,5 +28,3 @@ class DefaultView(View):
             name='未知錯誤', icon_url=i.user.avatar)
         await i.channel.send(embed=embed, view=view)
         
-
-        

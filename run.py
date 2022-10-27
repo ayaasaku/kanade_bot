@@ -12,7 +12,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from debug import *
-from utility.utils import errEmbed, log
+from utility.utils import *
 
 load_dotenv()
 token = os.getenv('TOKEN')

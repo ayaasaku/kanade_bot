@@ -2,7 +2,6 @@ import logging
 import discord
 from discord import Colour, Interaction, User, Client 
 from datetime import datetime
-from run import KanadeBot
 
 
 

@@ -2,12 +2,20 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from utility.utils import updateEmbed, is_ayaakaa, notAyaakaaEmbed
+from utility.utils import is_ayaakaa
 
 class OthersCog(commands.Cog, name='others'):
-    
     def __init__(self, bot):
         self.bot = bot
+        
+    def updateEmbed(self, description: str = ''):
+        embed = discord.Embed(title=f'**奏寶 v{self.bot.version}**', description=description, color=0xBB6688)
+        embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
+                            icon_url="https://i.imgur.com/oXEl8tP.jpg")
+        embed.set_image(url="https://i.imgur.com/1SJ6Y0Y.jpg")
+        embed.set_footer(text=f"奏寶 - by 綾霞 Ayaakaa",
+                        icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
+        return embed
 
     @app_commands.command(name='embed', description='embed')
     @app_commands.rename(
@@ -22,7 +30,7 @@ class OthersCog(commands.Cog, name='others'):
         cmd_3: str = '', cmd_3_des_ln_1: str = '', cmd_3_des_ln_2: str = ''):
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
-            embed = updateEmbed(description=description)
+            embed = self.updateEmbed(description=description)
             if len(cmd_1) >= 1:
                 embed.add_field(name=cmd_1, value=f'{cmd_1_des_ln_1}\n{cmd_1_des_ln_2}', inline=False)
             if len(cmd_2) >= 1:

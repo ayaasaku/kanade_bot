@@ -23,15 +23,6 @@ def loadingEmbed(text: str):
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless')
     return embed     
 
-def updateEmbed(self, description: str = ''):
-    embed = discord.Embed(title=f'**奏寶 v{self.bot.version}**', description=description, color=0xBB6688)
-    embed.set_author(name="奏寶", url="https://github.com/Ayaakaa/kanade_bot",
-                        icon_url="https://i.imgur.com/oXEl8tP.jpg")
-    embed.set_image(url="https://i.imgur.com/1SJ6Y0Y.jpg")
-    embed.set_footer(text=f"奏寶 - by 綾霞 Ayaakaa",
-                    icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
-    return embed
-
 def errEmbed(title: str = '', message: str = ''):
     embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
     return embed

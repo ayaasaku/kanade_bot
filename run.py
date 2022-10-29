@@ -6,6 +6,7 @@ from pathlib import Path
 import aiohttp
 import aiosqlite
 
+import discord
 from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands)
 from discord.ext import commands

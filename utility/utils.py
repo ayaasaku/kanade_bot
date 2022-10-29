@@ -1,18 +1,18 @@
 import logging
 import discord
-from discord import Colour, Interaction, User
+from discord import Colour, Interaction, User, Client 
 from datetime import datetime
+from run import KanadeBot
 
 
 
 #ayaakaa
-async def is_ayaakaa (i: Interaction):
+async def is_ayaakaa (self, i: Interaction):
     if i.user.id != 831883841417248778:
-        await i.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
+        await i.response.send_message(embed=self.notAyaakaaEmbed(), ephemeral=True)
         return False
     else:
         return True
-
 
 #embeds    
 def defaultEmbed(title: str = '', description: str = ''):
@@ -38,11 +38,9 @@ def errEmbed(title: str = '', message: str = ''):
     return embed
 
 def errMsgEmbed(title: str = '', message: str = ''):
-    ayaakaa:discord.User = 831883841417248778
-    ayaakaa_with_tag = ayaakaa.discriminator
     embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
-    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 {ayaakaa_with_tag}", 
+    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", 
                     icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
     return embed
 

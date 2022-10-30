@@ -38,7 +38,7 @@ async def get_user_area_items(import_id: str, session: aiohttp.ClientSession):
         item_id = item['areaItemId']
         item_level = item['level']
         for thing in api3:
-            if item_id == thing['areaItemId']:
+            if item_id == thing['areaItemId'] and item_level == thing['level']:
                 sentence = thing['sentence']
         for thing in api2:
             if item_id == thing['id']:

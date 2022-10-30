@@ -45,7 +45,7 @@ async def get_user_area_items(import_id: str, session: aiohttp.ClientSession):
                 name = thing['name']
                 asset_bundle_name = thing['assetbundleName']
                 img = f'https://storage.sekai.best/sekai-assets/areaitem/{asset_bundle_name}_rip/{asset_bundle_name}.webp'
-                embed = defaultEmbed(name=name, description= f'**等級：{item_level}**\n{sentence}')
+                embed = defaultEmbed(title=name, description= f'**等級：{item_level}**\n{sentence}')
                 embed.set_thumbnail(url=img)
         embed_list.append(embed)        
     return embed_list

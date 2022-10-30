@@ -47,8 +47,8 @@ async def get_user_area_items(import_id: str, session: aiohttp.ClientSession):
                     part2_2_1, part2_2_2 = part2_2.split('</color')
                     sentence = f'{part1}{part2_2_1}。'
                 elif sentence.count('。') == 2:
+                    sentence.rstrip(sentence[-1])
                     part1, part2 = sentence.split('>。')
-                    
                     part1_1, part1_2 = part1.split('<color=')
                     part1_2_1, part1_2_2 = part1_2.split('">')
                     part1_2_2_1, part1_2_2_2 = part1_2_2.split('</color')

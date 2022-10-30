@@ -50,7 +50,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
 {character_list_emoji[21]} {character_list_level[21]} \u200b {character_list_emoji[22]} {character_list_level[22]} \u200b {character_list_emoji[23]} {character_list_level[23]}\n\
 {character_list_emoji[24]} {character_list_level[24]} \u200b {character_list_emoji[25]} {character_list_level[25]}'
         embed2.description =  description
-        
+    
         embed_list = [embed, embed2]
         for embed in embed_list:
              embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')

@@ -1,7 +1,10 @@
 import aiohttp
-from utility.apps.sekai.api_functions import (get_sekai_cards_info_api,
+from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_api, get_sekai_cards_info_api,
                                               get_sekai_characters_info_api,
-                                              get_sekai_user_api)
+                                              get_sekai_user_api,
+                                              get_sekai_area_items_info_api,
+                                              get_sekai_area_items_level_info_api)
+from utility.utils import defaultEmbed
 
 #json
 async def get_user_game_data(import_id: str, path: str, session: aiohttp.ClientSession):
@@ -25,6 +28,28 @@ async def get_user_decks(import_id: str, path: str, session: aiohttp.ClientSessi
         result = api['userDecks'][0][path]
         return result    
 
+async def get_user_area_items(import_id: str, session: aiohttp.ClientSession):
+    api = await get_sekai_user_api(import_id, session)
+    api2 = await get_sekai_area_items_info_api(session)
+    api3 = await get_sekai_area_items_level_info_api(session)
+    embed_list = []
+    area_items = api['userAreaItems']
+    for item in area_items:
+        item_id = item['areaItemId']
+        item_level = item['level']
+        for thing in api3:
+            if item_id == thing['areaItemId']:
+                sentence = thing['sentence']
+        for thing in api2:
+            if item_id == thing['id']:
+                name = thing['name']
+                asset_bundle_name = thing['assetbundleName']
+                img = f'https://storage.sekai.best/sekai-assets/areaitem/{asset_bundle_name}_rip/{asset_bundle_name}.webp'
+                embed = defaultEmbed(name=name, description= f'**等級：{item_level}**\n{sentence}')
+                embed.set_thumbnail(url=img)
+        embed_list.append(embed)        
+    return embed_list
+        
 
 async def get_user_cards(import_id: str, index, path: str, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)

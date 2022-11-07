@@ -22,8 +22,7 @@ class SekaiCog(commands.Cog, name='sekai'):
         global none_embed
         none_embed = errMsgEmbed(
             '玩家ID不存在',
-            f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊')
-    #await cursor.execute('CREATE TABLE user_accounts (discord_id INTEGER, player_id INTEGER)')    
+            f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
     
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
     @app_commands.rename(person='其他玩家')

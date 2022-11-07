@@ -40,15 +40,17 @@ async def get_user_area_items(import_id: str, session: aiohttp.ClientSession):
         for thing in api3:
             if item_id == thing['areaItemId'] and item_level == thing['level']:
                 sentence = thing['sentence']
-                #可愛類型的綜合力<color="#FF55AA">提升1%</color >。 若僅以同類型編組，再提升<color="#FF55AA">1%</color>。
+                #format sentence
                 if sentence.count('。') == 1:
                     part1, part2 = sentence.split('<color=')
                     part2_1, part2_2 = part2.split('">')
                     part2_2_1, part2_2_2 = part2_2.split('</color')
                     sentence = f'{part1}{part2_2_1}。'
+                    
                 elif sentence.count('。') == 2:
                     sentence = sentence.rstrip(sentence[-1])
                     part1, part2 = sentence.split('>。')
+                    
                     part1_1, part1_2 = part1.split('<color=')
                     part1_2_1, part1_2_2 = part1_2.split('">')
                     part1_2_2_1, part1_2_2_2 = part1_2_2.split('</color')

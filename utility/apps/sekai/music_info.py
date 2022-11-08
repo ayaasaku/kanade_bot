@@ -26,12 +26,14 @@ async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSessio
     def get_difficulty_level(difficulty, thing):
         if thing['musicDifficulty'] == f'{difficulty}':
             level = thing['playLevel']
-            return level
+        else: level = None
+        return level
                 
     def get_difficulty_note_count(difficulty, thing):
         if thing['musicDifficulty'] == f'{difficulty}':
             note_count = thing['noteCount']
-            return note_count
+        else: note_count = None
+        return note_count
         
     for thing in music_api:
         if music_id == thing['musicId']:

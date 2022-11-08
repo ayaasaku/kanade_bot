@@ -46,13 +46,13 @@ async def get_music_difficulty_info(music_id: int, session: aiohttp.ClientSessio
             master_level = get_difficulty_level('master', thing)
             master_note_count = get_difficulty_note_count('master', thing)
             
-            music_difficulty_info = [
-                easy_level, easy_note_count, 
-                normal_level, normal_note_count, 
-                hard_level, hard_note_count, 
-                expert_level, expert_note_count, 
-                master_level, master_note_count
-                ]
+        music_difficulty_info = [
+            easy_level, easy_note_count, 
+            normal_level, normal_note_count, 
+            hard_level, hard_note_count, 
+            expert_level, expert_note_count, 
+            master_level, master_note_count
+            ]
             
         return music_difficulty_info
 

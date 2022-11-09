@@ -7,7 +7,8 @@ from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_ap
                                               get_sekai_user_api,
                                               get_sekai_area_items_info_api,
                                               get_sekai_area_items_level_info_api,
-                                              get_sekai_virtual_live_api)
+                                              get_sekai_virtual_live_api_tw,
+                                              get_sekai_virtual_live_api_jp)
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -146,25 +147,53 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     result = api['userCharacters']
     return result    
 
-async def get_current_virtual_live(session: aiohttp.ClientSession):
-    api = await get_sekai_virtual_live_api(session)
+async def get_current_virtual_live_tw(session: aiohttp.ClientSession):
+    api = await get_sekai_virtual_live_api_tw(session)
     for thing in api:
         virtual_live_start_time = thing['startAt']
         virtual_live_end_time = thing['endAt']
         current_time = time.time()
         if current_time > virtual_live_start_time / 1000 and current_time < virtual_live_end_time / 1000:
             return thing
+    else: return None
 
-async def virtual_live_ping(bot, session: aiohttp.ClientSession):
-    current_virtual_live = await get_current_virtual_live(session)
-    for thing in current_virtual_live['virtualLiveSchedules']:
-        name = current_virtual_live['name']
+async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
+    current_virtual_live = await get_current_virtual_live_tw(session)
+    if current_virtual_live != None:
+        for thing in current_virtual_live['virtualLiveSchedules']:
+            name = current_virtual_live['name']
+            virtual_live_start_time = thing['startAt']
+            current_time = time.time()
+            if current_time + 300 == virtual_live_start_time:
+                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+                for thing in channel_list:           
+                    channel = bot.get_channel(int(thing))
+                    await channel.send(embed=embed)
+    else: pass
+
+async def get_current_virtual_live_jp(session: aiohttp.ClientSession):
+    api = await get_sekai_virtual_live_api_jp(session)
+    for thing in api:
         virtual_live_start_time = thing['startAt']
+        virtual_live_end_time = thing['endAt']
         current_time = time.time()
-        if current_time + 300 == virtual_live_start_time:
-            embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-            for thing in channel_list:           
-                channel = bot.get_channel(int(thing))
-                await channel.send(embed=embed)
+        if current_time > virtual_live_start_time / 1000 and current_time < virtual_live_end_time / 1000:
+            return thing
+    else: return None
+
+async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
+    current_virtual_live = await get_current_virtual_live_jp(session)
+    if current_virtual_live != None:
+        for thing in current_virtual_live['virtualLiveSchedules']:
+            name = current_virtual_live['name']
+            virtual_live_start_time = thing['startAt']
+            current_time = time.time()
+            if current_time + 300 == virtual_live_start_time:
+                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+                for thing in channel_list:           
+                    channel = bot.get_channel(int(thing))
+                    await channel.send(embed=embed)
+    else: pass
+        
         
         

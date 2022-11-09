@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 from debug import DebugView
 from utility.utils import errEmbed, log
-from utility.apps.sekai.user.data_processing import virtual_live_ping
+from utility.apps.sekai.user.data_processing import virtual_live_ping_tw, virtual_live_ping_jp
 
 load_dotenv()
 token = os.getenv('TOKEN')
@@ -114,6 +114,7 @@ class loop():
     async def loop():
         for i in range(1,1000):
             if i != 0:
-                await virtual_live_ping(bot.session)
+                await virtual_live_ping_tw(bot.session)
+                await virtual_live_ping_jp(bot.session)
                 
 loop().loop

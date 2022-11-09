@@ -201,6 +201,8 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                 executed = True
                 executed_time = time.time()
     else:
+        if executed != True:
+            executed = False
         while executed == True:
             if time.time() - 300 == executed_time:
                 executed = False

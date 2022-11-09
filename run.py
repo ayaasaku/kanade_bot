@@ -43,6 +43,8 @@ class KanadeBot(commands.Bot):
         global version
         version = 2.1
         self.version = version
+        global session
+        session = self.session
         
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
@@ -105,18 +107,15 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         embed = errEmbed(message=f'```py\n{e}\n```').set_author(
             name='未知錯誤', icon_url=i.user.avatar)
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
-class loop():
-    def __init__(self, bot):
-        self.bot = bot       
-    @bot.listen()
-    async def on_ready(self):
-        self.task_loop.start() 
+   
+@bot.listen()
+async def on_ready():
+    task_loop.start() 
 
-    @tasks.loop(seconds=10)
-
-    async def task_loop(self):
-        await virtual_live_ping_tw(self.bot.session)
-        await virtual_live_ping_jp(self.bot.session)
+@tasks.loop(seconds=10)
+async def task_loop():
+    await virtual_live_ping_tw(session)
+    await virtual_live_ping_jp(session)
 
 bot.run(token)
 

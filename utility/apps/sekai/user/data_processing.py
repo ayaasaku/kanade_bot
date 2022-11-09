@@ -169,6 +169,8 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(int(thing))
                     await channel.send(embed=embed)
+        else: pass
+    else: pass
 
 
 async def get_current_virtual_live_jp(session: aiohttp.ClientSession):
@@ -193,6 +195,8 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(int(thing))
                     await channel.send(embed=embed)
+        else: pass
+    else: pass
         
         
         

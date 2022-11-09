@@ -48,9 +48,11 @@ class MainCog(commands.Cog, name='main'):
     
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):
-        channel = self.bot.get_channel(1020235653700665347)
-        await channel.send(f'test')
-        await i.response.send_message('成功', ephemeral=True)
+        is_ayaakaa_ = await is_ayaakaa(i)
+        if is_ayaakaa_ == True:
+            channel = self.bot.get_channel(1020235653700665347)
+            await channel.send(f'test')
+            await i.response.send_message('成功', ephemeral=True)
                 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

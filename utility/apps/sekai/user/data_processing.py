@@ -158,12 +158,13 @@ async def get_current_virtual_live(session: aiohttp.ClientSession):
 async def virtual_live_ping(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live(session)
     for thing in current_virtual_live['virtualLiveSchedules']:
+        name = current_virtual_live['name']
         virtual_live_start_time = thing['startAt']
-        virtual_live_end_time = thing['endAt']
         current_time = time.time()
         if current_time + 300 == virtual_live_start_time:
+            embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
             for thing in channel_list:           
                 channel = bot.get_channel(int(thing))
-                channel.send(f'')
+                await channel.send(f'')
         
         

@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 from debug import DebugView
 from utility.utils import errEmbed, log
+from utility.apps.sekai.user.data_processing import virtual_live_ping
 
 load_dotenv()
 token = os.getenv('TOKEN')
@@ -107,3 +108,12 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
     
 
 bot.run(token)
+
+#loop
+class loop():
+    async def loop():
+        for i in range(1,1000):
+            if i != 0:
+                await virtual_live_ping(bot.session)
+                
+loop().loop

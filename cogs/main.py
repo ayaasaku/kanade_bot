@@ -1,9 +1,9 @@
 import discord
-from discord import app_commands, Interaction, utils, channel
+from discord import app_commands, Interaction, utils, guild
 from discord.ext import commands
 
-
 from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
+from utility.paginator import GeneralPaginator
 
 
 class MainCog(commands.Cog, name='main'):
@@ -30,7 +30,7 @@ class MainCog(commands.Cog, name='main'):
 
 
     @app_commands.command(name='leave-guild', description='leave-a-guild')
-    async def guilds(self, i: Interaction, guild_name: str='', guild_id: int=0):
+    async def leave_guild(self, i: Interaction, guild_name: str='', guild_id: int=0):
         is_ayaakaa_ = await is_ayaakaa(i)
         if is_ayaakaa_ == True:
             if len(guild_name) >= 1:
@@ -45,6 +45,17 @@ class MainCog(commands.Cog, name='main'):
                 return
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
+    
+    @app_commands.command(name='guilds', description='guilds')
+    async def guilds(self, i: Interaction):
+        is_ayaakaa_ = await is_ayaakaa(i)
+        if is_ayaakaa_ == True:
+            embed_list = []
+            for guild in self.bot.guilds:
+                embed = defaultEmbed(title= guild.name, description = guild.id) 
+                embed.set_thumbnail(guild.icon)
+                embed_list.append(embed)
+            await GeneralPaginator(i, embed_list).start(embeded=True, follow_up=True, ephemeral= True)
     
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):

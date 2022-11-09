@@ -44,7 +44,7 @@ class KanadeBot(commands.Bot):
         version = 2.1
         self.version = version
         global session
-        session = self.session
+        session = aiohttp.ClientSession()
         
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
@@ -114,8 +114,8 @@ async def on_ready():
 
 @tasks.loop(seconds=10)
 async def task_loop():
-    await virtual_live_ping_tw(session)
-    await virtual_live_ping_jp(session)
+    await virtual_live_ping_tw(bot, session)
+    await virtual_live_ping_jp(bot, session)
 
 bot.run(token)
 

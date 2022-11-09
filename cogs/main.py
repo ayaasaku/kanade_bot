@@ -51,8 +51,7 @@ class MainCog(commands.Cog, name='main'):
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
             embed_list = []
-            guilds = utils.get(self.bot.guilds)
-            for guild in guilds:
+            for guild in self.bot.guilds:
                 guild = discord.guild(guild)
                 embed = defaultEmbed(title= guild.name, description = guild.id) 
                 embed_list.append(embed)

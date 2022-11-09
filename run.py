@@ -105,16 +105,17 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         embed = errEmbed(message=f'```py\n{e}\n```').set_author(
             name='未知錯誤', icon_url=i.user.avatar)
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
-    
+        
 @bot.listen()
 async def on_ready():
     task_loop.start() 
 
 @tasks.loop(seconds=10)
-async def task_loop():
-    await virtual_live_ping_tw(bot.session)
-    await virtual_live_ping_jp(bot.session)
-    
+async def task_loop(self):
+    self.bot = bot
+    await virtual_live_ping_tw(self.bot.session)
+    await virtual_live_ping_jp(self.bot.session)
+
 bot.run(token)
 
 

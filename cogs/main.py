@@ -50,12 +50,10 @@ class MainCog(commands.Cog, name='main'):
     async def guilds(self, interaction: discord.Interaction):
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
-            embed_list = []
+            embed = defaultEmbed(title= 'guild') 
             for guild in self.bot.guilds:
-                embed = defaultEmbed(title= guild.name, description = guild.id) 
-                embed_list.append(embed)
-                
-            await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True, ephemeral= True)
+                embed.add_field(name=guild.name, value=guild.id, inline=False)          
+            await interaction.response.send_message(embed=embed)
             
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):

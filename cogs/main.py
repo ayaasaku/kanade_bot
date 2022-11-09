@@ -52,7 +52,6 @@ class MainCog(commands.Cog, name='main'):
         if is_ayaakaa_ == True:
             embed_list = []
             for guild in self.bot.guilds:
-                guild = discord.guild(guild)
                 embed = defaultEmbed(title= guild.name, description = guild.id) 
                 embed_list.append(embed)
                 

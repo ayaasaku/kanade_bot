@@ -112,7 +112,7 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
 async def on_ready():
     task_loop.start() 
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=1)
 async def task_loop():
     await virtual_live_ping_tw(bot, session)
     await virtual_live_ping_jp(bot, session)

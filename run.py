@@ -9,7 +9,7 @@ import aiosqlite
 import discord
 from discord import (Game, HTTPException, Intents, Interaction, Message,
                      Status, app_commands)
-from discord.ext import commands
+from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
 from debug import DebugView
@@ -106,15 +106,15 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
             name='未知錯誤', icon_url=i.user.avatar)
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
     
+@bot.listen()
+async def on_ready():
+    task_loop.start() 
 
+@tasks.loop(seconds=10)
+async def task_loop():
+    await virtual_live_ping_tw(bot.session)
+    await virtual_live_ping_jp(bot.session)
+    
 bot.run(token)
 
-#loop
-class loop():
-    async def loop():
-        for i in range(1,1000):
-            if i != 0:
-                await virtual_live_ping_tw(bot.session)
-                await virtual_live_ping_jp(bot.session)
-                
-loop().loop
+

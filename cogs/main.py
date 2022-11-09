@@ -48,7 +48,7 @@ class MainCog(commands.Cog, name='main'):
     
     @app_commands.command(name='guilds', description='guilds')
     async def guilds(self, interaction: discord.Interaction):
-        is_ayaakaa_ = await is_ayaakaa(self, interaction)
+        is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
             embed_list = []
             for guild in self.bot.guilds:

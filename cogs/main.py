@@ -50,10 +50,10 @@ class MainCog(commands.Cog, name='main'):
     async def guilds(self, interaction: discord.Interaction):
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
-            embed = defaultEmbed(title= 'guild') 
+            embed = defaultEmbed() 
             for guild in self.bot.guilds:
                 embed.add_field(name=guild.name, value=guild.id, inline=False)          
-            await interaction.response.send_message(embed=embed)
+            await interaction.response.send_message(embed=embed, ephemeral= True)
             
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):

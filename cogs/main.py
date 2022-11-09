@@ -47,9 +47,10 @@ class MainCog(commands.Cog, name='main'):
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
     
     @app_commands.command(name='test', description='test')
-    async def test(self, interaction: discord.Interaction):
+    async def test(self, i: discord.Interaction):
         channel = self.bot.get_channel(1020235653700665347)
-        channel.send(f'test')
-        
+        await channel.send(f'test')
+        await i.response.send_message('成功', ephemeral=True)
+                
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

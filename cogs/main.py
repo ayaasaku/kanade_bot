@@ -1,5 +1,5 @@
 import discord
-from discord import app_commands, Interaction, utils, guild, Asset
+from discord import app_commands, Interaction, utils, guild
 from discord.ext import commands
 
 from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
@@ -51,12 +51,14 @@ class MainCog(commands.Cog, name='main'):
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
             embed_list = []
-            for guild in self.bot.guilds:
+            guilds = utils.get(self.bot.guilds)
+            for guild in guilds:
+                guild = discord.guild(guild)
                 embed = defaultEmbed(title= guild.name, description = guild.id) 
-                embed.set_thumbnail(guild.icon.url)
                 embed_list.append(embed)
+                
             await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True, ephemeral= True)
-    
+            
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):
         is_ayaakaa_ = await is_ayaakaa(i)

@@ -159,9 +159,7 @@ async def get_current_virtual_live_tw(session: aiohttp.ClientSession):
 
 async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live_tw(session)
-    if executed != True:
-        executed = False
-    if current_virtual_live != None and executed != True:
+    if current_virtual_live != None:
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
@@ -171,12 +169,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(int(thing))
                     await channel.send(embed=embed)
-                executed = True
-                executed_time = time.time()
-    else:
-        while executed == True:
-            if time.time() - 300 == executed_time:
-                executed = False
+
 
 async def get_current_virtual_live_jp(session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_jp(session)
@@ -190,9 +183,7 @@ async def get_current_virtual_live_jp(session: aiohttp.ClientSession):
 
 async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live_jp(session)
-    if executed != True:
-        executed = False
-    if current_virtual_live != None and executed != True:
+    if current_virtual_live != None:
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
@@ -202,12 +193,6 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(int(thing))
                     await channel.send(embed=embed)
-                executed = True
-                executed_time = time.time()
-    else:
-        while executed == True:
-            if time.time() - 300 == executed_time:
-                executed = False
         
         
         

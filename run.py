@@ -107,8 +107,8 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
         await i.channel.send(content=f'{ayaakaa.mention} 系統已將錯誤回報給綾霞, 請耐心等待修復', embed=embed, view=view)
         
 @bot.listen()
-async def on_ready():
-    task_loop.start() 
+async def on_ready(self):
+    task_loop.start(self) 
 
 @tasks.loop(seconds=10)
 async def task_loop(self):

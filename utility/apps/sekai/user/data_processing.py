@@ -165,6 +165,6 @@ async def virtual_live_ping(bot, session: aiohttp.ClientSession):
             embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
             for thing in channel_list:           
                 channel = bot.get_channel(int(thing))
-                await channel.send(f'')
+                await channel.send(embed=embed)
         
         

@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 #ayaakaa
-async def is_ayaakaa (self, i: Interaction):
+async def is_ayaakaa (self, i: discord.Interaction):
     if i.user.id != 831883841417248778:
         await i.response.send_message(embed=self.notAyaakaaEmbed(), ephemeral=True)
         return False

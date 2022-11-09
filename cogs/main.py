@@ -47,8 +47,8 @@ class MainCog(commands.Cog, name='main'):
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
     
     @app_commands.command(name='guilds', description='guilds')
-    async def guilds(self, interaction: Interaction):
-        is_ayaakaa_ = await is_ayaakaa(interaction)
+    async def guilds(self, interaction: discord.Interaction):
+        is_ayaakaa_ = await is_ayaakaa(self, interaction)
         if is_ayaakaa_ == True:
             embed_list = []
             for guild in self.bot.guilds:

@@ -47,15 +47,15 @@ class MainCog(commands.Cog, name='main'):
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
     
     @app_commands.command(name='guilds', description='guilds')
-    async def guilds(self, i: discord.Interaction):
-        is_ayaakaa_ = await is_ayaakaa(i)
+    async def guilds(self, interaction: Interaction):
+        is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True:
             embed_list = []
             for guild in self.bot.guilds:
                 embed = defaultEmbed(title= guild.name, description = guild.id) 
                 embed.set_thumbnail(guild.icon)
                 embed_list.append(embed)
-            await GeneralPaginator(i, embed_list).start(embeded=True, follow_up=True, ephemeral= True)
+            await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True, ephemeral= True)
     
     @app_commands.command(name='test', description='test')
     async def test(self, i: discord.Interaction):

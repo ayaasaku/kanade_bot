@@ -159,6 +159,8 @@ async def get_current_virtual_live_tw(session: aiohttp.ClientSession):
 
 async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live_tw(session)
+    if executed != True:
+            executed = False
     if current_virtual_live != None and executed != True:
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
@@ -172,8 +174,6 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                 executed = True
                 executed_time = time.time()
     else:
-        if executed != True:
-            executed = False
         while executed == True:
             if time.time() - 300 == executed_time:
                 executed = False
@@ -190,6 +190,8 @@ async def get_current_virtual_live_jp(session: aiohttp.ClientSession):
 
 async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live_jp(session)
+    if executed != True:
+            executed = False
     if current_virtual_live != None and executed != True:
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
@@ -203,8 +205,6 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                 executed = True
                 executed_time = time.time()
     else:
-        if executed != True:
-            executed = False
         while executed == True:
             if time.time() - 300 == executed_time:
                 executed = False

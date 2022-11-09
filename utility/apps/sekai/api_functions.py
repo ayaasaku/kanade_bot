@@ -62,9 +62,16 @@ async def get_sekai_area_items_level_info_api(session: aiohttp.ClientSession):
         api = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/main/areaItemLevels.json'
         async with session.get(api) as r:
             return await r.json(content_type='text/plain')
-        
+  
+async def get_sekai_virtual_live_api(session: aiohttp.ClientSession):
+        api = f'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/main/virtualLives.json'
+        async with session.get(api) as r:
+            return await r.json(content_type='text/plain')
+              
 async def get_sekai_user_api(user_id, session: aiohttp.ClientSession):
         api = f'https://api.pjsekai.moe/api/user/{user_id}/profile'
         async with session.get(api) as r:
             return await r.json(content_type='text/html')
+        
+
         

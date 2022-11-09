@@ -1,5 +1,5 @@
 import discord
-from discord import app_commands, Interaction, utils
+from discord import app_commands, Interaction, utils, channel
 from discord.ext import commands
 
 
@@ -45,6 +45,11 @@ class MainCog(commands.Cog, name='main'):
                 return
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
-  
+    
+    @app_commands.command(name='test', description='test')
+    async def test(self):
+        channel = self.bot.get_channel(1020235653700665347)
+        channel.send(f'test')
+        
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

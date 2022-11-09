@@ -1,9 +1,14 @@
 import aiohttp
+import time
+import discord
+from discord import channel
 from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_api, get_sekai_cards_info_api,
                                               get_sekai_characters_info_api,
                                               get_sekai_user_api,
                                               get_sekai_area_items_info_api,
-                                              get_sekai_area_items_level_info_api)
+                                              get_sekai_area_items_level_info_api,
+                                              get_sekai_virtual_live_api)
+from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
 #json
@@ -140,3 +145,25 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     api = await get_sekai_user_api(import_id, session)
     result = api['userCharacters']
     return result    
+
+async def get_current_virtual_live(session: aiohttp.ClientSession):
+    api = await get_sekai_virtual_live_api(session)
+    for thing in api:
+        virtual_live_start_time = thing['startAt']
+        virtual_live_end_time = thing['endAt']
+        current_time = time.time()
+        if current_time > virtual_live_start_time / 1000 and current_time < virtual_live_end_time / 1000:
+            return thing
+
+async def virtual_live_ping(bot, session: aiohttp.ClientSession):
+    current_virtual_live = await get_current_virtual_live(session)
+    for thing in current_virtual_live['virtualLiveSchedules']:
+        virtual_live_start_time = thing['startAt']
+        virtual_live_end_time = thing['endAt']
+        current_time = time.time()
+        if current_time + 300 == virtual_live_start_time:
+            for thing in channel_list:           
+                channel = bot.get_channel(int(thing))
+                channel.send(f'')
+        
+        

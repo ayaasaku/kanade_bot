@@ -1,6 +1,6 @@
 import discord
-from discord import app_commands, Interaction, utils, guild
-from discord.ext import commands
+from discord import app_commands, Interaction, utils, guild, DMChannel
+from discord.ext import commands, bot
 
 from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
 from utility.paginator import GeneralPaginator

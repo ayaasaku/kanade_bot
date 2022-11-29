@@ -10,7 +10,7 @@ from utility.apps.sekai.time_formatting import format_time, format_date_jp, form
 from utility.apps.sekai.event_info import get_event_info
 from utility.apps.sekai.user.data_processing import *
 
-from utility.utils import defaultEmbed
+from utility.utils import defaultEmbed, errEmbed
 
 
 class EventCog(commands.Cog, name='event'):
@@ -28,7 +28,7 @@ class EventCog(commands.Cog, name='event'):
             elif option == 1:
                 event_info = await get_event_info(self.bot.session, 'tw')
             if event_info == None:
-                await interaction.response.send_message('現時並沒有舉行任何活動')
+                await interaction.response.send_message(embed = errEmbed('現時並沒有舉行任何活動'))
             event_id = event_info['event_id']
             event_end_time = event_info['event_end_time'] / 1000
             current_time = time.time()
@@ -66,7 +66,7 @@ class EventCog(commands.Cog, name='event'):
             elif option == 1:
                 event_info = await get_event_info(self.bot.session, 'tw')
             if event_info == None:
-                await interaction.response.send_message('現時並沒有舉行任何活動')
+                await interaction.response.send_message(embed = errEmbed('現時並沒有舉行任何活動'))
             else:
                 event_id = event_info['event_id']
                 event_name = event_info['event_name']

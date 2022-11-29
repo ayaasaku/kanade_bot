@@ -25,10 +25,6 @@ def loadingEmbed(text: str):
 
 def errEmbed(title: str = '', message: str = ''):
     embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
-    return embed
-
-def errMsgEmbed(title: str = '', message: str = ''):
-    embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
     embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", 
                     icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")

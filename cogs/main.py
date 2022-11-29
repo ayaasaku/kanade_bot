@@ -1,5 +1,5 @@
 import discord
-from discord import app_commands, Interaction, utils, guild, DMChannel
+from discord import app_commands, Interaction, utils, guild, DMChannel, Client
 from discord.ext import commands
 
 from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
@@ -55,13 +55,9 @@ class MainCog(commands.Cog, name='main'):
                 embed.add_field(name=guild.name, value=guild.id, inline=False)          
             await interaction.response.send_message(embed=embed, ephemeral= True)
             
-    @app_commands.command(name='test', description='test')
-    async def test(self, i: discord.Interaction):
-        is_ayaakaa_ = await is_ayaakaa(i)
-        if is_ayaakaa_ == True:
-            channel = self.bot.get_channel(1020235653700665347)
-            await channel.send(f'test')
-            await i.response.send_message('成功', ephemeral=True)
+    @app_commands.command(name='close', description='close')
+    async def close_bot(self, i: discord.Interaction):
+       self.bot.close()
                 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

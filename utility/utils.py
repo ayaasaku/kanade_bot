@@ -3,7 +3,8 @@ import discord
 from discord import Colour, Interaction, User, Client, AppInfo 
 from datetime import datetime
 
-
+def __init__(self, bot):
+        self.bot = bot
 
 #ayaakaa
 async def is_ayaakaa (i):
@@ -23,11 +24,14 @@ def loadingEmbed(text: str):
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194857747775680.gif?size=240&quality=lossless')
     return embed     
 
-def errEmbed(title: str = '', message: str = ''):
+def errEmbed(self, title: str = '', message: str = ''):
     embed = discord.Embed(title=title, description=message, color=discord.Colour.from_str('#F13650'))
+    ayaakaa=self.bot.get_user(831883841417248778)
+    icon = ayaakaa.avatar.url
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
     embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", 
-                    icon_url=AppInfo.owner.avatar)
+                    icon_url=f'{icon}'
+                    )
     return embed
 
 def notAyaakaaEmbed():

@@ -27,7 +27,7 @@ class ChatCog(commands.Cog, name='event'):
 
     global chat
     chat=Chat(template_file_path)
-
+    
     #The next code is for the bot can reply
     @bot_.command(pass_context = True)
     async def chatbot(ctx, *, message):

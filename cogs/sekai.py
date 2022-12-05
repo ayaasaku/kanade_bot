@@ -16,8 +16,10 @@ from utility.apps.sekai.user.register import check_user_account
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+        
         global session
         session = self.bot.session
+        
         global none_embed
         none_embed = errEmbed(
             '玩家ID不存在',
@@ -33,7 +35,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             discord_id = interaction.user.id
             person = interaction.user
         else:
-            discord_id = person.id
+            discord_id = person.id   
         await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         if player_id is None:
@@ -97,7 +99,6 @@ class SekaiCog(commands.Cog, name='sekai'):
             embed = defaultEmbed(f'{player_id}')
             embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
             await interaction.followup.send(embed=embed)
-            #await interaction.followup.send(f'{player_id}')
         
     class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):           
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)

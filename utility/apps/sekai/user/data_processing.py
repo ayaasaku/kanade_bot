@@ -200,22 +200,59 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
         else: pass
     else: pass
     
-async def get_user_music(import_id: str, session: aiohttp.ClientSession):
+async def get_user_music(import_id: str, music_id, music_title, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
     api = api['userMusic']
     
-    for thing in api:
-        music_id = thing['musicId']
-        difficulties = thing['userMusicDifficultyStatuses']
-        
-        for difficulty in difficulties:
-            music_results= difficulty['userMusicResults']
-            if len(music_results) == 0: pass
-            else:
-                music_result_solo ={}
-                music_results[0]
-                
+    for music in api:
+        if music_id == music['music_Id']:
+            for difficulty in music['userMusicDifficultyStatuses']:
+                difficulty_name = difficulty['musicDifficulty']
+                empty_list = []
+                embed_list = []
+                if difficulty['userMusicResults'] == empty_list:
+                    embed = defaultEmbed(title=f'**尚未挑戰 - {difficulty_name.title()}**', description=f'你尚未挑戰此難度')
+                else:
+                    embed = defaultEmbed(title=f'**{music_title} - {difficulty_name.title()}**', description=f'最高挑戰紀錄')
                     
+                    if len(str(music_id)) == 1:
+                        music_asset_name = f'jacket_s_00{music_id}'
+                    elif len(str(music_id)) == 2:
+                        music_asset_name = f'jacket_s_0{music_id}'
+                    elif len(str(music_id)) == 3:
+                        music_asset_name = f'jacket_s_{music_id}'
+                        
+                    cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
+                    
+                    for thing in difficulty['userMusicResults']:
+                        if thing['playType'] == 'multi': play_type ='單人' 
+                        elif thing['playType'] == 'solo': play_type ='多人' 
+                        
+                        score = thing['highScore']
+                        full_combo = thing['fullComboFlg']
+                        full_perfect = thing['fullPerfectFlg']
+                        
+                        embed.set_thumbnail(url=cover_url)
+                        embed.add_field(name='\u200b', value=f'**{play_type}**', inline=False)
+                        embed.add_field(name=f'最高分數',
+                                        value=f'{score}', inline=False)
+                        
+                        if full_combo == True:
+                            embed.add_field(name=f'Full Combo',
+                                            value=f'<:tick:1024576420606918656>', inline=True)
+                        elif full_combo == False:
+                            embed.add_field(name=f'Full Combo',
+                                            value=f'<:crosss:1024577482290114630> ', inline=True)
+                            
+                        if full_perfect == True:
+                            embed.add_field(name=f'Full Perfect',
+                                            value=f'<:tick:1024576420606918656>', inline=True)
+                        elif full_perfect == False:
+                            embed.add_field(name=f'Full Perfect',
+                                            value=f'<:crosss:1024577482290114630> ', inline=True)
+                embed_list.append(embed)
+                return embed_list
+                
 async def get_user_music_options(session: aiohttp.ClientSession):
         api = await get_sekai_musics_api(session)
         for music in api:
@@ -224,3 +261,4 @@ async def get_user_music_options(session: aiohttp.ClientSession):
             options = []
             options.append (Choice(name=f'{title}', value=f'{music_id}'))       
         return options
+    

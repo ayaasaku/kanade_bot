@@ -156,14 +156,42 @@ class SekaiCog(commands.Cog, name='sekai'):
             await interaction.response.send_message('成功')
     
     async def user_music_setup():
-        options = await get_user_music_options
+        api = await get_sekai_musics_api(session)
+        for music in api:
+            title = music['title']
+            music_id = music['id']
+            options = []
+            options.append (Choice(name=f'{title}', value=music_id))       
         return options
     
-    @app_commands.command(name='user-music', description='查看所有歌曲') 
+    '''@app_commands.command(name='user-music', description='查看所有歌曲') 
     @app_commands.choices(options=asyncio.run(user_music_setup()))
-    async def user_music(self, interaction: discord.Interaction, options: Choice[int]):    
-        await interaction.response.send_message(f'done, you have chosen {options.name}')    
-        
+    async def user_music(self, interaction: discord.Interaction, options: Choice[int]):   
+        is_ayaakaa_ = await is_ayaakaa(interaction)
+        if is_ayaakaa_ == True: 
+            await interaction.response.send_message(f'you have chosen {options.name}')   ''' 
+    
+    @app_commands.command(name='user-music', description='查看所有歌曲') 
+    @app_commands.rename(person='其他玩家', music_id='music-id')
+    async def user_music(self, interaction: discord.Interaction, music_id: str, person: discord.User=None):   
+        is_ayaakaa_ = await is_ayaakaa(interaction)
+        if is_ayaakaa_ == True: 
+            await interaction.response.defer()
+            db = await aiosqlite.connect("kanade_data.db")
+            cursor = await db.cursor()
+            if person == None:
+                discord_id = interaction.user.id
+            else:
+                discord_id = person.id
+            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+            player_id = await cursor.fetchone()
+            if player_id is None:
+                embed = none_embed
+                await interaction.followup.send(embed=embed, ephemeral= True)
+            else:
+                player_id = player_id[0]
+                embed_list = await get_user_music(player_id, music_id, 'None', session)
+                await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

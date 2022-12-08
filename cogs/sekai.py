@@ -1,9 +1,11 @@
 import aiosqlite
+import asyncio
 
 import discord
-from discord import Embed, app_commands, ui, SelectOption 
-from discord.ui import View, Select 
+from discord import Embed, app_commands, ui, SelectOption, Choice
+from discord.ui import View, Select
 from discord.ext import commands
+from discord.app_commands import Choice
 from matplotlib.pyplot import get
 
 from utility.utils import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
@@ -152,35 +154,21 @@ class SekaiCog(commands.Cog, name='sekai'):
             await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
             await db.commit()
             await interaction.response.send_message('成功')
-        
-    @app_commands.command(name='user-music', description='查看所有歌曲') 
     
-    async def song(self, interaction: discord.Interaction):
+    async def user_music_setup():
         api = await get_sekai_musics_api(session)
-        options = []
-        
         for music in api:
             title = music['title']
             music_id = music['id']
-            options.append(SelectOption(label=f'{title}', value=f'{music_id}')) 
-            
-        select = Select(placeholder='選擇歌曲', options = options) 
-        
-        async def song_callback(interaction: discord.Interaction):   
-            await interaction.response.send_message('done')
-            #global embed 
-            #embed = loadingEmbed(f'歌曲')
-            
+            options = []
+            options.append (Choice(name=f'{title}', value=f'{music_id}'))    
+        return options
     
-            '''if select.values[0] == 'Wonderlands×Showtime':
-                await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await get_group_music('theme_park', self.bot.session)
-                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)'''
-                
-        select.callback = song_callback
-        view = View()
-        view.add_item(select)
-        await interaction.response.send_message(view=view)
+    @app_commands.command(name='user-music', description='查看所有歌曲') 
+    @app_commands.choices(options=asyncio.run(user_music_setup()))
+    async def user_music(self, interaction: discord.Interaction, options: Choice[int]):    
+        await interaction.response.send_message(f'done, you have chosen {options.name}')    
+        
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

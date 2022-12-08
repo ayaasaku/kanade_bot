@@ -205,6 +205,8 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
     api = user_api['userMusics']
     
     for music in api:
+        if type(music_id) != int:
+            int(music_id)
         if music_id == music['musicId']:
             for difficulty in music['userMusicDifficultyStatuses']:
                 difficulty_name = difficulty['musicDifficulty']

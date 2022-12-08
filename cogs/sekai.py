@@ -2,7 +2,7 @@ import aiosqlite
 
 import discord
 from discord import Embed, app_commands, ui, SelectOption 
-from discord.ui import View, SelectOption, Select 
+from discord.ui import View, Select 
 from discord.ext import commands
 from matplotlib.pyplot import get
 

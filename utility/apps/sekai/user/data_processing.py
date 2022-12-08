@@ -201,8 +201,8 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     else: pass
     
 async def get_user_music(import_id: str, music_id, music_title, session: aiohttp.ClientSession):
-    api = await get_sekai_user_api(import_id, session)
-    api = api['userMusics']
+    user_api = await get_sekai_user_api(import_id, session)
+    api = user_api['userMusics']
     
     for music in api:
         if music_id == music['musicId']:
@@ -210,12 +210,12 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
                 difficulty_name = difficulty['musicDifficulty']
                 empty_list = []
                 embed_list = []
-                if difficulty['userMusicResults'] == empty_list:
+                if difficulty['userMusicResults'] is None:
                     embed = defaultEmbed(title=f'**尚未挑戰 - {difficulty_name.title()}**', description=f'你尚未挑戰此難度')
                 else:
                     embed = defaultEmbed(title=f'**{music_title} - {difficulty_name.title()}**', description=f'最高挑戰紀錄')
                     
-                    if len(str(music_id)) == 1:
+                    '''if len(str(music_id)) == 1:
                         music_asset_name = f'jacket_s_00{music_id}'
                     elif len(str(music_id)) == 2:
                         music_asset_name = f'jacket_s_0{music_id}'
@@ -249,7 +249,7 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
                                             value=f'<:tick:1024576420606918656>', inline=True)
                         elif full_perfect == False:
                             embed.add_field(name=f'Full Perfect',
-                                            value=f'<:crosss:1024577482290114630> ', inline=True)
+                                            value=f'<:crosss:1024577482290114630> ', inline=True)'''
                 embed_list.append(embed)
             return embed_list
                 

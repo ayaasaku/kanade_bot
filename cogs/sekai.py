@@ -1,7 +1,8 @@
 import aiosqlite
 
 import discord
-from discord import Embed, app_commands, ui
+from discord import Embed, app_commands, ui, SelectOption 
+from discord.ui import View, SelectOption, Select 
 from discord.ext import commands
 from matplotlib.pyplot import get
 
@@ -9,7 +10,7 @@ from utility.utils import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
 from utility.apps.sekai.user.data_processing import get_user_area_items
-from utility.apps.sekai.api_functions import get_sekai_user_api
+from utility.apps.sekai.api_functions import get_sekai_user_api, get_sekai_musics_api
 from utility.apps.sekai.user.data_processing import *
 from utility.apps.sekai.user.register import check_user_account
 
@@ -152,6 +153,34 @@ class SekaiCog(commands.Cog, name='sekai'):
             await db.commit()
             await interaction.response.send_message('成功')
         
+    @app_commands.command(name='user-music', description='查看所有歌曲') 
+    
+    async def song(self, interaction: discord.Interaction):
+        api = await get_sekai_musics_api
+        options = []
+        
+        for music in api:
+            title = music['title']
+            music_id = music['id']
+            options.append(SelectOption(label=f'{title}', value=f'{music_id}')) 
+            
+        select = Select(placeholder='選擇歌曲', options = options) 
+        
+        async def song_callback(interaction: discord.Interaction):   
+            await interaction.response.send_message('done')
+            #global embed 
+            #embed = loadingEmbed(f'歌曲')
+            
+    
+            '''if select.values[0] == 'Wonderlands×Showtime':
+                await interaction.followup.send(embed=embed, ephemeral=True)
+                embeds = await get_group_music('theme_park', self.bot.session)
+                await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)'''
+                
+        select.callback = song_callback
+        view = View()
+        view.add_item(select)
+        await interaction.response.send_message(view=view)
+        
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))
-

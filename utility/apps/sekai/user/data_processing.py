@@ -197,6 +197,21 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                     await channel.send(embed=embed)
         else: pass
     else: pass
+    
+async def get_user_music(import_id: str, session: aiohttp.ClientSession):
+    api = await get_sekai_user_api(import_id, session)
+    api = api['userMusic']
+    
+    for thing in api:
+        music_id = thing['musicId']
+        difficulties = thing['userMusicDifficultyStatuses']
         
-        
+        for difficulty in difficulties:
+            music_results= difficulty['userMusicResults']
+            if len(music_results) == 0: pass
+            else:
+                music_result_solo ={}
+                music_results[0]
+                
+                    
         

@@ -202,7 +202,7 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     
 async def get_user_music(import_id: str, music_id, music_title, session: aiohttp.ClientSession):
     api = await get_sekai_user_api(import_id, session)
-    api = api['userMusic']
+    api = api['userMusics']
     
     for music in api:
         if music_id == music['music_Id']:

@@ -156,7 +156,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='user-music', description='查看所有歌曲') 
     
     async def song(self, interaction: discord.Interaction):
-        api = await get_sekai_musics_api
+        api = await get_sekai_musics_api(session)
         options = []
         
         for music in api:

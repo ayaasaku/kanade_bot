@@ -191,8 +191,8 @@ class SekaiCog(commands.Cog, name='sekai'):
             else:
                 player_id = player_id[0]
                 embed_list = await get_user_music(player_id, music_id, 'None', session)
-                print(embed_list)
-                #await GeneralPaginator(interaction, embed_list).start()
+                #print(embed_list)
+                await GeneralPaginator(interaction, embed_list).start()
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

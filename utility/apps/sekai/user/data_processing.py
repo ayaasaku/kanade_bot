@@ -205,23 +205,23 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
     api = user_api['userMusics']
     empty_list = []
     embed_list = []
-    print('start searching in API')
+    #print('start searching in API')
     for music in api:
         if type(music_id) != int:
             music_id = int(music_id)
         if music_id == music['musicId']:
-            print('match')
+            #print('match')
             for difficulty in music['userMusicDifficultyStatuses']:
                 difficulty_name = difficulty['musicDifficulty']
                 if difficulty['userMusicResults'] == empty_list:
                     embed = defaultEmbed(title=f'**尚未挑戰 - {difficulty_name.title()}**', description=f'你尚未挑戰此難度')
                     embed_list.append(embed)
-                    print(f'{difficulty_name.title()} is none\n{embed_list}')
+                    #print(f'{difficulty_name.title()} is none\n{embed_list}')
                 else:
                     embed = defaultEmbed(title=f'**{music_title} - {difficulty_name.title()}**', description=f'最高挑戰紀錄')
                     embed_list.append(embed)
-                    print(f'{difficulty_name.title()} is not none\n{embed_list}')
-                    '''if len(str(music_id)) == 1:
+                    #print(f'{difficulty_name.title()} is not none\n{embed_list}')
+                    if len(str(music_id)) == 1:
                         music_asset_name = f'jacket_s_00{music_id}'
                     elif len(str(music_id)) == 2:
                         music_asset_name = f'jacket_s_0{music_id}'
@@ -255,7 +255,7 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
                                             value=f'<:tick:1024576420606918656>', inline=True)
                         elif full_perfect == False:
                             embed.add_field(name=f'Full Perfect',
-                                            value=f'<:crosss:1024577482290114630> ', inline=True)'''
+                                            value=f'<:crosss:1024577482290114630> ', inline=True)
             return embed_list
                 
 async def get_user_music_options(session: aiohttp.ClientSession):

@@ -173,10 +173,10 @@ class SekaiCog(commands.Cog, name='sekai'):
     
     @app_commands.command(name='user-music', description='查看所有歌曲') 
     @app_commands.rename(person='其他玩家', music_id='music-id')
-    async def user_music(self, interaction: discord.Interaction, music_id: str, person: discord.User=None):   
+    async def user_music(self, interaction: discord.Interaction, music_id: str, person: discord.User=None):  
+        await interaction.response.defer() 
         is_ayaakaa_ = await is_ayaakaa(interaction)
         if is_ayaakaa_ == True: 
-            await interaction.response.defer()
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             if person == None:
@@ -192,7 +192,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                 player_id = player_id[0]
                 embed_list = await get_user_music(player_id, music_id, 'None', session)
                 #print(embed_list)
-                await GeneralPaginator(interaction, embed_list).start()
+                await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

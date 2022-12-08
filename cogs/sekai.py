@@ -156,12 +156,7 @@ class SekaiCog(commands.Cog, name='sekai'):
             await interaction.response.send_message('成功')
     
     async def user_music_setup():
-        api = await get_sekai_musics_api(session)
-        for music in api:
-            title = music['title']
-            music_id = music['id']
-            options = []
-            options.append (Choice(name=f'{title}', value=f'{music_id}'))    
+        options = await get_user_music_options
         return options
     
     @app_commands.command(name='user-music', description='查看所有歌曲') 

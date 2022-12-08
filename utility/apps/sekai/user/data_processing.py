@@ -2,13 +2,15 @@ import aiohttp
 import time
 import discord
 from discord import channel
+from discord.app_commands import Choice
 from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_api, get_sekai_cards_info_api,
                                               get_sekai_characters_info_api,
                                               get_sekai_user_api,
                                               get_sekai_area_items_info_api,
                                               get_sekai_area_items_level_info_api,
                                               get_sekai_virtual_live_api_tw,
-                                              get_sekai_virtual_live_api_jp)
+                                              get_sekai_virtual_live_api_jp,
+                                              get_sekai_musics_api)
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -214,4 +216,11 @@ async def get_user_music(import_id: str, session: aiohttp.ClientSession):
                 music_results[0]
                 
                     
-   
+async def get_user_music_options(session: aiohttp.ClientSession):
+        api = await get_sekai_musics_api(session)
+        for music in api:
+            title = music['title']
+            music_id = music['id']
+            options = []
+            options.append (Choice(name=f'{title}', value=f'{music_id}'))       
+        return options

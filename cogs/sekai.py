@@ -2,7 +2,7 @@ import aiosqlite
 import asyncio
 
 import discord
-from discord import Embed, app_commands, ui, SelectOption, Choice
+from discord import Embed, app_commands, ui, SelectOption
 from discord.ui import View, Select
 from discord.ext import commands
 from discord.app_commands import Choice

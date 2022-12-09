@@ -204,14 +204,15 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
 async def get_group_music(session: aiohttp.ClientSession):
     music_tag_api = await get_sekai_music_tags_api(session)
     music_api = await get_sekai_musics_api(session)
-    group_list = ['vocaloid', 'light_music_club', 'school_refusal', 'idol', 'street', 'theme_park']
+    group_list = ['vocaloid', 'light_music_club', 'school_refusal', 'idol', 'street', 'theme_park', 'other']
     all_music = {
         'vocaloid': [],
         'light_music_club': [],
         'school_refusal': [],
         'idol': [],
         'street': [],
-        'theme_park': []
+        'theme_park': [],
+        'other': []
     }
    
     for group in group_list:

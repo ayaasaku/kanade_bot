@@ -160,8 +160,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='user-music', description='查看所有歌曲') 
     @app_commands.rename(person='其他玩家')
     async def user_music(self, interaction: discord.Interaction, person: discord.User=None): 
-        all_music = await get_group_music(session) 
-        
+        '''
         vocaloid_len = len(all_music['vocaloid'])
         light_music_club_len = len(all_music['light_music_club'])
         school_refusal_len = len(all_music['school_refusal'])
@@ -177,8 +176,9 @@ class SekaiCog(commands.Cog, name='sekai'):
         print(f'street: {street_len}')
         print(f'theme_park: {theme_park_len}')
         print(f'other: {other_len}')
+        '''
         
-        main_select = Select(placeholder='選擇歌曲分類', options = [
+        group_select = Select(placeholder='選擇歌曲分類', options = [
         
         SelectOption(label='虛擬歌手', value ='vocaloid', 
                     description='バーチャル・シンガー', 
@@ -212,16 +212,18 @@ class SekaiCog(commands.Cog, name='sekai'):
         SelectOption(label='其他', value ='other'), 
                                                                     ])   
         
-        async def main_select_callback(interaction: discord.Interaction):  
+        async def group_select_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
+            all_music = await get_group_music(session) 
             all_options = []
             
-            for music in all_music[f'{main_select.values[0]}']:
+            for music in all_music[f'{group_select.values[0]}']:
                 music_name = music[0]
                 music_id = music[1]
                 all_options.append(SelectOption(label=music_name, value=f'{music_id}'))
+            all_options_= all_options
             
-            class group_select(Select):
+            class song_select(Select):
                 async def callback(self, interaction: discord.Interaction):
                     await interaction.response.defer()
                     is_ayaakaa_ = await is_ayaakaa(interaction)
@@ -251,16 +253,16 @@ class SekaiCog(commands.Cog, name='sekai'):
                 for i in range(0, len(lst), n):
                     yield lst[i:i + n] 
                     
-            divided_options = list(divide_list(all_options, 25))
+            divided_options = list(divide_list(all_options_, 25))
             for options in divided_options:
                 view = View()    
-                view.add_item(group_select(placeholder="選擇歌曲", options=options))  
-                     
-            await interaction.followup.send(view=view)
+                view.add_item(song_select(placeholder="選擇歌曲", options=options))  
+            view_ = view         
+            await interaction.followup.send(view=view_)
             
-        main_select.callback = main_select_callback
+        group_select.callback = group_select_callback
         view = View()
-        view.add_item(main_select)
+        view.add_item(group_select)
         await interaction.response.send_message(view=view)
             
 async def setup(bot: commands.Bot) -> None:

@@ -221,7 +221,7 @@ async def get_group_music(session: aiohttp.ClientSession):
                 for music in music_api:
                     if music_id == music['id']:
                         music_name = music['title']
-                all_music[f'{group}'].append({music_name, music_id}) 
+                all_music[f'{group}'].append([music_name, music_id]) 
     return all_music
          
 async def get_user_music(import_id: str, music_id: str, session: aiohttp.ClientSession):

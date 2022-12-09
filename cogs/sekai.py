@@ -161,7 +161,23 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.rename(person='其他玩家')
     async def user_music(self, interaction: discord.Interaction, person: discord.User=None): 
         all_music = await get_group_music(session) 
-        print(all_music)
+        
+        vocaloid_len = len(all_music['vocaloid'])
+        light_music_club_len = len(all_music['light_music_club'])
+        school_refusal_len = len(all_music['school_refusal'])
+        idol_len = len(all_music['idol'])
+        street_len = len(all_music['street'])
+        theme_park_len = len(all_music['theme_park'])
+        other_len = len(all_music['other'])
+        
+        print(f'vocaloid: {vocaloid_len}')
+        print(f'light_music_club: {light_music_club_len}')
+        print(f'school_refusal: {school_refusal_len}')
+        print(f'idol: {idol_len}')
+        print(f'street: {street_len}')
+        print(f'theme_park: {theme_park_len}')
+        print(f'other: {other_len}')
+        
         main_select = Select(placeholder='選擇歌曲分類', options = [
         
         SelectOption(label='虛擬歌手', value ='vocaloid', 

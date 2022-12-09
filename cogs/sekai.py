@@ -11,10 +11,12 @@ from matplotlib.pyplot import get
 from utility.utils import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
 from utility.paginator import GeneralPaginator
 from utility.apps.sekai.user.profile import user_profile
-from utility.apps.sekai.user.data_processing import get_user_area_items
+from utility.apps.sekai.user.data_processing import get_user_area_items, get_group_music
 from utility.apps.sekai.api_functions import get_sekai_user_api, get_sekai_musics_api
 from utility.apps.sekai.user.data_processing import *
 from utility.apps.sekai.user.register import check_user_account
+
+from data.emoji_data import *
 
 class SekaiCog(commands.Cog, name='sekai'):
     def __init__(self, bot: commands.Bot):
@@ -155,44 +157,92 @@ class SekaiCog(commands.Cog, name='sekai'):
             await db.commit()
             await interaction.response.send_message('成功')
     
-    async def user_music_setup():
-        api = await get_sekai_musics_api(session)
-        for music in api:
-            title = music['title']
-            music_id = music['id']
-            options = []
-            options.append (Choice(name=f'{title}', value=music_id))       
-        return options
-    
-    '''@app_commands.command(name='user-music', description='查看所有歌曲') 
-    @app_commands.choices(options=asyncio.run(user_music_setup()))
-    async def user_music(self, interaction: discord.Interaction, options: Choice[int]):   
-        is_ayaakaa_ = await is_ayaakaa(interaction)
-        if is_ayaakaa_ == True: 
-            await interaction.response.send_message(f'you have chosen {options.name}')   ''' 
-    
     @app_commands.command(name='user-music', description='查看所有歌曲') 
-    @app_commands.rename(person='其他玩家', music_id='music-id')
-    async def user_music(self, interaction: discord.Interaction, music_id: str, person: discord.User=None):  
-        await interaction.response.defer() 
-        is_ayaakaa_ = await is_ayaakaa(interaction)
-        if is_ayaakaa_ == True: 
-            db = await aiosqlite.connect("kanade_data.db")
-            cursor = await db.cursor()
-            if person == None:
-                discord_id = interaction.user.id
-            else:
-                discord_id = person.id
-            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
-            player_id = await cursor.fetchone()
-            if player_id is None:
-                embed = none_embed
-                await interaction.followup.send(embed=embed, ephemeral= True)
-            else:
-                player_id = player_id[0]
-                embed_list = await get_user_music(player_id, music_id, 'None', session)
-                #print(embed_list)
-                await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
+    @app_commands.rename(person='其他玩家')
+    async def user_music(self, interaction: discord.Interaction, person: discord.User=None): 
+        all_music = await get_group_music 
+        main_select = Select(placeholder='選擇歌曲分類', options = [
         
+        SelectOption(label='虛擬歌手', value ='vocaloid', 
+                    description='バーチャル・シンガー', 
+                    ), 
+        
+        SelectOption(label='25點，Nightcord見。', value ='school_refusal', 
+                    description='25時、ナイトコードで。', 
+                    emoji= group_icon_square['school_refusal']
+                    ), 
+        
+        SelectOption(label='Leo/need', value ='light_music_club', 
+                    description='Leo/need', 
+                    emoji= group_icon_square['light_music_club']
+                    ), 
+        
+        SelectOption(label='MORE MORE JUMP！', value ='idol', 
+                    description='MORE MORE JUMP！', 
+                    emoji= group_icon_square['idol']
+                    ), 
+        
+        SelectOption(label='Vivid BAD SQUAD', value ='street', 
+                    description='Vivid BAD SQUAD', 
+                    emoji= group_icon_square['street']
+                    ), 
+        
+        SelectOption(label='Wonderlands×Showtime', value ='theme_park', 
+                    description='ワンダーランズ×ショウタイム', 
+                    emoji= group_icon_square['theme_park']
+                    ),
+        
+        SelectOption(label='其他', value ='other'), 
+                                                                    ])  
+        
+        main_select.callback = main_select_callback
+        view = View()
+        view.add_item(main_select)
+        await interaction.response.send_message(view=view) 
+        
+        async def main_select_callback(interaction: discord.Interaction):  
+            await interaction.response.defer()
+            all_options = []
+            
+            for music in all_music[f'{main_select.values[0]}']:
+                music_name = music[0]
+                music_id = music[1]
+                all_options.append(SelectOption(label=music_name, value=f'{music_id}'))
+            
+            class group_select(Select):
+                async def callback(self, interaction: discord.Interaction):
+                    await interaction.response.defer()
+                    is_ayaakaa_ = await is_ayaakaa(interaction)
+                    
+                    if is_ayaakaa_ == True: 
+                        db = await aiosqlite.connect("kanade_data.db")
+                        cursor = await db.cursor()
+                        
+                        if person == None:
+                            discord_id = interaction.user.id
+                        else:
+                            discord_id = person.id
+                            
+                        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+                        player_id = await cursor.fetchone()
+                        
+                        if player_id is None:
+                            embed = none_embed
+                            await interaction.followup.send(embed=embed, ephemeral= True)
+                        else:
+                            player_id = player_id[0]
+                            embed_list = await get_user_music(import_id=player_id, music_id=self.values[0], session=session)
+                            await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
+                            
+            def divide_list(lst, n):
+                #將一個 list 分為大小為 n 的等分
+                for i in range(0, len(lst), n):
+                    yield lst[i:i + n] 
+                    
+            divided_options = list(divide_list(all_options, 25))
+            for options in divided_options:
+                view = View()    
+                view.add_item(group_select(placeholder="選擇歌曲", options=options))       
+               
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

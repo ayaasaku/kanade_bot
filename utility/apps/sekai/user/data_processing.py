@@ -10,7 +10,8 @@ from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_ap
                                               get_sekai_area_items_level_info_api,
                                               get_sekai_virtual_live_api_tw,
                                               get_sekai_virtual_live_api_jp,
-                                              get_sekai_musics_api)
+                                              get_sekai_musics_api,
+                                              get_sekai_music_tags_api)
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -199,40 +200,61 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                     await channel.send(embed=embed)
         else: pass
     else: pass
-    
-async def get_user_music(import_id: str, music_id, music_title, session: aiohttp.ClientSession):
+   
+async def get_group_music(session: aiohttp.ClientSession):
+    music_tag_api = await get_sekai_music_tags_api(session)
+    music_api = await get_sekai_musics_api(session)
+    group_list = ['vocaloid', 'light_music_club', 'school_refusal', 'idol', 'street', 'theme_park']
+    all_music = {
+        'vocaloid': [],
+        'light_music_club': [],
+        'school_refusal': [],
+        'idol': [],
+        'street': [],
+        'theme_park': []
+    }
+   
+    for group in group_list:
+        for thing in music_tag_api:
+            if thing['musicTag'] == f'{group}':
+                music_id = thing['musicId']  
+                for music in music_api:
+                    if music_id == music['id']:
+                        music_name = music['title']
+                all_music[f'{group}'].append({music_name, music_id}) 
+    return all_music
+         
+async def get_user_music(import_id: str, music_id: str, session: aiohttp.ClientSession):
     user_api = await get_sekai_user_api(import_id, session)
+    music_api = await get_sekai_musics_api(session)
     api = user_api['userMusics']
     empty_list = []
     embed_list = []
-    #print('start searching in API')
+    for music in music_api:
+        if int(music_id) == music['id']:
+            music_name = music['title']
     for music in api:
-        if type(music_id) != int:
-            music_id = int(music_id)
-        if music_id == music['musicId']:
-            #print('match')
+        if int(music_id) == music['musicId']:
             for difficulty in music['userMusicDifficultyStatuses']:
                 difficulty_name = difficulty['musicDifficulty']
                 if difficulty['userMusicResults'] == empty_list:
-                    embed = defaultEmbed(title=f'**尚未挑戰 - {difficulty_name.title()}**', description=f'你尚未挑戰此難度')
+                    embed = defaultEmbed(title=f'**{music_name} - {difficulty_name.title()} - 尚未挑戰**', description=f'你尚未挑戰此難度')
                     embed_list.append(embed)
-                    #print(f'{difficulty_name.title()} is none\n{embed_list}')
                 else:
-                    embed = defaultEmbed(title=f'**{music_title} - {difficulty_name.title()}**', description=f'最高挑戰紀錄')
+                    embed = defaultEmbed(title=f'**{music_name} - {difficulty_name.title()}**')
                     embed_list.append(embed)
-                    #print(f'{difficulty_name.title()} is not none\n{embed_list}')
-                    if len(str(music_id)) == 1:
+                    if len(music_id) == 1:
                         music_asset_name = f'jacket_s_00{music_id}'
-                    elif len(str(music_id)) == 2:
+                    elif len(music_id) == 2:
                         music_asset_name = f'jacket_s_0{music_id}'
-                    elif len(str(music_id)) == 3:
+                    elif len(music_id) == 3:
                         music_asset_name = f'jacket_s_{music_id}'
                         
                     cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
                     
                     for thing in difficulty['userMusicResults']:
-                        if thing['playType'] == 'multi': play_type ='單人' 
-                        elif thing['playType'] == 'solo': play_type ='多人' 
+                        if thing['playType'] == 'solo': play_type ='單人' 
+                        elif thing['playType'] == 'multi': play_type ='多人' 
                         
                         score = thing['highScore']
                         full_combo = thing['fullComboFlg']
@@ -258,12 +280,5 @@ async def get_user_music(import_id: str, music_id, music_title, session: aiohttp
                                             value=f'<:crosss:1024577482290114630> ', inline=True)
             return embed_list
                 
-async def get_user_music_options(session: aiohttp.ClientSession):
-        api = await get_sekai_musics_api(session)
-        for music in api:
-            title = music['title']
-            music_id = music['id']
-            options = []
-            options.append (Choice(name=f'{title}', value=f'{music_id}'))       
-        return options
+
     

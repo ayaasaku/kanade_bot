@@ -160,7 +160,7 @@ class SekaiCog(commands.Cog, name='sekai'):
     @app_commands.command(name='user-music', description='查看所有歌曲') 
     @app_commands.rename(person='其他玩家')
     async def user_music(self, interaction: discord.Interaction, person: discord.User=None): 
-        all_music = await get_group_music 
+        all_music = await get_group_music(session) 
         main_select = Select(placeholder='選擇歌曲分類', options = [
         
         SelectOption(label='虛擬歌手', value ='vocaloid', 

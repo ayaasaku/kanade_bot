@@ -237,8 +237,10 @@ class SekaiCog(commands.Cog, name='sekai'):
             divided_options = list(divide_list(all_options, 25))
             for options in divided_options:
                 view = View()    
-                view.add_item(group_select(placeholder="選擇歌曲", options=options))       
-               
+                view.add_item(group_select(placeholder="選擇歌曲", options=options))  
+                     
+            await interaction.followup.send(view=view)
+            
         main_select.callback = main_select_callback
         view = View()
         view.add_item(main_select)

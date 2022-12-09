@@ -193,12 +193,7 @@ class SekaiCog(commands.Cog, name='sekai'):
                     ),
         
         SelectOption(label='其他', value ='other'), 
-                                                                    ])  
-        
-        main_select.callback = main_select_callback
-        view = View()
-        view.add_item(main_select)
-        await interaction.response.send_message(view=view) 
+                                                                    ])   
         
         async def main_select_callback(interaction: discord.Interaction):  
             await interaction.response.defer()
@@ -244,5 +239,10 @@ class SekaiCog(commands.Cog, name='sekai'):
                 view = View()    
                 view.add_item(group_select(placeholder="選擇歌曲", options=options))       
                
+        main_select.callback = main_select_callback
+        view = View()
+        view.add_item(main_select)
+        await interaction.response.send_message(view=view)
+            
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiCog(bot))

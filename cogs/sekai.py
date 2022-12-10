@@ -221,7 +221,6 @@ class SekaiCog(commands.Cog, name='sekai'):
                 music_name = music[0]
                 music_id = music[1]
                 all_options.append(SelectOption(label=music_name, value=f'{music_id}'))
-            all_options_= all_options
             
             class song_select(Select):
                 async def callback(self, interaction: discord.Interaction):
@@ -253,12 +252,12 @@ class SekaiCog(commands.Cog, name='sekai'):
                 for i in range(0, len(lst), n):
                     yield lst[i:i + n] 
                     
-            divided_options = list(divide_list(all_options_, 25))
+            divided_options = list(divide_list(lst=all_options, n=25))
+            print(divided_options)
             for options in divided_options:
                 view = View()    
-                view.add_item(song_select(placeholder="選擇歌曲", options=options))  
-            view_ = view         
-            await interaction.followup.send(view=view_)
+                view.add_item(song_select(placeholder="選擇歌曲", options=options))       
+            await interaction.followup.send(view=view)
             
         group_select.callback = group_select_callback
         view = View()

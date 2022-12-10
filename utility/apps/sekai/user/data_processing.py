@@ -12,6 +12,7 @@ from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_ap
                                               get_sekai_virtual_live_api_jp,
                                               get_sekai_musics_api,
                                               get_sekai_music_tags_api)
+from utility.apps.sekai.music_info import get_music_embed
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -236,6 +237,7 @@ async def get_user_music(import_id: str, music_id: str, session: aiohttp.ClientS
             music_name = music['title']
     for music in api:
         if int(music_id) == music['musicId']:
+            #embed = get_music_embed(music_id, session)
             for difficulty in music['userMusicDifficultyStatuses']:
                 difficulty_name = difficulty['musicDifficulty']
                 if difficulty['userMusicResults'] == empty_list:

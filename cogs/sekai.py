@@ -253,8 +253,9 @@ class SekaiCog(commands.Cog, name='sekai'):
                     yield lst[i:i + n] 
                     
             divided_options = list(divide_list(lst=all_options, n=25))
-            print(divided_options)
+            #print(divided_options)
             for options in divided_options:
+                print(options)
                 view = View()    
                 view.add_item(song_select(placeholder="選擇歌曲", options=options))       
             await interaction.followup.send(view=view)

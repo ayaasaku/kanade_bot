@@ -12,8 +12,8 @@ class Kuma2Cog(commands.Cog, name='kuma2'):
     async def on_member_join(self, member: Member):
         if member.guild.id == 1000043106164539453: #1001466950309924876:
             #await member.add_roles([1001478249773289562,], reason = 'New Member', atomic = True)
-            role = (member.guild.get_role(10560481511250370987))
-            await member.add_roles(role, reason = 'New Member', atomic = True)
+            role = [member.guild.get_role(1056048151125037098),]
+            await member.add_roles(role)
             
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Kuma2Cog(bot))

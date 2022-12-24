@@ -240,20 +240,23 @@ async def get_user_music(import_id: str, music_id: str, session: aiohttp.ClientS
             #embed = get_music_embed(music_id, session)
             for difficulty in music['userMusicDifficultyStatuses']:
                 difficulty_name = difficulty['musicDifficulty']
+                
+                if len(music_id) == 1:
+                    music_asset_name = f'jacket_s_00{music_id}'
+                elif len(music_id) == 2:
+                    music_asset_name = f'jacket_s_0{music_id}'
+                elif len(music_id) == 3:
+                    music_asset_name = f'jacket_s_{music_id}'
+                    
+                cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
+                    
                 if difficulty['userMusicResults'] == empty_list:
                     embed = defaultEmbed(title=f'**{music_name} - {difficulty_name.title()} - 尚未挑戰**', description=f'你尚未挑戰此難度')
+                    embed.set_thumbnail(url=cover_url)
                     embed_list.append(embed)
                 else:
                     embed = defaultEmbed(title=f'**{music_name} - {difficulty_name.title()}**')
                     embed_list.append(embed)
-                    if len(music_id) == 1:
-                        music_asset_name = f'jacket_s_00{music_id}'
-                    elif len(music_id) == 2:
-                        music_asset_name = f'jacket_s_0{music_id}'
-                    elif len(music_id) == 3:
-                        music_asset_name = f'jacket_s_{music_id}'
-                        
-                    cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{music_asset_name}_rip/{music_asset_name}.webp"
                     
                     for thing in difficulty['userMusicResults']:
                         if thing['playType'] == 'solo': play_type ='單人' 

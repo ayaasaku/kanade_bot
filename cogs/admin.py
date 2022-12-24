@@ -4,7 +4,7 @@ from discord.ext import commands
 
 from utility.utils import is_ayaakaa, defaultEmbed
 
-class AdminCog(commands.Cog, name='others'):
+class AdminCog(commands.Cog, name='admin'):
     def __init__(self, bot):
         self.bot = bot
         

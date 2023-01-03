@@ -111,9 +111,9 @@ async def on_ready():
     task_loop.start() 
 
 @tasks.loop(seconds=10)
-async def task_loop(self):
-    await virtual_live_ping_tw(self, bot, session)
-    await virtual_live_ping_jp(self, bot, session)
+async def task_loop():
+    await virtual_live_ping_tw(bot, session)
+    await virtual_live_ping_jp(bot, session)
 
 bot.run(token)
 

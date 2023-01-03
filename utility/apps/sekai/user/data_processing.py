@@ -151,8 +151,11 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     result = api['userCharacters']
     return result    
 
-async def virtual_live_ping_tw(self, bot, session: aiohttp.ClientSession):
-    api = await get_sekai_virtual_live_api_tw(session)
+async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
+    if server is 'tw':
+        api = await get_sekai_virtual_live_api_tw(session)
+    elif server is 'jp':
+        api = await get_sekai_virtual_live_api_jp(session)
     for live in api:
         virtual_live_start_time = live['startAt']
         virtual_live_end_time = live['endAt']
@@ -161,37 +164,31 @@ async def virtual_live_ping_tw(self, bot, session: aiohttp.ClientSession):
             current_virtual_live = live
         else:
             pass
-
-        for thing in self.current_virtual_live['virtualLiveSchedules']:
-            name = current_virtual_live['name']
-            virtual_live_start_time = thing['startAt']
-            current_time = time.time()
-            if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
-                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for thing in channel_list:           
-                    channel = bot.get_channel(1020235653700665347)
-                    await channel.send(embed=embed)
-
-async def virtual_live_ping_jp(self, bot, session: aiohttp.ClientSession):
-    api = await get_sekai_virtual_live_api_jp(session)
-    for live in api:
-        virtual_live_start_time = live['startAt']
-        virtual_live_end_time = live['endAt']
+        return current_virtual_live   
+     
+async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
+    current_virtual_live = await get_current_virtual_live('tw', session)
+    for thing in current_virtual_live['virtualLiveSchedules']:
+        name = current_virtual_live['name']
+        virtual_live_start_time = thing['startAt']
         current_time = time.time()
-        if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
-            current_virtual_live = live
-        else:
-            pass
-        
-        for thing in self.current_virtual_live['virtualLiveSchedules']:
-            name = current_virtual_live['name']
-            virtual_live_start_time = thing['startAt']
-            current_time = time.time()
-            if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
-                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for thing in channel_list:           
-                    channel = bot.get_channel(1020235653700665347)
-                    await channel.send(embed=embed)
+        if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
+            embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+            for thing in channel_list:           
+                channel = bot.get_channel(1020235653700665347)
+                await channel.send(embed=embed)
+
+async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
+    current_virtual_live = await get_current_virtual_live('jp', session)
+    for thing in current_virtual_live['virtualLiveSchedules']:
+        name = current_virtual_live['name']
+        virtual_live_start_time = thing['startAt']
+        current_time = time.time()
+        if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
+            embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+            for thing in channel_list:           
+                channel = bot.get_channel(1020235653700665347)
+                await channel.send(embed=embed)
 
 
    

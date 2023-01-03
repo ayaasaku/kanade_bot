@@ -180,7 +180,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                     channel = bot.get_channel(1020235653700665347)
                     await channel.send(embed=embed)
 
-async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
+async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live('jp', session)
     if current_virtual_live != None:
         for thing in current_virtual_live['virtualLiveSchedules']:

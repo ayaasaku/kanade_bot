@@ -152,9 +152,9 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     return result    
 
 async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
-    if server is 'tw':
+    if server == 'tw':
         api = await get_sekai_virtual_live_api_tw(session)
-    elif server is 'jp':
+    elif server == 'jp':
         api = await get_sekai_virtual_live_api_jp(session)
     for live in api:
         virtual_live_start_time = live['startAt']

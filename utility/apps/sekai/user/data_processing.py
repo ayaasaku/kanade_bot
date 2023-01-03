@@ -154,8 +154,8 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
 async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_tw(session)
     for live in api:
-        virtual_live_start_time = thing['startAt']
-        virtual_live_end_time = thing['endAt']
+        virtual_live_start_time = live['startAt']
+        virtual_live_end_time = live['endAt']
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
@@ -176,8 +176,8 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
 async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_jp(session)
     for live in api:
-        virtual_live_start_time = thing['startAt']
-        virtual_live_end_time = thing['endAt']
+        virtual_live_start_time = live['startAt']
+        virtual_live_end_time = live['endAt']
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live

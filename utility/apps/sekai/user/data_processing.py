@@ -159,6 +159,8 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
+        else:
+            pass
 
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
@@ -169,8 +171,6 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(1020235653700665347)
                     await channel.send(embed=embed)
-        else: pass
-    else: pass
 
 async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_jp(session)
@@ -180,7 +180,9 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
-
+        else:
+            pass
+        
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
@@ -190,8 +192,7 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
                 for thing in channel_list:           
                     channel = bot.get_channel(1020235653700665347)
                     await channel.send(embed=embed)
-        else: pass
-    else: pass
+
 
    
 async def get_group_music(session: aiohttp.ClientSession):

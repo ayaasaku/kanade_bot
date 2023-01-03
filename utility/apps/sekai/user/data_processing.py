@@ -1,8 +1,5 @@
 import aiohttp
 import time
-import discord
-from discord import channel
-from discord.app_commands import Choice
 from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_api, get_sekai_cards_info_api,
                                               get_sekai_characters_info_api,
                                               get_sekai_user_api,
@@ -12,7 +9,6 @@ from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_ap
                                               get_sekai_virtual_live_api_jp,
                                               get_sekai_musics_api,
                                               get_sekai_music_tags_api)
-from utility.apps.sekai.music_info import get_music_embed
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -176,8 +172,8 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
             current_time = time.time()
             if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
                 embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for thing in channel_list:           
-                    channel = bot.get_channel(1020235653700665347)
+                for i in channel_list:           
+                    channel = bot.get_channel(i)
                     await channel.send(embed=embed)
 
 async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
@@ -189,8 +185,8 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
             current_time = time.time()
             if int(current_time) + 300 in  range(virtual_live_start_time - 100, virtual_live_start_time + 100):
                 embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for thing in channel_list:           
-                    channel = bot.get_channel(1020235653700665347)
+                for i in channel_list:           
+                    channel = bot.get_channel(i)
                     await channel.send(embed=embed)
 
    

@@ -159,7 +159,6 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
-            return current_virtual_live 
 
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
@@ -181,7 +180,6 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
-            return current_virtual_live 
 
         for thing in current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']

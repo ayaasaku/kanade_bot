@@ -151,7 +151,7 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     result = api['userCharacters']
     return result    
 
-async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
+async def virtual_live_ping_tw(self, bot, session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_tw(session)
     for live in api:
         virtual_live_start_time = live['startAt']
@@ -162,7 +162,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
         else:
             pass
 
-        for thing in current_virtual_live['virtualLiveSchedules']:
+        for thing in self.current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
             current_time = time.time()
@@ -172,7 +172,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                     channel = bot.get_channel(1020235653700665347)
                     await channel.send(embed=embed)
 
-async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
+async def virtual_live_ping_jp(self, bot, session: aiohttp.ClientSession):
     api = await get_sekai_virtual_live_api_jp(session)
     for live in api:
         virtual_live_start_time = live['startAt']
@@ -183,7 +183,7 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
         else:
             pass
         
-        for thing in current_virtual_live['virtualLiveSchedules']:
+        for thing in self.current_virtual_live['virtualLiveSchedules']:
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
             current_time = time.time()

@@ -162,9 +162,10 @@ async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
         current_time = time.time()
         if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
             current_virtual_live = live
+            return current_virtual_live   
         else:
             pass
-        return current_virtual_live   
+        
      
 async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
     current_virtual_live = await get_current_virtual_live('tw', session)

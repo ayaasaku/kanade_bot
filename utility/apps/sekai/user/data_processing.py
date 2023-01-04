@@ -170,7 +170,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
             current_time = time.time()
-            if current_time >= (virtual_live_start_time - 310) and current_time < virtual_live_start_time:
+            if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
                 embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
                 for i in channel_list:           
                     channel = bot.get_channel(i)
@@ -183,7 +183,7 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
             name = current_virtual_live['name']
             virtual_live_start_time = thing['startAt']
             current_time = time.time()
-            if current_time >= (virtual_live_start_time - 310) and current_time < virtual_live_start_time:
+            if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
                 embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
                 for i in channel_list:           
                     channel = bot.get_channel(i)

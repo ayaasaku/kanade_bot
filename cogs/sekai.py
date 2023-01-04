@@ -134,10 +134,14 @@ class EventCog(commands.Cog, name='event'):
             embed = await get_current_virtual_live_embed('jp', self.bot.session)
         elif option == 1:
             embed = await get_current_virtual_live_embed('tw', self.bot.session)   
-        if type(embed) is list:
-            await GeneralPaginator(interaction, embed).start(embeded=True, follow_up=True)
+            
+        if embed == None:
+            embed = errEmbed('最近並沒有虛擬 Live 要舉行')
         else:
-            await interaction.followup.send(embed=embed)
+            if type(embed) is list:
+                await GeneralPaginator(interaction, embed).start(embeded=True, follow_up=True)
+            else:
+                await interaction.followup.send(embed=embed)
             
         
 async def setup(bot: commands.Bot) -> None:

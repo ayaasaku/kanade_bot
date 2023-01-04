@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 from debug import DebugView
 from utility.utils import errEmbed, log
-from utility.apps.sekai.user.data_processing import virtual_live_ping_tw, virtual_live_ping_jp
+from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
 
 load_dotenv()
 token = os.getenv('TOKEN')

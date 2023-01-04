@@ -9,6 +9,7 @@ from utility.apps.sekai.api_functions import (get_sekai_area_items_level_info_ap
                                               get_sekai_virtual_live_api_jp,
                                               get_sekai_musics_api,
                                               get_sekai_music_tags_api)
+from utility.apps.sekai.time_formatting import (format_date, format_date_jp)
 from data.channel_list import channel_list
 from utility.utils import defaultEmbed
 
@@ -147,49 +148,6 @@ async def get_user_character_level(import_id: str, session: aiohttp.ClientSessio
     result = api['userCharacters']
     return result    
 
-async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
-    if server == 'tw':
-        api = await get_sekai_virtual_live_api_tw(session)
-    elif server == 'jp':
-        api = await get_sekai_virtual_live_api_jp(session)
-    for live in api:
-        virtual_live_start_time = live['startAt']
-        virtual_live_end_time = live['endAt']
-        current_time = time.time()
-        if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
-            current_virtual_live = live
-            return current_virtual_live   
-        else:
-            return None
-        
-     
-async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
-    current_virtual_live = await get_current_virtual_live('tw', session)
-    if current_virtual_live != None:
-        for thing in current_virtual_live['virtualLiveSchedules']:
-            name = current_virtual_live['name']
-            virtual_live_start_time = thing['startAt']
-            current_time = time.time()
-            if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
-                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for i in channel_list:           
-                    channel = bot.get_channel(i)
-                    await channel.send(embed=embed)
-
-async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
-    current_virtual_live = await get_current_virtual_live('jp', session)
-    if current_virtual_live != None:
-        for thing in current_virtual_live['virtualLiveSchedules']:
-            name = current_virtual_live['name']
-            virtual_live_start_time = thing['startAt']
-            current_time = time.time()
-            if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
-                embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                for i in channel_list:           
-                    channel = bot.get_channel(i)
-                    await channel.send(embed=embed)
-
-   
 async def get_group_music(session: aiohttp.ClientSession):
     music_tag_api = await get_sekai_music_tags_api(session)
     music_api = await get_sekai_musics_api(session)

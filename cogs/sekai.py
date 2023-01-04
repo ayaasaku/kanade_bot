@@ -137,6 +137,7 @@ class EventCog(commands.Cog, name='event'):
             
         if embed == None:
             embed = errEmbed('最近並沒有虛擬 Live 要舉行')
+            await interaction.followup.send(embed=embed)
         else:
             if type(embed) is list:
                 await GeneralPaginator(interaction, embed).start(embeded=True, follow_up=True)

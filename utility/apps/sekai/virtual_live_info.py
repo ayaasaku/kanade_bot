@@ -15,9 +15,8 @@ async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
         virtual_live_start_time = live['startAt']
         virtual_live_end_time = live['endAt']
         current_time = time.time()
-        if current_time > virtual_live_start_time and current_time < virtual_live_end_time:
-            current_virtual_live = live
-            live_list.append(current_virtual_live)
+        if current_time >= virtual_live_start_time and current_time <= virtual_live_end_time:
+            live_list.append(live)
     if len(live_list) == 0 or None in live_list:
         return None
     else:

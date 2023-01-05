@@ -10,14 +10,15 @@ async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
         api = await get_sekai_virtual_live_api_tw(session)
     elif server == 'jp':
         api = await get_sekai_virtual_live_api_jp(session)
+    empty =[]
     live_list = []
     for live in api:
         virtual_live_start_time = live['startAt']
         virtual_live_end_time = live['endAt']
-        current_time = time.time()
+        current_time = int(time.time())
         if current_time >= virtual_live_start_time and current_time <= virtual_live_end_time:
             live_list.append(live)
-    if len(live_list) == 0 or None in live_list:
+    if live_list == empty or live_list == None:
         return None
     else:
         return live_list

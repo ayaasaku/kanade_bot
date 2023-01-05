@@ -40,11 +40,11 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                 end_at = int(end_at)
             end_at //= 1000
             if server == 'tw':
-                start_at = format_date(start_at)
-                end_at = format_date(end_at)
+                start_at = await format_date(start_at)
+                end_at = await format_date(end_at)
             elif server == 'jp':
-                start_at = format_date_jp(start_at)
-                end_at = format_date_jp(end_at)
+                start_at = await format_date_jp(start_at)
+                end_at = await format_date_jp(end_at)
             asset_name = live_list[0]['assetbundleName']
             img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
             embed = defaultEmbed(name)
@@ -61,11 +61,11 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                 end_at = live_list['endAt']
                 end_at //= 1000
                 if server == 'tw': 
-                    start_at = format_date(start_at)
-                    end_at = format_date(end_at)
+                    start_at = await format_date(start_at)
+                    end_at = await format_date(end_at)
                 elif server == 'jp':
-                    start_at = format_date_jp(start_at)
-                    end_at = format_date_jp(end_at)
+                    start_at = await format_date_jp(start_at)
+                    end_at = await format_date_jp(end_at)
                 asset_name = live['assetbundleName']
                 img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
                 embed = defaultEmbed(name)

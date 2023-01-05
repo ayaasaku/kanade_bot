@@ -11,16 +11,16 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
         event_api = await get_sekai_events_api_tw(session)
     else:
         event_api = await get_sekai_events_api_jp(session)
+        
     for thing in event_api:
         event_start_time = thing['startAt']
         event_end_time = thing['aggregateAt']
         current_time = int(time.time())
         current_time *=  1000
-        if current_time >= event_start_time and current_time <= event_end_time: 
-            
-            async def find_event_info(info):  
-                return thing[f'{info}']   
+        async def find_event_info(info):  
+            return thing[f'{info}']   
 
+        if current_time >= event_start_time and current_time <= event_end_time: 
             event_id = await find_event_info('id')
             event_name = await find_event_info('name')
             event_type = await find_event_info('eventType')

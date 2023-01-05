@@ -33,34 +33,34 @@ class EventCog(commands.Cog, name='event'):
                 
             if event_info == None:
                 await interaction.response.send_message(embed = errEmbed('現時並沒有舉行任何活動'))
-            
-            current_time = int(time.time())   
-            event_id = event_info['event_id']
-            event_end_time = event_info['event_end_time']
-            event_name = event_info['event_name']
-            event_start_time = event_info['event_start_time']
-            event_banner_name = event_info['event_banner_name']
-            if option == 0: #jp
-                event_end_date = await format_date_jp(event_end_time)
-                logo_url = f"https://storage.sekai.best/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
-                banner_url = f"https://storage.sekai.best/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            elif option == 1: #tw
-                event_end_date = await format_date(event_end_time)   
-                logo_url = f"https://storage.sekai.best/sekai-tc-assets/event/{event_banner_name}/logo_rip/logo.webp"
-                banner_url = f"https://storage.sekai.best/sekai-tc-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
-            event_url = f'https://sekai.best/event/{event_id}'
-            time_left = await format_time(event_end_time - current_time)
-            event_progress = await format_progress(event_end_time, event_start_time, current_time)
-            
-            embed = defaultEmbed(title=f'**{event_name}**')
-            embed.set_thumbnail(url=logo_url)
-            embed.set_image(url=banner_url)
-            embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
-            embed.add_field(name=f'進度', value=f'{event_progress}', inline=False)
-            embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
-            embed.add_field(name='更多資訊', value=event_url, inline=False)
-            
-            await interaction.response.send_message(embed=embed)
+            else:
+                current_time = int(time.time())   
+                event_id = event_info['event_id']
+                event_end_time = event_info['event_end_time']
+                event_name = event_info['event_name']
+                event_start_time = event_info['event_start_time']
+                event_banner_name = event_info['event_banner_name']
+                if option == 0: #jp
+                    event_end_date = await format_date_jp(event_end_time)
+                    logo_url = f"https://storage.sekai.best/sekai-assets/event/{event_banner_name}/logo_rip/logo.webp"
+                    banner_url = f"https://storage.sekai.best/sekai-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+                elif option == 1: #tw
+                    event_end_date = await format_date(event_end_time)   
+                    logo_url = f"https://storage.sekai.best/sekai-tc-assets/event/{event_banner_name}/logo_rip/logo.webp"
+                    banner_url = f"https://storage.sekai.best/sekai-tc-assets/home/banner/{event_banner_name}_rip/{event_banner_name}.webp"
+                event_url = f'https://sekai.best/event/{event_id}'
+                time_left = await format_time(event_end_time - current_time)
+                event_progress = await format_progress(event_end_time, event_start_time, current_time)
+                
+                embed = defaultEmbed(title=f'**{event_name}**')
+                embed.set_thumbnail(url=logo_url)
+                embed.set_image(url=banner_url)
+                embed.add_field(name=f'剩餘時間', value=f'{time_left}', inline=False)
+                embed.add_field(name=f'進度', value=f'{event_progress}', inline=False)
+                embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
+                embed.add_field(name='更多資訊', value=event_url, inline=False)
+                
+                await interaction.response.send_message(embed=embed)
                 
     @app_commands.command(name='event', description='查看本期活動的資訊')    
     @app_commands.rename(option='選項')

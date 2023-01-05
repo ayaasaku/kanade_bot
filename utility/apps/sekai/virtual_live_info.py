@@ -94,7 +94,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
                 current_time = int(time.time())
                 if current_time == virtual_live_start_time - 300:
                     embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                    img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
+                    img = f'https://storage.sekai.best/sekai-tc-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
                     embed.set_image(url=img)
                     for i in channel_list:           
                         channel = bot.get_channel(i)

@@ -9,7 +9,7 @@ from utility.apps.sekai.api_functions import (
 async def get_event_info(session: aiohttp.ClientSession, type: str):
     if type == 'tw':
         event_api = await get_sekai_events_api_tw(session)
-    elif type == 'jp':
+    else:
         event_api = await get_sekai_events_api_jp(session)
     for thing in event_api:
         event_start_time = thing['startAt']
@@ -19,7 +19,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
         if current_time >= event_start_time and current_time <= event_end_time: 
             
             async def find_event_info(info):  
-                    return thing[f'{info}']   
+                return thing[f'{info}']   
 
             event_id = await find_event_info('id')
             event_name = await find_event_info('name')

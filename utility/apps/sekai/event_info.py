@@ -37,7 +37,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
                 event_api = await get_sekai_event_deck_bonuses_api_jp(session)
                 
             characters_id_list = []
-            for i in thing:
+            for i in event_api:
                 if event_id == i['eventId']:
                     character_id = i.get('gameCharacterUnitId')
                     event_bonus_attribute = i.get('cardAttr')
@@ -49,7 +49,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             characters_name_list = []
             event_api = await get_sekai_characters_info_api(session)
             for character_id in characters_id_list:
-                for i in thing:
+                for i in event_api:
                     if character_id == i['id']:
                         first_name = i['firstName']
                         last_name = i['givenName']

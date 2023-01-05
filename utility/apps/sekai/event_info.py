@@ -15,6 +15,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
         event_start_time = thing['startAt']
         event_end_time = thing['aggregateAt']
         current_time = int(time.time())
+        current_time *=  1000
         if current_time >= event_start_time and current_time <= event_end_time: 
             
             async def find_event_info(info):  
@@ -25,7 +26,9 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             event_name = await find_event_info('name')
             event_type = await find_event_info('eventType')
             event_start_time = await find_event_info('startAt')
+            event_end_time //= 1000
             event_end_time = await find_event_info('aggregateAt')
+            event_end_time //= 1000
             event_banner_name = await find_event_info('assetbundleName')
             
             if type == 'tw':

@@ -16,6 +16,7 @@ async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
         virtual_live_start_time = live['startAt']
         virtual_live_end_time = live['endAt']
         current_time = int(time.time())
+        current_time *= 1000
         if current_time >= virtual_live_start_time and current_time <= virtual_live_end_time:
             live_list.append(live)
     if live_list == empty or live_list == None:
@@ -31,7 +32,9 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
         if len(live_list) == 1:
             name = live_list[0]['name']
             start_at = live_list[0]['startAt']
+            start_at //= 1000
             end_at = live_list[0]['endAt']
+            end_at //= 1000
             if server == 'tw':
                 start_at = format_date(start_at)
                 end_at = format_date(end_at)
@@ -49,8 +52,10 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
             embed_list = []
             for live in live_list:
                 name = live['name']
-                start_at = live['startAt']
-                end_at = live['endAt']
+                start_at = live_list[0]['startAt']
+                start_at //= 1000
+                end_at = live_list[0]['endAt']
+                end_at //= 1000
                 if server == 'tw': 
                     start_at = format_date(start_at)
                     end_at = format_date(end_at)
@@ -74,6 +79,7 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
             for thing in current_virtual_live['virtualLiveSchedules']:
                 name = current_virtual_live['name']
                 virtual_live_start_time = thing['startAt']
+                virtual_live_start_time //= 1000
                 current_time = time.time()
                 if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
                     embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
@@ -88,6 +94,7 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
             for thing in current_virtual_live['virtualLiveSchedules']:
                 name = current_virtual_live['name']
                 virtual_live_start_time = thing['startAt']
+                virtual_live_start_time //= 1000
                 current_time = time.time()
                 if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
                     embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')

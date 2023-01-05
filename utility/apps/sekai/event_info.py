@@ -19,8 +19,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
         if current_time >= event_start_time and current_time <= event_end_time: 
             
             async def find_event_info(info):  
-                for i in thing:
-                     return i[f'{info}']   
+                    return thing[f'{info}']   
 
             event_id = await find_event_info('id')
             event_name = await find_event_info('name')
@@ -32,12 +31,12 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             event_banner_name = await find_event_info('assetbundleName')
             
             if type == 'tw':
-                event_api = await get_sekai_event_deck_bonuses_api_tw(session) 
+                api = await get_sekai_event_deck_bonuses_api_tw(session) 
             elif type == 'jp':
-                event_api = await get_sekai_event_deck_bonuses_api_jp(session)
+                api = await get_sekai_event_deck_bonuses_api_jp(session)
                 
             characters_id_list = []
-            for i in event_api:
+            for i in api:
                 if event_id == i['eventId']:
                     character_id = i.get('gameCharacterUnitId')
                     event_bonus_attribute = i.get('cardAttr')
@@ -47,12 +46,12 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             characters_id_list = list(dict.fromkeys(characters_id_list))
             
             characters_name_list = []
-            event_api = await get_sekai_characters_info_api(session)
+            pi = await get_sekai_characters_info_api(session)
             for character_id in characters_id_list:
-                for i in event_api:
-                    if character_id == i['id']:
-                        first_name = i['firstName']
-                        last_name = i['givenName']
+                for character in api:
+                    if character_id == character['id']:
+                        first_name = character['firstName']
+                        last_name = character['givenName']
                         name = f'{first_name}{last_name}'
                         characters_name_list.append(name)
             if None in characters_name_list:

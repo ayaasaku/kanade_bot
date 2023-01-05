@@ -65,6 +65,7 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                 if type(end_at) != int:
                     end_at = int(end_at)
                 end_at //= 1000
+                asset_name = live['assetbundleName']
                 if server == 'tw':
                     start_at = await format_date(start_at)
                     end_at = await format_date(end_at)
@@ -73,7 +74,6 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                     start_at = await format_date_jp(start_at)
                     end_at = await format_date_jp(end_at)
                     img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
-                asset_name = live['assetbundleName']
                 embed = defaultEmbed(name)
                 embed.set_image(url=img)
                 embed.add_field(name='開始於', value = start_at, inline= False)

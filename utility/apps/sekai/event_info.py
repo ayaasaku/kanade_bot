@@ -26,7 +26,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             event_name = await find_event_info('name')
             event_type = await find_event_info('eventType')
             event_start_time = await find_event_info('startAt')
-            event_end_time //= 1000
+            event_start_time //= 1000
             event_end_time = await find_event_info('aggregateAt')
             event_end_time //= 1000
             event_banner_name = await find_event_info('assetbundleName')

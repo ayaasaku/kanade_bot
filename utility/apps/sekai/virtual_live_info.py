@@ -82,11 +82,14 @@ async def virtual_live_ping_tw(bot, session: aiohttp.ClientSession):
         for current_virtual_live in live_list:
             for thing in current_virtual_live['virtualLiveSchedules']:
                 name = current_virtual_live['name']
+                asset_name = current_virtual_live['assetbundleName']
                 virtual_live_start_time = thing['startAt']
                 virtual_live_start_time //= 1000
                 current_time = time.time()
-                if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
+                if current_time >= (virtual_live_start_time - 400) and current_time < virtual_live_start_time:
                     embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+                    img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
+                    embed.set_image(url=img)
                     for i in channel_list:           
                         channel = bot.get_channel(i)
                         await channel.send(embed=embed)
@@ -95,13 +98,16 @@ async def virtual_live_ping_jp(bot, session: aiohttp.ClientSession):
     live_list = await get_current_virtual_live('jp', session)
     if live_list != None:
         for current_virtual_live in live_list:
-            for thing in current_virtual_live['virtualLiveSchedules']:
-                name = current_virtual_live['name']
-                virtual_live_start_time = thing['startAt']
-                virtual_live_start_time //= 1000
-                current_time = time.time()
-                if current_time >= (virtual_live_start_time - 300) and current_time < virtual_live_start_time:
-                    embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
-                    for i in channel_list:           
-                        channel = bot.get_channel(i)
-                        await channel.send(embed=embed)
+                    for thing in current_virtual_live['virtualLiveSchedules']:
+                        name = current_virtual_live['name']
+                        asset_name = current_virtual_live['assetbundleName']
+                        virtual_live_start_time = thing['startAt']
+                        virtual_live_start_time //= 1000
+                        current_time = time.time()
+                        if current_time >= (virtual_live_start_time - 400) and current_time < virtual_live_start_time:
+                            embed = defaultEmbed(title= f'虛擬 Live 即將開始', description=f'{name} 將於五分鐘後開始')
+                            img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
+                            embed.set_image(url=img)
+                            for i in channel_list:           
+                                channel = bot.get_channel(i)
+                                await channel.send(embed=embed)

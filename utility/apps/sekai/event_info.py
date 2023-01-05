@@ -15,7 +15,8 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
         event_start_time = thing['startAt']
         event_end_time = thing['aggregateAt']
         current_time = int(time.time())
-        if current_time >= (event_start_time / 1000) and current_time <= (event_end_time / 1000): 
+        if current_time >= event_start_time and current_time <= event_end_time: 
+            
             async def find_event_info(info):  
                 for thing in event_api:
                      return thing[f'{info}']   

@@ -111,22 +111,13 @@ async def err_handle(i: Interaction, e: app_commands.AppCommandError):
 async def on_ready():
     task_loop.start() 
 
-global ran
-ran = False
-async def ping():
+    
+@tasks.loop(seconds=1)
+async def task_loop():
     await virtual_live_ping_tw(bot, session)
     await virtual_live_ping_jp(bot, session)
-    ran = True
-    
-@tasks.loop(seconds=10)
-async def task_loop():
-    while ran == False:
-        await ping()
-    while ran == True:
-        time.sleep(288)
-        ran = False
-    
 
-    bot.run(token)
+
+bot.run(token)
 
 

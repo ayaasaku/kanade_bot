@@ -32,8 +32,12 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
         if len(live_list) == 1:
             name = live_list[0]['name']
             start_at = live_list[0]['startAt']
+            if type(start_at) != int:
+                start_at = int(start_at)
             start_at //= 1000
             end_at = live_list[0]['endAt']
+            if type(end_at) != int:
+                end_at = int(end_at)
             end_at //= 1000
             if server == 'tw':
                 start_at = format_date(start_at)

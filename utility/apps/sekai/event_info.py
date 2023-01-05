@@ -46,7 +46,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             characters_id_list = list(dict.fromkeys(characters_id_list))
             
             characters_name_list = []
-            pi = await get_sekai_characters_info_api(session)
+            api = await get_sekai_characters_info_api(session)
             for character_id in characters_id_list:
                 for character in api:
                     if character_id == character['id']:

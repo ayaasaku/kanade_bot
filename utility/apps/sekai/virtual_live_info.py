@@ -56,9 +56,9 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
             embed_list = []
             for live in live_list:
                 name = live['name']
-                start_at = live_list['startAt']
+                start_at = live['startAt']
                 start_at //= 1000
-                end_at = live_list['endAt']
+                end_at = live['endAt']
                 end_at //= 1000
                 if server == 'tw': 
                     start_at = await format_date(start_at)

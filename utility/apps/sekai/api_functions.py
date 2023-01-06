@@ -76,7 +76,7 @@ async def get_sekai_virtual_live_api_jp(session: aiohttp.ClientSession):
 async def get_sekai_user_api(user_id, session: aiohttp.ClientSession):
         api = f'https://api.pjsekai.moe/api/user/{user_id}/profile'
         async with session.get(api) as r:
-            return await r.json(content_type=None)
+            return await r.json(content_type='text/html')
         
 
         

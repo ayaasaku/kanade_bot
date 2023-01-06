@@ -68,8 +68,8 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
                     'characters_name_list': characters_name_list        
                 }
             return event_info
-        else: 
-            return None 
+    else: 
+        return None 
             
             
     

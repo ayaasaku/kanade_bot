@@ -57,8 +57,7 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
             if None in characters_name_list:
                 characters_name_list.remove(None)
                 
-            else:
-                event_info = {
+            event_info = {
                     'event_id': event_id,
                     'event_name': event_name,
                     'event_type': event_type.capitalize(),
@@ -68,8 +67,10 @@ async def get_event_info(session: aiohttp.ClientSession, type: str):
                     'event_bonus_attribute': event_bonus_attribute.capitalize(),
                     'characters_name_list': characters_name_list        
                 }
+            return event_info
         else: 
-            event_info = None 
+            return None 
             
-    return event_info
+            
+    
             

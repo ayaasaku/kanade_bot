@@ -20,7 +20,7 @@ async def user_profile(import_id: str, session: aiohttp.ClientSession):
         tl_url = await get_user_profile_pic(import_id, leader_id, session)  
         img_url = await get_profile_img(leader_id, session)  
         if word == None or len(word) < 1: word = '此玩家並沒有設置簡介'
-        seconds = int((1600218000000 + int(import_id) / 2 ** 22) + 25200000)
+        seconds = int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000
         creation_date = await format_date_jp (seconds)
         characters_dict = await get_user_character_level(import_id, session)
         

@@ -146,7 +146,6 @@ class EventCog(commands.Cog, name='event'):
                 await GeneralPaginator(interaction, embed).start(embeded=True, follow_up=True)
             else:
                 await interaction.followup.send(embed=embed)
-            
         
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(EventCog(bot))

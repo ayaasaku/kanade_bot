@@ -7,16 +7,16 @@ from utility.apps.sekai.api_functions import (
     get_sekai_events_api_tw)
 
 async def get_event_info(session: aiohttp.ClientSession, type: str):
-    if type == 'tw':
-        event_api = await get_sekai_events_api_tw(session)
-    else:
+    if type == 'jp':
         event_api = await get_sekai_events_api_jp(session)
+    else:
+        event_api = await get_sekai_events_api_tw(session)
         
     for thing in event_api:
         event_start_time = thing['startAt']
         event_end_time = thing['aggregateAt']
         current_time = int(time.time())
-        current_time *=  1000
+        current_time *= 1000
         async def find_event_info(info):  
             return thing[f'{info}']   
 

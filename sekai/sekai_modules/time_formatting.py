@@ -1,3 +1,4 @@
+from datetime import (datetime, timedelta)
 # Format time in Dd Hh Mm Ss format
 async def format_time(seconds: int):
     days = int(seconds // 86400)
@@ -9,21 +10,18 @@ async def format_time(seconds: int):
 
 # Format date in YYYY-MM-DD HH:MM:SS UTC format
 async def format_date_jp(seconds: int):
-    from datetime import datetime, timedelta
     date = datetime.fromtimestamp(seconds)
     date = date-timedelta(hours=-1)
     date = date.strftime("%Y-%m-%d %H:%M:%S")
     return date
 
 async def format_date(seconds: int):
-    from datetime import datetime, timedelta
     date = datetime.fromtimestamp(seconds)
     date = date-timedelta(hours=0)
     date = date.strftime("%Y-%m-%d %H:%M:%S")
     return date
 
 async def format_creation_date(seconds: int):
-    from datetime import datetime, timedelta
     datetime.fromtimestamp(seconds)
     date = date-timedelta(hours=-1)
     date = date.strftime("%A, %B %d, %Y %I:%M:%S")

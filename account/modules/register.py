@@ -7,4 +7,3 @@ async def check_user_account(discord_id: str, db):
         return False
     else:
         return True
-    

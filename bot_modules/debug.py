@@ -3,7 +3,7 @@ import traceback
 from discord import ButtonStyle, HTTPException, Interaction
 from discord.ui import Button, View, button
 
-from utility.utils import errEmbed
+from utility.modules import errEmbed
 
 
 class DebugView(View):

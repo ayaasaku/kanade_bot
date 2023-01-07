@@ -7,8 +7,7 @@
 <h2 align="center">致謝 • Acknowledgements</h2> 
 
 Thanks to
-
-- https://github.com/seriaati
 - https://sekai.best
+- https://api.pjsekai.moe/
 - https://github.com/Amexy/saki-bot
 

@@ -7,7 +7,7 @@ from wavelink.ext import spotify
 from discord import Interaction, app_commands
 from discord.ext import commands
 from utility.apps import musicApp
-from utility.utils import errEmbed
+from utility.modules import errEmbed
 
 
 load_dotenv()

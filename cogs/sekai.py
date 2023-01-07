@@ -6,12 +6,12 @@ from discord.app_commands import Choice
 from data.emoji_data import attributes
 from data.translate_data import translate
     
-from utility.apps.sekai.time_formatting import format_time, format_date_jp, format_date, format_progress
+from module.time_formatting import format_time, format_date_jp, format_date, format_progress
 from utility.apps.sekai.event_info import get_event_info
 from utility.apps.sekai.virtual_live_info import get_current_virtual_live_embed
 from utility.apps.sekai.user.data_processing import *
 
-from utility.utils import defaultEmbed, errEmbed
+from utility.modules import defaultEmbed, errEmbed
 from utility.paginator import GeneralPaginator
 
 

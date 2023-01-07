@@ -8,13 +8,13 @@ from discord.ext import commands
 from discord.app_commands import Choice
 from matplotlib.pyplot import get
 
-from utility.utils import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
+from utility.modules import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
 from utility.paginator import GeneralPaginator
-from utility.apps.sekai.user.profile import user_profile
+from embeds.profile import user_profile
 from utility.apps.sekai.user.data_processing import get_user_area_items, get_group_music
 from utility.apps.sekai.api_functions import get_sekai_user_api, get_sekai_musics_api
 from utility.apps.sekai.user.data_processing import *
-from utility.apps.sekai.user.register import check_user_account
+from account.modules.register import check_user_account
 
 from data.emoji_data import *
 

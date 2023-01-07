@@ -1,9 +1,9 @@
 import aiohttp
 import time
 from utility.apps.sekai.api_functions import (get_sekai_virtual_live_api_tw, get_sekai_virtual_live_api_jp)
-from utility.apps.sekai.time_formatting import (format_date, format_date_jp)
+from module.time_formatting import (format_date, format_date_jp)
 from data.channel_list import channel_list
-from utility.utils import defaultEmbed
+from utility.modules import defaultEmbed
 
 async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
     if server == 'tw':

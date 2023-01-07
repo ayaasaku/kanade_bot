@@ -12,8 +12,8 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from debug import DebugView
-from utility.utils import errEmbed, log
+from utility.bot_modules.debug import DebugView
+from utility.modules import errEmbed, log
 from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
 
 load_dotenv()

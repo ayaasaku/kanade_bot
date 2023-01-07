@@ -8,7 +8,7 @@ from discord.ui import (Select,
 from data.emoji_data import group_icon_square
 from data.img_data import group_icon
 from utility.apps.sekai.music_info import get_group_music
-from utility.utils import loadingEmbed
+from utility.modules import loadingEmbed
 from utility.paginator import GeneralPaginator
 
 

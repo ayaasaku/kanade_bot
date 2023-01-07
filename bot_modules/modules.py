@@ -1,4 +1,5 @@
 import logging
+import discord
 from discord import Embed, Colour
 from datetime import datetime
 
@@ -6,9 +7,9 @@ def __init__(self, bot):
         self.bot = bot
 
 #ayaakaa
-async def is_ayaakaa (i):
-    if i.user.id != 831883841417248778:
-        await i.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
+async def is_ayaakaa (interaction:discord.Interaction):
+    if interaction.user.id != 831883841417248778:
+        await interaction.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
         return False
     else:
         return True

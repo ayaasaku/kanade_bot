@@ -4,87 +4,42 @@
             "userId": 244775114281091084,
             "name": "\u7dbe\u971e",
             "deck": 2,
-            "rank": 38
+            "rank": 48
         }
     },
-    "userId": 244775114281091084,
     "userProfile": {
+        "userId": 244775114281091084,
         "word": "",
         "twitterId": "",
         "profileImageType": "leader"
     },
     "userDecks": [
         {
-            "leader": 173,
-            "subLeader": 236,
-            "member1": 173,
-            "member2": 236,
-            "member3": 58,
-            "member4": 174,
-            "member5": 101
+            "leader": 541,
+            "subLeader": 235,
+            "member1": 541,
+            "member2": 235,
+            "member3": 300,
+            "member4": 123,
+            "member5": 322
         }
     ],
     "userCards": [
         {
-            "cardId": 101,
-            "level": 20,
-            "masterRank": 5,
+            "cardId": 322,
+            "level": 5,
+            "masterRank": 2,
             "specialTrainingStatus": "not_doing",
             "defaultImage": "original",
             "episodes": [
                 {
-                    "cardEpisodeId": 201,
+                    "cardEpisodeId": 643,
                     "scenarioStatus": "already_read",
                     "scenarioStatusReasons": [],
                     "isNotSkipped": false
                 },
                 {
-                    "cardEpisodeId": 202,
-                    "scenarioStatus": "already_read",
-                    "scenarioStatusReasons": [],
-                    "isNotSkipped": false
-                }
-            ]
-        },
-        {
-            "cardId": 58,
-            "level": 7,
-            "masterRank": 5,
-            "specialTrainingStatus": "not_doing",
-            "defaultImage": "original",
-            "episodes": [
-                {
-                    "cardEpisodeId": 115,
-                    "scenarioStatus": "unreleased",
-                    "scenarioStatusReasons": [],
-                    "isNotSkipped": false
-                },
-                {
-                    "cardEpisodeId": 116,
-                    "scenarioStatus": "can_not_read",
-                    "scenarioStatusReasons": [
-                        "unread_before_scenario",
-                        "not_enough_release_condition"
-                    ],
-                    "isNotSkipped": false
-                }
-            ]
-        },
-        {
-            "cardId": 236,
-            "level": 7,
-            "masterRank": 5,
-            "specialTrainingStatus": "not_doing",
-            "defaultImage": "original",
-            "episodes": [
-                {
-                    "cardEpisodeId": 471,
-                    "scenarioStatus": "already_read",
-                    "scenarioStatusReasons": [],
-                    "isNotSkipped": false
-                },
-                {
-                    "cardEpisodeId": 472,
+                    "cardEpisodeId": 644,
                     "scenarioStatus": "can_not_read",
                     "scenarioStatusReasons": [
                         "not_enough_release_condition"
@@ -94,20 +49,20 @@
             ]
         },
         {
-            "cardId": 173,
-            "level": 7,
+            "cardId": 235,
+            "level": 6,
             "masterRank": 0,
             "specialTrainingStatus": "not_doing",
             "defaultImage": "original",
             "episodes": [
                 {
-                    "cardEpisodeId": 345,
+                    "cardEpisodeId": 469,
                     "scenarioStatus": "unreleased",
                     "scenarioStatusReasons": [],
                     "isNotSkipped": false
                 },
                 {
-                    "cardEpisodeId": 346,
+                    "cardEpisodeId": 470,
                     "scenarioStatus": "can_not_read",
                     "scenarioStatusReasons": [
                         "unread_before_scenario",
@@ -118,23 +73,70 @@
             ]
         },
         {
-            "cardId": 174,
-            "level": 7,
+            "cardId": 123,
+            "level": 5,
             "masterRank": 5,
             "specialTrainingStatus": "not_doing",
             "defaultImage": "original",
             "episodes": [
                 {
-                    "cardEpisodeId": 347,
+                    "cardEpisodeId": 245,
                     "scenarioStatus": "already_read",
                     "scenarioStatusReasons": [],
                     "isNotSkipped": false
                 },
                 {
-                    "cardEpisodeId": 348,
+                    "cardEpisodeId": 246,
                     "scenarioStatus": "can_not_read",
                     "scenarioStatusReasons": [
                         "not_enough_release_condition"
+                    ],
+                    "isNotSkipped": false
+                }
+            ]
+        },
+        {
+            "cardId": 300,
+            "level": 5,
+            "masterRank": 5,
+            "specialTrainingStatus": "not_doing",
+            "defaultImage": "original",
+            "episodes": [
+                {
+                    "cardEpisodeId": 599,
+                    "scenarioStatus": "unreleased",
+                    "scenarioStatusReasons": [],
+                    "isNotSkipped": false
+                },
+                {
+                    "cardEpisodeId": 600,
+                    "scenarioStatus": "can_not_read",
+                    "scenarioStatusReasons": [
+                        "unread_before_scenario",
+                        "not_enough_release_condition"
+                    ],
+                    "isNotSkipped": false
+                }
+            ]
+        },
+        {
+            "cardId": 541,
+            "level": 60,
+            "masterRank": 2,
+            "specialTrainingStatus": "done",
+            "defaultImage": "special_training",
+            "episodes": [
+                {
+                    "cardEpisodeId": 1079,
+                    "scenarioStatus": "unreleased",
+                    "scenarioStatusReasons": [],
+                    "isNotSkipped": false
+                },
+                {
+                    "cardEpisodeId": 1080,
+                    "scenarioStatus": "can_not_read",
+                    "scenarioStatusReasons": [
+                        "unread_before_scenario"
                     ],
                     "isNotSkipped": false
                 }
@@ -227,7 +229,22 @@
                     "musicId": 2,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 2,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1667822442216,
+                            "updatedAt": 1667822442216
+                        }
+                    ]
                 },
                 {
                     "musicId": 2,
@@ -466,7 +483,22 @@
                     "musicId": 26,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 26,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 527836,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1668942058278,
+                            "updatedAt": 1668942058278
+                        }
+                    ]
                 },
                 {
                     "musicId": 26,
@@ -843,7 +875,22 @@
                     "musicId": 55,
                     "musicDifficulty": "expert",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 55,
+                            "musicDifficulty": "expert",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 391007,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669127460154,
+                            "updatedAt": 1669127460154
+                        }
+                    ]
                 },
                 {
                     "musicId": 55,
@@ -880,13 +927,13 @@
                             "musicDifficulty": "hard",
                             "playType": "multi",
                             "playResult": "clear",
-                            "highScore": 380504,
+                            "highScore": 677178,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1665065010929,
-                            "updatedAt": 1665065010929
+                            "updatedAt": 1669127667640
                         }
                     ]
                 },
@@ -938,6 +985,20 @@
                             "superStarCount": 0,
                             "createdAt": 1658889144804,
                             "updatedAt": 1658889144804
+                        },
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 60,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 285046,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1666959799412,
+                            "updatedAt": 1666959799412
                         }
                     ]
                 },
@@ -1032,14 +1093,14 @@
                             "musicId": 62,
                             "musicDifficulty": "hard",
                             "playType": "multi",
-                            "playResult": "clear",
-                            "highScore": 242528,
-                            "fullComboFlg": false,
+                            "playResult": "full_combo",
+                            "highScore": 1079207,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1658918057381,
-                            "updatedAt": 1658918057381
+                            "updatedAt": 1669375986962
                         }
                     ]
                 },
@@ -1318,13 +1379,13 @@
                             "musicDifficulty": "hard",
                             "playType": "multi",
                             "playResult": "clear",
-                            "highScore": 125584,
+                            "highScore": 956128,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1658582349145,
-                            "updatedAt": 1658582501831
+                            "updatedAt": 1669375812442
                         },
                         {
                             "userId": 244775114281091084,
@@ -1412,7 +1473,22 @@
                     "musicId": 76,
                     "musicDifficulty": "expert",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 76,
+                            "musicDifficulty": "expert",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 421449,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669285381407,
+                            "updatedAt": 1669285381407
+                        }
+                    ]
                 },
                 {
                     "musicId": 76,
@@ -1448,14 +1524,14 @@
                             "musicId": 77,
                             "musicDifficulty": "hard",
                             "playType": "multi",
-                            "playResult": "clear",
-                            "highScore": 275770,
-                            "fullComboFlg": false,
+                            "playResult": "full_combo",
+                            "highScore": 945534,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1658920348448,
-                            "updatedAt": 1658920348448
+                            "updatedAt": 1669283870618
                         }
                     ]
                 },
@@ -1630,13 +1706,13 @@
                             "musicDifficulty": "hard",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 0,
+                            "highScore": 288427,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1659630552227,
-                            "updatedAt": 1659630552227
+                            "updatedAt": 1666959635111
                         }
                     ]
                 },
@@ -1725,7 +1801,22 @@
                     "musicId": 94,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 94,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1667010561525,
+                            "updatedAt": 1667010561525
+                        }
+                    ]
                 },
                 {
                     "musicId": 94,
@@ -1735,6 +1826,57 @@
                 },
                 {
                     "musicId": 94,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 95,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 95,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 95,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 95,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 95,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 238361,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1666786735985,
+                            "updatedAt": 1666786735985
+                        }
+                    ]
+                },
+                {
+                    "musicId": 95,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 95,
                     "musicDifficulty": "master",
                     "musicDifficultyStatus": "forbidden",
                     "userMusicResults": []
@@ -1804,13 +1946,13 @@
                             "musicDifficulty": "hard",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 202900,
+                            "highScore": 255692,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1666448449976,
-                            "updatedAt": 1666448449976
+                            "updatedAt": 1666957911937
                         }
                     ]
                 },
@@ -1982,6 +2124,71 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 102,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 102,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 102,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 102,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 102,
+                            "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "full_combo",
+                            "highScore": 325473,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1664089629887,
+                            "updatedAt": 1664089629887
+                        },
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 102,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 739855,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1666885788756,
+                            "updatedAt": 1670679966615
+                        }
+                    ]
+                },
+                {
+                    "musicId": 102,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 102,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 103,
             "userMusicDifficultyStatuses": [
                 {
@@ -2057,7 +2264,22 @@
                     "musicId": 105,
                     "musicDifficulty": "expert",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 105,
+                            "musicDifficulty": "expert",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 561975,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669285167008,
+                            "updatedAt": 1669285167008
+                        }
+                    ]
                 },
                 {
                     "musicId": 105,
@@ -2305,7 +2527,22 @@
                     "musicId": 125,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 125,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 745174,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1667132233505,
+                            "updatedAt": 1667132233505
+                        }
+                    ]
                 },
                 {
                     "musicId": 125,
@@ -2682,7 +2919,22 @@
                     "musicId": 137,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 137,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 331550,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1668321889702,
+                            "updatedAt": 1668321889702
+                        }
+                    ]
                 },
                 {
                     "musicId": 137,
@@ -2811,14 +3063,14 @@
                             "musicId": 141,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
+                            "playResult": "full_combo",
                             "highScore": 291443,
-                            "fullComboFlg": false,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1658999772354,
-                            "updatedAt": 1658999772354
+                            "updatedAt": 1666885960594
                         }
                     ]
                 },
@@ -3096,13 +3348,13 @@
                             "musicDifficulty": "expert",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 279907,
+                            "highScore": 754650,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1660099470856,
-                            "updatedAt": 1664545645340
+                            "updatedAt": 1667091980339
                         }
                     ]
                 },
@@ -3140,14 +3392,14 @@
                             "musicId": 152,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
-                            "highScore": 0,
-                            "fullComboFlg": false,
+                            "playResult": "full_combo",
+                            "highScore": 273987,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1666623059006,
-                            "updatedAt": 1666623059006
+                            "updatedAt": 1667223230327
                         }
                     ]
                 },
@@ -3278,14 +3530,14 @@
                             "musicId": 159,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
+                            "playResult": "full_combo",
                             "highScore": 402044,
-                            "fullComboFlg": false,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1664730715502,
-                            "updatedAt": 1665493319602
+                            "updatedAt": 1666785806867
                         }
                     ]
                 },
@@ -3323,7 +3575,22 @@
                     "musicId": 160,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 160,
+                            "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 1111626,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1671594116687,
+                            "updatedAt": 1671594116687
+                        }
+                    ]
                 },
                 {
                     "musicId": 160,
@@ -3628,14 +3895,14 @@
                             "musicId": 170,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
+                            "playResult": "full_combo",
                             "highScore": 271853,
-                            "fullComboFlg": false,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1660977677904,
-                            "updatedAt": 1664546831622
+                            "updatedAt": 1669642138643
                         }
                     ]
                 },
@@ -4049,14 +4316,14 @@
                             "musicId": 188,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
-                            "highScore": 268625,
-                            "fullComboFlg": false,
+                            "playResult": "full_combo",
+                            "highScore": 524037,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1660705740343,
-                            "updatedAt": 1660705740343
+                            "updatedAt": 1669126569814
                         }
                     ]
                 },
@@ -4456,6 +4723,20 @@
                             "superStarCount": 0,
                             "createdAt": 1658890872614,
                             "updatedAt": 1658890872614
+                        },
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 204,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 292617,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1666959969905,
+                            "updatedAt": 1666959969905
                         }
                     ]
                 },
@@ -4493,7 +4774,22 @@
                     "musicId": 207,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 207,
+                            "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 1026156,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669126972753,
+                            "updatedAt": 1671593797938
+                        }
+                    ]
                 },
                 {
                     "musicId": 207,
@@ -4529,7 +4825,22 @@
                     "musicId": 208,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 208,
+                            "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 882266,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669286565178,
+                            "updatedAt": 1669286565178
+                        }
+                    ]
                 },
                 {
                     "musicId": 208,
@@ -4803,14 +5114,14 @@
                             "musicId": 218,
                             "musicDifficulty": "hard",
                             "playType": "solo",
-                            "playResult": "clear",
-                            "highScore": 269863,
-                            "fullComboFlg": false,
+                            "playResult": "full_combo",
+                            "highScore": 304931,
+                            "fullComboFlg": true,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1660704754524,
-                            "updatedAt": 1664545297192
+                            "updatedAt": 1667011843153
                         }
                     ]
                 },
@@ -5124,13 +5435,13 @@
                             "musicDifficulty": "hard",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 485291,
+                            "highScore": 500317,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1664464295280,
-                            "updatedAt": 1664464295280
+                            "updatedAt": 1668941865980
                         }
                     ]
                 },
@@ -5348,12 +5659,27 @@
                     "musicId": 241,
                     "musicDifficulty": "expert",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 241,
+                            "musicDifficulty": "expert",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 946033,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669284912254,
+                            "updatedAt": 1669284912254
+                        }
+                    ]
                 },
                 {
                     "musicId": 241,
                     "musicDifficulty": "master",
-                    "musicDifficultyStatus": "forbidden",
+                    "musicDifficultyStatus": "available",
                     "userMusicResults": []
                 }
             ]
@@ -5737,6 +6063,57 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 255,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 255,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 255,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 255,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 255,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 306856,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1672318763789,
+                            "updatedAt": 1672318763789
+                        }
+                    ]
+                },
+                {
+                    "musicId": 255,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 255,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 257,
             "userMusicDifficultyStatuses": [
                 {
@@ -5780,6 +6157,93 @@
                 },
                 {
                     "musicId": 257,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 259,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 259,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 259,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 259,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 259,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 259,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 262,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 262,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 262,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 262,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 262,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1667307871310,
+                            "updatedAt": 1667307871310
+                        }
+                    ]
+                },
+                {
+                    "musicId": 262,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 262,
                     "musicDifficulty": "master",
                     "musicDifficultyStatus": "forbidden",
                     "userMusicResults": []
@@ -5860,6 +6324,195 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 267,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 267,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 267,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 267,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 267,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 267,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 268,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 268,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 268,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 268,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 268,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1670224169667,
+                            "updatedAt": 1670224169667
+                        }
+                    ]
+                },
+                {
+                    "musicId": 268,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 268,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 269,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 269,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 269,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 269,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 269,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 765316,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1670680448172,
+                            "updatedAt": 1670680448172
+                        }
+                    ]
+                },
+                {
+                    "musicId": 269,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 269,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 270,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 270,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 270,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 270,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 270,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 0,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1666946735643,
+                            "updatedAt": 1666946735643
+                        }
+                    ]
+                },
+                {
+                    "musicId": 270,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 270,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 272,
             "userMusicDifficultyStatuses": [
                 {
@@ -5899,13 +6552,13 @@
                             "musicDifficulty": "hard",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 253821,
+                            "highScore": 301180,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1663171758138,
-                            "updatedAt": 1664195885097
+                            "updatedAt": 1667011648834
                         }
                     ]
                 },
@@ -6153,7 +6806,22 @@
                     "musicId": 280,
                     "musicDifficulty": "hard",
                     "musicDifficultyStatus": "available",
-                    "userMusicResults": []
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 280,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669547707395,
+                            "updatedAt": 1669547707395
+                        }
+                    ]
                 },
                 {
                     "musicId": 280,
@@ -6194,15 +6862,29 @@
                             "userId": 244775114281091084,
                             "musicId": 285,
                             "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 923569,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669438755696,
+                            "updatedAt": 1669438755696
+                        },
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 285,
+                            "musicDifficulty": "hard",
                             "playType": "solo",
                             "playResult": "clear",
-                            "highScore": 0,
+                            "highScore": 309494,
                             "fullComboFlg": false,
                             "fullPerfectFlg": false,
                             "mvpCount": 0,
                             "superStarCount": 0,
                             "createdAt": 1665890894086,
-                            "updatedAt": 1665890894086
+                            "updatedAt": 1668321738616
                         }
                     ]
                 },
@@ -6306,6 +6988,326 @@
                     "userMusicResults": []
                 }
             ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 291,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 291,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 291,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 291,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 291,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1673026066407,
+                            "updatedAt": 1673026066407
+                        }
+                    ]
+                },
+                {
+                    "musicId": 291,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 291,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 292,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 292,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 292,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 292,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 292,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 549871,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1667223588499,
+                            "updatedAt": 1669283184933
+                        }
+                    ]
+                },
+                {
+                    "musicId": 292,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 292,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 295,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 295,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 295,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 295,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 295,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 295,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 298,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 298,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 298,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 298,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 298,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 0,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1672384956827,
+                            "updatedAt": 1672384956827
+                        }
+                    ]
+                },
+                {
+                    "musicId": 298,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 298,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 304,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 304,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 304,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 304,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 304,
+                            "musicDifficulty": "hard",
+                            "playType": "multi",
+                            "playResult": "clear",
+                            "highScore": 937247,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1669283690109,
+                            "updatedAt": 1669283690109
+                        },
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 304,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "full_combo",
+                            "highScore": 474292,
+                            "fullComboFlg": true,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1668936707431,
+                            "updatedAt": 1668936999296
+                        }
+                    ]
+                },
+                {
+                    "musicId": 304,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 304,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 315,
+            "userMusicDifficultyStatuses": [
+                {
+                    "musicId": 315,
+                    "musicDifficulty": "easy",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 315,
+                    "musicDifficulty": "normal",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 315,
+                            "musicDifficulty": "normal",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 0,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1671782316137,
+                            "updatedAt": 1671782316137
+                        }
+                    ]
+                },
+                {
+                    "musicId": 315,
+                    "musicDifficulty": "hard",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": [
+                        {
+                            "userId": 244775114281091084,
+                            "musicId": 315,
+                            "musicDifficulty": "hard",
+                            "playType": "solo",
+                            "playResult": "clear",
+                            "highScore": 760796,
+                            "fullComboFlg": false,
+                            "fullPerfectFlg": false,
+                            "mvpCount": 0,
+                            "superStarCount": 0,
+                            "createdAt": 1671782525274,
+                            "updatedAt": 1671782525274
+                        }
+                    ]
+                },
+                {
+                    "musicId": 315,
+                    "musicDifficulty": "expert",
+                    "musicDifficultyStatus": "available",
+                    "userMusicResults": []
+                },
+                {
+                    "musicId": 315,
+                    "musicDifficulty": "master",
+                    "musicDifficultyStatus": "forbidden",
+                    "userMusicResults": []
+                }
+            ]
         }
     ],
     "userCharacters": [
@@ -6315,7 +7317,7 @@
         },
         {
             "characterId": 2,
-            "characterRank": 16
+            "characterRank": 17
         },
         {
             "characterId": 3,
@@ -6327,7 +7329,7 @@
         },
         {
             "characterId": 5,
-            "characterRank": 14
+            "characterRank": 16
         },
         {
             "characterId": 6,
@@ -6335,11 +7337,11 @@
         },
         {
             "characterId": 7,
-            "characterRank": 13
+            "characterRank": 16
         },
         {
             "characterId": 8,
-            "characterRank": 15
+            "characterRank": 17
         },
         {
             "characterId": 9,
@@ -6347,7 +7349,7 @@
         },
         {
             "characterId": 10,
-            "characterRank": 14
+            "characterRank": 16
         },
         {
             "characterId": 11,
@@ -6355,7 +7357,7 @@
         },
         {
             "characterId": 12,
-            "characterRank": 15
+            "characterRank": 16
         },
         {
             "characterId": 13,
@@ -6371,39 +7373,39 @@
         },
         {
             "characterId": 16,
-            "characterRank": 15
-        },
-        {
-            "characterId": 17,
-            "characterRank": 26
-        },
-        {
-            "characterId": 18,
-            "characterRank": 18
-        },
-        {
-            "characterId": 19,
             "characterRank": 16
         },
         {
+            "characterId": 17,
+            "characterRank": 28
+        },
+        {
+            "characterId": 18,
+            "characterRank": 20
+        },
+        {
+            "characterId": 19,
+            "characterRank": 18
+        },
+        {
             "characterId": 20,
-            "characterRank": 17
+            "characterRank": 19
         },
         {
             "characterId": 21,
-            "characterRank": 21
+            "characterRank": 23
         },
         {
             "characterId": 22,
-            "characterRank": 13
+            "characterRank": 14
         },
         {
             "characterId": 23,
-            "characterRank": 15
+            "characterRank": 16
         },
         {
             "characterId": 24,
-            "characterRank": 14
+            "characterRank": 16
         },
         {
             "characterId": 25,
@@ -6411,13 +7413,13 @@
         },
         {
             "characterId": 26,
-            "characterRank": 14
+            "characterRank": 15
         }
     ],
     "userChallengeLiveSoloResults": [
         {
             "characterId": 17,
-            "highScore": 705216
+            "highScore": 910892
         }
     ],
     "userChallengeLiveSoloStages": [
@@ -6528,6 +7530,30 @@
             "characterId": 17,
             "challengeLiveStageId": 1618,
             "rank": 18
+        },
+        {
+            "challengeLiveStageType": "normal",
+            "characterId": 17,
+            "challengeLiveStageId": 1619,
+            "rank": 19
+        },
+        {
+            "challengeLiveStageType": "normal",
+            "characterId": 17,
+            "challengeLiveStageId": 1620,
+            "rank": 20
+        },
+        {
+            "challengeLiveStageType": "normal",
+            "characterId": 17,
+            "challengeLiveStageId": 1621,
+            "rank": 21
+        },
+        {
+            "challengeLiveStageType": "normal",
+            "characterId": 17,
+            "challengeLiveStageId": 1622,
+            "rank": 22
         }
     ],
     "userAreaItems": [
@@ -6612,8 +7638,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 17,
-            "level": 2,
-            "obtainedAt": 1664394751483
+            "level": 3,
+            "obtainedAt": 1668937190491
         },
         {
             "userId": 244775114281091084,
@@ -6624,8 +7650,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 25,
-            "level": 2,
-            "obtainedAt": 1664394751524
+            "level": 3,
+            "obtainedAt": 1668153607945
         },
         {
             "userId": 244775114281091084,
@@ -6642,8 +7668,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 37,
-            "level": 2,
-            "obtainedAt": 1664394751597
+            "level": 3,
+            "obtainedAt": 1668937196824
         },
         {
             "userId": 244775114281091084,
@@ -6690,8 +7716,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 69,
-            "level": 3,
-            "obtainedAt": 1664394751786
+            "level": 4,
+            "obtainedAt": 1673027253530
         },
         {
             "userId": 244775114281091084,
@@ -6726,8 +7752,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 93,
-            "level": 2,
-            "obtainedAt": 1664394751939
+            "level": 3,
+            "obtainedAt": 1668153597676
         },
         {
             "userId": 244775114281091084,
@@ -6738,8 +7764,8 @@
         {
             "userId": 244775114281091084,
             "honorId": 101,
-            "level": 2,
-            "obtainedAt": 1664437371873
+            "level": 3,
+            "obtainedAt": 1672558145922
         },
         {
             "userId": 244775114281091084,
@@ -6818,6 +7844,30 @@
             "honorId": 2122,
             "level": 1,
             "obtainedAt": 1665097879214
+        },
+        {
+            "userId": 244775114281091084,
+            "honorId": 2224,
+            "level": 1,
+            "obtainedAt": 1666946825399
+        },
+        {
+            "userId": 244775114281091084,
+            "honorId": 2225,
+            "level": 1,
+            "obtainedAt": 1667304703954
+        },
+        {
+            "userId": 244775114281091084,
+            "honorId": 2300,
+            "level": 1,
+            "obtainedAt": 1669284514728
+        },
+        {
+            "userId": 244775114281091084,
+            "honorId": 2381,
+            "level": 1,
+            "obtainedAt": 1672564439791
         }
     ],
     "userBondsHonors": [
@@ -6858,6 +7908,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 2,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1667822442216,
+            "updatedAt": 1667822442216
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 8,
             "musicDifficulty": "hard",
             "playType": "multi",
@@ -6886,6 +7950,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 18,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 925447,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669547916890,
+            "updatedAt": 1669547916890
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 19,
             "musicDifficulty": "hard",
             "playType": "solo",
@@ -6897,6 +7975,20 @@
             "superStarCount": 0,
             "createdAt": 1664381384911,
             "updatedAt": 1664381384911
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 21,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 740675,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669126770143,
+            "updatedAt": 1669126770143
         },
         {
             "userId": 244775114281091084,
@@ -6928,6 +8020,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 26,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 527836,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1668942058278,
+            "updatedAt": 1668942058278
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 27,
             "musicDifficulty": "hard",
             "playType": "multi",
@@ -6953,6 +8059,20 @@
             "superStarCount": 0,
             "createdAt": 1660987477914,
             "updatedAt": 1660987477914
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 47,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 733855,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669286101376,
+            "updatedAt": 1669286101376
         },
         {
             "userId": 244775114281091084,
@@ -7041,6 +8161,20 @@
         {
             "userId": 244775114281091084,
             "musicId": 55,
+            "musicDifficulty": "expert",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 391007,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669127460154,
+            "updatedAt": 1669127460154
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 55,
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "full_combo",
@@ -7058,13 +8192,13 @@
             "musicDifficulty": "hard",
             "playType": "multi",
             "playResult": "clear",
-            "highScore": 380504,
+            "highScore": 677178,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1665065010929,
-            "updatedAt": 1665065010929
+            "updatedAt": 1669127667640
         },
         {
             "userId": 244775114281091084,
@@ -7079,6 +8213,20 @@
             "superStarCount": 0,
             "createdAt": 1658889144804,
             "updatedAt": 1658889144804
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 60,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 285046,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1666959799412,
+            "updatedAt": 1666959799412
         },
         {
             "userId": 244775114281091084,
@@ -7099,14 +8247,14 @@
             "musicId": 62,
             "musicDifficulty": "hard",
             "playType": "multi",
-            "playResult": "clear",
-            "highScore": 242528,
-            "fullComboFlg": false,
+            "playResult": "full_combo",
+            "highScore": 1079207,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1658918057381,
-            "updatedAt": 1658918057381
+            "updatedAt": 1669375986962
         },
         {
             "userId": 244775114281091084,
@@ -7170,13 +8318,13 @@
             "musicDifficulty": "hard",
             "playType": "multi",
             "playResult": "clear",
-            "highScore": 480241,
+            "highScore": 632353,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1665065432560,
-            "updatedAt": 1665065432560
+            "updatedAt": 1673027585921
         },
         {
             "userId": 244775114281091084,
@@ -7212,13 +8360,13 @@
             "musicDifficulty": "hard",
             "playType": "multi",
             "playResult": "clear",
-            "highScore": 125584,
+            "highScore": 956128,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1658582349145,
-            "updatedAt": 1658582501831
+            "updatedAt": 1669375812442
         },
         {
             "userId": 244775114281091084,
@@ -7251,6 +8399,20 @@
         {
             "userId": 244775114281091084,
             "musicId": 76,
+            "musicDifficulty": "expert",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 421449,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669285381407,
+            "updatedAt": 1669285381407
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 76,
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
@@ -7267,14 +8429,14 @@
             "musicId": 77,
             "musicDifficulty": "hard",
             "playType": "multi",
-            "playResult": "clear",
-            "highScore": 275770,
-            "fullComboFlg": false,
+            "playResult": "full_combo",
+            "highScore": 945534,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1658920348448,
-            "updatedAt": 1658920348448
+            "updatedAt": 1669283870618
         },
         {
             "userId": 244775114281091084,
@@ -7338,13 +8500,13 @@
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
-            "highScore": 0,
+            "highScore": 288427,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1659630552227,
-            "updatedAt": 1659630552227
+            "updatedAt": 1666959635111
         },
         {
             "userId": 244775114281091084,
@@ -7376,17 +8538,45 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 94,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1667010561525,
+            "updatedAt": 1667010561525
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 95,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 238361,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1666786735985,
+            "updatedAt": 1666786735985
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 98,
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
-            "highScore": 202900,
+            "highScore": 255692,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1666448449976,
-            "updatedAt": 1666448449976
+            "updatedAt": 1666957911937
         },
         {
             "userId": 244775114281091084,
@@ -7443,6 +8633,34 @@
             "superStarCount": 0,
             "createdAt": 1664089629887,
             "updatedAt": 1664089629887
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 102,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 739855,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1666885788756,
+            "updatedAt": 1670679966615
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 105,
+            "musicDifficulty": "expert",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 561975,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669285167008,
+            "updatedAt": 1669285167008
         },
         {
             "userId": 244775114281091084,
@@ -7558,6 +8776,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 125,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 745174,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1667132233505,
+            "updatedAt": 1667132233505
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 128,
             "musicDifficulty": "hard",
             "playType": "multi",
@@ -7614,6 +8846,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 134,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 883001,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669285573482,
+            "updatedAt": 1669285573482
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 135,
             "musicDifficulty": "hard",
             "playType": "multi",
@@ -7656,6 +8902,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 137,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 331550,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1668321889702,
+            "updatedAt": 1668321889702
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 139,
             "musicDifficulty": "hard",
             "playType": "solo",
@@ -7673,14 +8933,14 @@
             "musicId": 141,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
+            "playResult": "full_combo",
             "highScore": 291443,
-            "fullComboFlg": false,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1658999772354,
-            "updatedAt": 1658999772354
+            "updatedAt": 1666885960594
         },
         {
             "userId": 244775114281091084,
@@ -7695,6 +8955,20 @@
             "superStarCount": 0,
             "createdAt": 1658583985074,
             "updatedAt": 1659112201779
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 143,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 667144,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669127239394,
+            "updatedAt": 1669127239394
         },
         {
             "userId": 244775114281091084,
@@ -7772,13 +9046,13 @@
             "musicDifficulty": "expert",
             "playType": "solo",
             "playResult": "clear",
-            "highScore": 279907,
+            "highScore": 754650,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1660099470856,
-            "updatedAt": 1664545645340
+            "updatedAt": 1667091980339
         },
         {
             "userId": 244775114281091084,
@@ -7827,14 +9101,14 @@
             "musicId": 152,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
-            "highScore": 0,
-            "fullComboFlg": false,
+            "playResult": "full_combo",
+            "highScore": 273987,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1666623059006,
-            "updatedAt": 1666623059006
+            "updatedAt": 1667223230327
         },
         {
             "userId": 244775114281091084,
@@ -7855,14 +9129,28 @@
             "musicId": 159,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
+            "playResult": "full_combo",
             "highScore": 402044,
-            "fullComboFlg": false,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1664730715502,
-            "updatedAt": 1665493319602
+            "updatedAt": 1666785806867
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 160,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 1111626,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1671594116687,
+            "updatedAt": 1671594116687
         },
         {
             "userId": 244775114281091084,
@@ -7981,14 +9269,14 @@
             "musicId": 170,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
+            "playResult": "full_combo",
             "highScore": 271853,
-            "fullComboFlg": false,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1660977677904,
-            "updatedAt": 1664546831622
+            "updatedAt": 1669642138643
         },
         {
             "userId": 244775114281091084,
@@ -8108,13 +9396,27 @@
             "musicDifficulty": "hard",
             "playType": "multi",
             "playResult": "clear",
-            "highScore": 408344,
+            "highScore": 868335,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1665065672473,
-            "updatedAt": 1665065672473
+            "updatedAt": 1669285756050
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 186,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 850469,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669438492931,
+            "updatedAt": 1669438492931
         },
         {
             "userId": 244775114281091084,
@@ -8163,14 +9465,14 @@
             "musicId": 188,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
-            "highScore": 268625,
-            "fullComboFlg": false,
+            "playResult": "full_combo",
+            "highScore": 524037,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1660705740343,
-            "updatedAt": 1660705740343
+            "updatedAt": 1669126569814
         },
         {
             "userId": 244775114281091084,
@@ -8328,6 +9630,62 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 204,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 292617,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1666959969905,
+            "updatedAt": 1666959969905
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 206,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 917222,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669284266913,
+            "updatedAt": 1669284266913
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 207,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 1026156,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669126972753,
+            "updatedAt": 1671593797938
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 208,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 882266,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669286565178,
+            "updatedAt": 1669286565178
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 209,
             "musicDifficulty": "hard",
             "playType": "solo",
@@ -8443,14 +9801,14 @@
             "musicId": 218,
             "musicDifficulty": "hard",
             "playType": "solo",
-            "playResult": "clear",
-            "highScore": 269863,
-            "fullComboFlg": false,
+            "playResult": "full_combo",
+            "highScore": 304931,
+            "fullComboFlg": true,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1660704754524,
-            "updatedAt": 1664545297192
+            "updatedAt": 1667011843153
         },
         {
             "userId": 244775114281091084,
@@ -8570,13 +9928,13 @@
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
-            "highScore": 485291,
+            "highScore": 500317,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1664464295280,
-            "updatedAt": 1664464295280
+            "updatedAt": 1668941865980
         },
         {
             "userId": 244775114281091084,
@@ -8591,6 +9949,20 @@
             "superStarCount": 0,
             "createdAt": 1662394412631,
             "updatedAt": 1664548769213
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 241,
+            "musicDifficulty": "expert",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 946033,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669284912254,
+            "updatedAt": 1669284912254
         },
         {
             "userId": 244775114281091084,
@@ -8720,6 +10092,20 @@
         },
         {
             "userId": 244775114281091084,
+            "musicId": 255,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 306856,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1672318763789,
+            "updatedAt": 1672318763789
+        },
+        {
+            "userId": 244775114281091084,
             "musicId": 257,
             "musicDifficulty": "hard",
             "playType": "multi",
@@ -8731,6 +10117,62 @@
             "superStarCount": 0,
             "createdAt": 1658890046311,
             "updatedAt": 1658890046311
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 262,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1667307871310,
+            "updatedAt": 1667307871310
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 268,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1670224169667,
+            "updatedAt": 1670224169667
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 269,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 765316,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1670680448172,
+            "updatedAt": 1670680448172
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 270,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 0,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1666946735643,
+            "updatedAt": 1666946735643
         },
         {
             "userId": 244775114281091084,
@@ -8752,13 +10194,13 @@
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
-            "highScore": 253821,
+            "highScore": 301180,
             "fullComboFlg": false,
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
             "createdAt": 1663171758138,
-            "updatedAt": 1664195885097
+            "updatedAt": 1667011648834
         },
         {
             "userId": 244775114281091084,
@@ -8790,7 +10232,7 @@
         },
         {
             "userId": 244775114281091084,
-            "musicId": 285,
+            "musicId": 280,
             "musicDifficulty": "hard",
             "playType": "solo",
             "playResult": "clear",
@@ -8799,8 +10241,36 @@
             "fullPerfectFlg": false,
             "mvpCount": 0,
             "superStarCount": 0,
+            "createdAt": 1669547707395,
+            "updatedAt": 1669547707395
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 285,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 923569,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669438755696,
+            "updatedAt": 1669438755696
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 285,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 309494,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
             "createdAt": 1665890894086,
-            "updatedAt": 1665890894086
+            "updatedAt": 1668321738616
         },
         {
             "userId": 244775114281091084,
@@ -8829,6 +10299,104 @@
             "superStarCount": 0,
             "createdAt": 1664900823117,
             "updatedAt": 1664900823117
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 291,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1673026066407,
+            "updatedAt": 1673026066407
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 292,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 549871,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1667223588499,
+            "updatedAt": 1669283184933
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 298,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 0,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1672384956827,
+            "updatedAt": 1672384956827
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 304,
+            "musicDifficulty": "hard",
+            "playType": "multi",
+            "playResult": "clear",
+            "highScore": 937247,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1669283690109,
+            "updatedAt": 1669283690109
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 304,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "full_combo",
+            "highScore": 474292,
+            "fullComboFlg": true,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1668936707431,
+            "updatedAt": 1668936999296
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 315,
+            "musicDifficulty": "hard",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 760796,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1671782525274,
+            "updatedAt": 1671782525274
+        },
+        {
+            "userId": 244775114281091084,
+            "musicId": 315,
+            "musicDifficulty": "normal",
+            "playType": "solo",
+            "playResult": "clear",
+            "highScore": 0,
+            "fullComboFlg": false,
+            "fullPerfectFlg": false,
+            "mvpCount": 0,
+            "superStarCount": 0,
+            "createdAt": 1671782316137,
+            "updatedAt": 1671782316137
         }
     ],
     "userCustomProfileCards": [],
@@ -8852,10 +10420,13 @@
         {
             "seq": 3,
             "profileHonorType": "normal",
-            "honorId": 1,
-            "honorLevel": 3,
+            "honorId": 69,
+            "honorLevel": 4,
             "bondsHonorViewType": "none",
             "bondsHonorWordId": 0
         }
-    ]
+    ],
+    "userConfig": {
+        "friendRequestScope": "all"
+    }
 }

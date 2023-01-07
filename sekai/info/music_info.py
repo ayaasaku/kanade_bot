@@ -2,8 +2,8 @@ import aiohttp
 from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
                                               get_sekai_musics_api)
-from utility.apps.sekai.time_formatting import format_date_jp
-from utility.utils import defaultEmbed
+from module.time_formatting import format_date_jp
+from utility.modules import defaultEmbed
 
 
 #music_info

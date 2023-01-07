@@ -2,7 +2,7 @@ import discord
 from discord import app_commands, client, Interaction, utils
 from discord.ext import commands
 
-from utility.utils import is_ayaakaa, defaultEmbed
+from utility.modules import is_ayaakaa, defaultEmbed
 
 class AdminCog(commands.Cog, name='admin'):
     def __init__(self, bot):

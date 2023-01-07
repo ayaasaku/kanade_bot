@@ -2,7 +2,7 @@ import discord
 from discord import app_commands, Interaction, utils, guild, DMChannel, Client
 from discord.ext import commands
 
-from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
+from utility.modules import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
 from utility.paginator import GeneralPaginator
 
 

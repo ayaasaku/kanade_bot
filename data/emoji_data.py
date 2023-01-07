@@ -67,7 +67,7 @@ difficulty_emoji = {
     'master': '<:btn_difficulty_master:1022022822337445900>'
 }
 
-charater_icons ={
+character_icons ={
 'chr_ts_90_1': '<:chr_ts_90_1:1022017533366255616>',
 'chr_ts_90_2': '<:chr_ts_90_2:1022017535161405514>',
 'chr_ts_90_3': '<:chr_ts_90_3:1022017537602506792>',

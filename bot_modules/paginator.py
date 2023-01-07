@@ -3,7 +3,7 @@ from typing import Optional, List, Union
 from discord import Interaction, SelectOption, User, ButtonStyle
 from discord.ui import Select, button, Button, View
 
-from utility.utils import errEmbed
+from utility.modules import errEmbed
 
 __all__ = ['GeneralPaginator']
 

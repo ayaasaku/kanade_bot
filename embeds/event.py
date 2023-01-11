@@ -60,8 +60,7 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         attribute_emoji = attributes[event_bonus_attribute]
         event_attribute_translated = translate['attributes'][event_bonus_attribute]
         event_type_translated = translate['event_type'][event_type]
-        if event_bonus_attribute != str: event_bonus_attribute = str(event_bonus_attribute)
-        event_bonus_attribute = event_bonus_attribute.capitalize 
+        event_bonus_attribute = event_bonus_attribute.capitalize()
         
         embed = defaultEmbed(title=f'**{event_name}**')
         try: embed.set_thumbnail(url=logo_url)

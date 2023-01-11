@@ -22,9 +22,6 @@ class EventInfo(object):
         self.eventBonusAttribute = ''
         
     async def get_event_info(self, event_id: int, server: str, session: aiohttp.ClientSession):
-        event_id = event_id
-        server = server
-        session = session
         data = await get_data(server=f'{server}', type='diff', path='master/events.json', session=session)  
         data2 = await get_data(server=f'{server}', type='diff', path='master/eventDeckBonuses.json', session=session)    
         data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json', session=session)    
@@ -33,7 +30,7 @@ class EventInfo(object):
                 self.id = event['id']
                 self.eventType = event['eventType']
                 self.name = event['name']
-                self.assetbundleName = event['assetBundleName']
+                self.assetbundleName = event['assetbundleName']
                 self.bgmAssetbundleName = event['bgmAssetBundleName']
                 self.eventPointAssetbundleName = event['eventPointAssetbundleName']
                 self.startAt = event['startAt']

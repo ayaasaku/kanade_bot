@@ -7,8 +7,6 @@ from sekai.info.event_info import EventInfo, find_current_event_id
 from modules.main import defaultEmbed, errEmbed
 
 async def timeleft_embed(server: str, session:aiohttp.ClientSession):
-    server = server
-    session = session
     event_info = EventInfo()
     current_event_id = await find_current_event_id(server=server, session=session)
     if current_event_id == None:
@@ -38,8 +36,6 @@ async def timeleft_embed(server: str, session:aiohttp.ClientSession):
     return embed
                
 async def event_embed(server: str, session:aiohttp.ClientSession):     
-    server = server
-    session = session 
     event_info = EventInfo()
     current_event_id = await find_current_event_id(server=server, session=session)
     if current_event_id == None:

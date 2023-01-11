@@ -24,6 +24,8 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
             url = tw_asset
         elif server == 'jp':
             url = jp_asset
+        data = f'{url}{path}'
+        return data
             
     elif type == 'diff':
         if server == 'tw':

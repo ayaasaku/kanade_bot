@@ -42,10 +42,14 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         id = character['characterId']
         emoji = character_icons[f'chr_ts_90_{id}']
         level = character['characterRank']
-        string = f'{emoji} {level}\u200b'  
+        string = f'{emoji} {level}'  
         characters_ranks += string
-        if count >= 3: characters_ranks += '\n'
-        else: count += 1
+        characters_ranks += ' \u200b'
+        if count >= 3: 
+            characters_ranks += '\n'
+            count = 0
+        else: 
+            count += 1
         
     embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
     embed.set_thumbnail(url=profile_pic)

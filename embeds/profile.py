@@ -22,7 +22,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         'original': 'normal',
         'special_training': 'after_training'}
     for card in cards_info:
-        if card['id'] == leader_id:
+        if card['cardId'] == leader_id:
             asset_bundle_name = card.get('assetbundleName')
             default_image = card.get('defaultImage')
             status = status_convert[default_image]

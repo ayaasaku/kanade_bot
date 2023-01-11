@@ -1,7 +1,7 @@
 import aiohttp
 from sekai.sekai_modules.main import get_data
-class UserProfile(object):
-    def __init__(self):
+class UserProfile:
+    async def __init__(self, user_id: str, session: aiohttp.ClientSession):
         #user['userGamedata']
         self.userId = 0
         self.name = ''
@@ -35,7 +35,10 @@ class UserProfile(object):
         self.userCustomProfileCards = []
         #userProfileHonors
         self.userProfileHonors = []
-    
+        
+        await self.get_profile(user_id=user_id, session=session)
+        
+
     async def get_profile(self, user_id: str, session: aiohttp.ClientSession):    
         data = await get_data(server='jp', type='api', path=f'/user/{user_id}/profile', session=session)
         self.userId = data['user']['userGamedata']['userId']
@@ -60,5 +63,4 @@ class UserProfile(object):
         self.userMusicResults = data['userMusicResults']
         self.userCustomProfileCards = data['userCustomProfileCards']
         self.userProfileHonors = data['userProfileHonors']
-        
         

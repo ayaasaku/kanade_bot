@@ -1,7 +1,7 @@
 import aiohttp
 from sekai.sekai_modules.main import get_data
-class UserProfile:
-    async def __init__(self, user_id: str, session: aiohttp.ClientSession):
+class UserProfile(object):
+    def __init__(self):
         #user['userGamedata']
         self.userId = 0
         self.name = ''

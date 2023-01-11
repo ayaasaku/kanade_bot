@@ -15,11 +15,11 @@ async def timeleft_embed(server: str, session:aiohttp.ClientSession):
         await event_info.get_event_info(event_id=current_event_id, server=server, session=session)       
         current_time = int(time.time())   
         event_id = event_info.id
-        event_end_time = event_info.aggregateAt
+        event_end_time = event_info.aggregateAt 
         event_name = event_info.name
         event_start_time = event_info.startAt
         event_banner_name = event_info.assetbundleName
-        event_end_date = format_date(server=server, seconds = event_end_time)
+        event_end_date = format_date(server=server, seconds = event_end_time // 1000)
         logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=server)
         banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=server)
         event_url = f'https://sekai.best/event/{event_id}'
@@ -50,8 +50,8 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         event_bonus_attribute = event_info.eventBonusAttribute
         event_type = event_info.eventType
         event_bonus_characters_name_list = event_info.eventCharacters
-        event_start_date = format_date(server=server, seconds = event_start_time)
-        event_end_date = format_date(server=server, seconds = event_end_time)
+        event_start_date = format_date(server=server, seconds = event_start_time // 1000)
+        event_end_date = format_date(server=server, seconds = event_end_time // 1000)
         logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=server)
         banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=server)
         event_url = f'https://sekai.best/event/{event_id}'

@@ -11,7 +11,7 @@ from matplotlib.pyplot import get
 from modules.main import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
 from modules.paginator import GeneralPaginator
 
-from sekai.user.profile.profile import UserProfile
+from embeds.profile import user_profile_embed
 
 from data.emoji_data import *
 
@@ -44,12 +44,11 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
             embed = none_embed
             await interaction.followup.send(embed=embed, ephemeral= True)
         else:
-            user_profile = UserProfile()
             player_id = player_id[0]
             if type(player_id) != str: str(player_id)
             loading_embed = loadingEmbed(text = '玩家')
             await interaction.followup.send(embed=loading_embed)
-            embed_list = await user_profile.get_profile(user_id=player_id, session=self.bot.session)
+            embed_list = await user_profile_embed(import_id=player_id, session=self.bot.session)
             embed_list[0].set_author(name=person.display_name, icon_url= person.display_avatar)
             await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
     

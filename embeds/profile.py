@@ -8,8 +8,9 @@ from modules.main import defaultEmbed
 
 
 async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
+    user_id = import_id
     profile = UserProfile()
-    await profile.get_profile(import_id, session)
+    await profile.get_profile(user_id, session)
    
     name = profile.name
     rank = profile.rank

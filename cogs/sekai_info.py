@@ -65,8 +65,8 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
     @app_commands.command(name='music', description='查看所有歌曲') 
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
-        Choice(name='jp', value=0),
-        Choice(name='tw', value=1)])  
+        Choice(name='jp', value='jp'),
+        Choice(name='tw', value='tw')])  
     async def music(self, interaction: discord.Interaction, option: str): 
         select = Select(placeholder='選擇歌曲分類', options = [
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji= group_icon_square['school_refusal']), 

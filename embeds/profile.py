@@ -9,12 +9,13 @@ from modules.main import defaultEmbed
 
 async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
     user_id = import_id
-    profile = UserProfile(user_id, session)
+    profile = UserProfile()
+    await profile.get_profile(user_id=user_id, session=session)
    
     name = profile.name
     rank = profile.rank
     word = profile.word
-    if word == None : word = '此玩家並沒有設置簡介'       
+    if word == None or word == '' : word = '此玩家並沒有設置簡介'       
     leader_id = profile.userDecks['leader']
     cards_info = profile.userCards
     status_convert = {
@@ -22,9 +23,11 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         'special_training': 'after_training'}
     for card in cards_info:
         if card['cardId'] == leader_id:
-            asset_bundle_name = card.get('assetbundleName')
-            default_image = card.get('defaultImage')
+            asset_bundle_name = card['assetbundleName']
+            default_image = card['defaultImage']
             status = status_convert[default_image]
+            break
+        
     profile_pic = f'https://asset.pjsekai.moe/startapp/thumbnail/chara/{asset_bundle_name}_{status}.png'
     creation_date = format_date(server='jp', seconds=int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
     userCharacters = profile.userCharacters
@@ -36,18 +39,18 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         string = f'{emoji}: {level}\u200b'  
         characters_ranks += string
         
-        embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
-        embed.set_thumbnail(url=profile_pic)
-        embed.add_field(name=f'等級：', value=rank, inline=False)
-        embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
+    embed = defaultEmbed(title=f'**{name}**', description=f'「{word}」')
+    embed.set_thumbnail(url=profile_pic)
+    embed.add_field(name=f'等級：', value=rank, inline=False)
+    embed.add_field(name=f'創建日期：', value=f'{creation_date}', inline=False)
 
-        embed2 = defaultEmbed(title=f'**角色等級**')
-        embed2.description = characters_ranks
-        
-        embed_list = [embed, embed2]
-        for embed in embed_list:
-            embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{profile_pic}')
-        return embed_list
+    embed2 = defaultEmbed(title=f'**角色等級**')
+    embed2.description = characters_ranks
+    
+    embed_list = [embed, embed2]
+    for embed in embed_list:
+        embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{profile_pic}')
+    return embed_list
 
 
 

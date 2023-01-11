@@ -31,7 +31,7 @@ class EventInfo(object):
                 self.eventType = event['eventType']
                 self.name = event['name']
                 self.assetbundleName = event['assetbundleName']
-                self.bgmAssetbundleName = event['bgmAssetBundleName']
+                self.bgmAssetbundleName = event['bgmAssetbundleName']
                 self.eventPointAssetbundleName = event['eventPointAssetbundleName']
                 self.startAt = event['startAt']
                 self.aggregateAt = event['aggregateAt']

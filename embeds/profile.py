@@ -17,15 +17,15 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
     word = profile.word
     if word == None : word = '此玩家並沒有設置簡介'       
     leader_id = profile.userDecks['leader']
-    cards_info = await get_data(server='jp', type='diff', path='main/cards.json', session=session)
+    cards_info = profile.userCards
     status_convert = {
         'original': 'normal',
         'special_training': 'after_training'}
     for card in cards_info:
         if card['id'] == leader_id:
             asset_bundle_name = card.get('assetbundleName')
-            defaultImage = card['defaultImage']
-            status = status_convert[defaultImage]
+            default_image = card.get('defaultImage')
+            status = status_convert[default_image]
     profile_pic = f'https://asset.pjsekai.moe/startapp/thumbnail/chara/{asset_bundle_name}_{status}.png'
     creation_date = await format_date(server='jp', seconds=int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
     userCharacters = profile.userCharacters

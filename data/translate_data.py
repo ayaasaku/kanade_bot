@@ -1,15 +1,13 @@
 translate = {
     'attributes':{
-        'Cute':'キュート',
-        'Cool':'クール',
-        'Happy':'ハッピー',
-        'Mysterious':'ミステリアス',
-        'Pure':'ピュア',
+        'cute':'キュート',
+        'cool':'クール',
+        'happy':'ハッピー',
+        'mysterious':'ミステリアス',
+        'pure':'ピュア',
     },
     'event_type':{
-        'Marathon':'馬拉松',
         'marathon':'馬拉松',
-        'Cheerful_carnival':'歡樂嘉年華',
         'cheerful_carnival':'歡樂嘉年華'
     }
 }

@@ -12,9 +12,9 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from utility.bot_modules.debug import DebugView
-from utility.modules import errEmbed, log
-from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
+from modules.debug import DebugView
+from modules.main import errEmbed, log
+#from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
 
 load_dotenv()
 token = os.getenv('TOKEN')
@@ -114,8 +114,9 @@ async def on_ready():
     
 @tasks.loop(seconds=1)
 async def task_loop():
-    await virtual_live_ping_tw(bot, session)
-    await virtual_live_ping_jp(bot, session)
+    pass
+    #await virtual_live_ping_tw(bot, session)
+    #await virtual_live_ping_jp(bot, session)
 
 
 bot.run(token)

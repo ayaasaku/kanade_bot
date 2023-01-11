@@ -2,8 +2,8 @@ import discord
 from discord import app_commands, Interaction, utils, guild, DMChannel, Client
 from discord.ext import commands
 
-from utility.modules import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
-from utility.paginator import GeneralPaginator
+from modules.main import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
+from modules.paginator import GeneralPaginator
 
 
 class MainCog(commands.Cog, name='main'):

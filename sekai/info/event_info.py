@@ -1,76 +1,69 @@
 import time
 import aiohttp
 
-from utility.apps.sekai.api_functions import (
-    get_sekai_characters_info_api, get_sekai_event_deck_bonuses_api_jp,
-    get_sekai_event_deck_bonuses_api_tw, get_sekai_events_api_jp,
-    get_sekai_events_api_tw)
+from sekai.sekai_modules.main import get_data
 
-async def get_event_info(session: aiohttp.ClientSession, type: str):
-    if type == 'jp':
-        event_api = await get_sekai_events_api_jp(session)
-    else:
-        event_api = await get_sekai_events_api_tw(session)
+class EventInfo(object):
+    def __init__(self):
+        self.id = 0
+        self.eventType = ''
+        self.name = ''    
+        self.assetbundleName = ''
+        self.bgmAssetbundleName = ''
+        self.eventPointAssetbundleName = ''
+        self.startAt = 0
+        self.aggregateAt = 0
+        self.rankingAnnounceAt = 0
+        self.closedAt = 0
+        self.virtualLiveId = 0
+        self.unit = 0
+        self.eventRankingRewardRanges = []
+        self.eventCharacters = []
+        self.eventBonusAttribute = ''
         
-    for thing in event_api:
-        event_start_time = thing['startAt']
-        event_end_time = thing['aggregateAt']
-        current_time = int(time.time())
-        current_time *= 1000
-        async def find_event_info(info):  
-            return thing[f'{info}']   
-
-        if current_time >= event_start_time and current_time <= event_end_time: 
-            event_id = await find_event_info('id')
-            event_name = await find_event_info('name')
-            event_type = await find_event_info('eventType')
-            event_start_time = await find_event_info('startAt')
-            event_start_time //= 1000
-            event_end_time = await find_event_info('aggregateAt')
-            event_end_time //= 1000
-            event_banner_name = await find_event_info('assetbundleName')
-            
-            if type == 'tw':
-                api = await get_sekai_event_deck_bonuses_api_tw(session) 
-            elif type == 'jp':
-                api = await get_sekai_event_deck_bonuses_api_jp(session)
+    async def get_event_info(self, event_id: int, server: str, session: aiohttp.ClientSession):
+        data = await get_data(server=f'{server}', type='diff', path='master/events.json', session=session)  
+        data2 = await get_data(server=f'{server}', type='diff', path='master/eventDeckBonuses.json', session=session)    
+        data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json', session=session)    
+        for event in data:
+            if event['id'] == event_id:
+                self.id = event['id']
+                self.eventType = event['eventType']
+                self.name = event['name']
+                self.assetbundleName = event['assetBundleName']
+                self.bgmAssetbundleName = event['bgmAssetBundleName']
+                self.eventPointAssetbundleName = event['eventPointAssetbundleName']
+                self.startAt = event['startAt']
+                self.aggregateAt = event['aggregateAt']
+                self.rankingAnnounceAt = event['rankingAnnounceAt']
+                self.closedAt = event['closedAt']
+                self.virtualLiveId = event['virtualLiveId']
+                self.unit = event['unit']
+                self.eventRankingRewardRanges = event['eventRankingRewardRanges']
+                for id in data2:
+                    if self.id == id['eventId']:
+                        character_id = id.get('gameCharacterUnitId')
+                        self.eventBonusAttribute = id.get('cardAttr')
+                        for character in data3:
+                            if character_id == character['id']:
+                                first_name = character['firstName']
+                                last_name = character['givenName']
+                                name = f'{first_name}{last_name}'
+                                self.eventCharacters.append(name)
+                if None in self.eventCharacters:
+                    self.eventCharacters.remove(None)
+                self.eventCharacters = list(dict.fromkeys(self.eventCharacters))
                 
-            characters_id_list = []
-            for i in api:
-                if event_id == i['eventId']:
-                    character_id = i.get('gameCharacterUnitId')
-                    event_bonus_attribute = i.get('cardAttr')
-                    characters_id_list.append(character_id)
-            if None in characters_id_list:
-                characters_id_list.remove(None)
-            characters_id_list = list(dict.fromkeys(characters_id_list))
-            
-            characters_name_list = []
-            api = await get_sekai_characters_info_api(session)
-            for character_id in characters_id_list:
-                for character in api:
-                    if character_id == character['id']:
-                        first_name = character['firstName']
-                        last_name = character['givenName']
-                        name = f'{first_name}{last_name}'
-                        characters_name_list.append(name)
-            if None in characters_name_list:
-                characters_name_list.remove(None)
-                
-            event_info = {
-                    'event_id': event_id,
-                    'event_name': event_name,
-                    'event_type': event_type.capitalize(),
-                    'event_start_time': event_start_time,
-                    'event_end_time': event_end_time,
-                    'event_banner_name': event_banner_name,
-                    'event_bonus_attribute': event_bonus_attribute.capitalize(),
-                    'characters_name_list': characters_name_list        
-                }
-            return event_info
-    else: 
-        return None 
-            
-            
-    
-            
+    async def find_current_event_id(server: str, session: aiohttp.ClientSession):
+        data = await get_data(server=f'{server}', type='diff', path='master/events.json', session=session)         
+        for event in data:
+            event_start_time = event['startAt']
+            event_end_time = event['aggregateAt']
+            current_time = int(time.time())
+            current_time *= 1000  
+            if current_time >= event_start_time and current_time <= event_end_time:     
+                return event['id']
+        else:
+            return None    
+        
+        

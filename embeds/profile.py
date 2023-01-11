@@ -1,10 +1,10 @@
 import aiohttp
 
 from data.emoji_data import character_icons
-from sekai.sekai_modules.time_formatting import format_date_jp
+from sekai.sekai_modules.main import format_date
 from sekai.sekai_modules.main import get_data
 from sekai.profile import UserProfile
-from bot_modules.modules import defaultEmbed
+from modules.main import defaultEmbed
 
 
 async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
@@ -26,7 +26,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
             defaultImage = card['defaultImage']
             status = status_convert[defaultImage]
     profile_pic = f'https://asset.pjsekai.moe/startapp/thumbnail/chara/{asset_bundle_name}_{status}.png'
-    creation_date = await format_date_jp(int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
+    creation_date = await format_date(server='jp', seconds=int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
     userCharacters = profile.userCharacters
     characters_ranks = ''
     for character in userCharacters:
@@ -46,7 +46,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         
         embed_list = [embed, embed2]
         for embed in embed_list:
-            embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{tl_url}')
+            embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{profile_pic}')
         return embed_list
 
 

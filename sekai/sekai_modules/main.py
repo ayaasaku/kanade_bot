@@ -1,4 +1,5 @@
 import aiohttp
+from datetime import (datetime, timedelta)
 
 from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
 
@@ -34,3 +35,38 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
     
     async with session.get(data) as r:
         return await r.json(content_type=f'{content_type}')
+    
+#time formatting    
+# Format time in Dd Hh Mm Ss format
+def format_time(seconds: int):
+    days = int(seconds // 86400)
+    hours = int(seconds // 3600 % 24)
+    minutes = int(seconds // 60 % 60)
+    seconds = int(seconds % 60)
+    output = f"{days}d {hours}h {minutes}m {seconds}s"
+    return output
+
+# Format date in YYYY-MM-DD HH:MM:SS UTC format
+def format_date(server:str, seconds: int):
+    possible_server = ['tw','jp']
+    if server not in possible_server:
+        raise ValueError(f'Server {server} is not supported, it must be tw or jp')
+    date = datetime.fromtimestamp(seconds)
+    if server == 'tw':
+        date = date-timedelta(hours=0)
+    elif server == 'jp':
+        date = date-timedelta(hours=-1)
+    date = date.strftime("%Y-%m-%d %H:%M:%S")
+    return date
+
+def format_creation_date(seconds: int):
+    datetime.fromtimestamp(seconds)
+    date = date-timedelta(hours=-1)
+    date = date.strftime("%A, %B %d, %Y %I:%M:%S")
+    return date
+    
+def format_progress(end_time, start_time, current_time):
+    event_length = end_time - start_time
+    time_left = end_time - current_time
+    event_prog = round((((event_length - time_left) / event_length) * 100), 2)
+    return f"{event_prog}%"

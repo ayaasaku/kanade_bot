@@ -44,11 +44,11 @@ kanade = {
 }
 
 attributes = {
-    'Cute': '<:cute:1001293047151214743>',
-    'Cool': '<:cooll:1001293044211011676>',
-    'Happy': '<:happy:1001293049005097021>',
-    'Mysterious': '<:mysterious:1001293050875760640>',
-    'Pure': '<:pure:1001293053027418143>'
+    'cute': '<:cute:1001293047151214743>',
+    'cool': '<:cooll:1001293044211011676>',
+    'happy': '<:happy:1001293049005097021>',
+    'mysterious': '<:mysterious:1001293050875760640>',
+    'pure': '<:pure:1001293053027418143>'
 }
 
 group_icon_square = {

@@ -1,3 +1,4 @@
+import aiohttp
 from sekai.sekai_modules.main import get_data
 class UserProfile(object):
     def __init__(self):
@@ -35,8 +36,8 @@ class UserProfile(object):
         #userProfileHonors
         self.userProfileHonors = []
     
-    async def get_profile(self, user_id):    
-        data = await get_data(server='jp', type='api', path=f'/user/{user_id}/profile')
+    async def get_profile(self, user_id, session: aiohttp.ClientSession):    
+        data = await get_data(server='jp', type='api', path=f'/user/{user_id}/profile', session= session)
         self.userId = data['user']['userGamedata']['userId']
         if user_id != self.userId: raise SystemError('API error')
         self.name = data['user']['userGamedata']['name']

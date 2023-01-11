@@ -1,4 +1,3 @@
-import logging
 import discord
 from discord import Embed, Colour
 from datetime import datetime

@@ -1,8 +1,8 @@
-import discord
+import discord, aiosqlite
 from discord import app_commands, client, Interaction, utils
 from discord.ext import commands
 
-from utility.modules import is_ayaakaa, defaultEmbed
+from modules.main import is_ayaakaa, defaultEmbed
 
 class AdminCog(commands.Cog, name='admin'):
     def __init__(self, bot):
@@ -28,8 +28,8 @@ class AdminCog(commands.Cog, name='admin'):
         cmd_1: str = '', cmd_1_des_ln_1: str = '', cmd_1_des_ln_2: str = '', \
         cmd_2: str = '', cmd_2_des_ln_1: str = '', cmd_2_des_ln_2: str = '', \
         cmd_3: str = '', cmd_3_des_ln_1: str = '', cmd_3_des_ln_2: str = ''):
-        is_ayaakaa_ = await is_ayaakaa(interaction)
-        if is_ayaakaa_ == True:
+        ayaakaa = await is_ayaakaa(interaction)
+        if ayaakaa == True:
             embed = self.updateEmbed(description=description)
             if len(cmd_1) >= 1:
                 embed.add_field(name=cmd_1, value=f'{cmd_1_des_ln_1}\n{cmd_1_des_ln_2}', inline=False)
@@ -41,16 +41,16 @@ class AdminCog(commands.Cog, name='admin'):
 
     @app_commands.command(name='say', description='用奏寶說話')
     async def say(self, i: Interaction, message: str):
-        is_ayaakaa_ = await is_ayaakaa(i)
-        if is_ayaakaa_ == True:
+        ayaakaa = await is_ayaakaa(i)
+        if ayaakaa == True:
             await i.response.send_message('成功', ephemeral=True)
             await i.channel.send(message)
 
 
     @app_commands.command(name='leave-guild', description='leave-a-guild')
     async def leave_guild(self, i: Interaction, guild_name: str='', guild_id: int=0):
-        is_ayaakaa_ = await is_ayaakaa(i)
-        if is_ayaakaa_ == True:
+        ayaakaa = await is_ayaakaa(i)
+        if ayaakaa == True:
             if len(guild_name) >= 1:
                 guild = utils.get(self.bot.guilds, name=guild_name)
             elif guild_id != 0:
@@ -66,13 +66,27 @@ class AdminCog(commands.Cog, name='admin'):
     
     @app_commands.command(name='guilds', description='guilds')
     async def guilds(self, interaction: discord.Interaction):
-        is_ayaakaa_ = await is_ayaakaa(interaction)
-        if is_ayaakaa_ == True:
+        ayaakaa = await is_ayaakaa(interaction)
+        if ayaakaa == True:
             embed = defaultEmbed() 
             for guild in self.bot.guilds:
                 embed.add_field(name=guild.name, value=guild.id, inline=False)          
             await interaction.response.send_message(embed=embed, ephemeral= True)
-                
+
+    @app_commands.command(name='remove', description='remove-user-account')
+    async def remove(self, interaction: discord.Interaction):
+        ayaakaa = await is_ayaakaa(interaction)
+        if ayaakaa == True:
+            discord_id = interaction.user.id
+            db = await aiosqlite.connect("kanade_data.db")
+            cursor = await db.cursor()
+            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(interaction.user.id),))
+            player_id = await cursor.fetchone()
+            await cursor.execute('DELETE FROM user_accounts WHERE discord_id = ?', (str(discord_id),))
+            await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
+            await db.commit()
+            await interaction.response.send_message('成功')
+            
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(AdminCog(bot))
     

@@ -1,4 +1,75 @@
 import aiohttp
+
+from sekai.sekai_modules.main import get_data
+
+class MusicInfo(object):
+    def __init__(self):
+        self.id = 0
+        self.releaseConditionId = 0
+        self.categories = []   
+        self.title = ''
+        self.lyricist = ''
+        self.composer = ''
+        self.arranger = ''
+        self.dancerCount = 0
+        self.selfDancerPosition = 0
+        self.assetbundleName = ''
+        self.publishedAt = 0
+        self.fillerSec = 0
+        self.infos =[]
+        self.difficulties =[]
+        
+        
+        
+    async def get_music_info(self, music_id: int, server: str, session: aiohttp.ClientSession):
+        data = await get_data(server=f'{server}', type='diff', path='main/musics.json', session=session)  
+        data2 = await get_data(server=f'{server}', type='diff', path='main/musicDifficulties.json', session=session)
+    
+        for music in data:
+            if music['id'] == music_id:
+                self.id = music['id']
+                self.releaseConditionId = music['releaseConditionId']
+                self.categories = music['categories']
+                self.title = music['title']
+                self.lyricist = music['lyricist']
+                self.composer = music['composer']
+                self.arranger = music['arranger']
+                self.dancerCount = music['dancerCount']
+                self.selfDancerPosition = music['selfDancerPosition']
+                self.assetbundleName = music['assetbundleName']
+                self.publishedAt = music['publishedAt']
+                self.fillerSec = music['fillerSec']
+                self.infos = music['infos']
+                self.difficulties = {}
+        
+        for difficuty in data2:
+            if difficuty['musicId'] == music_id:
+                name = difficuty['musicDifficulty']
+                self.difficulties[f'{name}'] = {
+                'id': difficuty['id'],
+                'musicId': difficuty['musicId'],
+                'musicDifficulty': difficuty['musicDifficulty'],
+                'playLevel': difficuty['playLevel'],
+                'releaseConditionId': difficuty['releaseConditionId'],
+                'noteCount': difficuty['noteCount'],
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import aiohttp
 from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
                                               get_sekai_musics_api)

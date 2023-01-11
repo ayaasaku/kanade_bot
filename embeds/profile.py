@@ -23,9 +23,14 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         'special_training': 'after_training'}
     for card in cards_info:
         if card['cardId'] == leader_id:
-            asset_bundle_name = card['assetbundleName']
+            card_id = card['cardId']
             default_image = card['defaultImage']
             status = status_convert[default_image]
+            data = await get_data(server='jp', type='diff', path='main/cards.json', session=session)
+            for card in data:
+                if card_id == card['id']:
+                    asset_bundle_name = card['assetbundleName']
+                    break
             break
         
     profile_pic = f'https://asset.pjsekai.moe/startapp/thumbnail/chara/{asset_bundle_name}_{status}.png'

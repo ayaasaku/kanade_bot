@@ -17,7 +17,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
     word = profile.word
     if word == None : word = '此玩家並沒有設置簡介'       
     leader_id = profile.userDecks['leader']
-    cards_info = await get_data(server='jp', type='assets', path='main/cards.json', session=session)
+    cards_info = await get_data(server='jp', type='diff', path='main/cards.json', session=session)
     status_convert = {
         'original': 'normal',
         'special_training': 'after_training'}

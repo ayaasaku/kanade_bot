@@ -58,12 +58,13 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         attribute_emoji = attributes[event_bonus_attribute]
         event_attribute_translated = translate['attributes'][event_bonus_attribute]
         event_type_translated = translate['event_type'][event_type]
+        event_bonus_attribute = event_bonus_attribute.capitalize 
         
         embed = defaultEmbed(title=f'**{event_name}**')
         embed.set_thumbnail(url=logo_url)
         embed.set_image(url=banner_url)
         embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
-        embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute.capitalize}\n({event_attribute_translated})', inline=True)
+        embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         
         if len(event_bonus_characters_name_list) == 1:

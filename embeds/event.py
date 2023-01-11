@@ -52,8 +52,8 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         event_bonus_characters_name_list = event_info.eventCharacters
         event_start_date = format_date(server=server, seconds = event_start_time // 1000)
         event_end_date = format_date(server=server, seconds = event_end_time // 1000)
-        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=server)
-        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=server)
+        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=session)
+        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=session)
         event_url = f'https://sekai.best/event/{event_id}'
         attribute_emoji = attributes[event_bonus_attribute]
         event_attribute_translated = translate['attributes'][event_bonus_attribute]

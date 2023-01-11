@@ -27,7 +27,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
             default_image = card.get('defaultImage')
             status = status_convert[default_image]
     profile_pic = f'https://asset.pjsekai.moe/startapp/thumbnail/chara/{asset_bundle_name}_{status}.png'
-    creation_date = await format_date(server='jp', seconds=int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
+    creation_date = format_date(server='jp', seconds=int((1600218000000 + int(import_id) / 2 ** 22) + 25200000) // 1000)
     userCharacters = profile.userCharacters
     characters_ranks = ''
     for character in userCharacters:

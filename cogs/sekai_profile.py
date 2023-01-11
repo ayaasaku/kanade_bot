@@ -11,6 +11,8 @@ from matplotlib.pyplot import get
 from modules.main import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
 from modules.paginator import GeneralPaginator
 
+from sekai.user.profile.profile import UserProfile
+
 from data.emoji_data import *
 
 class SekaiProfileCog(commands.Cog, name='sekai_profile'):
@@ -46,10 +48,11 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
             if type(player_id) != str: str(player_id)
             loading_embed = loadingEmbed(text = '玩家')
             await interaction.followup.send(embed=loading_embed)
-            embed_list = await user_profile(player_id, self.bot.session)
+            embed_list = await UserProfile.get_profile(user_id=player_id, session=self.bot.session)
             embed_list[0].set_author(name=person.display_name, icon_url= person.display_avatar)
             await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
-            
+    
+    '''     
     @app_commands.command(name='area-items', description='查看一個玩家的區域道具') 
     @app_commands.rename(person='其他玩家')
     async def area_items(self, interaction: discord.Interaction, person: discord.User = None):
@@ -162,6 +165,7 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
         view = View()
         view.add_item(group_select)
         await interaction.response.send_message(view=view)
-            
+    '''
+    
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiProfileCog(bot))

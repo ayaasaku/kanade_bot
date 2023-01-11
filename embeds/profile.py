@@ -3,7 +3,7 @@ import aiohttp
 from data.emoji_data import character_icons
 from sekai.sekai_modules.main import format_date
 from sekai.sekai_modules.main import get_data
-from sekai.profile import UserProfile
+from sekai.user.profile.profile import UserProfile
 from modules.main import defaultEmbed
 
 

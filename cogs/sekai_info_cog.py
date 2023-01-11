@@ -37,7 +37,8 @@ class SekaiInfoCog(commands.Cog, name='sekai'):
         embed = await event_embed(server=option,session = session)
         await interaction.response.send_message(embed=embed)
     
-    #virtule_live    
+    #virtual_live 
+    '''
     @app_commands.command(name='virtual_live', description='查看現正舉行的虛擬 Live')    
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
@@ -58,6 +59,7 @@ class SekaiInfoCog(commands.Cog, name='sekai'):
                 await GeneralPaginator(interaction, embed).start(embeded=True, follow_up=True)
             else:
                 await interaction.followup.send(embed=embed)
+    '''
     
     #music
     @app_commands.command(name='music', description='查看所有歌曲') 

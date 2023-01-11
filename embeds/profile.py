@@ -44,7 +44,8 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         level = character['characterRank']
         string = f'{emoji}: {level}'  
         characters_ranks += string
-        characters_ranks += '    '
+        for i in range(0,3):
+            characters_ranks += ' '
         if count >= 2: 
             characters_ranks += '\n\n'
             count = 0

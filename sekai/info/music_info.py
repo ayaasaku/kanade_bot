@@ -68,7 +68,7 @@ class MusicInfo(object):
 
 
 
-
+'''
 import aiohttp
 from utility.apps.sekai.api_functions import (get_sekai_music_difficulties_api,
                                               get_sekai_music_tags_api,
@@ -211,3 +211,4 @@ async def get_music_embed(music_id: str, session: aiohttp.ClientSession):
     embed.add_field(name='更多資訊', value=music_url, inline=False) 
             
     return embed
+'''

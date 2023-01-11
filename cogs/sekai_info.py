@@ -25,6 +25,7 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     async def time_left(self, interaction: discord.Interaction, option: str):
+        option = option
         embed = await timeleft_embed(server=option,session = session)
         await interaction.response.send_message(embed=embed)
                 
@@ -34,6 +35,7 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])            
     async def event(self, interaction: discord.Interaction, option: str):      
+        option = option
         embed = await event_embed(server=option,session = session)
         await interaction.response.send_message(embed=embed)
     

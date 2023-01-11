@@ -53,7 +53,9 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         event_start_date = format_date(server=server, seconds = event_start_time // 1000)
         event_end_date = format_date(server=server, seconds = event_end_time // 1000)
         logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=session)
+        error_logo_url = f'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
         banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=session)
+        error_banner_url = f'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'
         event_url = f'https://sekai.best/event/{event_id}'
         attribute_emoji = attributes[event_bonus_attribute]
         event_attribute_translated = translate['attributes'][event_bonus_attribute]
@@ -61,8 +63,10 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         event_bonus_attribute = event_bonus_attribute.capitalize 
         
         embed = defaultEmbed(title=f'**{event_name}**')
-        embed.set_thumbnail(url=logo_url)
-        embed.set_image(url=banner_url)
+        try: embed.set_thumbnail(url=logo_url)
+        except: embed.set_thumbnail(url=error_logo_url)
+        try: embed.set_image(url=banner_url)
+        except: embed.set_image(url=error_banner_url)
         embed.add_field(name='活動類型', value=event_type_translated, inline=False)  
         embed.add_field(name='加成屬性', value=f'{attribute_emoji} {event_bonus_attribute}\n({event_attribute_translated})', inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)

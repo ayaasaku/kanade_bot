@@ -1,4 +1,4 @@
-import time, discord
+import discord
 from discord import app_commands, SelectOption
 from discord.ui import (Select, View)   
 from discord.ext import commands
@@ -11,7 +11,7 @@ from embeds.music import music_embed
 from data.emoji_data import group_icon_square
 
 
-class SekaiInfoCog(commands.Cog, name='sekai'):
+class SekaiInfoCog(commands.Cog, name='sekai_info'):
     def __init__(self, bot):
         self.bot = bot
         

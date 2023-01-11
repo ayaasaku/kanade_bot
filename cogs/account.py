@@ -15,7 +15,7 @@ from sekai.sekai_modules.main import get_data
 
 from data.emoji_data import *
 
-class AccountCog(commands.Cog, name='qccount'):
+class AccountCog(commands.Cog, name='account'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         

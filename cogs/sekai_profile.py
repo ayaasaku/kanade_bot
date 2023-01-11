@@ -13,7 +13,7 @@ from modules.paginator import GeneralPaginator
 
 from data.emoji_data import *
 
-class SekaiProfileCog(commands.Cog, name='sekai'):
+class SekaiProfileCog(commands.Cog, name='sekai_profile'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         

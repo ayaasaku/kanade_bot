@@ -42,9 +42,9 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
         id = character['characterId']
         emoji = character_icons[f'chr_ts_90_{id}']
         level = character['characterRank']
-        string = f'{emoji} {level}'  
+        string = f'{emoji}: {level}'  
         characters_ranks += string
-        characters_ranks += ' \u200b\u200b\u200b'
+        characters_ranks += '    '
         if count >= 2: 
             characters_ranks += '\n\n'
             count = 0

@@ -41,6 +41,7 @@ class MusicInfo(object):
                 self.fillerSec = music['fillerSec']
                 self.infos = music['infos']
                 self.difficulties = {}
+                break
         
         for difficuty in data2:
             if difficuty['musicId'] == music_id:

@@ -16,8 +16,8 @@ class MusicInfo(object):
         self.assetbundleName = ''
         self.publishedAt = 0
         self.fillerSec = 0
-        self.infos =[]
-        self.difficulties =[]
+        self.infos = {}
+        self.difficulties = []
         
         
         
@@ -39,7 +39,7 @@ class MusicInfo(object):
                 self.assetbundleName = music['assetbundleName']
                 self.publishedAt = music['publishedAt']
                 self.fillerSec = music['fillerSec']
-                self.infos = music['infos']
+                self.infos = music['infos'][0]
                 self.difficulties = {}
                 break
         

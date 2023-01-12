@@ -18,7 +18,7 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             album_cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{asset_name}_rip/{asset_name}.webp"
             music_url = f'https://sekai.best/music/{music_id}'
 
-            release_date = format_date(server=server, seconds=music_info.publishedAt)
+            release_date = format_date(server=server, seconds=music_info.publishedAt // 1000)
             embed = defaultEmbed(title=f'**{music_info.title}**')
             embed.set_thumbnail(url=album_cover_url)
             embed.add_field(name='作詞', value = f'{music_info.lyricist}', inline=True)
@@ -36,5 +36,6 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             embed.add_field(name='更多資訊', value=music_url, inline=False) 
             
             group_music_embed_list.append(embed)
+            
     return group_music_embed_list
             

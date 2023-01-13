@@ -24,7 +24,7 @@ async def timeleft_embed(server: str, session:aiohttp.ClientSession):
         banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=server)
         event_url = f'https://sekai.best/event/{event_id}'
         time_left = format_time((event_end_time// 1000) - (current_time // 1000))
-        event_progress = format_progress((event_end_time// 1000), (current_time // 1000), current_time)
+        event_progress = format_progress((event_end_time// 1000), (event_start_time // 1000), current_time)
         
         embed = defaultEmbed(title=f'**{event_name}**')
         embed.set_thumbnail(url=logo_url)

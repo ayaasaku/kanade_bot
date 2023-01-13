@@ -53,18 +53,17 @@ class MusicInfo(object):
                 self.fillerSec = music['fillerSec']
                 try: self.infos = music['infos']
                 except: pass
-                
                 break
         
-        for difficuty in data2:
-            if difficuty['musicId'] == music_id:
-                name = difficuty['musicDifficulty']
+        for difficulty in data2:
+            if difficulty['musicId'] == music_id:
+                name = difficulty['musicDifficulty']
                 self.difficulties[f'{name}'] = {
-                'id': difficuty['id'],
-                'musicId': difficuty['musicId'],
-                'musicDifficulty': difficuty['musicDifficulty'],
-                'playLevel': difficuty['playLevel'],
-                'releaseConditionId': difficuty['releaseConditionId'],
+                'id': difficulty['id'],
+                'musicId': difficulty['musicId'],
+                'musicDifficulty': difficulty['musicDifficulty'],
+                'playLevel': difficulty['playLevel'],
+                'releaseConditionId': difficulty['releaseConditionId'],
                 'noteCount': 999
             }
                 try: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['noteCount']

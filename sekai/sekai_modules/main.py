@@ -36,7 +36,8 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
     data = f'{url}{path}'
     
     async with session.get(data) as r:
-        return await r.json(content_type=f'{content_type}')
+        json = await r.json(content_type=f'{content_type}')
+        return json
     
 #time formatting    
 # Format time in Dd Hh Mm Ss format

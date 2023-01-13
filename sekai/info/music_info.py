@@ -65,10 +65,10 @@ class MusicInfo(object):
                 'musicDifficulty': difficuty['musicDifficulty'],
                 'playLevel': difficuty['playLevel'],
                 'releaseConditionId': difficuty['releaseConditionId'],
-                'noteCount': 0
+                'noteCount': 999
             }
-                try: self.difficulties[f'{name}']['noteCount'] = difficuty['noteCount']
-                except: self.difficulties[f'{name}']['noteCount'] = difficuty['totalNoteCount']
+                try: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['noteCount']
+                except: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['totalNoteCount']
 
 
 

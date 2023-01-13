@@ -41,10 +41,10 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
 #time formatting    
 # Format time in Dd Hh Mm Ss format
 def format_time(seconds: int):
-    days = seconds // 86400
-    hours = seconds // 3600
-    minutes = seconds // 60
-    seconds = seconds
+    days = (seconds // 86400)
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    seconds = seconds % 60
     output = f"{days}d {hours}h {minutes}m {seconds}s"
     return output
 

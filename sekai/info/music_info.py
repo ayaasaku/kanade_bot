@@ -55,6 +55,7 @@ class MusicInfo(object):
                 except: pass
                 break
         
+        print(data2)
         for difficulty in data2:
             if difficulty['musicId'] == music_id:
                 name = difficulty['musicDifficulty']

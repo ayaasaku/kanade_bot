@@ -66,6 +66,7 @@ class MusicInfo(object):
                 'releaseConditionId': difficulty['releaseConditionId'],
                 'noteCount': 999
             }
+                print(self.difficulties[f'{name}'])
                 try: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['noteCount']
                 except: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['totalNoteCount']
 

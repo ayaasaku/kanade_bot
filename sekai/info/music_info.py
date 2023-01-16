@@ -21,7 +21,13 @@ class MusicInfo(object):
         self.liveStageId = 0
         self.fillerSec = 0
         self.infos = []
-        self.difficulties = {}
+        self.difficulties = {
+            'easy': {},
+            'normal': {},
+            'hard': {},
+            'expert': {},
+            'master': {}
+        }
         
         
         
@@ -55,21 +61,19 @@ class MusicInfo(object):
                 except: pass
                 break
         
-        print(data2)
         for difficulty in data2:
             if difficulty['musicId'] == music_id:
                 name = difficulty['musicDifficulty']
                 self.difficulties[f'{name}'] = {
-                'id': difficulty['id'],
-                'musicId': difficulty['musicId'],
-                'musicDifficulty': difficulty['musicDifficulty'],
-                'playLevel': difficulty['playLevel'],
-                'releaseConditionId': difficulty['releaseConditionId'],
-                'noteCount': 999
-            }
-                print(self.difficulties[f'{name}'])
-                try: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['noteCount']
-                except: self.difficulties[f'{name}']['noteCount'] = 0 #difficuty['totalNoteCount']
+                    'id': difficulty['id'],
+                    'musicId': difficulty['musicId'],
+                    'musicDifficulty': difficulty['musicDifficulty'],
+                    'playLevel': difficulty['playLevel'],
+                    'releaseConditionId': difficulty['releaseConditionId'],
+                    'noteCount': 999
+                }
+                try: self.difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
+                except: self.difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
 
 
 

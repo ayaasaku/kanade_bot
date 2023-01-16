@@ -21,15 +21,7 @@ class MusicInfo(object):
         self.liveStageId = 0
         self.fillerSec = 0
         self.infos = []
-        self.difficulties = {
-            'easy': {},
-            'normal': {},
-            'hard': {},
-            'expert': {},
-            'master': {}
-        }
-        
-        
+        self.difficulties = {}
         
     async def get_music_info(self, music_id: int, server: str, session: aiohttp.ClientSession):
         data = await get_data(server=f'{server}', type='diff', path='main/musics.json', session=session)  
@@ -60,11 +52,11 @@ class MusicInfo(object):
                 try: self.infos = music['infos']
                 except: pass
                 break
-        
+        difficulties = {}
         for difficulty in data2:
             if difficulty['musicId'] == music_id:
                 name = difficulty['musicDifficulty']
-                self.difficulties[f'{name}'] = {
+                difficulties[f'{name}'] = {
                     'id': difficulty['id'],
                     'musicId': difficulty['musicId'],
                     'musicDifficulty': difficulty['musicDifficulty'],
@@ -72,8 +64,9 @@ class MusicInfo(object):
                     'releaseConditionId': difficulty['releaseConditionId'],
                     'noteCount': 999
                 }
-                try: self.difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
-                except: self.difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
+                try: difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
+                except: difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
+        self.difficulties = difficulties
 
 
 

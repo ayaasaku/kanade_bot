@@ -26,12 +26,15 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             embed.add_field(name='編曲', value = f'{music_info.arranger} \n\u200b', inline=True)
             embed.add_field(name='發佈時間', value= f'{release_date}', inline=False)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
+            
+            print(music_info.difficulties)
             for difficulty in music_info.difficulties:
                 name = difficulty['musicDifficulty']
                 level = difficulty['playLevel']
                 note_count = difficulty['noteCount']
                 embed.add_field(name=f'{name.capitalize()}',
                             value=f'等級：{level}\n音符數量：{note_count}', inline=True)
+                
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False) 
             

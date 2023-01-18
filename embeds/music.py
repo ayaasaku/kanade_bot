@@ -19,7 +19,7 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             music_url = f'https://sekai.best/music/{music_id}'
 
             release_date = format_date(server=server, seconds=music_info.publishedAt // 1000)
-            try: embed = defaultEmbed(title=f'**{music_info.title}**', description=f'{music_info.pronunciation}')
+            try: embed = defaultEmbed(title=f'**{music_info.title}**', description=f'{music_info.pronunciation} \n\u200b')
             except: embed = defaultEmbed(title=f'**{music_info.title}**')
             embed.set_thumbnail(url=album_cover_url)
             embed.add_field(name='作詞', value = f'{music_info.lyricist}', inline=True)

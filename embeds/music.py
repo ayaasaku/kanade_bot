@@ -29,7 +29,7 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             
             difficulties_dict = music_info.difficulties
             
-            print(difficulties_dict)
+            print(f'difficulties_dict: {difficulties_dict}')
             '''for difficulty in difficulties_dict:
                 name = difficulty['musicDifficulty']
                 level = difficulty['playLevel']

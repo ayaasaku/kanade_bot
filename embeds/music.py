@@ -24,8 +24,7 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             embed.set_thumbnail(url=album_cover_url)
             embed.add_field(name='作詞', value = f'{music_info.lyricist}', inline=True)
             embed.add_field(name='作曲', value = f'{music_info.composer}', inline=True)
-            embed.add_field(name='編曲', value = f'{music_info.arranger} \n\u200b', inline=True)
-            embed.add_field(name='發佈時間', value= f'{release_date}', inline=False)
+            embed.add_field(name='編曲', value = f'{music_info.arranger}', inline=True)
             embed.add_field(name='\u200b', value='**難度**', inline=False)
 
             for difficulty in music_info.difficulties:
@@ -35,8 +34,9 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
                 embed.add_field(name=f'{name.capitalize()}',
                             value=f'等級：{level}\n音符數量：{note_count}', inline=True)
                 
-            embed.add_field(name='\u200b', value='\u200b', inline=True)    
-            embed.add_field(name='\u200b\n 更多資訊', value=music_url, inline=False) 
+            embed.add_field(name='\u200b', value='\u200b', inline=True)   
+            embed.add_field(name='\u200b\n 發佈時間', value= f'{release_date}', inline=False) 
+            embed.add_field(name='更多資訊', value=music_url, inline=False) 
             group_music_embed_list.append(embed)
             
     return group_music_embed_list

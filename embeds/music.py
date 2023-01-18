@@ -35,8 +35,8 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
                             value=f'等級：{level}\n音符數量：{note_count}', inline=True)
                 
             embed.add_field(name='\u200b', value='\u200b', inline=True)   
-            embed.add_field(name='\u200b\n發佈時間', value= f'{release_date} \n\u200b', inline=False) 
-            embed.add_field(name='更多資訊', value=music_url, inline=False) 
+            embed.add_field(name='\u200b\n發佈時間', value= f'{release_date}', inline=False) 
+            embed.add_field(name='更多資訊', value=music_url, inline=True) 
             group_music_embed_list.append(embed)
             
     return group_music_embed_list

@@ -43,12 +43,12 @@ class MusicInfo(object):
                 self.dancerCount = music['dancerCount']
                 self.selfDancerPosition = music['selfDancerPosition']
                 self.assetbundleName = music['assetbundleName']
+                self.publishedAt = music['publishedAt']
+                self.fillerSec = music['fillerSec']
                 try: self.liveTalkBackgroundAssetbundleName = music['liveTalkBackgroundAssetbundleName']
                 except: pass
-                self.pubishedAt = music['publishedAt']
                 try: self.liveStageId = music['liveStageId']
                 except: pass
-                self.fillerSec = music['fillerSec']
                 try: self.infos = music['infos']
                 except: pass
                 break

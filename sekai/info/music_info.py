@@ -21,7 +21,48 @@ class MusicInfo(object):
         self.liveStageId = 0
         self.fillerSec = 0
         self.infos = []
-        self.difficulties = {}
+        self.difficulties = {
+            'easy': {
+                'id': 0,
+                'musicId': 0,
+                'musicDifficulty': '',
+                'playLevel': 0,
+                'releaseConditionId': 0,
+                'noteCount': 0
+            },
+            'normal': {
+                'id': 0,
+                'musicId': 0,
+                'musicDifficulty': '',
+                'playLevel': 0,
+                'releaseConditionId': 0,
+                'noteCount': 0
+            },
+            'hard': {
+                'id': 0,
+                'musicId': 0,
+                'musicDifficulty': '',
+                'playLevel': 0,
+                'releaseConditionId': 0,
+                'noteCount': 0
+            },
+            'expert': {
+                'id': 0,
+                'musicId': 0,
+                'musicDifficulty': '',
+                'playLevel': 0,
+                'releaseConditionId': 0,
+                'noteCount': 0
+            },
+            'master': {
+                'id': 0,
+                'musicId': 0,
+                'musicDifficulty': '',
+                'playLevel': 0,
+                'releaseConditionId': 0,
+                'noteCount': 0
+            }
+            }
         
     async def get_music_info(self, music_id: int, server: str, session: aiohttp.ClientSession):
         data = await get_data(server=f'{server}', type='diff', path='main/musics.json', session=session)  
@@ -52,7 +93,14 @@ class MusicInfo(object):
                 try: self.infos = music['infos']
                 except: pass
                 break
-        difficulties = {}
+        difficulties = {
+            'easy': {},
+            'normal': {},
+            'hard': {},
+            'expert': {},
+            'master': {},
+        }
+        
         for difficulty in data2:
             if difficulty['musicId'] == music_id:
                 name = difficulty['musicDifficulty']
@@ -66,7 +114,7 @@ class MusicInfo(object):
                 }
                 try: difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
                 except: difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
-        self.difficulties = difficulties
+        self.difficulties.update(difficulties)
 
 
 

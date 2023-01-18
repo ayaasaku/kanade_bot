@@ -18,7 +18,7 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             album_cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{asset_name}_rip/{asset_name}.webp"
             music_url = f'https://sekai.best/music/{music_id}'
 
-            release_date = format_date(server=server, seconds=music_info.publishedAt // 1000)
+            release_date = format_date(server=server, seconds=music_info.publishedAt)
             embed = defaultEmbed(title=f'**{music_info.title}**')
             embed.set_thumbnail(url=album_cover_url)
             embed.add_field(name='作詞', value = f'{music_info.lyricist}', inline=True)
@@ -29,13 +29,12 @@ async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
             
             difficulties_dict = music_info.difficulties
             
-            print(f'difficulties_dict: {difficulties_dict}')
-            '''for difficulty in difficulties_dict:
+            for difficulty in difficulties_dict:
                 name = difficulty['musicDifficulty']
                 level = difficulty['playLevel']
                 note_count = difficulty['noteCount']
                 embed.add_field(name=f'{name.capitalize()}',
-                            value=f'等級：{level}\n音符數量：{note_count}', inline=True)'''
+                            value=f'等級：{level}\n音符數量：{note_count}', inline=True)
                 
             embed.add_field(name='\u200b', value='\u200b', inline=True)
             embed.add_field(name='更多資訊', value=music_url, inline=False) 

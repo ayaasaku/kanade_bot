@@ -93,6 +93,7 @@ class MusicInfo(object):
                 try: self.infos = music['infos']
                 except: pass
                 break
+            
         difficulties = {
             'easy': {},
             'normal': {},
@@ -114,7 +115,8 @@ class MusicInfo(object):
                 }
                 try: difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
                 except: difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
-        self.difficulties.update(difficulties)
+                self.difficulties.update(difficulties)
+                break
 
 
 

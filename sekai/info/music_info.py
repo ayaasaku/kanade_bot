@@ -21,48 +21,7 @@ class MusicInfo(object):
         self.liveStageId = 0
         self.fillerSec = 0
         self.infos = []
-        self.difficulties = {
-            'easy': {
-                'id': 0,
-                'musicId': 0,
-                'musicDifficulty': '',
-                'playLevel': 0,
-                'releaseConditionId': 0,
-                'noteCount': 0
-            },
-            'normal': {
-                'id': 0,
-                'musicId': 0,
-                'musicDifficulty': '',
-                'playLevel': 0,
-                'releaseConditionId': 0,
-                'noteCount': 0
-            },
-            'hard': {
-                'id': 0,
-                'musicId': 0,
-                'musicDifficulty': '',
-                'playLevel': 0,
-                'releaseConditionId': 0,
-                'noteCount': 0
-            },
-            'expert': {
-                'id': 0,
-                'musicId': 0,
-                'musicDifficulty': '',
-                'playLevel': 0,
-                'releaseConditionId': 0,
-                'noteCount': 0
-            },
-            'master': {
-                'id': 0,
-                'musicId': 0,
-                'musicDifficulty': '',
-                'playLevel': 0,
-                'releaseConditionId': 0,
-                'noteCount': 0
-            }
-            }
+        self.difficulties = []
         
     async def get_music_info(self, music_id: int, server: str, session: aiohttp.ClientSession):
         data = await get_data(server=f'{server}', type='diff', path='main/musics.json', session=session)  
@@ -94,18 +53,9 @@ class MusicInfo(object):
                 except: pass
                 break
             
-        difficulties = {
-            'easy': {},
-            'normal': {},
-            'hard': {},
-            'expert': {},
-            'master': {},
-        }
-        
         for difficulty in data2:
             if difficulty['musicId'] == music_id:
-                name = difficulty['musicDifficulty']
-                difficulties[f'{name}'] = {
+                small_dict = {
                     'id': difficulty['id'],
                     'musicId': difficulty['musicId'],
                     'musicDifficulty': difficulty['musicDifficulty'],
@@ -113,10 +63,9 @@ class MusicInfo(object):
                     'releaseConditionId': difficulty['releaseConditionId'],
                     'noteCount': 999
                 }
-                try: difficulties[f'{name}']['noteCount'] = difficulty['noteCount']
-                except: difficulties[f'{name}']['noteCount'] = difficulty['totalNoteCount']
-                self.difficulties.update(difficulties)
-                break
+                try: small_dict['noteCount'] = difficulty['noteCount']
+                except: small_dict['noteCount'] = difficulty['totalNoteCount']
+                self.difficulties.append(small_dict)
 
 
 

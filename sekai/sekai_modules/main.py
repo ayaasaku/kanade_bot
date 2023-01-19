@@ -35,7 +35,7 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
     
     data = f'{url}{path}'
     
-    async with session.get(data) as r:
+    async with aiohttp.ClientSession().get(data) as r:
         json = await r.json(content_type=f'{content_type}')
         return json
     

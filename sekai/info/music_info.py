@@ -23,9 +23,9 @@ class MusicInfo(object):
         self.infos = []
         self.difficulties = []
         
-    async def get_music_info(self, music_id: int, server: str, session: aiohttp.ClientSession):
-        data = await get_data(server=f'{server}', type='diff', path='main/musics.json', session=session)  
-        data2 = await get_data(server=f'{server}', type='diff', path='main/musicDifficulties.json', session=session)
+    async def get_music_info(self, music_id: int, server: str):
+        data = await get_data(server=f'{server}', type='diff', path='main/musics.json')  
+        data2 = await get_data(server=f'{server}', type='diff', path='main/musicDifficulties.json')
     
         for music in data:
             if music['id'] == music_id:

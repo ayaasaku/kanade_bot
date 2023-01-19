@@ -1,5 +1,5 @@
 #API
-api = 'https://api.pjsekai.moe/api/'
+api = 'https://api.nightcord.de/'
 #diff
 jp_diff = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/'
 tw_diff = 'https://raw.githubusercontent.com/Sekai-World/sekai-master-db-tc-diff/'

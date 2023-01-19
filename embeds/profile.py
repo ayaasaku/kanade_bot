@@ -7,10 +7,10 @@ from sekai.user.profile.profile import UserProfile
 from modules.main import defaultEmbed
 
 
-async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
+async def user_profile_embed(import_id: str, server: str):
     user_id = import_id
     profile = UserProfile()
-    await profile.get_profile(user_id=user_id, session=session)
+    await profile.get_profile(user_id=user_id)
    
     name = profile.name
     rank = profile.rank
@@ -26,7 +26,7 @@ async def user_profile_embed(import_id: str, session: aiohttp.ClientSession):
             card_id = card['cardId']
             default_image = card['defaultImage']
             status = status_convert[default_image]
-            data = await get_data(server='jp', type='diff', path='main/cards.json', session=session)
+            data = await get_data(server='jp', type='diff', path='main/cards.json')
             for card in data:
                 if card_id == card['id']:
                     asset_bundle_name = card['assetbundleName']

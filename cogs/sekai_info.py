@@ -14,9 +14,6 @@ from data.emoji_data import group_icon_square
 class SekaiInfoCog(commands.Cog, name='sekai_info'):
     def __init__(self, bot):
         self.bot = bot
-        
-        global session
-        session = self.bot.session
 
     #event    
     @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
@@ -25,7 +22,7 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     async def time_left(self, interaction: discord.Interaction, option: str):
-        embed = await timeleft_embed(server=option,session = session)
+        embed = await timeleft_embed(server=option)
         await interaction.response.send_message(embed=embed)
                 
     @app_commands.command(name='event', description='查看本期活動的資訊')    
@@ -34,7 +31,7 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])            
     async def event(self, interaction: discord.Interaction, option: str):      
-        embed = await event_embed(server=option,session = session)
+        embed = await event_embed(server=option)
         await interaction.response.send_message(embed=embed)
     
     #virtual_live 
@@ -83,27 +80,27 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
             
             if select.values[0] == '25點，Nightcord見。':
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await music_embed(server=option, group='school_refusal', session=self.bot.session)
+                embeds = await music_embed(server=option, group='school_refusal')
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
             if select.values[0] == 'Leo/need':
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await music_embed(server=option, group='light_music_club', session=self.bot.session)
+                embeds = await music_embed(server=option, group='light_music_club')
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
             if select.values[0] == 'MORE MORE JUMP！':
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await music_embed(server=option, group='idol', session=self.bot.session)
+                embeds = await music_embed(server=option, group='idol')
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
             if select.values[0] == 'Vivid BAD SQUAD':
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await music_embed(server=option, group='street', session=self.bot.session)
+                embeds = await music_embed(server=option, group='street')
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
             if select.values[0] == 'Wonderlands×Showtime':
                 await interaction.followup.send(embed=embed, ephemeral=True)
-                embeds = await music_embed(server=option, group='theme_park', session=self.bot.session)
+                embeds = await music_embed(server=option, group='theme_park')
                 await GeneralPaginator(interaction, embeds).start(embeded=True, follow_up=True)
                 
         select.callback = music_callback

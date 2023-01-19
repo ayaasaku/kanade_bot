@@ -21,10 +21,10 @@ class EventInfo(object):
         self.eventCharacters = []
         self.eventBonusAttribute = ''
         
-    async def get_event_info(self, event_id: int, server: str, session: aiohttp.ClientSession):
-        data = await get_data(server=f'{server}', type='diff', path='master/events.json', session=session)  
-        data2 = await get_data(server=f'{server}', type='diff', path='master/eventDeckBonuses.json', session=session)    
-        data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json', session=session)    
+    async def get_event_info(self, event_id: int, server: str):
+        data = await get_data(server=f'{server}', type='diff', path='master/events.json')  
+        data2 = await get_data(server=f'{server}', type='diff', path='master/eventDeckBonuses.json')    
+        data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json')    
         for event in data:
             if event['id'] == event_id:
                 self.id = event['id']
@@ -54,10 +54,10 @@ class EventInfo(object):
                     self.eventCharacters.remove(None)
                 self.eventCharacters = list(dict.fromkeys(self.eventCharacters))
                 
-async def find_current_event_id(server: str, session: aiohttp.ClientSession):
+async def find_current_event_id(server: str):
     server = server
     session = session
-    data = await get_data(server=f'{server}', type='diff', path='master/events.json', session=session)         
+    data = await get_data(server=f'{server}', type='diff', path='master/events.json')         
     for event in data:
         event_start_time = event['startAt']
         event_end_time = event['aggregateAt']

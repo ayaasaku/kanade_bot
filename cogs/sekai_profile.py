@@ -29,28 +29,36 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
     
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
     @app_commands.rename(person='其他玩家')
-    async def profile(self, interaction: discord.Interaction, person: discord.User = None):
+    @app_commands.choices(option=[
+        Choice(name='jp', value='jp'),
+        Choice(name='tw', value='tw')])  
+    async def profile(self, interaction: discord.Interaction, option:str, person: discord.User = None):
         await interaction.response.defer(ephemeral=True)
-        db = await aiosqlite.connect("kanade_data.db")
-        cursor = await db.cursor()
-        if person == None:
-            discord_id = interaction.user.id
-            person = interaction.user
+        if option == 'tw':
+             errEmbed(
+            '目前還沒支持台服喔',
+            f'台服的功能將於稍後推出，\n敬請期待。') 
         else:
-            discord_id = person.id   
-        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
-        player_id = await cursor.fetchone()
-        if player_id is None:
-            embed = none_embed
-            await interaction.followup.send(embed=embed, ephemeral= True)
-        else:
-            player_id = player_id[0]
-            if type(player_id) != str: str(player_id)
-            loading_embed = loadingEmbed(text = '玩家')
-            await interaction.followup.send(embed=loading_embed)
-            embed_list = await user_profile_embed(import_id=player_id, session=self.bot.session)
-            embed_list[0].set_author(name=person.display_name, icon_url= person.display_avatar)
-            await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
+            db = await aiosqlite.connect("kanade_data.db")
+            cursor = await db.cursor()
+            if person == None:
+                discord_id = interaction.user.id
+                person = interaction.user
+            else:
+                discord_id = person.id   
+            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+            player_id = await cursor.fetchone()
+            if player_id is None:
+                embed = none_embed
+                await interaction.followup.send(embed=embed, ephemeral= True)
+            else:
+                player_id = player_id[0]
+                if type(player_id) != str: str(player_id)
+                loading_embed = loadingEmbed(text = '玩家')
+                await interaction.followup.send(embed=loading_embed)
+                embed_list = await user_profile_embed(import_id=player_id, server=option)
+                embed_list[0].set_author(name=person.display_name, icon_url= person.display_avatar)
+                await GeneralPaginator(interaction, embed_list).start(embeded=True, follow_up=True)
     
     '''     
     @app_commands.command(name='area-items', description='查看一個玩家的區域道具') 

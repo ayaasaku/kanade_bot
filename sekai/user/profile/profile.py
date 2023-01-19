@@ -36,8 +36,8 @@ class UserProfile(object):
         #userProfileHonors
         self.userProfileHonors = []
 
-    async def get_profile(self, user_id: str, session: aiohttp.ClientSession):    
-        data = await get_data(server='jp', type='api', path=f'/user/{user_id}/profile', session=session)
+    async def get_profile(self, server: str, user_id: str):    
+        data = await get_data(server='jp', type='api', path=f'/profile/{server}/{user_id}/')
         self.userId = data['user']['userGamedata']['userId']
         if int(user_id) != self.userId: raise SystemError('API error')
         self.name = data['user']['userGamedata']['name']

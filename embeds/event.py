@@ -6,13 +6,13 @@ from sekai.sekai_modules.main import (get_data, format_date, format_time, format
 from sekai.info.event_info import EventInfo, find_current_event_id
 from modules.main import defaultEmbed, errEmbed
 
-async def timeleft_embed(server: str, session:aiohttp.ClientSession):
+async def timeleft_embed(server: str):
     event_info = EventInfo()
-    current_event_id = await find_current_event_id(server=server, session=session)
+    current_event_id = await find_current_event_id(server=server)
     if current_event_id == None:
         embed = errEmbed('現時並沒有舉行任何活動')
     else:
-        await event_info.get_event_info(event_id=current_event_id, server=server, session=session)       
+        await event_info.get_event_info(event_id=current_event_id, server=server)       
         current_time = int(time.time())   
         event_id = event_info.id
         event_end_time = event_info.aggregateAt // 1000
@@ -20,8 +20,8 @@ async def timeleft_embed(server: str, session:aiohttp.ClientSession):
         event_start_time = event_info.startAt // 1000
         event_banner_name = event_info.assetbundleName
         event_end_date = format_date(server=server, seconds = event_end_time)
-        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=server)
-        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=server)
+        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp')
+        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp')
         event_url = f'https://sekai.best/event/{event_id}'
         time_left = format_time(event_end_time - current_time)
         event_progress = format_progress(event_end_time, event_start_time, current_time)
@@ -35,13 +35,13 @@ async def timeleft_embed(server: str, session:aiohttp.ClientSession):
         embed.add_field(name='更多資訊', value=event_url, inline=False)
     return embed
                
-async def event_embed(server: str, session:aiohttp.ClientSession):     
+async def event_embed(server: str):     
     event_info = EventInfo()
-    current_event_id = await find_current_event_id(server=server, session=session)
+    current_event_id = await find_current_event_id(server=server)
     if current_event_id == None:
         embed = errEmbed('現時並沒有舉行任何活動')
     else:
-        await event_info.get_event_info(event_id=current_event_id, server=server, session=session)       
+        await event_info.get_event_info(event_id=current_event_id, server=server)       
         event_id = event_info.id
         event_end_time = event_info.aggregateAt
         event_name = event_info.name
@@ -52,9 +52,9 @@ async def event_embed(server: str, session:aiohttp.ClientSession):
         event_bonus_characters_name_list = event_info.eventCharacters
         event_start_date = format_date(server=server, seconds = event_start_time // 1000)
         event_end_date = format_date(server=server, seconds = event_end_time // 1000)
-        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp', session=session)
+        logo_url = await get_data(server=server, type='assets', path=f'event/{event_banner_name}/logo_rip/logo.webp')
         error_logo_url = f'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
-        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp', session=session)
+        banner_url = await get_data(server=server, type='assets', path=f'home/banner/{event_banner_name}_rip/{event_banner_name}.webp')
         error_banner_url = f'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png'
         event_url = f'https://sekai.best/event/{event_id}'
         attribute_emoji = attributes[event_bonus_attribute]

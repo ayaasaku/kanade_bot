@@ -3,15 +3,15 @@ from modules.main import defaultEmbed
 from sekai.info.music_info import MusicInfo
 from sekai.sekai_modules.main import get_data, format_date
 
-async def music_embed(server: str, group: str, session: aiohttp.ClientSession):
-    diff = await get_data(server=server, type='diff', path='main/musicTags.json', session=session)
+async def music_embed(server: str, group: str):
+    diff = await get_data(server=server, type='diff', path='main/musicTags.json')
     group_music_embed_list = []
     for thing in diff:
         if thing['musicTag'] == f'{group}':
             music_id = thing['musicId']
 
             music_info = MusicInfo()
-            await music_info.get_music_info(music_id=music_id, server=server, session=session)
+            await music_info.get_music_info(music_id=music_id, server=server)
             
             asset_name = music_info.assetbundleName
 

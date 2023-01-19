@@ -2,8 +2,9 @@ import aiohttp
 from datetime import (datetime, timedelta)
 
 from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
+from run import appid, appsecret
 
-async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSession):
+async def get_data(server: str, type: str, path: str):
     #raise error
     possible_server = ['tw','jp']
     possible_type = ['api', 'diff', 'assets']
@@ -14,10 +15,13 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
     
     #run
     content_type = 'text/plain'
+    session = aiohttp.ClientSession()
     
     if type == 'api':
         url = api
-        content_type = 'text/html'
+        content_type = 'application/json'
+        headers = {'appid': f'{appid}', 'appsecret': f'{appsecret}'}
+        session = aiohttp.ClientSession(headers=headers)
         
     elif type == 'assets':
         if server == 'tw':
@@ -35,7 +39,7 @@ async def get_data(server: str, type: str, path: str ,session: aiohttp.ClientSes
     
     data = f'{url}{path}'
     
-    async with aiohttp.ClientSession().get(data) as r:
+    async with session.get(data) as r:
         json = await r.json(content_type=f'{content_type}')
         return json
     

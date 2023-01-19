@@ -9,6 +9,7 @@ from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
 load_dotenv()
 appid = os.getenv('APPID')
 appsecret = os.getenv('APPSECRET')
+
 async def get_data(server: str, type: str, path: str):
     #raise error
     possible_server = ['tw','jp']
@@ -20,7 +21,6 @@ async def get_data(server: str, type: str, path: str):
     
     #run
     content_type = 'text/plain'
-    global session
     session = aiohttp.ClientSession()
     
     if type == 'api':
@@ -35,6 +35,7 @@ async def get_data(server: str, type: str, path: str):
         elif server == 'jp':
             url = jp_asset
         data = f'{url}{path}'
+        await session.close()
         return data
             
     elif type == 'diff':

@@ -34,9 +34,9 @@ async def get_data(server: str, type: str, path: str):
             url = tw_asset
         elif server == 'jp':
             url = jp_asset
-        data = f'{url}{path}'
+        link = f'{url}{path}'
         await session.close()
-        return data
+        return link
             
     elif type == 'diff':
         if server == 'tw':

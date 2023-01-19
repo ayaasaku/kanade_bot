@@ -20,6 +20,7 @@ async def get_data(server: str, type: str, path: str):
     
     #run
     content_type = 'text/plain'
+    global session
     session = aiohttp.ClientSession()
     
     if type == 'api':
@@ -46,7 +47,8 @@ async def get_data(server: str, type: str, path: str):
     
     async with session.get(data) as r:
         json = await r.json(content_type=f'{content_type}')
-        return json
+        await session.close()
+        return json    
     
 #time formatting    
 # Format time in Dd Hh Mm Ss format

@@ -34,7 +34,7 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
             embed = errEmbed(
             '目前還沒支持台服喔',
             f'台服的功能將於稍後推出，\n敬請期待。') 
-            interaction.followup.send(embed=embed) 
+            await interaction.followup.send(embed=embed) 
         else:
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()

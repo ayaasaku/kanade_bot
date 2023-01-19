@@ -1,5 +1,4 @@
 import aiosqlite
-import asyncio
 
 import discord
 from discord import Embed, app_commands, ui, SelectOption
@@ -32,9 +31,10 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
     async def profile(self, interaction: discord.Interaction, option:str, person: discord.User = None):
         await interaction.response.defer(ephemeral=True)
         if option == 'tw':
-             errEmbed(
+            embed = errEmbed(
             '目前還沒支持台服喔',
             f'台服的功能將於稍後推出，\n敬請期待。') 
+            interaction.followup.send(embed=embed) 
         else:
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()

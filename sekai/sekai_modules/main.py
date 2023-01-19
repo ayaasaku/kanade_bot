@@ -1,9 +1,14 @@
 import aiohttp
+import os
+
+from dotenv import load_dotenv
 from datetime import (datetime, timedelta)
 
 from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
-from run import appid, appsecret
 
+load_dotenv()
+appid = os.getenv('APPID')
+appsecret = os.getenv('APPSECRET')
 async def get_data(server: str, type: str, path: str):
     #raise error
     possible_server = ['tw','jp']

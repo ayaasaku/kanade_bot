@@ -18,8 +18,7 @@ from modules.main import errEmbed, log
 
 load_dotenv()
 token = os.getenv('TOKEN')
-appid = os.getenv('APPID')
-appsecret = os.getenv('APPSECRET')
+
 
 intents = Intents.default()
 intents.members = True

@@ -1,5 +1,4 @@
 import aiosqlite
-import asyncio
 
 import discord
 from discord import Embed, app_commands, ui, SelectOption

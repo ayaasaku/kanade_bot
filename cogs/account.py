@@ -19,9 +19,6 @@ class AccountCog(commands.Cog, name='account'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         
-        global session
-        session = self.bot.session
-        
         global none_embed
         none_embed = errEmbed(
             '玩家ID不存在',
@@ -63,7 +60,7 @@ class AccountCog(commands.Cog, name='account'):
             discord_id = str(interaction.user.id)
             player_id = str(self.player_id)
             name = interaction.user.display_name
-            api = await get_data(server='jp', type='api', path=f'user/{self.player_id}/profile', session=session)
+            api = await get_data(server='jp', type='api', path=f'user/{self.player_id}/profile')
             none = {}
             if api != none :  
                 await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))

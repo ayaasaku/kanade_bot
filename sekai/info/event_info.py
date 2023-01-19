@@ -56,7 +56,6 @@ class EventInfo(object):
                 
 async def find_current_event_id(server: str):
     server = server
-    session = session
     data = await get_data(server=f'{server}', type='diff', path='master/events.json')         
     for event in data:
         event_start_time = event['startAt']

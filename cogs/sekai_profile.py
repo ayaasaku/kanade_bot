@@ -19,9 +19,6 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         
-        global session
-        session = self.bot.session
-        
         global none_embed
         none_embed = errEmbed(
             '玩家ID不存在',

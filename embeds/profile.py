@@ -10,7 +10,7 @@ from modules.main import defaultEmbed
 async def user_profile_embed(import_id: str, server: str):
     user_id = import_id
     profile = UserProfile()
-    await profile.get_profile(user_id=user_id)
+    await profile.get_profile(server=server, user_id=user_id)
    
     name = profile.name
     rank = profile.rank

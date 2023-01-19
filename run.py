@@ -83,7 +83,7 @@ class KanadeBot(commands.Bot):
                 type(error), error, error.__traceback__, file=sys.stderr)
 
     async def close(self) -> None:
-        self.session.close()
+        await self.session.close()
         return await super().close()
 
 

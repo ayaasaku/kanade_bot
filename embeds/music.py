@@ -15,7 +15,7 @@ async def music_embed(server: str, group: str):
             
             asset_name = music_info.assetbundleName
 
-            album_cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{asset_name}_rip/{asset_name}.webp"
+            album_cover_url = f"https://minio.dnaroma.eu/sekai-assets/music/jacket/{asset_name}_rip/{asset_name}_org.webp"
             music_url = f'https://sekai.best/music/{music_id}'
 
             release_date = format_date(server=server, seconds=music_info.publishedAt // 1000)

@@ -24,8 +24,11 @@ class AccountCog(commands.Cog, name='account'):
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
             
     @app_commands.command(name='id', description='查看一個玩家的ID') 
+    @app_commands.choices(option=[
+        Choice(name='jp', value='jp'),
+        Choice(name='tw', value='tw')])  
     @app_commands.rename(person='其他玩家')
-    async def id(self, interaction: discord.Interaction, person: discord.User = None):
+    async def id(self, interaction: discord.Interaction, option: str, person: discord.User = None):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
@@ -37,7 +40,8 @@ class AccountCog(commands.Cog, name='account'):
             discord_id = person.id
             name = person.display_name
             avatar = person.display_avatar
-        await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+            
+        await cursor.execute('SELECT player_id_jp from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         if player_id is None:
             embed = none_embed
@@ -62,7 +66,7 @@ class AccountCog(commands.Cog, name='account'):
             api = await get_data(server='jp', type='api', path=f'user/{self.player_id}/profile')
             none = {}
             if api != none :  
-                await cursor.execute('INSERT INTO user_accounts(discord_id, player_id) VALUES(?, ?)', (discord_id, player_id))
+                await cursor.execute('INSERT INTO user_accounts(discord_id, player_id_jp) VALUES(?, ?)', (discord_id, player_id))
                 await db.commit()
                 title = '** 成功 **'
                 description = f'{name}，感謝使用奏寶，帳號已設置成功。'

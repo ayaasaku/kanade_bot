@@ -43,7 +43,7 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
                 person = interaction.user
             else:
                 discord_id = person.id   
-            await cursor.execute('SELECT player_id from user_accounts WHERE discord_id = ?', (str(discord_id),))
+            await cursor.execute('SELECT player_id_jp from user_accounts WHERE discord_id = ?', (str(discord_id),))
             player_id = await cursor.fetchone()
             if player_id is None:
                 embed = none_embed

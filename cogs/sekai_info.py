@@ -4,10 +4,13 @@ from discord.ui import (Select, View)
 from discord.ext import commands
 from discord.app_commands import Choice
 
+
 from modules.paginator import GeneralPaginator
 from modules.main import loadingEmbed
+
 from embeds.event import timeleft_embed, event_embed
 from embeds.music import music_embed
+
 from data.emoji_data import group_icon_square
 
 
@@ -15,21 +18,25 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
     def __init__(self, bot):
         self.bot = bot
 
+
     #event    
     @app_commands.command(name='timeleft', description='查看本期活動的剩餘時間')
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
+    
     async def time_left(self, interaction: discord.Interaction, option: str):
         embed = await timeleft_embed(server=option)
         await interaction.response.send_message(embed=embed)
+         
                 
     @app_commands.command(name='event', description='查看本期活動的資訊')    
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
-        Choice(name='tw', value='tw')])            
+        Choice(name='tw', value='tw')])   
+             
     async def event(self, interaction: discord.Interaction, option: str):      
         embed = await event_embed(server=option)
         await interaction.response.send_message(embed=embed)
@@ -58,12 +65,14 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
                 await interaction.followup.send(embed=embed)
     '''
     
+    
     #music
     @app_commands.command(name='music', description='查看所有歌曲') 
     @app_commands.rename(option='選項')
     @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
+    
     async def music(self, interaction: discord.Interaction, option: str): 
         select = Select(placeholder='選擇歌曲分類', options = [
                     SelectOption(label='25點，Nightcord見。', description='25時、ナイトコードで。', emoji= group_icon_square['school_refusal']), 

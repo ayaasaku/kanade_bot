@@ -6,6 +6,7 @@ from datetime import (datetime, timedelta)
 
 from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
 
+
 load_dotenv()
 appid = os.getenv('APPID')
 appsecret = os.getenv('APPSECRET')
@@ -50,6 +51,7 @@ async def get_data(server: str, type: str, path: str):
         json = await r.json(content_type=f'{content_type}')
         await session.close()
         return json    
+    
     
 #time formatting    
 # Format time in Dd Hh Mm Ss format

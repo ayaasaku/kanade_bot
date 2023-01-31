@@ -1,10 +1,10 @@
-import aiohttp
+from modules.main import defaultEmbed
 
-from data.emoji_data import character_icons
 from sekai.sekai_modules.main import format_date
 from sekai.sekai_modules.main import get_data
 from sekai.user.profile.profile import UserProfile
-from modules.main import defaultEmbed
+
+from data.emoji_data import character_icons
 
 
 async def user_profile_embed(import_id: str, server: str):
@@ -15,12 +15,14 @@ async def user_profile_embed(import_id: str, server: str):
     name = profile.name
     rank = profile.rank
     word = profile.word
+    
     if word == None or word == '' : word = '此玩家並沒有設置簡介'       
     leader_id = profile.userDecks['leader']
     cards_info = profile.userCards
     status_convert = {
         'original': 'normal',
         'special_training': 'after_training'}
+    
     for card in cards_info:
         if card['cardId'] == leader_id:
             card_id = card['cardId']
@@ -38,6 +40,7 @@ async def user_profile_embed(import_id: str, server: str):
     userCharacters = profile.userCharacters
     characters_ranks = ''
     count = 0
+    
     for character in userCharacters:
         id = character['characterId']
         emoji = character_icons[f'chr_ts_90_{id}']
@@ -62,4 +65,5 @@ async def user_profile_embed(import_id: str, server: str):
     embed_list = [embed, embed2]
     for embed in embed_list:
         embed.set_footer(text=f'玩家ID：{import_id}', icon_url=f'{profile_pic}')
+        
     return embed_list

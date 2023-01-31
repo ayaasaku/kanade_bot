@@ -1,9 +1,8 @@
-import discord
-from discord import Embed, Colour
 from datetime import datetime
 
-def __init__(self, bot):
-        self.bot = bot
+import discord
+from discord import Embed, Colour
+
 
 #ayaakaa
 async def is_ayaakaa (interaction:discord.Interaction):
@@ -12,6 +11,7 @@ async def is_ayaakaa (interaction:discord.Interaction):
         return False
     else:
         return True
+
 
 #embeds    
 def defaultEmbed(title: str = '', description: str = ''):
@@ -26,9 +26,7 @@ def loadingEmbed(text: str):
 def errEmbed(title: str = '', message: str = ''):
     embed = Embed(title=title, description=message, color= Colour.from_str('#F13650'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
-    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", 
-                    icon_url=f''
-                    )
+    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", icon_url=f'' )
     return embed
 
 def notAyaakaaEmbed():
@@ -40,6 +38,7 @@ def successEmbed(title: str = '', message: str = ''):
     embed = Embed(title=title, description=message, color= Colour.from_str('#3DC05F'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
+
 
 #log
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):

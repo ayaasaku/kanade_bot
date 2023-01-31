@@ -1,8 +1,9 @@
 import discord, aiosqlite
-from discord import app_commands, client, Interaction, utils
+from discord import app_commands, Interaction, utils
 from discord.ext import commands
 
 from modules.main import is_ayaakaa, defaultEmbed
+
 
 class AdminCog(commands.Cog, name='admin'):
     def __init__(self, bot):
@@ -17,6 +18,7 @@ class AdminCog(commands.Cog, name='admin'):
                         icon_url="https://avatars.githubusercontent.com/u/80079457?v=4")
         return embed
 
+
     @app_commands.command(name='embed', description='embed')
     @app_commands.rename(
         description='embed-description', \
@@ -24,6 +26,7 @@ class AdminCog(commands.Cog, name='admin'):
         cmd_2='cmd-2-name', cmd_2_des_ln_1='cmd-2-description', cmd_2_des_ln_2='cmd-2-description2', \
         cmd_3='cmd-3-name', cmd_3_des_ln_1='cmd-3-description', cmd_3_des_ln_2='cmd-3-description2'
         )
+    
     async def update(self, interaction: discord.Interaction, description: str, \
         cmd_1: str = '', cmd_1_des_ln_1: str = '', cmd_1_des_ln_2: str = '', \
         cmd_2: str = '', cmd_2_des_ln_1: str = '', cmd_2_des_ln_2: str = '', \
@@ -38,6 +41,7 @@ class AdminCog(commands.Cog, name='admin'):
             if len(cmd_3) >= 1:
                 embed.add_field(name=cmd_3, value=f'{cmd_3_des_ln_1}\n{cmd_3_des_ln_2}', inline=False)
             await interaction.response.send_message(embed=embed)
+
 
     @app_commands.command(name='say', description='用奏寶說話')
     async def say(self, i: Interaction, message: str):
@@ -64,6 +68,7 @@ class AdminCog(commands.Cog, name='admin'):
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
     
+    
     @app_commands.command(name='guilds', description='guilds')
     async def guilds(self, interaction: discord.Interaction):
         ayaakaa = await is_ayaakaa(interaction)
@@ -86,6 +91,7 @@ class AdminCog(commands.Cog, name='admin'):
             await cursor.execute('DELETE FROM user_accounts WHERE player_id = ?', (str(player_id),))
             await db.commit()
             await interaction.response.send_message('成功')
+            
             
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(AdminCog(bot))

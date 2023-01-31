@@ -1,14 +1,18 @@
-import aiohttp, time
+import time
+
+from modules.main import defaultEmbed, errEmbed
+
+from sekai.sekai_modules.main import get_data, format_date, format_time, format_progress
+from sekai.info.event_info import EventInfo, find_current_event_id
 
 from data.emoji_data import attributes
 from data.translate_data import translate
-from sekai.sekai_modules.main import (get_data, format_date, format_time, format_progress)
-from sekai.info.event_info import EventInfo, find_current_event_id
-from modules.main import defaultEmbed, errEmbed
+
 
 async def timeleft_embed(server: str):
     event_info = EventInfo()
     current_event_id = await find_current_event_id(server=server)
+    
     if current_event_id == None:
         embed = errEmbed('現時並沒有舉行任何活動')
     else:
@@ -33,11 +37,14 @@ async def timeleft_embed(server: str):
         embed.add_field(name=f'進度', value=f'{event_progress}', inline=False)
         embed.add_field(name=f'結束日期', value=f'{event_end_date}', inline=False)
         embed.add_field(name='更多資訊', value=event_url, inline=False)
+        
     return embed
+               
                
 async def event_embed(server: str):     
     event_info = EventInfo()
     current_event_id = await find_current_event_id(server=server)
+    
     if current_event_id == None:
         embed = errEmbed('現時並沒有舉行任何活動')
     else:

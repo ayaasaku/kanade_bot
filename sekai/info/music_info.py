@@ -1,6 +1,5 @@
-import aiohttp
-
 from sekai.sekai_modules.main import get_data
+
 
 class MusicInfo(object):
     def __init__(self):

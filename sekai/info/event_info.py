@@ -1,7 +1,7 @@
 import time
-import aiohttp
 
 from sekai.sekai_modules.main import get_data
+
 
 class EventInfo(object):
     def __init__(self):
@@ -24,7 +24,8 @@ class EventInfo(object):
     async def get_event_info(self, event_id: int, server: str):
         data = await get_data(server=f'{server}', type='diff', path='master/events.json')  
         data2 = await get_data(server=f'{server}', type='diff', path='master/eventDeckBonuses.json')    
-        data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json')    
+        data3 = await get_data(server=f'tw', type='diff', path='main/gameCharacters.json')  
+          
         for event in data:
             if event['id'] == event_id:
                 self.id = event['id']
@@ -53,6 +54,7 @@ class EventInfo(object):
                 if None in self.eventCharacters:
                     self.eventCharacters.remove(None)
                 self.eventCharacters = list(dict.fromkeys(self.eventCharacters))
+                
                 
 async def find_current_event_id(server: str):
     server = server

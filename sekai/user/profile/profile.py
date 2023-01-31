@@ -1,5 +1,6 @@
-import aiohttp
 from sekai.sekai_modules.main import get_data
+
+
 class UserProfile(object):
     def __init__(self):
         #user['userGamedata']

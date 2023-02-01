@@ -185,12 +185,11 @@ class SekaiUserCog(commands.Cog, name='sekai_user'):
         Choice(name='tw', value='tw')])  
     
     async def profile(self, interaction: discord.Interaction, option:str, person: discord.User = None):
-        await interaction.response.defer(ephemeral=True)
         if option == 'tw':
             embed = errEmbed(
             '目前還沒支持台服喔',
             f'台服的功能將於稍後推出，\n敬請期待。') 
-            await interaction.followup.send(embed=embed) 
+            await interaction.response.send_message(embed=embed, ephemeral=True) 
         else:
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
@@ -206,12 +205,12 @@ class SekaiUserCog(commands.Cog, name='sekai_user'):
             
             if player_id is None:
                 embed = none_embed
-                await interaction.followup.send(embed=embed, ephemeral= True)   
+                await interaction.response.send_message(embed=embed, ephemeral=True)    
             else:
                 player_id = player_id[0]
                 if type(player_id) != str: str(player_id)
                 embed = await event_ranking_embed(server=option, user_id=player_id)
-                await interaction.followup.send(embed=embed) 
+                await interaction.response.send_message(embed=embed) 
     
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiUserCog(bot))

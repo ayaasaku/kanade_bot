@@ -18,6 +18,7 @@ class AccountCog(commands.Cog, name='account'):
         none_embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
+        self.register_server = ''
             
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.choices(option=[
@@ -51,11 +52,10 @@ class AccountCog(commands.Cog, name='account'):
             await interaction.followup.send(embed=embed)
         
     class RegisterModal(ui.Modal, title=f'註冊帳戶'):   
-        def __init__(self):
-            pass
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
-        async def on_submit(self, option: str, interaction: Interaction):
+        async def on_submit(self, interaction: Interaction):
+            option = AccountCog.register_server
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = str(interaction.user.id)
@@ -86,6 +86,7 @@ class AccountCog(commands.Cog, name='account'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     async def register(self, option: str, interaction: Interaction):
+        self.register_server = option
         db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=option)
         if check == False:

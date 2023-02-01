@@ -1,14 +1,11 @@
 import aiosqlite
 
 import discord
-from discord import Embed, app_commands, ui, SelectOption
-from discord.ui import View, Select
+from discord import app_commands, ui, Interaction
 from discord.ext import commands
 from discord.app_commands import Choice
-from matplotlib.pyplot import get
 
-from modules.main import defaultEmbed, loadingEmbed, errEmbed, successEmbed, is_ayaakaa,notAyaakaaEmbed
-from modules.paginator import GeneralPaginator
+from modules.main import defaultEmbed, errEmbed, successEmbed
 from account.modules.register import check_user_account
 from sekai.sekai_modules.main import get_data
 
@@ -27,7 +24,7 @@ class AccountCog(commands.Cog, name='account'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     @app_commands.rename(person='其他玩家')
-    async def id(self, interaction: discord.Interaction, server: str, person: discord.User = None):
+    async def id(self, interaction: Interaction, server: str, person: discord.User = None):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
@@ -53,12 +50,12 @@ class AccountCog(commands.Cog, name='account'):
             embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
             await interaction.followup.send(embed=embed)
         
-    class RegisterModal(discord.ui.Modal, title=f'註冊帳戶'):   
+    class RegisterModal(ui.Modal, title=f'註冊帳戶'):   
         def __init__(self):
             pass
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
-        async def on_submit(self, server: str, interaction: discord.Interaction):
+        async def on_submit(self, server: str, interaction: Interaction):
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = str(interaction.user.id)
@@ -88,7 +85,7 @@ class AccountCog(commands.Cog, name='account'):
     @app_commands.choices(server=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
-    async def register(self, server: str, interaction: discord.Interaction):
+    async def register(self, server: str, interaction: Interaction):
         db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=server)
         if check == False:

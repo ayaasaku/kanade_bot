@@ -65,7 +65,7 @@ def format_time(seconds: int):
 
 # Format seconds to approximate hours
 def format_hour(seconds: int):
-    hours = (seconds // 3600) % 24
+    hours = (seconds // 3600) 
     return hours
 
 # Format date in YYYY-MM-DD HH:MM:SS UTC format

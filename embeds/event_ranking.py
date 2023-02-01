@@ -22,6 +22,7 @@ async def event_ranking_embed(server: str, user_id: str):
         current_time = int(time.time())   
         event_start_time = event_info.startAt // 1000
         seconds_passed = current_time - event_start_time
+        if server == 'jp': seconds_passed += 3600
         hours_passed = format_hour(seconds_passed)
         
         await event_ranking_info.get_user_event_ranking(event_id=current_event_id, server=server, user_id=user_id)

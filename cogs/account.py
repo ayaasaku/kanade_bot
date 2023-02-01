@@ -20,11 +20,11 @@ class AccountCog(commands.Cog, name='account'):
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
             
     @app_commands.command(name='id', description='查看一個玩家的ID') 
-    @app_commands.choices(server=[
+    @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     @app_commands.rename(person='其他玩家')
-    async def id(self, interaction: Interaction, server: str, person: discord.User = None):
+    async def id(self, interaction: Interaction, option: str, person: discord.User = None):
         await interaction.response.defer()
         db = await aiosqlite.connect("kanade_data.db")
         cursor = await db.cursor()
@@ -36,9 +36,9 @@ class AccountCog(commands.Cog, name='account'):
             discord_id = person.id
             name = person.display_name
             avatar = person.display_avatar
-        if server == 'jp':    
+        if option == 'jp':    
             await cursor.execute('SELECT player_id_jp from user_accounts WHERE discord_id = ?', (str(discord_id),))
-        elif server == 'tw':
+        elif option == 'tw':
             await cursor.execute('SELECT player_id_tw from user_accounts WHERE discord_id = ?', (str(discord_id),))
         player_id = await cursor.fetchone()
         if player_id is None:
@@ -55,20 +55,20 @@ class AccountCog(commands.Cog, name='account'):
             pass
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
-        async def on_submit(self, server: str, interaction: Interaction):
+        async def on_submit(self, option: str, interaction: Interaction):
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = str(interaction.user.id)
             player_id = str(self.player_id)
             name = interaction.user.display_name
-            api = await get_data(server=server, type='api', path=f'user/{self.player_id}/profile')
+            api = await get_data(server=option, type='api', path=f'user/{self.player_id}/profile')
             none = {}
             if api != none :  
-                await cursor.execute(f'INSERT INTO user_accounts(discord_id, player_id_{server}) VALUES(?, ?)', (discord_id, player_id))
+                await cursor.execute(f'INSERT INTO user_accounts(discord_id, player_id_{option}) VALUES(?, ?)', (discord_id, player_id))
                 await db.commit()
-                if server == 'tw':
+                if option == 'tw':
                     title = '** 台服帳號註冊成功 **'
-                elif server == 'jp':
+                elif option == 'jp':
                     title = '** 日服帳號註冊成功 **'
                 description = f'{name}，感謝使用奏寶，帳號已設置成功。'
                 embed = successEmbed(title, description)
@@ -82,12 +82,12 @@ class AccountCog(commands.Cog, name='account'):
                 await interaction.response.send_message(embed=embed, ephemeral= True)
 
     @app_commands.command(name='register', description='註冊玩家ID')    
-    @app_commands.choices(server=[
+    @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
-    async def register(self, server: str, interaction: Interaction):
+    async def register(self, option: str, interaction: Interaction):
         db = await aiosqlite.connect("kanade_data.db")
-        check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=server)
+        check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=option)
         if check == False:
             await interaction.response.send_modal(self.RegisterModal())
         else:

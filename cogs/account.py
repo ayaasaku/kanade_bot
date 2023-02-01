@@ -85,7 +85,7 @@ class AccountCog(commands.Cog, name='account'):
     @app_commands.choices(option=[
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
-    async def register(self, option: str, interaction: Interaction):
+    async def register(self, option: str, interaction: discord.Interaction):
         self.register_server = option
         db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=option)

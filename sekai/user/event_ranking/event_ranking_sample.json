@@ -1,0 +1,20 @@
+{
+    "rankings": [
+        {"isOwn": false, 
+        "name": "綾霞", 
+        "rank": 316203, 
+        "score": 70339, 
+        "userCard": {"cardId": 327, "defaultImage": "special_training", "level": 50, "masterRank": 5, "specialTrainingStatus": "done"
+            }, "userCheerfulCarnival": {"cheerfulCarnivalTeamId": 46, "eventId": 84, "registerAt": 1675152060845, "teamChangeCount": 0
+            }, "userId": 244775114281091084, "userProfile": {"profileImageType": "leader", "twitterId": "ayaakaa_1127", "userId": 244775114281091084, "word": ""
+            }, "userProfileHonors": [
+                {"bondsHonorViewType": "none", "bondsHonorWordId": 0, "honorId": 65, "honorLevel": 5, "profileHonorType": "normal", "seq": 1
+                },
+                {"bondsHonorViewType": "normal", "bondsHonorWordId": 1171801, "honorId": 1171801, "honorLevel": 1, "profileHonorType": "bonds", "seq": 2
+                },
+                {"bondsHonorViewType": "none", "bondsHonorWordId": 0, "honorId": 69, "honorLevel": 4, "profileHonorType": "normal", "seq": 3
+                }
+            ]
+        }
+    ]
+}

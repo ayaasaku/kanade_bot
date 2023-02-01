@@ -63,6 +63,11 @@ def format_time(seconds: int):
     output = f"{days}d {hours}h {minutes}m {seconds}s"
     return output
 
+# Format seconds to approximate hours
+def format_hour(seconds: int):
+    hours = (seconds // 3600) % 24
+    return hours
+
 # Format date in YYYY-MM-DD HH:MM:SS UTC format
 def format_date(server:str, seconds: int):
     possible_server = ['tw','jp']

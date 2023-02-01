@@ -8,11 +8,12 @@ from modules.main import loadingEmbed, errEmbed
 from modules.paginator import GeneralPaginator
 
 from embeds.profile import user_profile_embed
+from embeds.event_ranking import event_ranking_embed
 
 from data.emoji_data import *
 
 
-class SekaiProfileCog(commands.Cog, name='sekai_profile'):
+class SekaiUserCog(commands.Cog, name='sekai_user'):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         
@@ -22,6 +23,7 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
     
     
+    #Profile
     @app_commands.command(name='profile', description='查看一個玩家的帳戶') 
     @app_commands.rename(person='其他玩家')
     @app_commands.choices(option=[
@@ -175,6 +177,41 @@ class SekaiProfileCog(commands.Cog, name='sekai_profile'):
         await interaction.response.send_message(view=view)
     '''
     
+    #Event
+    @app_commands.command(name='rank', description='查看現時活動的個人排名') 
+    @app_commands.rename(person='其他玩家')
+    @app_commands.choices(option=[
+        Choice(name='jp', value='jp'),
+        Choice(name='tw', value='tw')])  
+    
+    async def profile(self, interaction: discord.Interaction, option:str, person: discord.User = None):
+        await interaction.response.defer(ephemeral=True)
+        if option == 'tw':
+            embed = errEmbed(
+            '目前還沒支持台服喔',
+            f'台服的功能將於稍後推出，\n敬請期待。') 
+            await interaction.followup.send(embed=embed) 
+        else:
+            db = await aiosqlite.connect("kanade_data.db")
+            cursor = await db.cursor()
+            
+            if person == None:
+                discord_id = interaction.user.id
+                person = interaction.user
+            else:
+                discord_id = person.id  
+                 
+            await cursor.execute(f'SELECT player_id_{option} from user_accounts WHERE discord_id = ?', (str(discord_id),))
+            player_id = await cursor.fetchone()
+            
+            if player_id is None:
+                embed = none_embed
+                await interaction.followup.send(embed=embed, ephemeral= True)   
+            else:
+                player_id = player_id[0]
+                if type(player_id) != str: str(player_id)
+                embed = await event_ranking_embed(server=option, user_id=player_id)
+                await interaction.followup.send(embed=embed) 
     
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(SekaiProfileCog(bot))
+    await bot.add_cog(SekaiUserCog(bot))

@@ -1,0 +1,632 @@
+[
+    {
+        "Id": 10000,
+        "IsReleased": [
+            true,
+            true
+        ],
+        "DefaultOrder": 0,
+        "PathName": "Aru",
+        "DevName": "Aru",
+        "Name": "亞瑠",
+        "School": "Gehenna",
+        "Club": "Kohshinjo68",
+        "StarGrade": 3,
+        "SquadType": "Main",
+        "TacticRole": "DamageDealer",
+        "Summons": [],
+        "Position": "Back",
+        "BulletType": "Explosion",
+        "ArmorType": "LightArmor",
+        "StreetBattleAdaptation": 4,
+        "OutdoorBattleAdaptation": 2,
+        "IndoorBattleAdaptation": 0,
+        "WeaponType": "SR",
+        "WeaponImg": "Weapon_Icon_10000",
+        "Cover": true,
+        "Equipment": [
+            "Hat",
+            "Hairpin",
+            "Watch"
+        ],
+        "CollectionBG": "BG_Gehenna_Collection",
+        "CollectionTexture": "Student_Portrait_Aru_Collection",
+        "FamilyName": "陸八魔",
+        "FamilyNameRuby": "",
+        "PersonalName": "亞瑠",
+        "SchoolYear": "2年級",
+        "CharacterAge": "16歲",
+        "Birthday": "3月12日",
+        "CharacterSSRNew": "哼哼哼，這是明智的選擇唷\n老師",
+        "ProfileIntroduction": "格黑娜學園所屬，徵信社68的自稱社長。\n\n在格黑娜學園的社團徵信社68裡胡亂進行非法事業的少女。\n雖然亞瑠本人希望自己看起來像帥氣的壞蛋，但卻時常事與願違，馬上就會露出自己的真面目。",
+        "Hobby": "學習經營",
+        "CharacterVoice": "近藤玲奈",
+        "BirthDay": "3/12",
+        "ArtistName": "DoReMi",
+        "CharHeightMetric": "160cm",
+        "CharHeightImperial": "5&#x27;2&quot;",
+        "StabilityPoint": 1988,
+        "AttackPower1": 369,
+        "AttackPower100": 3690,
+        "MaxHP1": 2236,
+        "MaxHP100": 19390,
+        "DefensePower1": 19,
+        "DefensePower100": 119,
+        "HealPower1": 1408,
+        "HealPower100": 4225,
+        "DodgePoint": 201,
+        "AccuracyPoint": 905,
+        "CriticalPoint": 201,
+        "CriticalDamageRate": 20000,
+        "AmmoCount": 5,
+        "AmmoCost": 1,
+        "Range": 750,
+        "RegenCost": 700,
+        "Skills": [
+            {
+                "SkillType": "autoattack",
+                "Effects": [
+                    {
+                        "Type": "DMGSingle",
+                        "Hits": [
+                            10000
+                        ],
+                        "Scale": [
+                            10000
+                        ],
+                        "Frames": {
+                            "AttackEnterDuration": 45,
+                            "AttackStartDuration": 15,
+                            "AttackEndDuration": 16,
+                            "AttackBurstRoundOverDelay": 50,
+                            "AttackIngDuration": 42,
+                            "AttackReloadDuration": 70
+                        },
+                        "CriticalCheck": "Check"
+                    }
+                ]
+            },
+            {
+                "SkillType": "ex",
+                "Name": "冷硬派射擊",
+                "Desc": "對1名敵人造成攻擊力<?1>傷害/\n對圓形範圍內的敵人造成攻擊力<?2>傷害",
+                "Parameters": [
+                    [
+                        "274%",
+                        "315%",
+                        "397%",
+                        "438%",
+                        "521%",
+                        "562%",
+                        "644%",
+                        "685%",
+                        "768%",
+                        "809%"
+                    ],
+                    [
+                        "292%",
+                        "335%",
+                        "423%",
+                        "467%",
+                        "554%",
+                        "598%",
+                        "686%",
+                        "730%",
+                        "817%",
+                        "861%"
+                    ]
+                ],
+                "Cost": [
+                    4,
+                    4,
+                    4,
+                    4,
+                    4
+                ],
+                "Icon": "COMMON_SKILLICON_CIRCLE",
+                "Effects": [
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            27438,
+                            31554,
+                            39781,
+                            43898,
+                            52125,
+                            56241,
+                            64474,
+                            68585,
+                            76818,
+                            80934
+                        ]
+                    },
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            29207,
+                            33584,
+                            42344,
+                            46727,
+                            55487,
+                            59864,
+                            68625,
+                            73007,
+                            81768,
+                            86150
+                        ]
+                    }
+                ]
+            },
+            {
+                "SkillType": "normal",
+                "Name": "暗黑攻擊",
+                "Desc": "每25秒對1名敵人造成攻擊力<?1>傷害/\n以50%機率對圓形範圍內的敵人造成攻擊力<?2>傷害",
+                "Parameters": [
+                    [
+                        "152%",
+                        "160%",
+                        "168%",
+                        "198%",
+                        "206%",
+                        "213%",
+                        "244%",
+                        "251%",
+                        "259%",
+                        "290%"
+                    ],
+                    [
+                        "251%",
+                        "263%",
+                        "276%",
+                        "326%",
+                        "338%",
+                        "351%",
+                        "401%",
+                        "414%",
+                        "426%",
+                        "476%"
+                    ]
+                ],
+                "Icon": "COMMON_SKILLICON_TARGET",
+                "Effects": [
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            15270,
+                            16035,
+                            16801,
+                            19851,
+                            20617,
+                            21376,
+                            24433,
+                            25198,
+                            25958,
+                            29014
+                        ]
+                    },
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            25102,
+                            26355,
+                            27608,
+                            32631,
+                            33884,
+                            35137,
+                            40155,
+                            41414,
+                            42667,
+                            47685
+                        ]
+                    }
+                ]
+            },
+            {
+                "SkillType": "passive",
+                "Name": "社長的威嚴",
+                "Desc": "<b:CriticalDamage>增加<?1>",
+                "Parameters": [
+                    [
+                        "14%",
+                        "14.7%",
+                        "15.4%",
+                        "18.2%",
+                        "18.9%",
+                        "19.6%",
+                        "22.4%",
+                        "23.1%",
+                        "23.8%",
+                        "26.6%"
+                    ]
+                ],
+                "Icon": "COMMON_SKILLICON_WEAPONBUFF",
+                "Effects": [
+                    {
+                        "Type": "BuffSelf",
+                        "Stat": "CriticalDamageRate_Coefficient",
+                        "Scale": [
+                            1400,
+                            1470,
+                            1540,
+                            1820,
+                            1890,
+                            1960,
+                            2240,
+                            2310,
+                            2380,
+                            2660
+                        ]
+                    }
+                ]
+            },
+            {
+                "SkillType": "sub",
+                "Name": "暴徒之路",
+                "Desc": "使用Ex技能中，<b:CriticalChance>增加<?1>",
+                "Parameters": [
+                    [
+                        "20.1%",
+                        "21.1%",
+                        "22.1%",
+                        "26.2%",
+                        "27.2%",
+                        "28.2%",
+                        "32.2%",
+                        "33.2%",
+                        "34.2%",
+                        "38.3%"
+                    ]
+                ],
+                "Icon": "COMMON_SKILLICON_WEAPONBUFF",
+                "Effects": []
+            },
+            {
+                "SkillType": "weaponpassive",
+                "Name": "社長的威嚴+",
+                "Desc": "<b:CriticalDamage>增加<?1>\n追加：<b:CriticalDamage>增加<?2>",
+                "Parameters": [
+                    [
+                        "2000",
+                        "2100",
+                        "2200",
+                        "2600",
+                        "2700",
+                        "2800",
+                        "3200",
+                        "3300",
+                        "3400",
+                        "3800"
+                    ],
+                    [
+                        "14%",
+                        "14.7%",
+                        "15.4%",
+                        "18.2%",
+                        "18.9%",
+                        "19.6%",
+                        "22.4%",
+                        "23.1%",
+                        "23.8%",
+                        "26.6%"
+                    ]
+                ],
+                "Icon": "COMMON_SKILLICON_WEAPONBUFF",
+                "Effects": [
+                    {
+                        "Type": "BuffSelf",
+                        "Stat": "CriticalDamageRate_Base",
+                        "Scale": [
+                            2000,
+                            2100,
+                            2200,
+                            2600,
+                            2700,
+                            2800,
+                            3200,
+                            3300,
+                            3400,
+                            3800
+                        ]
+                    }
+                ]
+            },
+            {
+                "SkillType": "gearnormal",
+                "Name": "暗黑攻擊＋",
+                "Desc": "每25秒對1名敵人造成<?1>攻擊力的傷害/\n對圓形範圍內的敵人造成攻擊力<?2>傷害",
+                "Parameters": [
+                    [
+                        "156%",
+                        "163%",
+                        "171%",
+                        "203%",
+                        "210%",
+                        "218%",
+                        "249%",
+                        "257%",
+                        "265%",
+                        "296%"
+                    ],
+                    [
+                        "256%",
+                        "269%",
+                        "282%",
+                        "333%",
+                        "346%",
+                        "359%",
+                        "410%",
+                        "423%",
+                        "436%",
+                        "487%"
+                    ]
+                ],
+                "Icon": "COMMON_SKILLICON_TARGET",
+                "Effects": [
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            15616,
+                            16398,
+                            17181,
+                            20305,
+                            21082,
+                            21864,
+                            24988,
+                            25771,
+                            26547,
+                            29672
+                        ]
+                    },
+                    {
+                        "Type": "DMGSingle",
+                        "CriticalCheck": "Check",
+                        "Scale": [
+                            25669,
+                            26956,
+                            28237,
+                            33368,
+                            34656,
+                            35937,
+                            41068,
+                            42355,
+                            43637,
+                            48768
+                        ]
+                    }
+                ]
+            }
+        ],
+        "FavorStatType": [
+            "AttackPower",
+            "MaxHP"
+        ],
+        "FavorStatValue": [
+            [
+                4,
+                0
+            ],
+            [
+                6,
+                0
+            ],
+            [
+                7,
+                48
+            ],
+            [
+                9,
+                58
+            ],
+            [
+                2,
+                10
+            ],
+            [
+                4,
+                15
+            ],
+            [
+                6,
+                25
+            ]
+        ],
+        "FavorAlts": [
+            10031
+        ],
+        "MemoryLobby": [
+            6,
+            6
+        ],
+        "MemoryLobbyBGM": "Guruguru Usagi",
+        "FurnitureInteraction": [
+            [],
+            []
+        ],
+        "FavorItemTags": [
+            "Curios",
+            "Roman"
+        ],
+        "FavorItemUniqueTags": [
+            "F_Aru"
+        ],
+        "IsLimited": 0,
+        "Weapon": {
+            "Name": "Wine-red．Admire",
+            "Desc": "亞瑠平時非常寶貝的古典狙擊步槍。\n\n光是拿在手上就會讓冷硬派的氣質上升……的樣子。",
+            "AdaptationType": "Street",
+            "AdaptationValue": 1,
+            "AttackPower1": 162,
+            "AttackPower100": 1621,
+            "MaxHP1": 561,
+            "MaxHP100": 5607,
+            "HealPower1": 0,
+            "HealPower100": 0,
+            "StatLevelUpType": "Standard"
+        },
+        "Gear": {
+            "Released": [
+                true,
+                true
+            ],
+            "StatType": [
+                "AccuracyPoint_Base"
+            ],
+            "StatValue": [
+                [
+                    150,
+                    150
+                ]
+            ],
+            "Name": "亞瑠十分珍貴的錢包",
+            "Desc": "亞瑠愛用的高級錢包。\n雖然是用優質原料製作的高級品，但因為用了很久的時間，所以各處都有些褪色或瑕疵。首次創立徵信社後，遙香、佳世子、無月一起合資送給亞瑠的禮物，對亞瑠來說是用任何東西都無法交換的珍貴物品。",
+            "Icon": "Gear_Icon_10000",
+            "TierUpMaterial": [
+                [
+                    5017,
+                    150,
+                    151
+                ]
+            ],
+            "TierUpMaterialAmount": [
+                [
+                    4,
+                    80,
+                    25
+                ]
+            ]
+        },
+        "SkillExMaterial": [
+            [
+                3030,
+                150
+            ],
+            [
+                3031,
+                3030,
+                151,
+                150
+            ],
+            [
+                3032,
+                3031,
+                152,
+                151
+            ],
+            [
+                3033,
+                3032,
+                153,
+                152
+            ]
+        ],
+        "SkillExMaterialAmount": [
+            [
+                12,
+                17
+            ],
+            [
+                12,
+                18,
+                14,
+                28
+            ],
+            [
+                12,
+                18,
+                12,
+                24
+            ],
+            [
+                8,
+                18,
+                9,
+                18
+            ]
+        ],
+        "SkillMaterial": [
+            [
+                4030
+            ],
+            [
+                4030
+            ],
+            [
+                4031,
+                4030,
+                150
+            ],
+            [
+                4031,
+                151,
+                150
+            ],
+            [
+                4032,
+                4031,
+                151,
+                150
+            ],
+            [
+                4032,
+                152,
+                151
+            ],
+            [
+                4033,
+                4032,
+                153,
+                152
+            ],
+            [
+                4033,
+                153,
+                152
+            ]
+        ],
+        "SkillMaterialAmount": [
+            [
+                5
+            ],
+            [
+                8
+            ],
+            [
+                5,
+                12,
+                6
+            ],
+            [
+                8,
+                4,
+                14
+            ],
+            [
+                5,
+                12,
+                10,
+                16
+            ],
+            [
+                8,
+                4,
+                18
+            ],
+            [
+                8,
+                12,
+                4,
+                7
+            ],
+            [
+                12,
+                9,
+                16
+            ]
+        ]
+    }
+]

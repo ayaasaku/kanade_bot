@@ -1,8 +1,14 @@
 from datetime import datetime
-
+import aiohttp
 import discord
 from discord import Embed, Colour
 
+async def get_data(data, content_type):
+    session = aiohttp.ClientSession()
+    async with session.get(data) as r:
+        json = await r.json(content_type=f'{content_type}')
+        await session.close()
+        return json
 
 #ayaakaa
 async def is_ayaakaa (interaction:discord.Interaction):

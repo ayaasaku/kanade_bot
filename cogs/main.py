@@ -24,13 +24,16 @@ class MainCog(commands.Cog, name='main'):
         tuple1 = ('奏寶：','奏奏:')
         tuple2 = ('奏寶:','奏奏:')
         if msg.author.id == 831883841417248778:
+            global text
             if msg.content[0:3] in tuple1: text = msg.content.spilt('：')[1]
             elif msg.content[0:3] in tuple2: text = msg.content.spilt(': ')[1]
             if msg.type == 'reply':
                 reply_id = msg.reference.message_id
+                msg.delete()
                 reply_message = discord.utils.get(await msg.channel.history(limit=100).flatten(), id=reply_id)
                 await reply_message.reply(text)
             else:
+                msg.delete()
                 await msg.channel.send(text)
         
 async def setup(bot: commands.Bot) -> None:

@@ -21,7 +21,7 @@ class MainCog(commands.Cog, name='main'):
     
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        tuple1 = ('奏寶：','奏奏:')
+        tuple1 = ('奏寶：','奏奏：')
         tuple2 = ('奏寶:','奏奏:')
         if msg.author.id == 831883841417248778:
             global text

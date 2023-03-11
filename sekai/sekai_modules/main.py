@@ -92,3 +92,56 @@ def format_progress(end_time, start_time, current_time):
     time_left = end_time - current_time
     event_prog = round((((event_length - time_left) / event_length) * 100), 2)
     return f"{event_prog}%"
+
+async def process_resource_box_details(server, details: list):
+    common = ('jewel', 'paid_jewel', 'coin', 'virtual_coin', 'live_point')
+    non_common = ('material', 'honor', 'bonds_honor', 'bonds_honor_word', 'avatar_costume', 'costume_3d', 'gacha_ticket', 'skill_practice_ticket', 'practice_ticket', 'card', 'area_item', 'music', 'music_vocal', 'boost_item')
+    path_dict = {
+        'material': 'main/materials.json',
+        'honor': 'main/honors.json', 
+        'bonds_honor': 'main/bondsHonors.json', 
+        'bonds_honor_word': 'main/bondsHonorWords.json', 
+        'avatar_costume': 'main/avatarCostumes.json', 
+        'costume_3d': 'main/costume3ds.json', 
+        'gacha_ticket': 'main/gachaTickets.json', 
+        'skill_practice_ticket': 'main/skillPracticeTickets.json', 
+        'practice_ticket': 'main/practiceTickets.json', 
+        'card': 'main/cards.json', 
+        'area_item': 'main/areaItems.json', 
+        'music': 'main/music.json', 
+        'music_vocal': 'main/musicVocal.json', 
+        'boost_item': 'main/boostItems.json', 
+        }
+    details_list = []
+    for item in details:
+        if item in common:
+            ...
+        elif item in non_common:
+            resource_type = item['resourceType']
+            resource_id = item['resourceId']
+            resource_quantity = item['resourceQuantity']
+            try: resource_level = item['resourceLevel']
+            except: resource_level = None
+            path = path_dict[resource_type]
+            data = get_data(server=f'{server}', type='diff', path=path)
+            for item in data:
+                if item['id'] == resource_id:
+                    try: name = item['name']
+                    except: name = None
+                    try: assetbundleName = item['assetbundleName']
+                    except: assetbundleName = None
+                    dict = {
+                        'name': name,
+                        'assetbundleName': assetbundleName,
+                        'quantity': resource_quantity,
+                        'resource_level': resource_level
+                    }
+        details_list.append(dict)
+
+async def get_resource_box(server: str, resource_box_purpose: str, id: int, resource_box_type: str = None):
+    data = await get_data(server=f'{server}', type='diff', path='main/resourceBoxes.json')  
+    for item in data:
+        if resource_box_type != None and item['resourcebox_purpose'] == resource_box_purpose and item['id'] == id and item['resource_box_type'] == resource_box_type:
+            ...
+        elif resource_box_type == None and item['resourcebox_purpose'] == resource_box_purpose and item['id'] == id:
+            ...

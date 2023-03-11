@@ -1,3 +1,4 @@
+import discord
 from discord import app_commands, Interaction
 from discord.ext import commands
 
@@ -17,6 +18,20 @@ class MainCog(commands.Cog, name='main'):
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         embed.set_footer(text=f"奏寶 v{self.bot.version} - by 綾霞 Ayaakaa")
         await interaction.response.send_message(embed=embed)
-
+    
+    @commands.Cog.listener()
+    async def on_message(self, msg: discord.Message):
+        tuple1 = ('奏寶：','奏奏:')
+        tuple2 = ('奏寶:','奏奏:')
+        if msg.author.id == 831883841417248778:
+            if msg.content[0:3] in tuple1: text = msg.content.spilt('：')[1]
+            elif msg.content[0:3] in tuple2: text = msg.content.spilt(': ')[1]
+            if msg.type == 'reply':
+                reply_id = msg.reference.message_id
+                reply_message = discord.utils.get(await msg.channel.history(limit=100).flatten(), id=reply_id)
+                await reply_message.reply(text)
+            else:
+                await msg.channel.send(text)
+        
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

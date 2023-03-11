@@ -25,8 +25,8 @@ class MainCog(commands.Cog, name='main'):
         tuple2 = ('奏寶:','奏奏:')
         if msg.author.id == 831883841417248778:
             global text
-            if msg.content[0:3] in tuple1: text = msg.content.spilt('：')[1]
-            elif msg.content[0:3] in tuple2: text = msg.content.spilt(': ')[1]
+            if msg.content[0:3] in tuple1: text = msg.content.split('：')[1]
+            elif msg.content[0:3] in tuple2: text = msg.content.split(': ')[1]
             if msg.type == 'reply':
                 reply_id = msg.reference.message_id
                 msg.delete()

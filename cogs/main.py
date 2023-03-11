@@ -27,11 +27,12 @@ class MainCog(commands.Cog, name='main'):
             global text
             if msg.content[0:3] in tuple1: text = msg.content.split('：')[1]
             elif msg.content[0:3] in tuple2: text = msg.content.split(': ')[1]
-            if msg.reference is not None and not msg.is_system:
+            if msg.reference != None or msg.reference is not None:
                 reply_id = msg.reference.message_id
                 await msg.delete()
-                reply_message = discord.utils.get(await msg.channel.history(limit=100).flatten(), id=reply_id)
-                await reply_message.reply(text)
+                for item in discord.utils.get(await msg.channel.history(limit=100).flatten()):
+                    if item.id == reply_id or item.message_id == reply_id:
+                        await item.reply(text)
             else:
                 await msg.delete()
                 await msg.channel.send(text)

@@ -30,7 +30,7 @@ class MainCog(commands.Cog, name='main'):
             if msg.reference != None or msg.reference is not None:
                 reply_id = msg.reference.message_id
                 await msg.delete()
-                reply_message = await discord.utils.get(msg.channel.history(limit=5), id=reply_id)
+                reply_message = await msg.channel.fetch_message(reply_id)
                 await reply_message.reply(text)
             else:
                 await msg.delete()

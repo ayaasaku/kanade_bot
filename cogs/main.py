@@ -19,13 +19,13 @@ class MainCog(commands.Cog, name='main'):
         embed.set_footer(text=f"奏寶 v{self.bot.version} - by 綾霞 Ayaakaa")
         await interaction.response.send_message(embed=embed)
     
-    @commands.Cog.listener()
+    @commands.Cog.listener(name='bot_speak')
     async def on_message(self, msg: discord.Message):
         tuple1 = ('奏寶：','奏奏：')
         tuple2 = ('奏寶:','奏奏:')
         if msg.author.id == 831883841417248778:
-            global text
             if msg.content[0:3] in tuple1 or tuple2:
+                global text
                 if msg.content[0:3] in tuple1: text = msg.content.split('：')[1]
                 elif msg.content[0:3] in tuple2: text = msg.content.split(': ')[1]
                 if msg.reference != None or msg.reference is not None:

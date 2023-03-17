@@ -78,6 +78,7 @@ async def process_event_rewards(server: str, event_id: int):
         from_rank = range['fromRank']
         to_rank = range['toRank']
         resource_box_id = range['eventRankingRewards'][0]['resourceBoxId']
+        if type(resource_box_id) != int: resource_box_id = int(resource_box_id)
         items = await get_resource_box(server=server, resource_box_purpose='event_ranking_reward', id=resource_box_id)
         if from_rank == to_rank: text = f'第 {from_rank} 名\n'
         else: text = f'第 {from_rank} 名至第 {to_rank} 名\n'

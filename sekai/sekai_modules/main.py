@@ -114,7 +114,7 @@ async def process_resource_box_details(server, details: list):
         'boost_item': 'main/boostItems.json', 
         }
     details_list = []
-    print(details)
+    print(f'details: {details}')
     for item in details:
         if item['resourceType'] in common:
             resource_type = item['resourceType']
@@ -127,6 +127,7 @@ async def process_resource_box_details(server, details: list):
                         'quantity': resource_quantity,
                         'resource_level': None
                     }
+            details_list.append(dict)
         elif item['resourceType'] in non_common:
             resource_type = item['resourceType']
             resource_id = item['resourceId']
@@ -134,7 +135,7 @@ async def process_resource_box_details(server, details: list):
             try: resource_level = item['resourceLevel']
             except: resource_level = None
             path = path_dict[resource_type]
-            data = get_data(server=f'{server}', type='diff', path=path)
+            data = await get_data(server=f'{server}', type='diff', path=path)
             for item in data:
                 if item['id'] == resource_id:
                     try: name = item['name']
@@ -148,7 +149,8 @@ async def process_resource_box_details(server, details: list):
                         'quantity': resource_quantity,
                         'resource_level': resource_level
                     }
-        details_list.append(dict)
+            details_list.append(dict)
+        else: pass
     return details_list
 
 async def get_resource_box(server: str, resource_box_purpose: str, id: int):

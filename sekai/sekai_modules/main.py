@@ -114,8 +114,9 @@ async def process_resource_box_details(server, details: list):
         'boost_item': 'main/boostItems.json', 
         }
     details_list = []
+    print(details)
     for item in details:
-        if item in common and item not in non_common:
+        if item['resourceType'] in common:
             resource_type = item['resourceType']
             resource_quantity = item['resourceQuantity']
             dict = {
@@ -126,7 +127,7 @@ async def process_resource_box_details(server, details: list):
                         'quantity': resource_quantity,
                         'resource_level': None
                     }
-        else:
+        elif item['resourceType'] in non_common:
             resource_type = item['resourceType']
             resource_id = item['resourceId']
             resource_quantity = item['resourceQuantity']

@@ -114,7 +114,7 @@ async def process_resource_box_details(server, details: list):
         'boost_item': 'main/boostItems.json', 
         }
     details_list = []
-    print(f'details: {details}')
+    #print(f'details: {details}')
     for item in details:
         if item['resourceType'] in common:
             resource_type = item['resourceType']

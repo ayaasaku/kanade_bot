@@ -74,21 +74,14 @@ async def process_event_rewards(server: str, event_id: int):
     await event_info.get_event_info(event_id=event_id, server=server)
     event_rewards = event_info.eventRankingRewardRanges
     string = ''
-    for range in event_rewards:
-        if range['fromRank'] == range['toRank']:
-            from_rank = range['fromRank']
-            resource_box_id = range['eventRankingRewards'][0]['resourceBoxId']
-            items = await get_resource_box('event_ranking_reward', resource_box_id)
-            text = f'第 {from_rank} 名\n'
-            text += f'{items}\n'
-        else:
-            from_rank = range['fromRank']
-            to_rank = range['toRank']
-            resource_box_id = range['eventRankingReward'][0]['resourceBoxId']
-            items = await get_resource_box('event_ranking_reward', resource_box_id)
-            text = f'第 {from_rank} 名至第 {to_rank} 名\n'
-            text += f'{items}\n'
+    for range in event_rewards:    
+        from_rank = range['fromRank']
+        to_rank = range['toRank']
+        resource_box_id = range['eventRankingRewards'][0]['resourceBoxId']
+        items = await get_resource_box(server=server, resource_box_purpose='event_ranking_reward', id=resource_box_id)
+        if from_rank == to_rank: text = f'第 {from_rank} 名\n'
+        else: text = f'第 {from_rank} 名至第 {to_rank} 名\n'
+        text += f'{items}\n'
         string += text
-        
     return string
         

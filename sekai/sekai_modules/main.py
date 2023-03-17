@@ -115,7 +115,7 @@ async def process_resource_box_details(server, details: list):
         }
     details_list = []
     for item in details:
-        if item in common:
+        if item in common and item not in non_common:
             resource_type = item['resourceType']
             resource_quantity = item['resourceQuantity']
             dict = {
@@ -126,7 +126,7 @@ async def process_resource_box_details(server, details: list):
                         'quantity': resource_quantity,
                         'resource_level': None
                     }
-        elif item in non_common:
+        else:
             resource_type = item['resourceType']
             resource_id = item['resourceId']
             resource_quantity = item['resourceQuantity']

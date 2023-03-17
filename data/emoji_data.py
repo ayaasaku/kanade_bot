@@ -105,3 +105,10 @@ character_icons ={
 'chr_ts_90_26': '<:chr_ts_90_26:1022017668640952340>',
 'chr_ts_90_26_2': '<:chr_ts_90_26_2:1022017666598314005>'
 }
+
+common_materials = {
+    'coin': '<:coin:1085360809716224040>',
+    'live_point': '<:live_point:1085360841068646502>',
+    'virtual_coin': '<:virtual_coin:1085360839034417183>', 
+    'jewel': '<:jewel:1085360836983406662>'
+}

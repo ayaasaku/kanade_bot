@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from datetime import (datetime, timedelta)
 
+from data.emoji_data import common_materials
 from sekai.sekai_modules.data import (api, jp_asset, tw_asset, jp_diff, tw_diff)
 
 
@@ -115,7 +116,16 @@ async def process_resource_box_details(server, details: list):
     details_list = []
     for item in details:
         if item in common:
-            ...
+            resource_type = item['resourceType']
+            resource_quantity = item['resourceQuantity']
+            dict = {
+                        'type': 'common',
+                        'name': None,
+                        'resource_type': resource_type,
+                        'assetbundleName': None,
+                        'quantity': resource_quantity,
+                        'resource_level': None
+                    }
         elif item in non_common:
             resource_type = item['resourceType']
             resource_id = item['resourceId']
@@ -131,17 +141,36 @@ async def process_resource_box_details(server, details: list):
                     try: assetbundleName = item['assetbundleName']
                     except: assetbundleName = None
                     dict = {
+                        'type': 'non_common',
                         'name': name,
                         'assetbundleName': assetbundleName,
                         'quantity': resource_quantity,
                         'resource_level': resource_level
                     }
         details_list.append(dict)
+    return details_list
 
-async def get_resource_box(server: str, resource_box_purpose: str, id: int, resource_box_type: str = None):
+async def get_resource_box(server: str, resource_box_purpose: str, id: int):
     data = await get_data(server=f'{server}', type='diff', path='main/resourceBoxes.json')  
-    for item in data:
-        if resource_box_type != None and item['resourcebox_purpose'] == resource_box_purpose and item['id'] == id and item['resource_box_type'] == resource_box_type:
-            ...
-        elif resource_box_type == None and item['resourcebox_purpose'] == resource_box_purpose and item['id'] == id:
-            ...
+    for box in data:
+        if box['resourcebox_purpose'] == resource_box_purpose and item['id'] == id :
+            details_list = process_resource_box_details(server=server, details=item['details'])
+            string = ''
+            for item in details_list:
+                if item['type'] == 'common':
+                    emoji = common_materials[item['resource_type']]
+                    quantity = item['quantity']
+                    text = f'{emoji}x{quantity} | '
+                elif item['type'] == 'non_common':
+                    name = item['name']
+                    quantity = item['quantity']
+                    level = item['resource_level']
+                    if level != None or level is not None:
+                        text = f'{name}x{quantity} lv.{level} | '
+                    else:
+                        text = f'{name}x{quantity} | '
+                string += text
+            if string[-3:] == ' | ':
+                string = string[:-3]
+            return string
+                    

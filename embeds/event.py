@@ -3,7 +3,7 @@ import time
 from modules.main import defaultEmbed, errEmbed
 
 from sekai.sekai_modules.main import get_data, format_date, format_time, format_progress
-from sekai.info.event_info import EventInfo, find_current_event_id
+from sekai.info.event_info import EventInfo, find_current_event_id, process_event_rewards
 
 from data.emoji_data import attributes
 from data.translate_data import translate
@@ -68,6 +68,7 @@ async def event_embed(server: str):
         event_attribute_translated = translate['attributes'][event_bonus_attribute]
         event_type_translated = translate['event_type'][event_type]
         event_bonus_attribute = event_bonus_attribute.capitalize()
+        event_rewards = process_event_rewards(server=server, event_id=event_id)
         
         embed = defaultEmbed(title=f'**{event_name}**')
         try: embed.set_thumbnail(url=logo_url)
@@ -91,6 +92,7 @@ async def event_embed(server: str):
         embed.add_field(name='開始', value=event_start_date, inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='結束', value=f'{event_end_date}', inline=True)
+        embed.add_field(name='活動排名獎勵', value=event_rewards, inline=False)
         embed.add_field(name='更多資訊', value=event_url, inline=False)
         
     return embed

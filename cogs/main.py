@@ -23,7 +23,7 @@ class MainCog(commands.Cog, name='main'):
     async def on_message(self, msg: discord.Message):
         tuple1 = ('奏寶：','奏奏：')
         tuple2 = ('奏寶:','奏奏:')
-        if msg.author.id == 831883841417248778 and msg.content[0:3] in tuple1 or tuple2:
+        if msg.author.id == 831883841417248778 and msg.content[0:3] in tuple1 or msg.content[0:3] in tuple2:
             global text
             
             if msg.content[0:3] in tuple1: text = msg.content.split('：')[1]

@@ -68,7 +68,7 @@ async def event_embed(server: str):
         event_attribute_translated = translate['attributes'][event_bonus_attribute]
         event_type_translated = translate['event_type'][event_type]
         event_bonus_attribute = event_bonus_attribute.capitalize()
-        event_rewards = process_event_rewards(server=server, event_id=event_id)
+        event_rewards = await process_event_rewards(server=server, event_id=event_id)
         
         embed = defaultEmbed(title=f'**{event_name}**')
         try: embed.set_thumbnail(url=logo_url)

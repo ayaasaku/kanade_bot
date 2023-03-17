@@ -154,7 +154,7 @@ async def get_resource_box(server: str, resource_box_purpose: str, id: int):
     data = await get_data(server=f'{server}', type='diff', path='main/resourceBoxes.json')  
     for box in data:
         if box['resourceBoxPurpose'] == resource_box_purpose and box['id'] == id :
-            details_list = await process_resource_box_details(server=server, details=item['details'])
+            details_list = await process_resource_box_details(server=server, details=box['details'])
             string = ''
             for item in details_list:
                 if item['type'] == 'common':

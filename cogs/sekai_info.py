@@ -37,9 +37,10 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])   
              
-    async def event(self, interaction: discord.Interaction, option: str):      
+    async def event(self, interaction: discord.Interaction, option: str):   
+        await interaction.response.defer  
         embed = await event_embed(server=option)
-        await interaction.response.send_message(embed=embed)
+        await interaction.followup.send(embed=embed)
     
     #virtual_live 
     '''

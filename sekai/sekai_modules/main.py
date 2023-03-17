@@ -175,6 +175,6 @@ async def get_resource_box(server: str, resource_box_purpose: str, id: int):
                 string += text
             if string[-3:] == ' | ':
                 string = string[:-3]
-            print(string)
+            #print(string)
             return string
                     

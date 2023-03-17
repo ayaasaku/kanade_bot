@@ -38,7 +38,7 @@ class SekaiInfoCog(commands.Cog, name='sekai_info'):
         Choice(name='tw', value='tw')])   
              
     async def event(self, interaction: discord.Interaction, option: str):   
-        await interaction.response.defer  
+        await interaction.response.defer()
         embed = await event_embed(server=option)
         await interaction.followup.send(embed=embed)
     

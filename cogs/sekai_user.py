@@ -184,7 +184,7 @@ class SekaiUserCog(commands.Cog, name='sekai_user'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     
-    async def profile(self, interaction: discord.Interaction, option:str, person: discord.User = None):
+    async def rank(self, interaction: discord.Interaction, option:str, person: discord.User = None):
         if option == 'tw':
             embed = errEmbed(
             '目前還沒支持台服喔',

@@ -73,7 +73,7 @@ async def process_event_rewards(server: str, event_id: int):
     event_info = EventInfo()
     await event_info.get_event_info(event_id=event_id, server=server)
     event_rewards = event_info.eventRankingRewardRanges
-    string = ''
+    rewards_list = []
     for rank in event_rewards:    
         from_rank = rank['fromRank']
         to_rank = rank['toRank']
@@ -83,7 +83,6 @@ async def process_event_rewards(server: str, event_id: int):
         if from_rank == to_rank: text = f'第 {from_rank} 名\n'
         else: text = f'第 {from_rank} 名至第 {to_rank} 名\n'
         text += f'{items}\n'
-        string += text
-        print(string)
-    return string
+        rewards_list.append(text)
+    return rewards_list
         

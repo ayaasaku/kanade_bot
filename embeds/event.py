@@ -100,9 +100,9 @@ async def event_embed(server: str):
         embed.add_field(name='\u200b', value=f'活動排名獎勵：', inline=False)
         embed.add_field(name='\u200b', value=f'{part0}', inline=True)
         embed.add_field(name='\u200b', value=f'{part1}', inline=True)
-        embed.add_field(name='\u200b', value=f'{part2}', inline=True)
-        embed.add_field(name='\u200b', value=f'{part3}', inline=False)
-        embed.add_field(name='\u200b', value=f'{part4}', inline=True)
+        embed.add_field(name='\u200b', value=f'{part2}', inline=False)
+        embed.add_field(name='\u200b', value=f'{part3}', inline=True)
+        embed.add_field(name='\u200b', value=f'{part4}', inline=False)
         embed.add_field(name='\u200b', value=f'{part5}', inline=True)
         embed.add_field(name='更多資訊', value=event_url, inline=False)
         

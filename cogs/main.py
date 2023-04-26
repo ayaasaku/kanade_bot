@@ -1,13 +1,11 @@
 import discord
-from discord import app_commands, Interaction, utils, guild, DMChannel, Client
+from discord import app_commands, Interaction
 from discord.ext import commands
 
-from utility.utils import defaultEmbed, is_ayaakaa, notAyaakaaEmbed
-from utility.paginator import GeneralPaginator
+from modules.main import defaultEmbed
 
 
 class MainCog(commands.Cog, name='main'):
-    
     def __init__(self, bot):
         self.bot = bot
 
@@ -20,6 +18,27 @@ class MainCog(commands.Cog, name='main'):
         embed.set_image(url="https://i.imgur.com/ZW5OWx8.png")
         embed.set_footer(text=f"奏寶 v{self.bot.version} - by 綾霞 Ayaakaa")
         await interaction.response.send_message(embed=embed)
-
+    
+    @commands.Cog.listener()
+    async def on_message(self, msg: discord.Message):
+        tuple1 = ('奏寶：','奏奏：')
+        tuple2 = ('奏寶:','奏奏:')
+        if msg.author.id == 831883841417248778 and msg.content[0:3] in tuple1 or msg.content[0:3] in tuple2:
+            global text
+            
+            if msg.content[0:3] in tuple1: text = msg.content.split('：')[1]
+            elif msg.content[0:3] in tuple2: text = msg.content.split(': ')[1]
+            else: return
+            
+            if msg.reference != None or msg.reference is not None:
+                reply_id = msg.reference.message_id
+                await msg.delete()
+                reply_message = await msg.channel.fetch_message(reply_id)
+                await reply_message.reply(text)
+                
+            else:
+                await msg.delete()
+                await msg.channel.send(text)
+        
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MainCog(bot))

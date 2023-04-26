@@ -12,12 +12,13 @@ from discord import (Game, HTTPException, Intents, Interaction, Message,
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 
-from debug import DebugView
-from utility.utils import errEmbed, log
-from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
+from modules.debug import DebugView
+from modules.main import errEmbed, log
+#from utility.apps.sekai.virtual_live_info import virtual_live_ping_tw, virtual_live_ping_jp
 
 load_dotenv()
 token = os.getenv('TOKEN')
+
 
 intents = Intents.default()
 intents.members = True
@@ -25,7 +26,7 @@ intents.reactions = True
 intents.message_content = True
 intents.presences = True
 
-class KanadeBot(commands.Bot):
+class March7thBot(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix=['!','%'],
@@ -37,13 +38,11 @@ class KanadeBot(commands.Bot):
         self.repeat = False
         self.prev = False
         self.session = aiohttp.ClientSession()
-        self.db = await aiosqlite.connect("kanade_data.db")
+        self.db = await aiosqlite.connect("march_7th_data.db")
         self.backup_db = await aiosqlite.connect("backup.db")
         global version
         version = 2.1
         self.version = version
-        global session
-        session = aiohttp.ClientSession()
         
         await self.load_extension('jishaku')
         for filepath in Path('./cogs').glob('**/*.py'):
@@ -53,7 +52,7 @@ class KanadeBot(commands.Bot):
     async def on_ready(self):
         await self.change_presence(
             status=Status.online,
-            activity=Game(name=f'世界計畫')
+            activity=Game(name=f'星穹鐵道')
         )
         print(log(True, False, 'Bot', f'Logged in as {self.user}'))
 
@@ -83,11 +82,11 @@ class KanadeBot(commands.Bot):
                 type(error), error, error.__traceback__, file=sys.stderr)
 
     async def close(self) -> None:
-        self.session.close()
+        await self.session.close()
         return await super().close()
 
 
-bot = KanadeBot()
+bot = March7thBot()
 tree = bot.tree
 
 
@@ -114,8 +113,9 @@ async def on_ready():
     
 @tasks.loop(seconds=1)
 async def task_loop():
-    await virtual_live_ping_tw(bot, session)
-    await virtual_live_ping_jp(bot, session)
+    pass
+    #await virtual_live_ping_tw(bot, session)
+    #await virtual_live_ping_jp(bot, session)
 
 
 bot.run(token)

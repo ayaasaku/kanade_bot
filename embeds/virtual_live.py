@@ -1,9 +1,9 @@
 import aiohttp
 import time
 from utility.apps.sekai.api_functions import (get_sekai_virtual_live_api_tw, get_sekai_virtual_live_api_jp)
-from utility.apps.sekai.time_formatting import (format_date, format_date_jp)
+from sekai.sekai_modules.main import format_date
 from data.channel_list import channel_list
-from utility.utils import defaultEmbed
+from modules.main import defaultEmbed
 
 async def get_current_virtual_live(server: str, session: aiohttp.ClientSession):
     if server == 'tw':
@@ -44,8 +44,8 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                 end_at = await format_date(end_at)
                 img = f'https://storage.sekai.best/sekai-tc-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
             elif server == 'jp':
-                start_at = await format_date_jp(start_at)
-                end_at = await format_date_jp(end_at)
+                start_at = await format_date(start_at)
+                end_at = await format_date(end_at)
                 img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
             asset_name = live_list[0]['assetbundleName']
             embed = defaultEmbed(name)
@@ -71,8 +71,8 @@ async def get_current_virtual_live_embed(server: str, session: aiohttp.ClientSes
                     end_at = await format_date(end_at)
                     img = f'https://storage.sekai.best/sekai-tc-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
                 elif server == 'jp':
-                    start_at = await format_date_jp(start_at)
-                    end_at = await format_date_jp(end_at)
+                    start_at = await format_date(start_at)
+                    end_at = await format_date(end_at)
                     img = f'https://storage.sekai.best/sekai-assets/virtual_live/select/banner/{asset_name}_rip/{asset_name}.webp'
                 embed = defaultEmbed(name)
                 embed.set_image(url=img)

@@ -1,17 +1,23 @@
-import logging
-from discord import Embed, Colour
 from datetime import datetime
+import aiohttp
+import discord
+from discord import Embed, Colour
 
-def __init__(self, bot):
-        self.bot = bot
+async def get_data(data, content_type):
+    session = aiohttp.ClientSession()
+    async with session.get(data) as r:
+        json = await r.json(content_type=f'{content_type}')
+        await session.close()
+        return json
 
 #ayaakaa
-async def is_ayaakaa (i):
-    if i.user.id != 831883841417248778:
-        await i.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
+async def is_ayaakaa (interaction:discord.Interaction):
+    if interaction.user.id != 831883841417248778:
+        await interaction.response.send_message(embed=notAyaakaaEmbed(), ephemeral=True)
         return False
     else:
         return True
+
 
 #embeds    
 def defaultEmbed(title: str = '', description: str = ''):
@@ -26,9 +32,7 @@ def loadingEmbed(text: str):
 def errEmbed(title: str = '', message: str = ''):
     embed = Embed(title=title, description=message, color= Colour.from_str('#F13650'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194641816633364.gif?size=240&quality=lossless')
-    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", 
-                    icon_url=f''
-                    )
+    embed.set_footer(text=f"如果你認為這是一個 BUG，歡迎私訊綾霞 ayaakaa#9815", icon_url=f'' )
     return embed
 
 def notAyaakaaEmbed():
@@ -40,6 +44,7 @@ def successEmbed(title: str = '', message: str = ''):
     embed = Embed(title=title, description=message, color= Colour.from_str('#3DC05F'))
     embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/1031194625819553882.webp?size=240&quality=lossless')
     return embed
+
 
 #log
 def log(is_system: bool, is_error: bool, log_type: str, log_msg: str):

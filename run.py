@@ -26,7 +26,7 @@ intents.reactions = True
 intents.message_content = True
 intents.presences = True
 
-class March7thBot(commands.Bot):
+class KanadeBot(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix=['!','%'],
@@ -38,7 +38,7 @@ class March7thBot(commands.Bot):
         self.repeat = False
         self.prev = False
         self.session = aiohttp.ClientSession()
-        self.db = await aiosqlite.connect("march_7th_data.db")
+        self.db = await aiosqlite.connect("kanade_data.db")
         self.backup_db = await aiosqlite.connect("backup.db")
         global version
         version = 2.1
@@ -52,7 +52,7 @@ class March7thBot(commands.Bot):
     async def on_ready(self):
         await self.change_presence(
             status=Status.online,
-            activity=Game(name=f'星穹鐵道')
+            activity=Game(name=f'世界計畫')
         )
         print(log(True, False, 'Bot', f'Logged in as {self.user}'))
 
@@ -86,7 +86,7 @@ class March7thBot(commands.Bot):
         return await super().close()
 
 
-bot = March7thBot()
+bot = KanadeBot()
 tree = bot.tree
 
 

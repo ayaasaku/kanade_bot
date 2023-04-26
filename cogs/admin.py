@@ -68,7 +68,6 @@ class AdminCog(commands.Cog, name='admin'):
             await guild.leave()
             await i.response.send_message(f"Left guild: {guild.name} ({guild.id})")
     
-    
     @app_commands.command(name='guilds', description='guilds')
     async def guilds(self, interaction: discord.Interaction):
         ayaakaa = await is_ayaakaa(interaction)

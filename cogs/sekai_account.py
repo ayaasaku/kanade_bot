@@ -61,7 +61,7 @@ class SekaiAccountCog(commands.Cog, name='account'):
             discord_id = str(interaction.user.id)
             player_id = str(self.player_id)
             name = interaction.user.display_name
-            api = await get_data(server=option, type='api', path=f'user/{self.player_id}/profile')
+            api = await get_data(server=option, type='api', path=f'/profile/{option}/{self.player_id}')
             none = {}
             if api != none:  
                 await cursor.execute(f'INSERT INTO user_accounts(discord_id, player_id_{option}) VALUES(?, ?)', (discord_id, player_id))
@@ -86,11 +86,12 @@ class SekaiAccountCog(commands.Cog, name='account'):
         Choice(name='jp', value='jp'),
         Choice(name='tw', value='tw')])  
     async def register(self, interaction: discord.Interaction, option: str):
-        if option == 'tw':
+        '''if option == 'tw':
             embed = errEmbed(
             '目前還沒支持台服喔',
             f'台服的功能將於稍後推出，\n敬請期待。') 
-            await interaction.response.send_message(embed=embed) 
+            await interaction.response.send_message(embed=embed) '''
+            
         self.register_server = option
         db = await aiosqlite.connect("kanade_data.db")
         check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=option)

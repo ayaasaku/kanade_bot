@@ -69,7 +69,7 @@ async def event_embed(server: str):
         event_rewards = await process_event_rewards(server=server, event_id=event_id)
         n = len(event_rewards) // 6  # calculate the length of each part
         # split the string into 6 equal parts using slicing
-        parts = [event_rewards[i:i+n] for i in range(0, len(event_rewards), n)]
+        #parts = [event_rewards[i:i+n] for i in range(0, len(event_rewards), n)]
         
         embed = defaultEmbed(title=f'**{event_name}**')
         embed.set_thumbnail(url=logo_url)
@@ -91,7 +91,7 @@ async def event_embed(server: str):
         embed.add_field(name='開始', value=event_start_date, inline=True)
         embed.add_field(name='\u200b', value='\u200b', inline=True)
         embed.add_field(name='結束', value=f'{event_end_date}', inline=True)
-        part0 = ''.join(parts[0])
+        '''part0 = ''.join(parts[0])
         part1 = ''.join(parts[1])
         part2 = ''.join(parts[2])
         part3 = ''.join(parts[3])
@@ -103,7 +103,7 @@ async def event_embed(server: str):
         embed.add_field(name='\u200b', value=f'{part2}', inline=False)
         embed.add_field(name='\u200b', value=f'{part3}', inline=True)
         embed.add_field(name='\u200b', value=f'{part4}', inline=False)
-        embed.add_field(name='\u200b', value=f'{part5}', inline=True)
+        embed.add_field(name='\u200b', value=f'{part5}', inline=True)'''
         embed.add_field(name='更多資訊', value=event_url, inline=False)
         
     return embed

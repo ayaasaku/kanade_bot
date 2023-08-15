@@ -41,7 +41,7 @@ class KanadeBot(commands.Bot):
         self.db = await aiosqlite.connect("kanade_data.db")
         self.backup_db = await aiosqlite.connect("backup.db")
         global version
-        version = 2.1
+        version = 2.2
         self.version = version
         
         await self.load_extension('jishaku')

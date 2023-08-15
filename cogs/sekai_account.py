@@ -18,7 +18,7 @@ class SekaiAccountCog(commands.Cog, name='account'):
         none_embed = errEmbed(
             '玩家ID不存在',
             f'也許該名玩家還沒注冊？\n可以使用 `/register` 來註冊') 
-        self.register_server = ''
+
             
     @app_commands.command(name='id', description='查看一個玩家的ID') 
     @app_commands.choices(option=[
@@ -51,58 +51,51 @@ class SekaiAccountCog(commands.Cog, name='account'):
             embed.set_author(name=f'{name}的玩家ID', icon_url=avatar)
             await interaction.followup.send(embed=embed)
         
-    class RegisterModal(ui.Modal, title=f'註冊帳戶'):   
+    class RegisterModal(ui.Modal, title=f'註冊帳戶'):  
+        server = ui.TextInput(label='server: tw/jp/en/kr', style=discord.TextStyle.short, required=True) 
         player_id = ui.TextInput(label='玩家id', style=discord.TextStyle.short, required=True)
         
         async def on_submit(self, interaction: Interaction):
-            option = SekaiAccountCog.register_server
+            #option = register_server
             db = await aiosqlite.connect("kanade_data.db")
             cursor = await db.cursor()
             discord_id = str(interaction.user.id)
             player_id = str(self.player_id)
             name = interaction.user.display_name
-            api = await get_data(server=option, type='api', path=f'/profile/{option}/{self.player_id}')
-            none = {}
-            if api != none:  
-                await cursor.execute(f'INSERT INTO user_accounts(discord_id, player_id_{option}) VALUES(?, ?)', (discord_id, player_id))
-                await db.commit()
-                if option == 'tw':
-                    title = '** 台服帳號註冊成功 **'
-                elif option == 'jp':
-                    title = '** 日服帳號註冊成功 **'
-                description = f'{name}，感謝使用奏寶，帳號已設置成功。'
-                embed = successEmbed(title, description)
-                embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
-                embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
-                await interaction.response.send_message(embed=embed, ephemeral= True)
-            if api == none:
+            check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=self.server)
+            if check == True: 
                 embed = errEmbed(
-                '玩家ID不存在',
-                f'請確定一下是否輸入了正確的ID')
-                await interaction.response.send_message(embed=embed, ephemeral= True)
+                '帳號已經存在',
+                '你已經註冊過帳號了，不需要再註冊囉')
+                await interaction.response.send_message(embed=embed)
+            else:
+                api = await get_data(server=self.server, type='api', path=f'/profile/{self.server}/{self.player_id}')
+                none = {}
+                if api != none:  
+                    await cursor.execute(f'INSERT INTO user_accounts(discord_id, player_id_{self.server}) VALUES(?, ?)', (discord_id, player_id))
+                    await db.commit()
+                    if self.server == 'tw':
+                        title = '** 台服帳號註冊成功 **'
+                    elif self.server == 'jp':
+                        title = '** 日服帳號註冊成功 **'
+                    elif self.server == 'en':
+                        title = '** en 服帳號註冊成功 **'
+                    elif self.server == 'kr':
+                        title = '** kr 服帳號註冊成功 **'
+                    description = f'{name}，感謝使用奏寶，帳號已設置成功。'
+                    embed = successEmbed(title, description)
+                    embed.set_author(name=interaction.user.display_name, icon_url= interaction.user.display_avatar)
+                    embed.add_field(name=f'ID: ', value=self.player_id, inline=False)
+                    await interaction.response.send_message(embed=embed, ephemeral= True)
+                if api == none:
+                    embed = errEmbed(
+                    '玩家ID不存在',
+                    f'請確定一下是否輸入了正確的ID')
+                    await interaction.response.send_message(embed=embed, ephemeral= True)
 
     @app_commands.command(name='register', description='註冊玩家ID')    
-    @app_commands.choices(option=[
-        Choice(name='jp', value='jp'),
-        Choice(name='tw', value='tw')])  
-    async def register(self, interaction: discord.Interaction, option: str):
-        '''if option == 'tw':
-            embed = errEmbed(
-            '目前還沒支持台服喔',
-            f'台服的功能將於稍後推出，\n敬請期待。') 
-            await interaction.response.send_message(embed=embed) '''
-            
-        self.register_server = option
-        db = await aiosqlite.connect("kanade_data.db")
-        check = await check_user_account(discord_id = str(interaction.user.id), db=db, server=option)
-        if check == False:
-            await interaction.response.send_modal(self.RegisterModal())
-        else:
-            embed = errEmbed(
-            '帳號已經存在',
-            '你已經註冊過帳號了，不需要再註冊囉')
-            await interaction.response.send_message(embed=embed)
-          
-            
+    async def register(self, interaction: discord.Interaction):\
+        await interaction.response.send_modal(self.RegisterModal())
+    
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(SekaiAccountCog(bot))
